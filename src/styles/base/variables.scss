@@ -1,0 +1,63 @@
+//
+// Fonts
+//________________________________________
+
+$font-size__xxxl: 40px;
+$font-size__xxl: 24px;
+$font-size__xl: 20px;
+$font-size__l: 16px;
+$font-size__base: 14px;
+$font-size__s: 12px;
+$font-size__xs: 10px;
+
+$font-weight__bold: 700;
+$font-weight__regular: 400;
+$font-weight__light: 300;
+
+//
+// Colors
+//________________________________________
+$color-blue: #00A7B5;
+$color-blue-light: #E3F5F7;
+$color-black: #222;
+$color-white: #fff;
+$color-grey: #eee;
+$color-grey: #eee;
+
+//
+// Theme Colors
+//________________________________________
+$primary-color: $color-blue;
+$primary-background-color: $color-blue-light;
+
+
+//
+// Borders and shadows
+//________________________________________
+$default-box-shadow: 0px 3px 6px #00000029;
+$default-border: 1px solid $color-grey;
+
+//
+// Layout
+//________________________________________
+$content-width: 1560px;
+
+//
+// Breakpoints
+//________________________________________
+$screen-xxs: 360px; // Mobile extra small
+$screen-xs: 480px; // Mobile small
+$screen-s: 768px; // Mobile
+$screen-m: 1025px; // Tablet
+$screen-l: 1200px; // Desktop
+$screen-xl: 1440px; // Desktop XL
+
+//
+// Icons
+//________________________________________
+$icon__default-width: 16px;
+$icon__default-height: 16px;
+$icon__default-margin: 0px;
+$icon__default-padding: 0px;
+$icon__default-margin--before: $indent__s;
+$icon__default-margin--after: $indent__s;

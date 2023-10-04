@@ -1,0 +1,67 @@
+//
+// Icon mixins
+//________________________________________
+
+// Base
+@mixin icon(
+  $icon-code: false,
+  $width: $icon__default-width,
+  $height: $icon__default-height,
+  $margin: $icon__default-margin,
+  $padding: $icon__default-padding
+) {
+  display: inline-block;
+  width: $width;
+  min-width: $width;
+  height: $height;
+  margin: $margin;
+  padding: $padding;
+  background-image: url("../icons/" + $icon-code + ".svg");
+  background-size: $width $height;
+  background-repeat: no-repeat;
+  content: '';
+}
+
+// Icon before element
+@mixin iconBefore(
+  $icon-code,
+  $width: $icon__default-width,
+  $height: $icon__default-height,
+  $margin: $icon__default-margin--before,
+  $padding: $icon__default-padding
+) {
+    display: flex;
+    align-items: center;
+
+  &:before {
+    @include icon(
+      $icon-code,
+      $width,
+      $height,
+      $margin,
+      $padding
+    );
+  }
+}
+
+// Icon after element
+@mixin iconAfter(
+  $icon-code,
+  $width: $icon__default-width,
+  $height: $icon__default-height,
+  $margin: $icon__default-margin--after,
+  $padding: $icon__default-padding
+) {
+    display: flex;
+    align-items: center;
+
+  &:after {
+    @include icon(
+      $icon-code,
+      $width,
+      $height,
+      $margin,
+      $padding
+    );
+  }
+}
