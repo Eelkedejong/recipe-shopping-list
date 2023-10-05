@@ -9,7 +9,7 @@ const LoginForm = ({refetch}) => {
 
   return (
     <>
-    <h2>Create new account</h2>
+    <h2>login</h2>
     <form
       onSubmit={e => {
         e.preventDefault()
@@ -20,8 +20,8 @@ const LoginForm = ({refetch}) => {
         Username
         <input
           id="username"
-          name="username"
           required
+          name="username"
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
         />
@@ -30,8 +30,8 @@ const LoginForm = ({refetch}) => {
         Password
         <input 
           id="password"
-          name="password"
           required
+          name="password"
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />

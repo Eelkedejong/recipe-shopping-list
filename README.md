@@ -17,19 +17,22 @@
   </p>
 </div>
 
-
-
 ## About The Project
 
 This project contains the front-end for my recipe shopping list web-app.
 
+## Project structure
+
+App.jsx is the entry point for the entire app where global systems are initialized
+Authentication.jsx is the authentication layer that blocks the app untill the user signed in.
+When the user is sign in, the layout.jsx is called. This is the actual app, which only becomes available once a user signed in.
+In the layout.jsx, all routes of the app itself are defined. Only after the user logged in, these become available and are loaded in.
 
 ## Contact
 
 Eelke de Jong - eelkesdejong@gmail.com
 
 Project Link: [https://github.com/Eelkedejong/recipe-shopping-list](https://github.com/Eelkedejong/recipe-shopping-list)
-
 
 [contributors-shield]: https://img.shields.io/github/contributors/Eelkedejong/repo_name.svg?style=for-the-badge
 [contributors-url]: https://github.com/Eelkedejong/

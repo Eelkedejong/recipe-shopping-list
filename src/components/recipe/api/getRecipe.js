@@ -1,5 +1,6 @@
-const Recipe = async ({ queryKey }) => {
+const getRecipe = async ({ queryKey }) => {
   const token = queryKey[1]
+  const id = queryKey[2]
   console.log('token API', token)
 
   const requestOptions = {
@@ -13,7 +14,7 @@ const Recipe = async ({ queryKey }) => {
 
   try {
     const res = await fetch(
-      `http://localhost:3001/api/recipe/`, requestOptions
+      `http://localhost:3001/api/recipe/${id}`, requestOptions
     )
 
 
@@ -29,4 +30,4 @@ const Recipe = async ({ queryKey }) => {
   }
 }
 
-export default Recipe
+export default getRecipe

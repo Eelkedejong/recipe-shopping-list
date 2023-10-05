@@ -1,6 +1,5 @@
-import { removeUserData } from "./storage"
+import { removeUserData } from "./utils/storage"
 import { useQueryClient } from '@tanstack/react-query';
-
 
 const Logout = () => {
   const queryClient = useQueryClient();

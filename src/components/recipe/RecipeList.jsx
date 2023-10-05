@@ -1,15 +1,25 @@
 import Recipe from './RecipeTile'
+import { useQuery } from "@tanstack/react-query";
 import { Link } from 'react-router-dom'
+import getRecipes from './api/getRecipe'
 
-const RecipeList = ({ recipes }) => {
+const RecipeList = ({ userToken }) => {
+
+  const results = useQuery(
+    ["recipes", userToken, ''], 
+    getRecipes,
+    {
+      // The query will not execute until the userToken exists.
+      enabled: !!userToken,
+    }
+  )
+  
+  const recipes = results?.data?.data ?? [];
 
   return (
     <div className='recipe-list'>
       {!recipes.length ? (
-        <>
-          <h1>No recipies found</h1>
-          <Link to="/recipe/create">Add recipe</Link>
-        </>
+        null
       ) : (
         recipes.map((recipe) => {
           return (
@@ -23,7 +33,7 @@ const RecipeList = ({ recipes }) => {
               id={recipe.id}
               key={recipe.id}
             />
-          );
+          )
         })
       )}
     </div>
