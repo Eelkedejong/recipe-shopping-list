@@ -1,0 +1,72 @@
+//
+//  Grid
+//  _____________________________________________
+.grid {
+  display: grid
+}
+.ass {
+  align-self: start;
+}
+.asc {
+  align-self: center;
+}
+.ase {
+  align-self: end;
+}
+.jss {
+  justify-self: start;
+}
+.jsc {
+  justify-self: center;
+}
+.jse {
+  justify-self: end;
+}
+
+//
+//  Flex
+//  _____________________________________________
+.df {
+  display: flex
+}
+.fdc {
+  flex-direction: column;
+}
+.aic {
+  align-items: center
+}
+.jcc {
+  justify-content: center;
+}
+.jcsb {
+  justify-content: space-between;
+}
+.acc {
+  align-content: center
+}
+.asfs {
+  align-self: start;
+}
+.fww {
+  flex-wrap: wrap
+}
+
+//
+//  Alignment
+//  _____________________________________________
+.centered {
+  margin: auto
+}
+
+//
+//  Positioning
+//  _____________________________________________
+.pos-relative {
+  position: relative
+}
+
+
+.full-height {
+  height: 100%
+  
+}

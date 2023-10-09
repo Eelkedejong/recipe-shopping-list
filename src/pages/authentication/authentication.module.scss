@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+.authentication {
+  max-width: 360px;
+
+  @include screen-m(min) {
+    max-width: 50%;
+  }
+}

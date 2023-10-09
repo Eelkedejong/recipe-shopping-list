@@ -6,7 +6,6 @@ const CreateRecipe = () => {
     // mutation.mutate(new FormData(event.target))
   }
 
-
   return (
     <>
       <form

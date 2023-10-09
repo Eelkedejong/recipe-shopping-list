@@ -1,0 +1,17 @@
+// Radius
+.rounded-l {
+  border-radius: 35px
+}
+.rounded-top-l {
+  border-radius: 35px 35px 0 0
+}
+.rounded-m {
+  border-radius: 20px;
+}
+.rounded-s {
+  border-radius: 10px;
+}
+
+.bordered {
+  border: 2px solid $color-black
+}

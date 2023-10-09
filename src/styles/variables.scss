@@ -1,0 +1,32 @@
+//
+// Colors
+//________________________________________
+$color-black: #333;
+$color-black-full: #111;
+$color-white: #fff;
+$color-blue: #6291F4;
+$color-dark-blue: #374C81;
+$color-grey-blue: #EDF1F9;
+$color-light-blue: #DAE7FF;
+$color-input-blue: #D9E2F3;
+
+// Gradient colors:
+$gradient-start: #9CB3DB;
+$gradient-end: #5F95F5;
+
+//
+// Font
+//________________________________________
+$font-family-header: 'Titan One';
+$font-family-body: 'Varela Round';
+
+//
+// Breakpoints
+//________________________________________
+$screen-xxs: 360px; // Mobile extra small
+$screen-xs: 480px; // Mobile small
+$screen-s: 768px; // Mobile
+$screen-m: 1025px; // Tablet
+$screen-l: 1200px; // Desktop
+
+@import './mixins/breakpoints.scss'

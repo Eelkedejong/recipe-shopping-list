@@ -1,7 +1,18 @@
-//
-// Base styling
-//________________________________________
-@import 'base/reset.scss';
-@import 'base/variables.scss';
-@import 'base/mixins.scss';
-// @import 'base/core.scss';
+@import './reset.scss';
+@import './variables.scss';
+@import './defaults.scss';
+
+// Utility classes
+@import './utility/borders.scss';
+@import './utility/color.scss';
+@import './utility/font.scss';
+@import './utility/layout.scss';
+@import './utility/spacing.scss';
+
+// Mixins
+@import './mixins/breakpoints.scss';
+
+
+body {
+  font-family: $font-family-body
+}

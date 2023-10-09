@@ -1,0 +1,57 @@
+//
+// Breakpoint mixins
+//________________________________________
+
+/* Usage
+
+Include the mixin with the desired breakpoint and add the 
+orientation (min or max) to determine if the styling should
+be applied from the breakpoint or below it.
+
+div {
+    margin: 10px;
+
+    @include screen-m(min) {
+        margin: 20px; // 20px above 1025px screens
+    }
+
+    @include screen-xs(max) {
+        margin: 5px; // 5px below 480px screens
+    }
+}
+*/
+
+// Mobile extra small -- 360px
+@mixin screen-xxs($orientation) {
+  @media (#{$orientation}-width: #{$screen-xxs}) {
+      @content;
+  }
+}
+
+// Mobile small -- 480px
+@mixin screen-xs($orientation) {
+  @media (#{$orientation}-width: #{$screen-xs}) {
+      @content;
+  }
+}
+
+// Mobile -- 768px
+@mixin screen-s($orientation) {
+  @media (#{$orientation}-width: #{$screen-s}) {
+      @content;
+  }
+}
+
+// Tablet -- 1024px
+@mixin screen-m($orientation) {
+  @media (#{$orientation}-width: #{$screen-m}) {
+      @content;
+  }
+}
+
+// Desktop -- 1200px
+@mixin screen-l($orientation) {
+  @media (#{$orientation}-width: #{$screen-l}) {
+      @content;
+  }
+}

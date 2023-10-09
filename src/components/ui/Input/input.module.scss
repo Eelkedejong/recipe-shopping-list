@@ -1,0 +1,23 @@
+@import '../../../styles/variables.scss';
+
+.input {
+  height: 52px;
+  background-color: $color-input-blue;
+  width: 100%;
+
+  @include screen-m(min) {
+    min-width: 250px;
+  }
+}
+
+.label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.75rem;
+
+  &.focus {
+    font-size: 10px;
+    top: 30%
+  }
+}

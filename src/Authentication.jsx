@@ -1,16 +1,20 @@
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query";
-import LoginContext from "./components/user/utils/loginContext";
-import getUser from "./components/user/api/getUser"
-import CreateForm from "./components/user/CreateForm"
-import LoginForm from "./components/user/LoginForm";
-import { getStoredUserData, removeUserData, saveUserData } from "./components/user/utils/storage";
+import LoginContext from "./pages/authentication/utils/loginContext";
+import getUser from "./pages/authentication/api/getUser"
+import CreateForm from "./pages/authentication/CreateForm"
+import LoginForm from "./pages/authentication/LoginForm";
+import { getStoredUserData, removeUserData, saveUserData } from "./pages/authentication/utils/storage";
 import Layout from "./Layout";
+import Button from "./components/ui/Button";
+import styles from "./pages/authentication/authentication.module.scss"
+import { useTranslation } from "react-i18next";
 
 const Start = () => {
   const loginData = useState(null)
   const [formType, setFormType] = useState('signin')
   const [errorMessage, setErrorMessage] = useState('')
+  const { t } = useTranslation()
 
   const {data, isSuccess, refetch} = useQuery(
     ["user", loginData, formType],
@@ -50,22 +54,22 @@ const Start = () => {
       ) : null }
 
       {showLoginForm ? (
-        <>
+        <section className={`bg-white rounded-l centered p-5 ${styles.authentication}`}>
           <LoginContext.Provider value={loginData}>
             {formType === 'signin' 
               ? <LoginForm refetch={refetch}/>
               : <CreateForm refetch={refetch}/>
             }
-            {errorMessage ? errorMessage : null}
-            <button 
+            {errorMessage ? `${t('Something went wrong, please try again later')}` : null}
+            <Button 
               onClick={() => {
                 {formType === 'signin' ? setFormType('user') : setFormType('signin')}
               }}
-            >
-              {formType === 'signin' ? 'Create account' : 'Sign in'}
-            </button>
+              text={formType === 'signin' ? `${t('Create account')}` : `${t('Sign in')}`}
+              type={'ghost'}
+            />
           </LoginContext.Provider>
-        </>
+        </section>
       ) : null }
     </>
   )

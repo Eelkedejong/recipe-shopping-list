@@ -1,0 +1,53 @@
+// Background colors
+.bg-white {
+  background-color: $color-white
+}
+.bg-black {
+  background-color: $color-black
+}
+.bg-blue {
+  background-color: $color-blue
+}
+.bg-grey-blue {
+  background-color: $color-grey-blue
+}
+.bg-light-blue {
+  background-color: $color-light-blue
+}
+
+
+// Text colors
+.text-white {
+  color: $color-white
+}
+.text-black {
+  color: $color-black
+}
+.text-blue {
+  color: $color-blue
+}
+.text-dark-blue {
+   color: $color-dark-blue
+}
+
+// Hover colors
+.hover-white {
+  &:hover {
+    color: $color-white
+  }
+}
+.hover-black {
+  &:hover {
+    color: $color-black
+  }
+}
+.hover-blue {
+  &:hover {
+    color: $color-blue
+  }
+}
+.hover-dark-blue {
+  &:hover {
+    color: $color-blue
+  }
+}

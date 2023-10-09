@@ -1,0 +1,8 @@
+body {
+  font-family: $font-family-body
+}
+
+// Default transition on interactive elements
+* {
+  transition:  all .2s ease;
+}
