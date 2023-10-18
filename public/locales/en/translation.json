@@ -1,5 +1,4 @@
 {
-
   "Sign in": "Sign in",
   "Create account": "Create account",
   "Username": "Username",
@@ -7,6 +6,11 @@
   "Logout": "Logout",
   "Something went wrong, please try again later": "Something went wrong, please try again later",
   "Cancel": "Cancel",
-  "Ingredients": "Ingredients"
-
+  "Save recipe": "Save recipe",
+  "Ingredients": "Ingredients",
+  "Recipe name": "Recipe name",
+  "Description": "Description",
+  "Ingredient name": "Ingredient name",
+  "Amount": "Amount",
+  "Unit": "Unit"
 }

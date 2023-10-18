@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+.grid {
+  grid-template-columns: 2fr 1fr 1fr 15px;
+}
+
+.ingredientGrid {
+  grid-template-columns: min-content auto;
+}

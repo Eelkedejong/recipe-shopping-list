@@ -1,27 +1,39 @@
 //
 //  Grid
 //  _____________________________________________
-.grid {
+.dg {
   display: grid
 }
+
+// Grid templates
+.gtc-2 {
+  grid-template-columns: 1fr 1fr
+} 
+.gtc-3 {
+  grid-template-columns: 1fr 1fr 1fr
+}
+
+// Grid alignment
 .ass {
-  align-self: start;
+  align-self: start
 }
 .asc {
-  align-self: center;
+  align-self: center
 }
 .ase {
-  align-self: end;
+  align-self: end
 }
 .jss {
-  justify-self: start;
+  justify-self: start
 }
 .jsc {
-  justify-self: center;
+  justify-self: center
 }
 .jse {
-  justify-self: end;
+  justify-self: end
 }
+
+
 
 //
 //  Flex
@@ -30,22 +42,25 @@
   display: flex
 }
 .fdc {
-  flex-direction: column;
+  flex-direction: column
 }
 .aic {
   align-items: center
 }
 .jcc {
-  justify-content: center;
+  justify-content: center
 }
 .jcsb {
-  justify-content: space-between;
+  justify-content: space-between
+}
+.jcfe {
+  justify-content: flex-end
 }
 .acc {
   align-content: center
 }
 .asfs {
-  align-self: start;
+  align-self: start
 }
 .fww {
   flex-wrap: wrap

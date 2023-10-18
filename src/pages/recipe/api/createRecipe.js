@@ -1,11 +1,16 @@
-const createRecipe = async (recipeData) => {
+const createRecipe = async ([recipeData, token]) => {
+  console.log("recipeData", recipeData);
 
   const requestOptions = {
-    method: 'GET',
-    headers: { 
-      'Authorization': 'Bearer ' + token
+    method: "POST",
+    body: JSON.stringify(recipeData),
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
     },
-  }
-}
+  };
 
-export default createRecipe
+  await fetch(`http://localhost:3001/api/recipe/`, requestOptions);
+};
+
+export default createRecipe;

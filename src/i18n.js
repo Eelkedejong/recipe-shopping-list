@@ -41,10 +41,10 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
     detection: options,
     backend: {
-      loadPath: './locales/{{lng}}/{{ns}}.json'
+      loadPath: '../locales/{{lng}}/{{ns}}.json'
     },
 
     interpolation: {

@@ -5,6 +5,12 @@
   "Password": "Wachtwoord",
   "Logout": "Uitloggen",
   "Something went wrong, please try again later": "Er is iets misgegaan. Probeer het later opnieuw",
-  "Cancel": "Cancel",
-  "Ingredients": "Ingrediënten"
+  "Cancel": "Annuleren",
+  "Save recipe": "Recept opslaan",
+  "Ingredients": "Ingrediënten",
+  "Recipe name": "Recept naam",
+  "Description": "Omschrijving",
+  "Ingredient name": "Ingrediënt naam",
+  "Amount": "Aantal",
+  "Unit": "Eenheid"
 }

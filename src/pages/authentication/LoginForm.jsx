@@ -14,7 +14,7 @@ const LoginForm = ({refetch}) => {
   return (
     <>
     <form
-      className="mb-5"
+      className="mb-5 df fdc gap-4"
       onSubmit={e => {
         e.preventDefault()
         refetch()

@@ -12,10 +12,9 @@
 *::after {
   box-sizing: border-box;
 }
-/* Reapply the pointer cursor for anchor tags */
-a {
-  cursor: revert;
-}
+/* Reapply the pointer cursor for anchor tags and buttons */
+a { cursor: revert }
+button { cursor: pointer }
 /* Remove list styles (bullets/numbers) */
 ol, ul, menu {
   list-style: none;
