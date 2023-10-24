@@ -35,8 +35,6 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
         responseData.persons = parseInt(responseData.persons);
 
         handleSubmit(responseData);
-
-        // do API PUT call
       }}
     >
       <Input

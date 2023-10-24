@@ -13,9 +13,8 @@ const Layout = ({ userToken }) => {
 
   return (
     <>
-      {/* <h1> Cookbook </h1> */}
       <div
-        className={`bg-white rounded-top-l p-5 mt-5 full-height`}
+        className={`bg-white rounded-top-l p-5 mt-5 height-full`}
         style={{ marginTop: 100 }}
       >
         <Routes>

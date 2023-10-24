@@ -1,4 +1,6 @@
 {
+  "Create your account and start collecting recipes right away!": "Maak een account aan en begin direct met het verzamelen van recepten!",
+  "Log in to view your recipes!": "Log in om je recepten te bekijken!",
   "Sign in": "Inloggen",
   "Create account": "Account aanmaken",
   "Username": "Gebruikersnaam",
@@ -13,4 +15,5 @@
   "Ingredient name": "Ingrediënt naam",
   "Amount": "Aantal",
   "Unit": "Eenheid"
+  
 }
