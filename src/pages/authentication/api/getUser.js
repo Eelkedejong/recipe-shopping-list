@@ -27,7 +27,7 @@ const getUser = async ({ queryKey }) => {
 
     return res.json();
   } else {
-    throw new Error("please enter an email, username and password");
+    throw new Error("Please enter an email and password");
   }
 };
 

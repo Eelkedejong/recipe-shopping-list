@@ -14,7 +14,7 @@ const Layout = ({ userToken }) => {
   return (
     <>
       <div
-        className={`bg-white rounded-top-l p-5 mt-5 height-full`}
+        className={`bg-white rounded-top-l p-5 mt-5 h-100`}
         style={{ marginTop: 100 }}
       >
         <Routes>

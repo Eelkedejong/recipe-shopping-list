@@ -1,6 +1,5 @@
 const forgotPassword = async ({ queryKey }) => {
   const email = queryKey[1];
-  console.log("email", email);
 
   if (email) {
     console.log("start reset request", email);

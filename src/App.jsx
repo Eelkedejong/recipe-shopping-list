@@ -21,15 +21,7 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <LanguageSelect />
         <main className="bg-blue df fdc aic">
-          <h1
-            className="ff-header text-white mt-4"
-            style={{ fontSize: "38px" }}
-          >
-            Cookbook
-          </h1>
-          <div className="mb-5 df aic jcc height-full">
-            <Authentication />
-          </div>
+          <Authentication />
         </main>
       </QueryClientProvider>
     </BrowserRouter>

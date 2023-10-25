@@ -2,6 +2,23 @@
 
 main {
   height: 100vh;
+  background-image: url('../assets/bg.svg');
+  background-size: cover;
 }
 
+.message {
+  padding: 16px;
+  font-size: 14px;
 
+  &.success {
+    color: #2b7515;
+    background: #ecffd6;
+    border-left: 3px solid #617c42;
+  }
+
+  &.error {
+    color: #ba3939;
+    background: #ffe0e0;
+    border-left: 3px solid #a33a3a;
+  }
+}

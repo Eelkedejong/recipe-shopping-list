@@ -42,13 +42,16 @@ const LoginForm = ({ refetch }) => {
 
         <Input
           id="password"
+          type="password"
           label={t("Password")}
           required={true}
           onChange={(e) => setPassword(e.target.value)}
           key="password"
+          autocomplete="on"
         />
 
         <Button
+          className={"mt-4"}
           onClick={() => {
             setLoginData({
               username: username,

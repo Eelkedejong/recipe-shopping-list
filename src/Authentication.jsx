@@ -5,6 +5,7 @@ import LoginContext from "./pages/authentication/utils/loginContext";
 import getUser from "./pages/authentication/api/getUser";
 import CreateForm from "./pages/authentication/CreateForm";
 import LoginForm from "./pages/authentication/LoginForm";
+import ErrorMessage from "./pages/authentication/utils/ErrorMessage";
 import ForgotPassword from "./pages/authentication/ForgotPassword";
 import PasswordReset from "./pages/authentication/PasswordReset";
 import {
@@ -24,6 +25,7 @@ const Authentication = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const { t } = useTranslation();
 
+  // Fetch the user data.
   const { data, isSuccess, refetch } = useQuery(
     ["user", loginData, formType],
     getUser,
@@ -39,9 +41,11 @@ const Authentication = () => {
     }
   );
 
+  // Check if there is a saved token.
   let savedToken = getStoredUserData();
   let showLoginForm = false;
 
+  // If the user is logged in, save the token.
   if (isSuccess) {
     if (!savedToken) {
       const newToken = data?.token;
@@ -49,10 +53,11 @@ const Authentication = () => {
       savedToken = newToken;
     }
   } else {
-    // Only show the login form if there is no userToken
+    // Only show the login form if there is no userToken.
     showLoginForm = true;
   }
 
+  // If there is a saved token, set it as the active userToken.
   const userToken = savedToken;
 
   return (
@@ -61,49 +66,61 @@ const Authentication = () => {
 
       {showLoginForm ? (
         <>
-          <section
-            className={`bg-white rounded-l centered p-5 ${styles.authentication}`}
+          <h1
+            className="ff-header text-white mt-4"
+            style={{ fontSize: "38px" }}
           >
-            <Routes>
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/reset-password/:id" element={<PasswordReset />} />
-              <Route
-                path="/"
-                element={
-                  <>
-                    <div className="mb-4 df jcc">
-                      <img src={logo} alt="Chef" />
-                    </div>
-                    <LoginContext.Provider value={loginData}>
-                      {formType === "signin" ? (
-                        <LoginForm refetch={refetch} />
-                      ) : (
-                        <CreateForm refetch={refetch} />
-                      )}
-                      {errorMessage
-                        ? `${t("Something went wrong, please try again later")}`
-                        : null}
-                      <Button
-                        onClick={() => {
-                          {
+            Cookbook
+          </h1>
+          <div className="mb-5 df aic jcc h-100">
+            <section
+              className={`bg-white rounded-l centered p-5 ${styles.authentication}`}
+            >
+              <div className="mb-4 df jcc">
+                <img src={logo} alt="Chef" />
+              </div>
+              {errorMessage ? (
+                <ErrorMessage errorMessage={errorMessage} />
+              ) : null}
+              {/* Define the routes for the website authentication */}
+              <Routes>
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password/:id" element={<PasswordReset />} />
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <LoginContext.Provider value={loginData}>
+                        {formType === "signin" ? (
+                          <LoginForm refetch={refetch} />
+                        ) : (
+                          <CreateForm refetch={refetch} />
+                        )}
+                        <Button
+                          className={"w-100"}
+                          onClick={() => {
+                            {
+                              // Toggle between the forms.
+                              formType === "signin"
+                                ? setFormType("user")
+                                : setFormType("signin");
+                              setErrorMessage("");
+                            }
+                          }}
+                          text={
                             formType === "signin"
-                              ? setFormType("user")
-                              : setFormType("signin");
+                              ? `${t("Create account")}`
+                              : `${t("Sign in")}`
                           }
-                        }}
-                        text={
-                          formType === "signin"
-                            ? `${t("Create account")}`
-                            : `${t("Sign in")}`
-                        }
-                        type={"ghost"}
-                      />
-                    </LoginContext.Provider>
-                  </>
-                }
-              />
-            </Routes>
-          </section>
+                          type={"ghost"}
+                        />
+                      </LoginContext.Provider>
+                    </>
+                  }
+                />
+              </Routes>
+            </section>
+          </div>
         </>
       ) : null}
     </>

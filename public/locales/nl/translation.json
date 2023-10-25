@@ -1,12 +1,25 @@
 {
   "Create your account and start collecting recipes right away!": "Maak een account aan en begin direct met het verzamelen van recepten!",
-  "Log in to view your recipes!": "Log in om je recepten te bekijken!",
+  "Log in to your personal cookbook!": "Log in op je persoonlijke kookboek!",
   "Sign in": "Inloggen",
   "Create account": "Account aanmaken",
   "Username": "Gebruikersnaam",
   "Password": "Wachtwoord",
   "Logout": "Uitloggen",
   "Something went wrong, please try again later": "Er is iets misgegaan. Probeer het later opnieuw",
+  "Please enter an email and password": "Vul een email en wachtwoord in",
+  "The username or password did not match. Please try again.": "De gebruikersnaam of het wachtwoord is niet correct. Probeer het opnieuw.",
+  "Forgot password?": "Wachtwoord vergeten?",
+  "Submit": "Versturen",
+  "Enter your email address below and we'll send you a link to reset your password.": "Vul je email adres in en we sturen je een link om je wachtwoord te resetten.",
+  "Back to sign in": "Terug naar inloggen",
+  "No user with that email.": "Er is geen gebruiker gevonden met dit email adres.",
+  "Reset your password": "Wachtwoord resetten",
+  "New Password": "Nieuw wachtwoord",
+  "Confirm Password": "Wachtwoord bevestigen",
+  "Confirm new password": "Bevestig nieuw wachtwoord",
+  "Passwords do not match.": "Wachtwoorden komen niet overeen.",
+  "Password is successfully reset.": "Wachtwoord is succesvol gereset.",
   "Cancel": "Annuleren",
   "Save recipe": "Recept opslaan",
   "Ingredients": "Ingrediënten",
@@ -15,5 +28,4 @@
   "Ingredient name": "Ingrediënt naam",
   "Amount": "Aantal",
   "Unit": "Eenheid"
-  
 }

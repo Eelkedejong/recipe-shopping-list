@@ -15,7 +15,9 @@ const LoginForm = ({ refetch }) => {
 
   return (
     <>
-      <h2 className="my-5 ta-center">{t("Log in to view your recipes!")}</h2>
+      <h2 className="my-5 ta-center">
+        {t("Log in to your personal cookbook!")}
+      </h2>
       <form
         className="mb-5 df fdc gap-4"
         onSubmit={(e) => {
@@ -25,9 +27,9 @@ const LoginForm = ({ refetch }) => {
       >
         <Input
           id="email"
-          // type="email"
+          type="email"
           label={t("E-mail")}
-          required={true}
+          // required={true}
           onChange={(e) => setEmail(e.target.value)}
           key="email"
         />
@@ -36,16 +38,18 @@ const LoginForm = ({ refetch }) => {
           id="password"
           type="password"
           label={t("Password")}
-          required={true}
+          // required={true}
           onChange={(e) => setPassword(e.target.value)}
           key="password"
+          autocomplete="on"
         />
 
-        <div className="df jcc">
+        <div className="df jcc fs-14">
           <Link to="/forgot-password">{t("Forgot password?")}</Link>
         </div>
 
         <Button
+          className={"fs-14"}
           onClick={() => {
             setLoginData({
               email: email,

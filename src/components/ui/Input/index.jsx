@@ -10,6 +10,7 @@ const Input = ({
   type,
   required,
   classes,
+  autocomplete,
 }) => {
   if (!name) {
     name = id;
@@ -33,6 +34,7 @@ const Input = ({
             name={name}
             type={type}
             defaultValue={value}
+            autoComplete={autocomplete}
             onChange={onChange}
             onFocus={() => setFocus(true)}
             onBlur={(e) => {

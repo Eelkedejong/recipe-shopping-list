@@ -3,8 +3,6 @@ const passwordReset = async ({ queryKey }) => {
   const id = queryKey[2];
   const token = queryKey[3];
 
-  console.log("start reset request", password);
-
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
