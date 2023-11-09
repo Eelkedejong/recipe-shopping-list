@@ -1,6 +1,4 @@
 const createRecipe = async ([recipeData, token]) => {
-  console.log("recipeData", recipeData);
-
   const requestOptions = {
     method: "POST",
     body: JSON.stringify(recipeData),

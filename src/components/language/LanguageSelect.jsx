@@ -4,7 +4,7 @@ import enFlag from "../../assets/flags/en.svg";
 import nlFlag from "../../assets/flags/nl.svg";
 
 const LanguageSelect = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const lngs = {
     en: { nativeName: "English" },
@@ -19,8 +19,6 @@ const LanguageSelect = () => {
       return nlFlag;
     }
   };
-
-  console.log(i18n.resolvedLanguage);
 
   return (
     <div className={styles.selector}>

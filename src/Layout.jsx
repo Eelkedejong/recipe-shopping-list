@@ -1,26 +1,34 @@
 import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Logout from "./pages/authentication/Logout";
 import RecipeList from "./pages/recipe/RecipeList";
 import CreateRecipe from "./pages/recipe/CreateRecipe";
 import EditRecipe from "./pages/recipe/EditRecipe";
+import Aside from "./components/Aside";
+import Navigation from "./components/Navigation";
+import Header from "./components/Header";
 import Button from "./components/ui/Button";
 
-const Layout = ({ userToken }) => {
+const Layout = ({ userToken, userName }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
-    <>
-      <div
-        className={`bg-white rounded-top-l p-5 mt-5 h-100`}
-        style={{ marginTop: 100 }}
-      >
+    <main className="main h-100 w-100 bg-grey">
+      <Navigation userName={userName} />
+      <section className={`bg-grey w-100 rounded-top-l`}>
         <Routes>
-          <Route path="/recipes" element={<h1> Recipe overview </h1>} />
           <Route
-            path="/recipe/create"
+            path="/recipes"
+            element={
+              <>
+                <Header userName={userName} />
+                <RecipeList userToken={userToken} />
+              </>
+            }
+          />
+          <Route
+            path="/recipe/new"
             element={<CreateRecipe userToken={userToken} />}
           />
           <Route
@@ -31,10 +39,11 @@ const Layout = ({ userToken }) => {
             path="/"
             element={
               <>
+                <Header userName={userName} />
                 <RecipeList userToken={userToken} />
                 <Button
                   onClick={() => {
-                    navigate("/recipe/create");
+                    navigate("/recipe/new");
                   }}
                   text={t("Create new recipe")}
                   className="my-4"
@@ -43,9 +52,9 @@ const Layout = ({ userToken }) => {
             }
           />
         </Routes>
-        <Logout />
-      </div>
-    </>
+      </section>
+      <Aside />
+    </main>
   );
 };
 

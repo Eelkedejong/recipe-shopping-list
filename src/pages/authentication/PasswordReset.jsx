@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import passwordReset from "./api/passwordReset";
+import passwordReset from "./api/resetPassword";
 import { useTranslation } from "react-i18next";
 import ErrorMessage from "./utils/ErrorMessage";
 import Button from "../../components/ui/Button";

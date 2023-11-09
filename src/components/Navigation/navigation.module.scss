@@ -1,0 +1,339 @@
+@import '../../styles/variables.scss';
+
+.logoWrapper {
+  @include screen-s(min) {
+    background-image: url('../../assets/bg.svg');
+    background-size: cover;
+    border-radius: 0 0 30px 0;
+    padding-bottom: 36px;
+  }
+}
+
+.logo {
+  font-size: 38px;
+
+  @include screen-s(max) {
+    justify-content: center
+  }
+
+  @include screen-s(min) {
+    margin-top: 20px;
+
+    span {
+      border-bottom: 2px solid $color-white
+    }
+  }
+}
+
+.navigation {
+  // padding-left: 40px;
+
+  @include screen-s(min) {
+    grid-template-columns: 1fr 4fr 1fr;
+
+    // TODO check why the transitions do not work properly
+    svg {
+      transition: fill .05s;
+    }
+
+    a {
+      transition: color .05s;
+    }
+
+    li:not(.active):hover {
+      color: $color-blue;
+      background-color: #E5EBF6;
+      margin-left: calc(-1.5rem + 5px);
+      padding-left: 1.5rem;
+      border-radius: 0 20px 20px 0;
+  
+    
+      svg {
+        fill: $color-blue;
+      }
+    }
+
+    hr {
+      border: 1px solid #DDDDDD;
+      border-radius: 50%;
+    }
+  }
+}
+
+.wrapper {
+  @include screen-s(max) {
+    background-image: url('../../assets/bg.svg');
+    background-size: cover;
+  }
+
+  @include screen-s(min) {
+    box-shadow: 4px 0px 8px 0px rgba(0, 0, 0, 0.05);
+    z-index: 1;
+  }
+}
+
+.active {
+  color: $color-blue;
+  background-color: #E5EBF6;
+  margin-left: -1.5rem;
+  padding-left: 1.5rem;
+  border-radius: 0 20px 20px 0;
+  border-left: 5px solid $color-blue; 
+
+  svg {
+    fill: $color-blue;
+  }
+}
+
+/* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
+.openNav {
+	position: absolute;
+	top: 15px;
+	padding-top: 20px;
+	left: 15px;
+	z-index: 1000;
+	background: none;
+	border: 0;
+	cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+
+.burger {
+	position: relative;
+	display: block;
+	width: 28px;
+	height: 4px;
+	margin: 0 auto;
+	background: #fff;
+	transform: skew(5deg);
+	transition: all .275s;
+}
+
+.burger:after,
+.burger:before {
+	content: '';
+	display: block;
+	height: 100%;
+	background: #fff;
+	transition: all .275s;
+}
+
+.burger:after {
+	transform: translateY(-12px) translateX(-2px) skew(-20deg);
+}
+
+.burger:before {
+	transform: translateY(-16px) skew(-10deg);
+}
+
+/* Toggle State part */
+.open .burger {
+	transform: skew(5deg) translateY(-8px) rotate(-45deg);
+}
+
+.open .burger:before {
+	transform: translateY(0px) skew(-10deg) rotate(75deg);
+}
+
+.open .burger:after {
+	transform: translateY(-12px) translateX(10px) skew(-20deg);
+    opacity: 0;
+}
+
+/* MENU Text part */
+
+.burgerText {
+	display: block;
+	font-size: .675rem;
+	letter-spacing: .05em;
+	margin-top: .5em;
+	text-transform: uppercase;
+	font-weight: 500;
+	text-align: center;
+	color: #fff;
+}
+
+
+@include screen-s(max) {
+.navigation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, .5);
+  opacity: 0;
+  z-index: -1;
+  visibility: hidden;
+  transition: all .375s;
+}
+
+.navigation.open {
+  opacity: 1;
+  z-index: 100;
+  visibility: visible;
+}
+
+/* Yellow band effect */
+.navigation::before {
+ content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -15px;
+  right: -0;
+  background: #FEDC2A;
+
+  transform-origin: 0 0;
+  transform: skew(14deg) translateX(220%);
+  transition: all .275s .1s;
+}
+
+.navigation.open::before {
+  transform: skew(14deg) translateX(0);
+}
+
+/* Skewing effect on menu links */
+.navigation ul {
+  display: inline-flex;
+  flex-direction: column;
+  height: 93%; /* Should be 100%, but we have a notice message :D */
+  // align-items: flex-start;
+  // justify-content: center;
+  transform: translateX(18%) skew(0deg);
+}
+
+.navigation li {
+  display: block;
+  // margin: .5rem 0;
+  text-align: left;
+  // transform: skew(-16deg);
+}
+
+/* Apparition effect on links */
+.navigation a {
+  opacity: 0;
+  transform: translateX(50%);
+}
+
+.navigation.open a {
+  opacity: 1;
+  transform: translateX(0);
+}
+.navigation li.one a {
+transition: all 275ms 175ms
+}
+.navigation li.two a {
+transition: all 275ms 225ms
+}
+.navigation li.three a {
+transition: all 275ms 275ms
+}
+// .navigation li:nth-child(4) a {
+// transition: all 275ms 325ms
+// }
+// .navigation li:nth-child(5) a {
+// transition: all 275ms 375ms
+// }
+
+
+/* Decoration */
+.navigation ul,
+.navigation li {
+// list-style: none;
+// padding: 0;
+}
+.navigation a {
+display: block;
+padding: 12px 0;
+// color: #5A3B5D;
+font-size: 1.4em;
+// text-decoration: none;
+// font-weight: bold;
+}
+}
+
+
+
+
+// @include screen-s(max) {
+//   .navigation {
+//     position: absolute;
+//     top: 60px;
+//     left: -100%;
+//     width: 100%;
+
+
+//     // background-image: url('../../assets/bg.svg');
+//     // Dark overlay on open nav
+//     &::before {
+//       background: rgba(0, 0, 0, .5);
+//       background: #fff;
+//       content: '';
+//       height: 100vh;
+//       left: 0;
+//       top: 0;
+//       position: absolute;
+//       // opacity: 0;
+//       visibility: hidden;
+//       width: 100%;
+//       // transition: all 0s;
+//       transform-origin: 0 0;
+//       transform: skew(-14deg) translateX(-120%);
+//     }
+
+//     li {
+//       border-bottom: 1px solid #ddd;
+//       opacity: 0;
+//       visibility: hidden;
+//       transform: translateX(-20px);
+//       transition: all .3s;
+
+//       a {
+//         background: #fff;
+//         display: block;
+//         color: $color-black;
+//         font-size: 18px;
+//         padding: 12px 20px;
+
+//         &:hover {
+//           color: $color-blue;
+//         }
+//       }
+//     }
+//   }
+
+//   .navigation.open {
+//     left: 0;
+//     display: block;
+
+//       &::before {
+//         // display: block;
+//         transform: skew(-14deg) translateX(0);
+//         opacity: 1;
+//         visibility: visible;
+//       }
+//       li {
+//         opacity: 1;
+//         visibility: visible;
+//         transform: translateX(0);
+
+//         &.one {
+//           transition-delay: 0s
+//         }
+
+//         &.two {
+//           transition-delay: 0.08s
+//         }
+
+//         &.three {
+//           transition-delay: 0.16s
+//         }
+//       }
+//   }
+// }

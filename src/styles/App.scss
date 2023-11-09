@@ -1,9 +1,13 @@
 @import './variables.scss';
 
-main {
+.wrapper {
   height: 100vh;
   background-image: url('../assets/bg.svg');
   background-size: cover;
+}
+
+section {
+  padding: 0 42px;
 }
 
 .message {
@@ -22,3 +26,14 @@ main {
     border-left: 3px solid #a33a3a;
   }
 }
+body > * {
+  color: $color-black
+}
+
+.main {
+  @include screen-s(min) {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+  }
+}
+

@@ -14,6 +14,15 @@
 .bg-light-blue {
   background-color: $color-light-blue
 }
+.bg-input {
+  background-color: $color-input-blue;
+}
+.bg-grey {
+  background-color: $color-grey
+}
+.bg-dark-grey {
+  background-color: $color-grey
+}
 
 
 // Text colors
@@ -28,6 +37,12 @@
 }
 .text-dark-blue {
    color: $color-dark-blue
+}
+.text-dark-grey {
+  color: $color-dark-grey
+}
+.text-medium-grey {
+  color: $color-medium-grey
 }
 
 // Hover colors

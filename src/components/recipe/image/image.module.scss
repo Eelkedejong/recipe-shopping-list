@@ -1,0 +1,40 @@
+@import '../../../styles/variables.scss';
+
+
+.uploadButton {
+  min-height: 150px;
+  border: 1px dashed #666;
+
+  &.uploaded {
+    .uploadIcon {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 8px;
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    opacity: 0.8;
+
+    .uploadIcon {
+      opacity: 1;
+    }
+  }
+}
+
+.uploadIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.image {
+  max-width: 100%;
+  border-radius: 10px;
+}

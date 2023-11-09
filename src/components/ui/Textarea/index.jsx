@@ -1,20 +1,23 @@
-import { useState, useEffect } from 'react';
-import styles from './textarea.module.scss'
+import { useState, useEffect } from "react";
+import styles from "./textarea.module.scss";
 
-const Textarea = ({id, name, label, value, onChange, type, required}) => {
+const Textarea = ({ id, name, label, value, onChange, type, required }) => {
   if (!name) {
-    name = id
+    name = id;
   }
 
-  const [focus, setFocus] = useState(value ? true : false)
-  useEffect(() => { setFocus(value)}, [value] )
+  const [focus, setFocus] = useState(value ? true : false);
+  useEffect(() => {
+    setFocus(value);
+  }, [value]);
 
   return (
-    <label 
-      htmlFor={name}
-      className='pos-relative'
-    >
-      <span className={`${styles.label} ${focus ? styles.focus : ''}`}>
+    <label htmlFor={name} className="pos-relative ff-text ">
+      <span
+        className={`fw-light text-dark-grey ${styles.label} ${
+          focus ? styles.focus : ""
+        }`}
+      >
         {label}
       </span>
 
@@ -26,14 +29,13 @@ const Textarea = ({id, name, label, value, onChange, type, required}) => {
         onChange={onChange}
         onFocus={() => setFocus(true)}
         onBlur={(e) => {
-          if (!e.target.value)
-          setFocus(false)
+          if (!e.target.value) setFocus(false);
         }}
         className={`rounded-s df aic jcc pl-3 pt-5 ${styles.textarea}`}
-        required={required} 
+        required={required}
       />
     </label>
-  )
-}
+  );
+};
 
-export default Textarea
+export default Textarea;

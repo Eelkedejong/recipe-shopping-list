@@ -5,7 +5,7 @@
   background-color: $color-input-blue;
   width: 100%;
   resize: vertical;
-  border-bottom: 2px solid $color-black;
+  border-bottom: 2px solid $color-dark-grey;
 
   @include screen-m(min) {
     min-width: 250px;
@@ -16,12 +16,11 @@
   }
 
   &:not(.noLabel) {
-    border-bottom: 2px solid $color-black;
+    border-bottom: 2px solid $color-dark-grey;
   }
 
   &:focus {
     border-color: #5e76b0;
-;
   }
 }
 

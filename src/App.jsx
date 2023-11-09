@@ -20,9 +20,9 @@ const App = () => {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <LanguageSelect />
-        <main className="bg-blue df fdc aic">
+        <div className="wrapper bg-blue df fdc aic">
           <Authentication />
-        </main>
+        </div>
       </QueryClientProvider>
     </BrowserRouter>
   );

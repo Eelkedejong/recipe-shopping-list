@@ -19,11 +19,9 @@ const Select = ({
 
   const [selectValue, setSelectValue] = useState(value);
 
-  // options = [{key: 'short', value: 'Short'}, {key: 'medium', value:'Medium'},{key: 'long', value: 'Long'}]
-
   return (
-    <label htmlFor={name} className="pos-relative df faic">
-      <span className={`${styles.label}`}>{label}</span>
+    <label htmlFor={name} className="ff-text pos-relative df faic">
+      <span className={`fw-light text-dark-grey ${styles.label}`}>{label}</span>
 
       <select
         id={id}

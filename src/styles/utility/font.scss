@@ -23,17 +23,37 @@
 .fs-24 {
   font-size: 24px
 }
-.fs-32 {
-  font-size: 32px
+.fs-28 {
+  font-size: 28px
 }
 
 .ff-body {
   font-family: $font-family-body;
 }
+.ff-logo {
+  font-family: $font-family-logo;
+}
 .ff-header {
+  font-family: $font-family-header;
+}
+// @todo: rename variable or classname
+.ff-text {
   font-family: $font-family-header;
 }
 
 .ta-center {
   text-align: center
+}
+
+.fw-light {
+  font-weight: 300
+}
+.fw-regular {
+  font-weight: 500
+}
+.fw-semibold {
+  font-weight: 600
+}
+.fw-bold {
+  font-weight: 700
 }

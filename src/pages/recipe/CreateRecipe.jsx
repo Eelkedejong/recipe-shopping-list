@@ -20,7 +20,6 @@ const CreateRecipe = ({ userToken }) => {
 
   return (
     <>
-      <h2 className="fs-24 mb-4">{t("Add a new recipe")}</h2>
       <RecipeForm
         handleSubmit={(responseData) => {
           mutation.mutate([responseData, userToken]);

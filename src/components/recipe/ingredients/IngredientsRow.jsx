@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect } from "react";
 import IngredientContext from "./utils/ingredientContext";
-import Input from "../ui/Input";
+import Input from "../../ui/Input";
 import { FaMinusCircle } from "react-icons/fa";
-import styles from "./recipe.module.scss";
+import styles from "../recipe.module.scss";
 
 const IngredientsRow = ({ ingredient, index }) => {
   const [ingredientRows, setIngredientRows] = useContext(IngredientContext);
@@ -17,7 +17,7 @@ const IngredientsRow = ({ ingredient, index }) => {
   return (
     <>
       <div
-        className={`dg gap-4 ${styles.grid}`}
+        className={`dg gap-4 ${styles.ingredientGrid}`}
         id={`row_${index}`}
         key={index}
       >
@@ -26,6 +26,7 @@ const IngredientsRow = ({ ingredient, index }) => {
           required={true}
           value={ingredient.ingredient}
           key={`ingredient_${ingredient.ingredient}`}
+          classes={styles.ingreidentInput}
           onChange={(e) =>
             setRowData({ ...rowData, ingredient: e.target.value })
           }
@@ -37,6 +38,7 @@ const IngredientsRow = ({ ingredient, index }) => {
           type={"number"}
           value={ingredient.amount}
           key={`amount_${ingredient.amount}`}
+          classes={styles.ingreidentInput}
           onChange={(e) =>
             setRowData({ ...rowData, amount: parseInt(e.target.value) })
           }
@@ -47,6 +49,7 @@ const IngredientsRow = ({ ingredient, index }) => {
           required={true}
           value={ingredient.unit}
           key={`unit_${ingredient.unit}`}
+          classes={styles.ingreidentInput}
           onChange={(e) => setRowData({ ...rowData, unit: e.target.value })}
         />
 

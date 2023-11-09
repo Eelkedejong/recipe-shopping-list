@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import Button from "../../components/ui/Button";
+import { FaRightFromBracket } from "react-icons/fa6";
 
 const Logout = () => {
   const queryClient = useQueryClient();
@@ -19,7 +20,14 @@ const Logout = () => {
     window.location.reload(true);
   };
 
-  return <Button onClick={handleLogout} text={t("Logout")} type="ghost" />;
+  return (
+    <>
+      <button onClick={handleLogout} className="df aic">
+        <span className="pr-3">{t("Logout")}</span>
+        <FaRightFromBracket />
+      </button>
+    </>
+  );
 };
 
 export default Logout;

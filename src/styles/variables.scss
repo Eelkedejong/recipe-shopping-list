@@ -3,12 +3,16 @@
 //________________________________________
 $color-black: #333;
 $color-black-full: #111;
+$color-dark-grey: #666;
+$color-medium-grey: #888;
+$color-grey: #f5f5f5;
 $color-white: #fff;
 $color-blue: #6291F4;
 $color-dark-blue: #374C81;
-$color-grey-blue: #EDF1F9;
+// $color-grey-blue: #EDF1F9;
+$color-grey-blue: #ecf3ff;
 $color-light-blue: #DAE7FF;
-$color-input-blue: #D9E2F3;
+$color-input-blue: #d9e2f375;
 
 // Gradient colors:
 $gradient-start: #9CB3DB;
@@ -17,8 +21,9 @@ $gradient-end: #5F95F5;
 //
 // Font
 //________________________________________
-$font-family-header: 'Titan One';
+$font-family-logo: 'Titan One';
 $font-family-body: 'Varela Round';
+$font-family-header: 'Poppins';
 
 //
 // Breakpoints

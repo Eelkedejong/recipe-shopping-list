@@ -1,6 +1,7 @@
-import Recipe from "../../components/recipe/RecipeTile";
+import RecipeTile from "../../components/recipe/RecipeTile";
 import { useQuery } from "@tanstack/react-query";
 import getRecipes from "./api/getRecipe";
+import styles from "./recipe.module.scss";
 
 const RecipeList = ({ userToken }) => {
   const results = useQuery(["recipes", userToken, ""], getRecipes, {
@@ -11,27 +12,27 @@ const RecipeList = ({ userToken }) => {
   const recipes = results?.data?.data ?? [];
 
   return (
-    <>
-      <h2 className="fs-24 mb-4">Your recipes</h2>
-      <div className="recipe-list">
+    <div className="bg-white p-5 rounded-m">
+      <div className={`recipe-list ${styles.grid}`}>
         {!recipes.length
           ? null
           : recipes.map((recipe) => {
               return (
-                <Recipe
+                <RecipeTile
+                  id={recipe.id}
                   name={recipe.name}
+                  image={recipe.image}
                   description={recipe.description}
                   persons={recipe.persons}
                   carb={recipe.carb}
                   time={recipe.time}
                   ingredients={recipe.ingredients}
-                  id={recipe.id}
                   key={recipe.id}
                 />
               );
             })}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -41,16 +41,18 @@ const Authentication = () => {
     }
   );
 
-  // Check if there is a saved token.
-  let savedToken = getStoredUserData();
+  // Check if there is saved user data.
+  const userData = getStoredUserData();
+  let savedUserData = userData;
   let showLoginForm = false;
 
   // If the user is logged in, save the token.
   if (isSuccess) {
-    if (!savedToken) {
+    if (!userData) {
       const newToken = data?.token;
-      saveUserData(newToken);
-      savedToken = newToken;
+      const newUsername = data?.username;
+      saveUserData(newToken, newUsername);
+      savedUserData = { token: newToken, username: newUsername };
     }
   } else {
     // Only show the login form if there is no userToken.
@@ -58,22 +60,24 @@ const Authentication = () => {
   }
 
   // If there is a saved token, set it as the active userToken.
-  const userToken = savedToken;
+  const newUserData = savedUserData;
 
   return (
     <>
-      {userToken ? <Layout userToken={userToken} /> : null}
+      {newUserData ? (
+        <Layout
+          userToken={newUserData?.token}
+          userName={newUserData?.username}
+        />
+      ) : null}
 
       {showLoginForm ? (
         <>
-          <h1
-            className="ff-header text-white mt-4"
-            style={{ fontSize: "38px" }}
-          >
-            Cookbook
+          <h1 className="ff-logo text-white mt-4" style={{ fontSize: "38px" }}>
+            {/* Cookbook */}
           </h1>
           <div className="mb-5 df aic jcc h-100">
-            <section
+            <main
               className={`bg-white rounded-l centered p-5 ${styles.authentication}`}
             >
               <div className="mb-4 df jcc">
@@ -119,7 +123,7 @@ const Authentication = () => {
                   }
                 />
               </Routes>
-            </section>
+            </main>
           </div>
         </>
       ) : null}

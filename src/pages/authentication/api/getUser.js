@@ -1,13 +1,10 @@
 const getUser = async ({ queryKey }) => {
-  console.log("in get User", queryKey[1][0].username);
   const username = queryKey[1][0].username;
   const password = queryKey[1][0].password;
   const email = queryKey[1][0].email;
   const type = queryKey[2];
 
   if (email && password) {
-    console.log("start sigin request", username, email, password);
-
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

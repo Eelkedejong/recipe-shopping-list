@@ -1,17 +1,43 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { AdvancedImage } from "@cloudinary/react";
+import { fill } from "@cloudinary/url-gen/actions/resize";
 import { FaUserFriends, FaPen, FaClock, FaTag } from "react-icons/fa";
 import { PiForkKnifeFill } from "react-icons/pi";
 import styles from "./recipe.module.scss";
 
-const Recipe = (props) => {
+const RecipeTile = (props) => {
+  // Create a Cloudinary instance
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "dr8avu1nv",
+    },
+  });
+
   const { t } = useTranslation();
-  const { name, description, persons, carb, time, ingredients, id, tag } =
-    props;
+  const {
+    name,
+    image,
+    description,
+    persons,
+    carb,
+    time,
+    ingredients,
+    id,
+    tag,
+  } = props;
+
+  const recipeImage = cld.image(image);
+
+  // Resize to fit in the recipe tile
+  recipeImage.resize(fill().width(700).height(300));
 
   return (
-    <div className="bg-grey-blue rounded-m p-5 mb-5 fs-14 pos-relative">
-      <div className="">
+    <div className="bg-grey-blue rounded-m mb-5 fs-14 pos-relative">
+      <AdvancedImage cldImg={recipeImage} className="rounded-top-m" />
+
+      <div className="p-5">
         <span className="df jcsb">
           <h2 className="fs-18 mb-2">{name}</h2>
           <Link to={`/recipe/${id}`}>
@@ -47,24 +73,8 @@ const Recipe = (props) => {
           ) : null}
         </div>
       </div>
-
-      <h4 className="mb-4 fs-16 border-bottom pb-2">{t("Ingredients")}</h4>
-      <div className={`dg gap-2 column-gap-4 ${styles.ingredientGrid}`}>
-        {ingredients.map((ingredient) => {
-          if (ingredient) {
-            return (
-              <>
-                <span>{ingredient.ingredient}</span>
-                <span>
-                  {ingredient.amount} {ingredient.unit}
-                </span>
-              </>
-            );
-          }
-        })}
-      </div>
     </div>
   );
 };
 
-export default Recipe;
+export default RecipeTile;

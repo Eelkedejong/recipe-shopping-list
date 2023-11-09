@@ -36,8 +36,6 @@ const EditRecipe = ({ userToken }) => {
     },
   });
 
-  console.log("recipe", recipe);
-
   return (
     <>
       <div className="df jcsb mb-4">
@@ -52,12 +50,14 @@ const EditRecipe = ({ userToken }) => {
         </button>
       </div>
 
-      <RecipeForm
-        recipe={recipe}
-        handleSubmit={(responseData) => {
-          editMutation.mutate([responseData, userToken, id]);
-        }}
-      />
+      {results.isSuccess ? (
+        <RecipeForm
+          recipe={recipe}
+          handleSubmit={(responseData) => {
+            editMutation.mutate([responseData, userToken, id]);
+          }}
+        />
+      ) : null}
 
       <Button
         onClick={() => {

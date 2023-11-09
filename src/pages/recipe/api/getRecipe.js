@@ -1,7 +1,6 @@
 const getRecipe = async ({ queryKey }) => {
   const token = queryKey[1];
   const id = queryKey[2];
-  console.log("token API", token);
 
   const requestOptions = {
     method: "GET",
@@ -9,8 +8,6 @@ const getRecipe = async ({ queryKey }) => {
       Authorization: "Bearer " + token,
     },
   };
-
-  console.log("requestOptions", requestOptions);
 
   try {
     const res = await fetch(

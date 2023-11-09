@@ -6,9 +6,14 @@
   background-color: $color-input-blue;
   width: 100%;
   resize: vertical;
+  border-bottom: 2px solid $color-dark-grey;
 
   @include screen-m(min) {
     min-width: 250px;
+  }
+
+  &:focus {
+    border-color: #5e76b0;
   }
 }
 
