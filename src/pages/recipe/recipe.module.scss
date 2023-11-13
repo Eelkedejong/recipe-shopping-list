@@ -3,7 +3,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  grid-gap: 20px;
+  grid-gap: 30px;
 
   @include screen-m(min) {
     grid-template-columns: repeat(2, 1fr);
@@ -11,5 +11,30 @@
 
   @include screen-l(min) {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.detailPage {
+  @include screen-s(max) {
+    grid-template-columns: 1fr;
+  }
+
+  @include screen-s(min) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 24px;
+  }
+}
+
+.detailsInfoWrapper {
+  @include screen-s(max) {
+    margin-top: -80px;
+    background-color: $color-white;
+    padding: 24px 24px 0 24px;
+    border-radius: 40px 40px 0 0;
+    z-index: 1;
+  }
+
+  @include screen-s(min) {
+    grid-row: 1/3;
   }
 }

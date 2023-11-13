@@ -34,3 +34,74 @@
   height: 250px;
   width: 100%;
 }
+
+.recipeTile {
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.10);
+
+  @include screen-s(min) {
+    &:hover {
+      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
+    }
+  }
+
+  img {
+    min-height: 120px;
+  }
+}
+
+.placeholderImage {
+  img {
+    width: 60px;
+  }
+}
+
+.detailBlock {
+  max-width: 120px;
+}
+
+.persons {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.ingredientsBlock {
+  @include screen-s(max) {
+    width: 100%;
+  }
+}
+
+.indicator {
+  width: 24px;
+  height: 24px;
+}
+
+.stepsDetailsGrid {
+  grid-template-columns: 25px 1fr;
+}
+
+.stepsDetailsWrapper {
+  @include screen-s(max) {
+    padding: 24px;
+  }
+
+  @include screen-s(min) {
+    margin-top: 8px;
+    padding: 8px;
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+.detailsImage {
+  @include screen-s(max) {
+    width: 100%;
+    grid-row: 1;
+  }
+
+  @include screen-s(min) {
+    border-radius: 20px;
+    grid-column: 2;
+    grid-row: 1;
+  }
+}

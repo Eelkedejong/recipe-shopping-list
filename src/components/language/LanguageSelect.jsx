@@ -21,7 +21,7 @@ const LanguageSelect = () => {
   };
 
   return (
-    <div className={styles.selector}>
+    <div className={`lang ${styles.selector}`}>
       {Object.keys(lngs).map((lng) => (
         <button
           id={lng}

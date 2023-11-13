@@ -1,20 +1,40 @@
-import styles from "./header.module.scss";
 import { useTranslation } from "react-i18next";
+import { FaChevronLeft } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import Search from "../Search";
+import styles from "./header.module.scss";
 
-const Header = ({ userName }) => {
+const Header = ({ userName, title, returnUrl, returnText, hiddenMobile }) => {
   const { t } = useTranslation();
 
   return (
-    <header className={`${styles.header} my-5 pl-5 df jcsb`}>
-      <div>
-        <div className="fs-16 ff-text fw-light text-medium-grey">
-          {t("Welcome")}, {userName}
+    <header
+      className={`pl-5 df jcsb aic ${styles.header} ${
+        hiddenMobile ? styles.hiddenMobile : null
+      }`}
+    >
+      {returnUrl && returnText ? (
+        <Link to={returnUrl} className="df aic gap-3">
+          <div className="bg-white rounded-full p-2 df aic">
+            <FaChevronLeft />
+          </div>
+          <span className="fs-16 ff-text fw-light text-medium-grey">
+            {returnText}
+          </span>
+        </Link>
+      ) : title ? (
+        <h2 className="fs-28 ff-header fw-bold pt-5">{title}</h2>
+      ) : (
+        <div className={styles.greeting}>
+          <div className="fs-16 ff-text fw-light text-medium-grey">
+            {t("Welcome")}, {userName}
+          </div>
+          <h2 className="fs-28 ff-header fw-bold">
+            {t("What's on the menu today?")}
+          </h2>
         </div>
-        <h2 className="fs-28 ff-header fw-bold">
-          {t("What's on the menu today?")}
-        </h2>
-      </div>
-      <div>Search bar here</div>
+      )}
+      <Search />
     </header>
   );
 };

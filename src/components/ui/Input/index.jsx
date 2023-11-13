@@ -8,6 +8,7 @@ const Input = ({
   value,
   onChange,
   type,
+  step,
   required,
   classes,
   autocomplete,
@@ -41,6 +42,7 @@ const Input = ({
             id={id}
             name={name}
             type={type}
+            step={step}
             defaultValue={value}
             autoComplete={autocomplete}
             onChange={onChange}
@@ -59,6 +61,7 @@ const Input = ({
           id={id}
           name={name}
           type={type}
+          step={step}
           defaultValue={value}
           onChange={onChange}
           className={`rounded-s df aic jcc pl-3 ${styles.input} ${

@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import RecipeList from "./pages/recipe/RecipeList";
+import RecipeDetail from "./pages/recipe/RecipeDetail";
 import CreateRecipe from "./pages/recipe/CreateRecipe";
 import EditRecipe from "./pages/recipe/EditRecipe";
 import Aside from "./components/Aside";
@@ -22,8 +23,22 @@ const Layout = ({ userToken, userName }) => {
             path="/recipes"
             element={
               <>
-                <Header userName={userName} />
+                <Header userName={userName} title={t("Your recipes")} />
                 <RecipeList userToken={userToken} />
+              </>
+            }
+          />
+          <Route
+            path="/recipe/:id"
+            element={
+              <>
+                <Header
+                  userName={userName}
+                  returnUrl={"/recipes"}
+                  returnText={t("All recipes")}
+                  hiddenMobile={true}
+                />
+                <RecipeDetail userToken={userToken} />
               </>
             }
           />
@@ -32,7 +47,7 @@ const Layout = ({ userToken, userName }) => {
             element={<CreateRecipe userToken={userToken} />}
           />
           <Route
-            path="/recipe/:id"
+            path="/recipe/edit/:id"
             element={<EditRecipe userToken={userToken} />}
           />
           <Route
@@ -41,13 +56,6 @@ const Layout = ({ userToken, userName }) => {
               <>
                 <Header userName={userName} />
                 <RecipeList userToken={userToken} />
-                <Button
-                  onClick={() => {
-                    navigate("/recipe/new");
-                  }}
-                  text={t("Create new recipe")}
-                  className="my-4"
-                />
               </>
             }
           />

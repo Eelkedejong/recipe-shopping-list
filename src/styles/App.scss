@@ -7,7 +7,9 @@
 }
 
 section {
-  padding: 0 42px;
+  @include screen-s(min) {
+    padding: 0 42px;
+  }
 }
 
 .message {
@@ -37,3 +39,11 @@ body > * {
   }
 }
 
+@include screen-s(max) {
+  body.detail-page {
+    .navigation,
+    .lang {
+      display: none;
+    }
+  }
+}

@@ -15,7 +15,7 @@ const IngredientsList = () => {
       <div className={`dg gap-4 fs-16 ${styles.ingredientGrid}`}>
         <div>{t("Ingredient name")}</div>
         <div>{t("Amount")}</div>
-        <div>{t("Unit")}</div>
+        <div>{t("Unit (optional)")}</div>
       </div>
       <div className="df fdc gap-3 fs-14">
         {ingredientRows

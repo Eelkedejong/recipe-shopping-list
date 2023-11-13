@@ -1,9 +1,6 @@
-const getRecipe = async ({ queryKey }) => {
+const getSearchResults = async ({ queryKey }) => {
   const token = queryKey[1];
-  const id = queryKey[2];
-  const params = queryKey[3];
-
-  console.log("params", params);
+  const searchQuery = queryKey[2];
 
   const requestOptions = {
     method: "GET",
@@ -14,7 +11,7 @@ const getRecipe = async ({ queryKey }) => {
 
   try {
     const res = await fetch(
-      `http://localhost:3001/api/recipe/${id}`,
+      `http://localhost:3001/search?search=${searchQuery}`,
       requestOptions
     );
 
@@ -29,4 +26,4 @@ const getRecipe = async ({ queryKey }) => {
   }
 };
 
-export default getRecipe;
+export default getSearchResults;

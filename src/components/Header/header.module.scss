@@ -4,4 +4,15 @@
   h2 {
     margin-top: -5px;
   }
+  
+  @include screen-s(min) {
+    height: 100px;
+
+  }
+}
+
+@include screen-s(max) {
+  .hiddenMobile {
+    display: none !important;
+  }
 }

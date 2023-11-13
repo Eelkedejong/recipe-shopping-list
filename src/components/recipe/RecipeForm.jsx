@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ImageUploader from "./image/ImageUploader";
-import { Cloudinary } from "@cloudinary/url-gen";
-import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
 import IngredientContext from "./ingredients/utils/ingredientContext";
 import { Input, Textarea, Select } from "../ui/Fields";
 import Button from "../ui/Button";
@@ -20,19 +18,6 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
       ? recipe.ingredients
       : [{ unit: "", amount: "", ingredient: "" }]
   );
-
-  console.log("ingredientRows", ingredientRows[0]);
-  // const [imageId, setImageId] = useState(recipe?.image ? recipe.image : null);
-
-  // // Cloudinary cloud name
-  // const [cloudName] = useState("dr8avu1nv");
-
-  // // Create a Cloudinary instance
-  // const cld = new Cloudinary({
-  //   cloud: {
-  //     cloudName,
-  //   },
-  // });
 
   const handleSubmitRecipe = (e) => {
     // Converts the form data into an object with key-value pairs.

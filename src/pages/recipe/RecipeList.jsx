@@ -22,11 +22,9 @@ const RecipeList = ({ userToken }) => {
                   id={recipe.id}
                   name={recipe.name}
                   image={recipe.image}
-                  description={recipe.description}
-                  persons={recipe.persons}
-                  carb={recipe.carb}
+                  labels={recipe.tags}
                   time={recipe.time}
-                  ingredients={recipe.ingredients}
+                  type={recipe.type}
                   key={recipe.id}
                 />
               );

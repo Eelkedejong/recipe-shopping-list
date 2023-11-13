@@ -20,7 +20,7 @@ const Navigation = ({ userName }) => {
   console.log("locations", locationPath, home, locationPath === home);
 
   return (
-    <div className={`bg-white ${styles.wrapper}`}>
+    <div className={`bg-white navigation ${styles.wrapper}`}>
       <button
         className={`
           ${styles.openNav} 

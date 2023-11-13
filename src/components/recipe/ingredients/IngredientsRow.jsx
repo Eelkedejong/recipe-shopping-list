@@ -14,6 +14,8 @@ const IngredientsRow = ({ ingredient, index }) => {
     setIngredientRows(ingredientRows);
   }, [rowData]);
 
+  console.log("ingredientRows", ingredientRows);
+
   return (
     <>
       <div
@@ -36,17 +38,19 @@ const IngredientsRow = ({ ingredient, index }) => {
           id={`amount_${index}`}
           required={true}
           type={"number"}
+          step={"any"}
           value={ingredient.amount}
           key={`amount_${ingredient.amount}`}
           classes={styles.ingreidentInput}
-          onChange={(e) =>
-            setRowData({ ...rowData, amount: parseInt(e.target.value) })
-          }
+          onChange={(e) => {
+            const value = e.target.value.replace(/,/g, ".");
+            setRowData({ ...rowData, amount: parseFloat(value) });
+          }}
         />
 
         <Input
           id={`unit_${index}`}
-          required={true}
+          required={false}
           value={ingredient.unit}
           key={`unit_${ingredient.unit}`}
           classes={styles.ingreidentInput}

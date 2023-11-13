@@ -74,7 +74,7 @@ const Authentication = () => {
       {showLoginForm ? (
         <>
           <h1 className="ff-logo text-white mt-4" style={{ fontSize: "38px" }}>
-            {/* Cookbook */}
+            Cookbook
           </h1>
           <div className="mb-5 df aic jcc h-100">
             <main

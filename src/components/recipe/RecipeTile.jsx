@@ -3,11 +3,12 @@ import { useTranslation } from "react-i18next";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage } from "@cloudinary/react";
 import { fill } from "@cloudinary/url-gen/actions/resize";
-import { FaUserFriends, FaPen, FaClock, FaTag } from "react-icons/fa";
-import { PiForkKnifeFill } from "react-icons/pi";
+import { FaClockRotateLeft, FaUtensils } from "react-icons/fa6";
+import logo from "../../assets/logo-white.svg";
 import styles from "./recipe.module.scss";
 
-const RecipeTile = (props) => {
+const RecipeTile = ({ id, name, image, labels, time, type }) => {
+  const { t } = useTranslation();
   // Create a Cloudinary instance
   const cld = new Cloudinary({
     cloud: {
@@ -15,65 +16,57 @@ const RecipeTile = (props) => {
     },
   });
 
-  const { t } = useTranslation();
-  const {
-    name,
-    image,
-    description,
-    persons,
-    carb,
-    time,
-    ingredients,
-    id,
-    tag,
-  } = props;
-
   const recipeImage = cld.image(image);
 
   // Resize to fit in the recipe tile
   recipeImage.resize(fill().width(700).height(300));
 
   return (
-    <div className="bg-grey-blue rounded-m mb-5 fs-14 pos-relative">
-      <AdvancedImage cldImg={recipeImage} className="rounded-top-m" />
+    <Link
+      to={`/recipe/${id}`}
+      className={`df fdc rounded-m ${styles.recipeTile}`}
+    >
+      {image ? (
+        <AdvancedImage cldImg={recipeImage} className="rounded-top-m" />
+      ) : (
+        <div
+          className={`df jcc bg-blue rounded-top-m f1 ${styles.placeholderImage}`}
+        >
+          <img src={logo} alt="Chef" />
+        </div>
+      )}
 
-      <div className="p-5">
-        <span className="df jcsb">
-          <h2 className="fs-18 mb-2">{name}</h2>
-          <Link to={`/recipe/${id}`}>
-            <FaPen fontSize="16px" />
-          </Link>
-        </span>
+      <div className="p-3 py-2">
+        <h2 className="fs-18 ff-header fw-bold">{name}</h2>
 
-        {description ? <div>{description}</div> : null}
+        <div className="df gap-1 text-medium-grey ff-text fw-light fs-14">
+          {labels
+            ? labels.map((label, index) => {
+                return (
+                  <span key={label}>
+                    {label}
+                    {index !== labels.length - 1 ? ", " : ""}
+                  </span>
+                );
+              })
+            : null}
+        </div>
 
-        <div className="df gap-3 my-4 fww">
-          {persons ? (
-            <div className="df aic gap-2 bg-light-blue py-2 px-3 rounded-m">
-              <FaUserFriends fontSize="18px" /> {persons}
-            </div>
-          ) : null}
-
+        <div className="df gap-4 mt-5 mb-2 fww">
           {time ? (
-            <div className="df aic gap-2 bg-light-blue py-2 px-3 rounded-m">
-              <FaClock fontSize="16px" /> {time}
+            <div className="df aic gap-2 fs-14">
+              <FaClockRotateLeft fontSize="14px" /> {time} {t("min")}
             </div>
           ) : null}
 
-          {tag ? (
-            <div className="df aic gap-2 bg-light-blue py-2 px-3 rounded-m">
-              <FaTag fontSize="16px" /> {tag}
-            </div>
-          ) : null}
-
-          {carb ? (
-            <div className="df aic gap-2 bg-light-blue py-2 px-3 rounded-m">
-              <PiForkKnifeFill fontSize="18px" /> {carb}
+          {type ? (
+            <div className="df aic gap-2 fs-14">
+              <FaUtensils fontSize="14px" /> {type}
             </div>
           ) : null}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
