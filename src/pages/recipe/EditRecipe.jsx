@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import getRecipe from "./api/getRecipe";
 import updateRecipe from "./api/updateRecipe";
 import deleteRecipe from "./api/deleteRecipe";
@@ -8,7 +9,8 @@ import RecipeForm from "../../components/recipe/RecipeForm";
 import Button from "../../components/ui/Button";
 import { FaTrash } from "react-icons/fa";
 
-const EditRecipe = ({ userToken }) => {
+const EditRecipe = () => {
+  const userToken = useSelector((state) => state.user.value.token);
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { id } = useParams();

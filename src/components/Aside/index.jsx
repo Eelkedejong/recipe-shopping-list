@@ -4,8 +4,10 @@ import styles from "./aside.module.scss";
 const Aside = () => {
   return (
     <aside className={`${styles.aside} p-5`}>
-      <Logout />
-      <div className={`bg-white p5 ${styles.content}`}></div>
+      <div className={styles.top}>
+        <Logout />
+      </div>
+      <div className={`bg-white p5 ${styles.content}`}>Filters</div>
     </aside>
   );
 };

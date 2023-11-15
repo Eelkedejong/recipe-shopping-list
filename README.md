@@ -23,10 +23,26 @@ This project contains the front-end for my recipe shopping list web-app.
 
 ## Project structure
 
-App.jsx is the entry point for the entire app where global systems are initialized
+App.jsx is the entry point for the entire app where global systems are initialized.
 Authentication.jsx is the authentication layer that blocks the app untill the user signed in.
 When the user is sign in, the layout.jsx is called. This is the actual app, which only becomes available once a user signed in.
-In the layout.jsx, all routes of the app itself are defined. Only after the user logged in, these become available and are loaded in.
+In the layout.jsx, all routes of the app itself are defined. Only after the user logged in and passes the authentication, these become available and are loaded in.
+
+## folder structure
+
+#### pages
+
+pages contains all component that are pages defined as routes. These are the top-level component for each page.
+
+#### components
+
+Components contains both re-usable components and components that are used as building blocks for indiviual pages.
+
+- The ui folder contains small ui components used all over the website.
+- Some components are used across different pages, like the aside, header and navigation.
+- The subfolder recipe and shopping list contain components that are used as building blocks for their respective
+
+## Technology
 
 ## Contact
 

@@ -1,10 +1,12 @@
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { FaChevronLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Search from "../Search";
 import styles from "./header.module.scss";
 
-const Header = ({ userName, title, returnUrl, returnText, hiddenMobile }) => {
+const Header = ({ title, returnUrl, returnText, hiddenMobile }) => {
+  const userName = useSelector((state) => state.user.value.username);
   const { t } = useTranslation();
 
   return (

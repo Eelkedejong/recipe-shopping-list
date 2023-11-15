@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styles from "./navigation.module.scss";
 import {
   FaHouse,
@@ -9,7 +10,8 @@ import {
   FaFileLines,
 } from "react-icons/fa6";
 
-const Navigation = ({ userName }) => {
+const Navigation = () => {
+  const userName = useSelector((state) => state.user.value.username);
   const { t } = useTranslation();
   const location = useLocation();
   const [open, setOpen] = useState(false);
@@ -17,7 +19,6 @@ const Navigation = ({ userName }) => {
 
   const home = "/";
   const locationPath = location.pathname;
-  console.log("locations", locationPath, home, locationPath === home);
 
   return (
     <div className={`bg-white navigation ${styles.wrapper}`}>

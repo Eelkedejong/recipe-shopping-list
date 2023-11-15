@@ -1,6 +1,6 @@
-const getSearchResults = async ({ queryKey }) => {
+const getRecipeFilter = async ({ queryKey }) => {
   const token = queryKey[1];
-  const searchQuery = queryKey[2];
+  const type = queryKey[2];
 
   const requestOptions = {
     method: "GET",
@@ -11,13 +11,12 @@ const getSearchResults = async ({ queryKey }) => {
 
   try {
     const res = await fetch(
-      `http://localhost:3001/api/search?search=${searchQuery}`,
+      `http://localhost:3001/api/recipe-${type}`,
       requestOptions
     );
 
     if (!res.ok) {
-      console.log("error in getRecipe");
-      throw new Error(`recipe/ get not ok`);
+      throw new Error(`Can't get recipe types`);
     }
 
     return res.json();
@@ -26,4 +25,4 @@ const getSearchResults = async ({ queryKey }) => {
   }
 };
 
-export default getSearchResults;
+export default getRecipeFilter;

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 import getRecipe from "./api/getRecipe";
 import Info from "../../components/recipe/detail/Info";
 import Image from "../../components/recipe/detail/Image";
@@ -8,7 +9,8 @@ import Ingredients from "../../components/recipe/detail/Ingredients";
 import Steps from "../../components/recipe/detail/Steps";
 import styles from "./recipe.module.scss";
 
-const RecipeDetail = ({ userToken }) => {
+const RecipeDetail = () => {
+  const userToken = useSelector((state) => state.user.value.token);
   const { id } = useParams();
 
   // Add and remove class to body when this component is mounted/unmounted

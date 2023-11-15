@@ -105,3 +105,8 @@
     grid-row: 1;
   }
 }
+
+.activeType {
+  background-color: $color-blue !important;
+  color: $color-white !important;
+}

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Routes, Route } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { user } from "./store/userSlice";
 import LoginContext from "./pages/authentication/utils/loginContext";
 import getUser from "./pages/authentication/api/getUser";
 import CreateForm from "./pages/authentication/CreateForm";
@@ -16,14 +19,14 @@ import {
 import Layout from "./Layout";
 import Button from "./components/ui/Button";
 import styles from "./pages/authentication/authentication.module.scss";
-import { useTranslation } from "react-i18next";
 import logo from "./assets/logo.svg";
 
 const Authentication = () => {
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
   const loginData = useState(null);
   const [formType, setFormType] = useState("signin");
   const [errorMessage, setErrorMessage] = useState("");
-  const { t } = useTranslation();
 
   // Fetch the user data.
   const { data, isSuccess, refetch } = useQuery(
@@ -54,6 +57,8 @@ const Authentication = () => {
       saveUserData(newToken, newUsername);
       savedUserData = { token: newToken, username: newUsername };
     }
+    // Set the user data in the store.
+    dispatch(user(data));
   } else {
     // Only show the login form if there is no userToken.
     showLoginForm = true;
@@ -64,12 +69,7 @@ const Authentication = () => {
 
   return (
     <>
-      {newUserData ? (
-        <Layout
-          userToken={newUserData?.token}
-          userName={newUserData?.username}
-        />
-      ) : null}
+      {newUserData ? <Layout /> : null}
 
       {showLoginForm ? (
         <>
