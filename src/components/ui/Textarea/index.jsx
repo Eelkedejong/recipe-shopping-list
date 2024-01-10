@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styles from "./textarea.module.scss";
+// import styles from "./textarea.module.scss";
 
 const Textarea = ({ id, name, label, value, onChange, type, required }) => {
   if (!name) {
@@ -12,10 +12,10 @@ const Textarea = ({ id, name, label, value, onChange, type, required }) => {
   }, [value]);
 
   return (
-    <label htmlFor={name} className="pos-relative ff-text ">
+    <label htmlFor={name} className="pos-relative">
       <span
-        className={`fw-light text-dark-grey ${styles.label} ${
-          focus ? styles.focus : ""
+        className={`ui-label textarea-label fw-light text-dark-grey ${
+          focus ? "focus" : ""
         }`}
       >
         {label}
@@ -31,7 +31,7 @@ const Textarea = ({ id, name, label, value, onChange, type, required }) => {
         onBlur={(e) => {
           if (!e.target.value) setFocus(false);
         }}
-        className={`rounded-s df aic jcc pl-3 pt-5 ${styles.textarea}`}
+        className="textarea rounded-s df aic jcc pl-3 pt-5"
         required={required}
       />
     </label>

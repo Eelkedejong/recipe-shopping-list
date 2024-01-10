@@ -4,7 +4,8 @@ import RecipeList from "./pages/recipe/RecipeList";
 import RecipeDetail from "./pages/recipe/RecipeDetail";
 import CreateRecipe from "./pages/recipe/CreateRecipe";
 import EditRecipe from "./pages/recipe/EditRecipe";
-import Aside from "./components/Aside";
+import Overview from "./pages/overview/Overview";
+import Filters from "./components/Filters";
 import Navigation from "./components/Navigation";
 import Header from "./components/Header";
 
@@ -12,46 +13,70 @@ const Layout = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="main h-100 w-100 bg-grey">
+    <main className="main w-100 bg-light-grey">
       <Navigation />
-      <section className={`bg-grey w-100 rounded-top-l`}>
-        <Routes>
-          <Route
-            path="/recipes"
-            element={
-              <>
+      <Routes>
+        <Route
+          path="/recipes"
+          element={
+            <>
+              <section className={`section w-100 rounded-top-l`}>
                 <Header title={t("Your recipes")} />
                 <RecipeList />
-              </>
-            }
-          />
-          <Route
-            path="/recipe/:id"
-            element={
-              <>
+              </section>
+              <Filters />
+            </>
+          }
+        />
+        <Route
+          path="/recipe/:id"
+          element={
+            <>
+              <section className={`section w-100 rounded-top-l`}>
                 <Header
                   returnUrl={"/recipes"}
                   returnText={t("All recipes")}
                   hiddenMobile={true}
                 />
                 <RecipeDetail />
-              </>
-            }
-          />
-          <Route path="/recipe/new" element={<CreateRecipe />} />
-          <Route path="/recipe/edit/:id" element={<EditRecipe />} />
-          <Route
-            path="/"
-            element={
-              <>
+              </section>
+            </>
+          }
+        />
+        <Route
+          path="/recipe/new"
+          element={
+            <>
+              <section className={`section`}>
+                <Header title={t("New recipe")} />
+                <CreateRecipe />
+              </section>
+            </>
+          }
+        />
+        <Route
+          path="/recipe/edit/:id"
+          element={
+            <>
+              <section className={`section`}>
+                <Header title={t("Edit recipe")} />
+                <EditRecipe />
+              </section>
+            </>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <>
+              <section className={`section w-100 rounded-top-l`}>
                 <Header />
-                <RecipeList />
-              </>
-            }
-          />
-        </Routes>
-      </section>
-      <Aside />
+                <Overview />
+              </section>
+            </>
+          }
+        />
+      </Routes>
     </main>
   );
 };

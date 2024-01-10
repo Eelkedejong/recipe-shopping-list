@@ -5,8 +5,42 @@ const getRecipe = async ({ queryKey }) => {
 
   console.log("searchParams", searchParams);
 
-  // Deconstruct the searchParams object
-  const { type, tags, time, search, page } = searchParams;
+  let url = `http://localhost:3001/api/recipe/${id}`;
+
+  if (searchParams) {
+    // Deconstruct the searchParams object
+    const { type, tags, time, search, limit, page } = searchParams;
+
+    // Add searchParams to URL if they have a value
+    let isFirstQueryParam = true;
+
+    // TODO: Refactor this to be more DRY
+    if (type) {
+      url += `?type=${type}`;
+      isFirstQueryParam = false;
+    }
+    if (tags.length > 0) {
+      url += `${isFirstQueryParam ? "?" : "&"}tags=${tags}`;
+      isFirstQueryParam = false;
+    }
+    if (time) {
+      url += `${isFirstQueryParam ? "?" : "&"}time=${time}`;
+      isFirstQueryParam = false;
+    }
+    if (page) {
+      url += `${isFirstQueryParam ? "?" : "&"}page=${page}`;
+      isFirstQueryParam = false;
+    }
+    if (limit) {
+      url += `${isFirstQueryParam ? "?" : "&"}limit=${limit}`;
+      isFirstQueryParam = false;
+    }
+    if (search) {
+      url += `${isFirstQueryParam ? "?" : "&"}search=${search}`;
+    }
+  }
+
+  console.log("url", url);
 
   const requestOptions = {
     method: "GET",
@@ -14,34 +48,6 @@ const getRecipe = async ({ queryKey }) => {
       Authorization: "Bearer " + token,
     },
   };
-
-  let url = `http://localhost:3001/api/recipe/${id}`;
-
-  // Add searchParams to URL if they have a value
-  let isFirstQueryParam = true;
-
-  // TODO: Refactor this to be more DRY
-  if (type) {
-    url += `?type=${type}`;
-    isFirstQueryParam = false;
-  }
-  if (tags.length > 0) {
-    url += `${isFirstQueryParam ? "?" : "&"}tags=${tags}`;
-    isFirstQueryParam = false;
-  }
-  if (time) {
-    url += `${isFirstQueryParam ? "?" : "&"}time=${time}`;
-    isFirstQueryParam = false;
-  }
-  if (page) {
-    url += `${isFirstQueryParam ? "?" : "&"}page=${page}`;
-    isFirstQueryParam = false;
-  }
-  if (search) {
-    url += `${isFirstQueryParam ? "?" : "&"}search=${search}`;
-  }
-
-  console.log("url", url);
 
   try {
     const res = await fetch(url, requestOptions);

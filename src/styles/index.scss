@@ -2,6 +2,14 @@
 @import './variables.scss';
 @import './defaults.scss';
 
+// Page
+
+// Components
+@import './components/ui.scss';
+@import './components/search.scss';
+@import './components/navigation.scss';
+
+
 // Utility classes
 @import './utility/borders.scss';
 @import './utility/color.scss';
@@ -12,8 +20,3 @@
 
 // Mixins
 @import './mixins/breakpoints.scss';
-
-
-body {
-  font-family: $font-family-body
-}

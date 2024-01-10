@@ -1,0 +1,118 @@
+// General
+//____________________
+
+.input,
+.textarea,
+.select,
+.btn {
+  height: 52px;
+}
+
+.input,
+.select,
+.textarea {
+  background-color: $color-light-grey;
+  resize: vertical;
+  width: 100%;
+  border-bottom: 2px solid $color-dark-grey;
+
+  &:focus {
+    border-color: #5e76b0;
+  }
+}
+
+.ui-label {
+  position: absolute;
+  transform: translateY(-50%);
+  left: 0.75rem;
+}
+
+// Input
+//____________________
+
+.input {
+  &.no-label {
+    height: 42px;
+  }
+
+  &:not(.no-label) {
+    border-bottom: 2px solid $color-dark-grey;
+  }
+}
+
+.input-label {
+  top: 50%;
+
+  &.focus {
+    font-size: 10px;
+    top: 30%;
+  }
+}
+
+
+
+// Textarea
+//____________________
+
+.textarea {
+  min-height: 76px;
+}
+
+.textarea-label {
+  top: 25px;
+
+  &.focus {
+    font-size: 10px;
+    top: 15px;
+  }
+}
+
+// Select
+//____________________
+
+.select-label {
+  top: 30%;
+  font-size: 10px;
+}
+
+.select-icon {
+  position: absolute;
+  top: 60%;
+  transform: translateY(-50%);
+  right: 0.75rem;
+  pointer-events: none;
+}
+
+
+// Button
+//____________________
+.btn {
+  height: 52px;
+
+  @include screen-m(min) {
+    min-width: 250px;
+  }
+
+  @include screen-m(max) {
+    width: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-main-dark;
+  }
+
+  &.ghost {
+    background-color: transparent;
+    border: 2px solid $color-main;
+    color: $color-main;
+
+    &:hover {
+      background-color: $color-main;
+      border-color: $color-main;
+      color: $color-white;
+    }
+  }
+}
+
+ 

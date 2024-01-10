@@ -1,13 +1,3 @@
-.fw-bold {
-  font-weight: 700
-}
-.fw-regular {
-  font-weight: 500
-}
-.fw- light{
-  font-weight: 300
-}
-
 .fs-12 {
   font-size: 12px
 }
@@ -30,19 +20,10 @@
   font-size: 28px
 }
 
-.ff-body {
-  font-family: $font-family-body;
-}
 .ff-logo {
   font-family: $font-family-logo;
 }
-.ff-header {
-  font-family: $font-family-header;
-}
-// @todo: rename variable or classname
-.ff-text {
-  font-family: $font-family-header;
-}
+
 
 .ta-center {
   text-align: center

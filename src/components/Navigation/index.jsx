@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import styles from "./navigation.module.scss";
+import LanguageSelect from "../language/LanguageSelect";
+// import styles from "./navigation.module.scss";
 import {
   FaHouse,
   FaUtensils,
   FaFileCirclePlus,
   FaFileLines,
+  FaBook,
+  FaBasketShopping,
 } from "react-icons/fa6";
 
 const Navigation = () => {
@@ -15,85 +18,96 @@ const Navigation = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const openClass = open ? styles.open : "";
+  const openClass = open ? "open" : "";
+
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add("nav-open");
+    } else {
+      document.body.classList.remove("nav-open");
+    }
+  }, [open]);
 
   const home = "/";
   const locationPath = location.pathname;
 
   return (
-    <div className={`bg-white navigation ${styles.wrapper}`}>
+    <div className="navigation-wrapper bg-white navigation">
       <button
         className={`
-          ${styles.openNav} 
+          nav-toggle
           ${openClass} 
           desktop-hidden`}
         onClick={() => setOpen(!open)} // Toggle the open state.
       >
-        <span className={styles.burger}></span>
-        <span className={styles.burgerText}>Menu</span>
+        <span className="burger"></span>
+        <span className="burger-text">Menu</span>
       </button>
-      <div className={`px-5 pt-3 text-white ${styles.logoWrapper}`}>
-        <h1 className={`${styles.logo} df ff-logo`}>
+      <div className={`px-5 pt-3 text-white logo-wrapper`}>
+        <h1 className={`logo df ff-logo`}>
           <span className="pr-3 pb-2">Cookbook</span>
         </h1>
       </div>
-      <nav
-        className={`df px-5 py-3 text-medium-grey ff-text fw-light fs-18 ${styles.navigation} ${openClass}`}
-      >
+      <nav className={`navigation df px-5 py-3 fw-light fs-16 ${openClass}`}>
+        <button className="overlay" onClick={() => setOpen(false)}></button>
         <ul className="df fdc gap-3 mt-5 mr-3 w-100">
           <h4 className="mobile-hidden mb-1">
             {`${userName}'s`} {t("Cookbook")}
           </h4>
           <li
             className={`
-              ${locationPath === home ? styles.active : null} ${styles.one}`}
+              ${locationPath === home ? "active" : null}`}
           >
             <Link className="link" to={home}>
               <div className="df aic gap-4 py-3">
-                <FaHouse /> {t("Overview")}
+                <FaHouse className="fs-18" /> {t("Overview")}
               </div>
             </Link>
           </li>
-          <li className={`${styles.two}`}>
+          <li className={locationPath === "/recipes" ? "active" : null}>
             <Link className="link two" to="/recipes">
               <div className="df aic gap-4 py-3">
-                <FaFileLines />
+                <FaBook className="fs-18" />
                 {t("My Recipes")}
               </div>
             </Link>
           </li>
-          <li className={`mb-5 ${styles.three}`}>
+          <li
+            className={`${locationPath === "/shopping-list" ? "active" : null}`}
+          >
+            <Link className="link" to="/shopping-list">
+              <div className="df aic gap-4 py-3">
+                <FaBasketShopping className="fs-18" /> {t("My Shopping List")}
+              </div>
+            </Link>
+          </li>
+          <li
+            className={`mb-5 ${
+              locationPath === "/recipes/all" ? "active" : null
+            }`}
+          >
             <Link className="link" to="/recipes/all">
               <div className="df aic gap-4 py-3">
-                <FaUtensils /> {t("Public Recipes")}
+                <FaUtensils className="fs-18" /> {t("Public Recipes")}
               </div>
             </Link>
           </li>
           <hr />
-          <h4 className="mt-5 mobile-hidden">{t("Quick actions")}</h4>
-          <li className="mobile-hidden">
+          <h4 className="mt-5">{t("Quick actions")}</h4>
+          <li className={`${locationPath === "/recipe/new" ? "active" : null}`}>
             <Link className="link" to="/recipe/new">
               <div className="df aic gap-4 py-3">
-                <FaFileCirclePlus /> {t("New recipe")}{" "}
+                <FaFileCirclePlus className="fs-18" /> {t("New recipe")}{" "}
               </div>
             </Link>
           </li>
+          <hr className="desktop-hidden" />
+          <h4 className="mt-5 desktop-hidden">{t("My Account")}</h4>
+          <li className="desktop-hidden">
+            <LanguageSelect />
+          </li>
         </ul>
       </nav>
-
-      {/* <div className={`${styles.bottomNav} df p-4`}>
-        <button
-          className={`
-            ${styles.openNav} 
-            ${openClass} 
-            desktop-hidden`}
-          onClick={() => setOpen(!open)} // Toggle the open state.
-        >
-          <span className={styles.burger}></span>
-          <span className={styles.burgerText}>Menu</span>
-        </button>
-        <Link to="/recipes">{t("My Recipes")}</Link>
-      </div> */}
     </div>
   );
 };

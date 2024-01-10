@@ -216,3 +216,9 @@ $space-5: 1.5rem; /* 24px */
 .column-gap-3 { column-gap: $space-3 }
 .column-gap-4 { column-gap: $space-4 }
 .column-gap-5 { column-gap: $space-5 }
+
+// Responsive spacing
+//________________________
+@include screen-s(min) {
+    .d-pb-3 { padding-bottom: $space-3 }
+}

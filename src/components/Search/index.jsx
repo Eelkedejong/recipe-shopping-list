@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSearch } from "../../store/searchParamsSlice";
 import Input from "../ui/Input";
 import { FaSearch } from "react-icons/fa";
-import styles from "./search.module.scss";
+import { FaX } from "react-icons/fa6";
 
-const Search = () => {
+const Search = ({ openState }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const searchParams = useSelector((state) => state.searchParams.value);
   const { search } = searchParams;
   const dispatch = useDispatch();
@@ -24,18 +27,23 @@ const Search = () => {
   }, [search]);
 
   return (
-    <>
+    <div className={`search-wrapper ${openState ? "open" : ""}`}>
       <form
-        className="mb-5 df fdc gap-4 pos-relative"
+        className="df fdc gap-4 pos-relative"
         onSubmit={(e) => {
           e.preventDefault();
           dispatch(updateSearch(searchQuery));
+
+          // Navigate to the recipes page if the user is not already there.
+          if (location.pathname !== "/recipes") {
+            navigate("/recipes");
+          }
         }}
       >
         <Input
           id="search"
           label={t("Zoek recept")}
-          classes={styles.search}
+          classes="search-input"
           value={searchQuery ? searchQuery : ""}
           key={inputKey}
           onChange={(e) => {
@@ -48,11 +56,26 @@ const Search = () => {
           }}
         />
 
-        <button className={styles.searchButton} disabled={disabled}>
+        {!disabled ? (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              setSearchQuery("");
+              setDisabled(true);
+              dispatch(updateSearch(""));
+            }}
+            className="search-clear df aic"
+          >
+            <FaX />
+          </button>
+        ) : null}
+
+        <button className="search-button" disabled={disabled}>
           <FaSearch />
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

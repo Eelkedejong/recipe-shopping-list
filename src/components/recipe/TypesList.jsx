@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
 import { updateType } from "../../store/searchParamsSlice";
@@ -8,11 +7,9 @@ import styles from "./recipe.module.scss";
 
 const TypesList = () => {
   const user = useSelector((state) => state.user.value);
-  const type = useSelector((state) => state.searchParams.value.type);
+  const SelectedType = useSelector((state) => state.searchParams.value.type);
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
-  const [activeFilter, setActiveFilter] = useState(type ? type : "All");
 
   const results = useQuery(["types", user.token, "types"], getRecipeFilter, {
     // The query will not execute until the userToken exists.
@@ -32,24 +29,29 @@ const TypesList = () => {
     <>
       {filterOptions.length ? (
         <div className="df gap-3 mb-5">
-          {filterOptions.map((type) => (
-            <button
-              onClick={() => {
-                if (type === "All") {
-                  dispatch(updateType(""));
-                } else {
-                  dispatch(updateType(type));
-                }
-                setActiveFilter(type);
-              }}
-              className={`py-2 px-4 text-blue bg-blue-lighter rounded-s fs-12 fw-semibold ${
-                activeFilter === type ? styles.activeType : ""
-              }`}
-              key={type}
-            >
-              {type}
-            </button>
-          ))}
+          {filterOptions.map((type) =>
+            type !== "" ? (
+              <button
+                onClick={() => {
+                  if (type === "All") {
+                    dispatch(updateType(""));
+                  } else {
+                    dispatch(updateType(type));
+                  }
+                }}
+                className={`py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
+                  ${
+                    (SelectedType === "" && type === "All") ||
+                    SelectedType === type
+                      ? styles.activeType
+                      : ""
+                  }`}
+                key={type}
+              >
+                {type}
+              </button>
+            ) : null
+          )}
         </div>
       ) : null}
     </>

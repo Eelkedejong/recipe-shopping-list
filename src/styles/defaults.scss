@@ -1,8 +1,148 @@
 body {
-  font-family: $font-family-body
+  font-family: $font-family-main
 }
 
 // Default transition on interactive elements
 * {
   transition:  all .2s ease;
+}
+
+
+// Checkbox styling: https://codepen.io/cesque/pen/QxjyKR
+
+$checkbox-size: 14px;
+
+.checkbox-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox {
+  position: relative !important;
+  appearance: none;
+  // margin: 16px;
+  box-sizing: content-box;
+  overflow: hidden;
+
+  // circle
+  &:before {
+    content: '';
+    display: block;
+    box-sizing: content-box;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    border: 1px solid #666;
+    transition: 0.2s border-color ease;
+  }
+  
+  &:checked:before {
+    border-color: $color-main;
+    transition: 0.5s border-color ease;
+  }
+  
+  &:disabled:before {
+    border-color: #ccc;
+    background-color: #ccc;
+  }
+
+  // dot
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    box-sizing: content-box;
+    top: 50%;
+    left: 50%;
+    transform-origin: 50% 50%;
+    background-color: $color-main;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    border-radius: 100vh;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  &[type="radio"] {
+    &:before {
+      border-radius: 100vh;
+    }
+
+    &:after {
+      width: $checkbox-size;
+      height: $checkbox-size;
+      border-radius: 100vh;
+      transform: translate(-50%, -50%) scale(0);
+    }
+
+    &:checked:after {
+      animation: toggleOnRadio 0.2s ease forwards;
+    }
+  }
+
+  &[type="checkbox"] {
+    &:before {
+      border-radius: calc($checkbox-size / 4);
+    }
+
+    &:after {
+      width: $checkbox-size * 0.6;
+      height: $checkbox-size;
+      border-radius: 0;
+      transform: translate(-50%, -85%) scale(0) rotate(45deg);
+      background-color: transparent;
+      box-shadow: 4px 4px 0px 0px $color-main;
+    }
+
+    &:checked:after {
+      animation: toggleOnCheckbox 0.2s ease forwards;
+    }
+  }
+  
+  &[type="checkbox"].filled  {
+    &:before {
+      border-radius: calc($checkbox-size / 4);
+      transition: 0.2s border-color ease, 0.2s background-color ease;
+    }
+    
+    &:checked:not(:disabled):before {
+      background-color: $color-main;
+    }
+
+    &:not(:disabled):after {
+      box-shadow: 4px 4px 0px 0px white;
+    }
+  }
+}
+
+@keyframes toggleOnCheckbox {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -85%) scale(0) rotate(45deg);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -85%) scale(0.8) rotate(45deg);
+  }
+  
+  100% {
+    transform: translate(-50%, -85%) scale(0.7) rotate(45deg);
+  }
+}
+
+@keyframes toggleOnRadio {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  
+  100% {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
 }

@@ -5,33 +5,22 @@
 .bg-black {
   background-color: $color-black
 }
-.bg-blue {
-  background-color: $color-blue
+.bg-light-grey {
+  background-color: $color-light-grey
 }
-.bg-grey-blue {
-  background-color: $color-grey-blue
+.bg-lightest-grey {
+  background-color: $color-light-grey
 }
-.bg-blue-lighter {
-  background-color: $color-blue-lighter
+.bg-main {
+  background-color: $color-main
 }
-.bg-light-blue {
-  background-color: $color-light-blue
+.bg-main-light {
+  background-color: $color-main-bg
 }
-.bg-input {
-  background-color: $color-input-blue;
+.bg-main-lighter {
+  background-color: $color-main-bg-light
 }
-.bg-grey {
-  background-color: $color-grey
-}
-.bg-dark-grey {
-  background-color: $color-grey
-}
-.bg-light-bg {
-  background-color: $color-light-bg
-}
-.bg-medium-blue {
-  background-color: $color-medium-blue
-}
+
 
 // Text colors
 .text-white {
@@ -40,17 +29,14 @@
 .text-black {
   color: $color-black
 }
-.text-blue {
-  color: $color-blue
-}
-.text-dark-blue {
-   color: $color-dark-blue
+.text-main {
+  color: $color-main
 }
 .text-dark-grey {
   color: $color-dark-grey
 }
-.text-medium-grey {
-  color: $color-medium-grey
+.text-grey {
+  color: $color-grey
 }
 
 // Hover colors
@@ -62,15 +48,5 @@
 .hover-black {
   &:hover {
     color: $color-black
-  }
-}
-.hover-blue {
-  &:hover {
-    color: $color-blue
-  }
-}
-.hover-dark-blue {
-  &:hover {
-    color: $color-blue
   }
 }

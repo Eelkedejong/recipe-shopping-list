@@ -67,11 +67,13 @@ function CloudinaryUploadWidget({ uwConfig, image }) {
     }
   };
 
+  console.log("imageId", imageId);
+
   return (
     <CloudinaryScriptContext.Provider value={{ loaded }}>
       <button
         id="upload_widget"
-        className={`bg-input rounded-s df fdc aic jcc fs-16 w-100 pos-relative ${
+        className={`bg-light-grey rounded-s df fdc aic jcc fs-16 w-100 pos-relative ${
           styles.uploadButton
         } ${imageId ? styles.uploaded : ""} `}
         onClick={initializeCloudinaryWidget}
@@ -88,7 +90,7 @@ function CloudinaryUploadWidget({ uwConfig, image }) {
         />
       </button>
 
-      {image ? <input type="hidden" name="image" value={image} /> : null}
+      {imageId ? <input type="hidden" name="image" value={imageId} /> : null}
     </CloudinaryScriptContext.Provider>
   );
 }

@@ -10,6 +10,10 @@ section {
   @include screen-s(min) {
     padding: 0 42px;
   }
+
+  @include screen-s(max) {
+    margin-top: -26px
+  }
 }
 
 .message {
@@ -45,5 +49,9 @@ body > * {
     .lang {
       display: none;
     }
+  }
+
+  body.nav-open {
+    overflow: hidden;
   }
 }

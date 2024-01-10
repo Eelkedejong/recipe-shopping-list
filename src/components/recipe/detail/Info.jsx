@@ -22,12 +22,12 @@ const RecipeDetail = ({ recipe }) => {
     <>
       <div>
         <div className="df aic jcsb">
-          <h1 className="ff-header fs-28 fw-bold">{recipe.name}</h1>
+          <h1 className="fs-28 fw-bold">{recipe.name}</h1>
           <Link to={`/recipe/edit/${recipe.id}`}>
             <FaPen />
           </Link>
         </div>
-        <div className="df gap-1 text-medium-grey fw-light fs-14">
+        <div className="df gap-1 text-grey fw-light fs-14">
           {recipe.tags
             ? recipe.tags.map((label, index) => {
                 return (
@@ -43,9 +43,9 @@ const RecipeDetail = ({ recipe }) => {
         <div className="df fww gap-5">
           {recipe.time ? (
             <div
-              className={`df fdc aic jcc f1 p-2 bg-blue-lighter rounded-s ${styles.detailBlock}`}
+              className={`df fdc aic jcc f1 p-2 bg-main-lighter rounded-s ${styles.detailBlock}`}
             >
-              <div className="df aic gap-2 text-blue fs-14">
+              <div className="df aic gap-2 text-main fs-14">
                 <FaClockRotateLeft /> {recipe.time} {t("min")}
               </div>
               <span className="fs-12">{t("Cooking time")}</span>
@@ -54,9 +54,9 @@ const RecipeDetail = ({ recipe }) => {
 
           {recipe.type ? (
             <div
-              className={`df fdc aic jcc f1 p-2 bg-blue-lighter rounded-s ${styles.detailBlock}`}
+              className={`df fdc aic jcc f1 p-2 bg-main-lighter rounded-s ${styles.detailBlock}`}
             >
-              <div className="df aic gap-2 text-blue fs-14">
+              <div className="df aic gap-2 text-main fs-14">
                 <FaUtensils /> {recipe.type}
               </div>
               <span className="fs-12">{t("Type")}</span>
@@ -65,9 +65,9 @@ const RecipeDetail = ({ recipe }) => {
 
           {recipe.difficulty ? (
             <div
-              className={`df fdc aic jcc f1 p-2 bg-blue-lighter rounded-s ${styles.detailBlock}`}
+              className={`df fdc aic jcc f1 p-2 bg-main-lighter rounded-s ${styles.detailBlock}`}
             >
-              <div className="df aic gap-2 text-blue fs-14">
+              <div className="df aic gap-2 text-main fs-14">
                 <img src={difficultyicon()} alt="recipe difficulty" />{" "}
                 {recipe.difficulty}
               </div>

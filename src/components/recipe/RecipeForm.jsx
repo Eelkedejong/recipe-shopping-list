@@ -7,9 +7,9 @@ import Button from "../ui/Button";
 import IngredientsList from "./ingredients/IngredientsList";
 import StepsList from "./steps/StepsList";
 import LabelList from "./labels/LabelList";
+import styles from "./recipe.module.scss";
 
 const RecipeForm = ({ recipe, handleSubmit }) => {
-  console.log("recipe", recipe, handleSubmit);
   const { t } = useTranslation();
   // TODO: Move the ingredientRows state to the IngredientsList component.
   // Possibly use redux instead of context?
@@ -54,19 +54,21 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
     responseData.tags = labels;
 
     console.log("responseData", responseData);
+
     handleSubmit(responseData);
   };
 
   return (
     <form
-      className="df fdc gap-4"
+      className={`df fdc gap-4 ${styles.form}`}
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmitRecipe(e);
       }}
     >
       <div className="bg-white p-5 rounded-top-l rounded-m df fdc gap-4">
-        <h2 className="fs-24 ff-header fw-bold">{t("Add a new recipe")}</h2>
+        <h3 className="fs-20 fw-semibold">{t("Recipe details")}</h3>
+        {/* <h2 className="fs-24 fw-bold">{t("Add a new recipe")}</h2> */}
         <Input
           id="name"
           label={t("Recipe name")}
@@ -86,7 +88,7 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
       </div>
 
       <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 ff-header fw-semibold">{t("Details")}</h3>
+        <h3 className="fs-20 mb-4 fw-semibold">{t("Advanced")}</h3>
         <div className="dg gtc-2 gtr-2 gap-4">
           <Input
             id="time"
@@ -121,29 +123,19 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
       </div>
 
       <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 ff-header fw-semibold">{t("Image")}</h3>
+        <h3 className="fs-20 mb-4 fw-semibold">{t("Image")}</h3>
         <ImageUploader image={recipe ? recipe?.image : null} />
-        {/* <ImageUploader publicId={imageId} setPublicId={setImageId} /> */}
-        {/* <div>
-          <AdvancedImage
-            style={{ maxWidth: "100%" }}
-            cldImg={cld.image(imageId)}
-            plugins={[responsive(), placeholder()]}
-          />
-        </div> */}
       </div>
 
       <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 ff-header fw-semibold">{t("Ingredients")}</h3>
+        <h3 className="fs-20 mb-4 fw-semibold">{t("Ingredients")}</h3>
         <IngredientContext.Provider value={ingredientRows}>
           <IngredientsList ingredients={recipe ? recipe.ingredients : null} />
         </IngredientContext.Provider>
       </div>
 
       <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 ff-header fw-semibold">
-          {t("Cooking steps")}
-        </h3>
+        <h3 className="fs-20 mb-4 fw-semibold">{t("Cooking steps")}</h3>
         <StepsList steps={recipe ? recipe.steps : null} />
       </div>
 

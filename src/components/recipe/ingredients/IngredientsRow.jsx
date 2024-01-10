@@ -14,8 +14,6 @@ const IngredientsRow = ({ ingredient, index }) => {
     setIngredientRows(ingredientRows);
   }, [rowData]);
 
-  console.log("ingredientRows", ingredientRows);
-
   return (
     <>
       <div

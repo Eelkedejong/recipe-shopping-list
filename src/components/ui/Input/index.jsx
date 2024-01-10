@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styles from "./input.module.scss";
+// import styles from "./input.module.scss";
 
 const Input = ({
   id,
@@ -26,13 +26,10 @@ const Input = ({
   return (
     <>
       {label ? (
-        <label
-          htmlFor={name}
-          className={`ff-text pos-relative ${labelClasses}`}
-        >
+        <label htmlFor={name} className={`pos-relative ${labelClasses}`}>
           <span
-            className={`fw-light text-dark-grey ${styles.label} ${
-              focus ? styles.focus : ""
+            className={`ui-label input-label fw-light text-dark-grey ${
+              focus ? "focus" : ""
             }`}
           >
             {label}
@@ -50,9 +47,9 @@ const Input = ({
             onBlur={(e) => {
               if (!e.target.value) setFocus(false);
             }}
-            className={`rounded-s df aic jcc pl-3 pt-3 text-black ff-header ${
-              styles.input
-            } ${classes ? classes : null}`}
+            className={`input rounded-s df aic jcc pl-3 pt-3 text-black ${
+              classes ? classes : null
+            }`}
             required={required}
           />
         </label>
@@ -64,9 +61,9 @@ const Input = ({
           step={step}
           defaultValue={value}
           onChange={onChange}
-          className={`rounded-s df aic jcc pl-3 ${styles.input} ${
-            styles.noLabel
-          } ${classes ? classes : null}`}
+          className={`no-label rounded-s df aic jcc pl-3  ${
+            classes ? classes : null
+          }`}
           required={required}
         />
       )}

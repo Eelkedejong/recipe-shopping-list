@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { resetSearchParams } from "../../store/searchParamsSlice";
+import { FaPlus } from "react-icons/fa6";
 import getRecipes from "./api/getRecipe";
 import RecipeTile from "../../components/recipe/RecipeTile";
 import TypesList from "../../components/recipe/TypesList";
@@ -58,6 +60,15 @@ const RecipeList = () => {
             );
           })
         )}
+      </div>
+
+      <div className="df fdc aic p-4 mt-5 desktop-hidden">
+        <Link to="/recipe/new">
+          <button className="p-4 df aic jcc bg-main text-white rounded-s mb-3">
+            <FaPlus />
+          </button>
+        </Link>
+        <span>{t("Add recipe")}</span>
       </div>
     </div>
   );

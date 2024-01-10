@@ -19,7 +19,7 @@ const RecipeTile = ({ id, name, image, labels, time, type }) => {
   const recipeImage = cld.image(image);
 
   // Resize to fit in the recipe tile
-  recipeImage.resize(fill().width(700).height(300));
+  recipeImage.resize(fill().width(600).height(300).gravity("auto"));
 
   return (
     <Link
@@ -30,16 +30,16 @@ const RecipeTile = ({ id, name, image, labels, time, type }) => {
         <AdvancedImage cldImg={recipeImage} className="rounded-top-m" />
       ) : (
         <div
-          className={`df jcc bg-blue rounded-top-m f1 ${styles.placeholderImage}`}
+          className={`df jcc bg-main rounded-top-m f1 ${styles.placeholderImage}`}
         >
           <img src={logo} alt="Chef" />
         </div>
       )}
 
       <div className="p-3 py-2">
-        <h2 className="fs-18 ff-header fw-bold">{name}</h2>
+        <h2 className="fs-18 fw-bold">{name}</h2>
 
-        <div className="df gap-1 text-medium-grey ff-text fw-light fs-14">
+        <div className="df gap-1 text-grey fw-light fs-14">
           {labels
             ? labels.map((label, index) => {
                 return (

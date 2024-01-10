@@ -1,0 +1,43 @@
+@import '../../styles/variables.scss';
+
+.filter {
+  @include screen-m(min) {
+    margin-top: 100px;
+  }
+
+  hr {
+    border: 1px solid #DDDDDD;
+  }
+}
+
+.filterToggle {
+  @include screen-m(min) {
+    display: none !important;
+  }
+
+  @include screen-m(max) {
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.content {
+  @include screen-m(max) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+
+    &.open {
+      height: 100%;
+    }
+  }
+}

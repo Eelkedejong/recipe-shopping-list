@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./select.module.scss";
+// import styles from "./select.module.scss";
 import { FaChevronDown } from "react-icons/fa";
 
 const Select = ({
@@ -20,8 +20,10 @@ const Select = ({
   const [selectValue, setSelectValue] = useState(value);
 
   return (
-    <label htmlFor={name} className="ff-text pos-relative df faic">
-      <span className={`fw-light text-dark-grey ${styles.label}`}>{label}</span>
+    <label htmlFor={name} className="pos-relative df faic">
+      <span className="ui-label select-label fw-light text-dark-grey">
+        {label}
+      </span>
 
       <select
         id={id}
@@ -35,7 +37,7 @@ const Select = ({
                 setSelectValue(e.target.value);
               }
         }
-        className={`rounded-s df aic jcc pl-3 pt-3 ${styles.select}`}
+        className="select rounded-s df aic jcc pl-3 pt-3"
         required={required}
       >
         {placeholder ? (
@@ -52,7 +54,7 @@ const Select = ({
         })}
       </select>
 
-      <span className={styles.icon}>
+      <span className="select-icon">
         <FaChevronDown />
       </span>
     </label>

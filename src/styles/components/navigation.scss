@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 
-.logoWrapper {
+.logo-wrapper {
   @include screen-s(min) {
     background-image: url('../../assets/bg.svg');
     background-size: cover;
@@ -62,7 +62,7 @@
   }
 }
 
-.navigation-wrapper {
+.wrapper {
   @include screen-s(max) {
     background-image: url('../../assets/bg.svg');
     background-size: cover;
@@ -92,7 +92,7 @@
 }
 
 /* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
-.openNav {
+.nav-toggle {
 	position: absolute;
 	top: 15px;
 	padding-top: 20px;
@@ -150,7 +150,7 @@
 }
 
 /* MENU Text part */
-.burgerText {
+.burger-text {
 	display: block;
 	font-size: .675rem;
 	letter-spacing: .05em;

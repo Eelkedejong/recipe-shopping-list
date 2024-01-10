@@ -25,7 +25,7 @@ const Image = ({ image }) => {
         <AdvancedImage cldImg={recipeImage} className={styles.detailsImage} />
       ) : (
         <div
-          className={`df jcc bg-blue rounded-top-m f1 ${styles.placeholderImage}`}
+          className={`df jcc bg-main rounded-top-m f1 ${styles.placeholderImage}`}
         >
           <img src={logo} alt="Chef" />
         </div>
