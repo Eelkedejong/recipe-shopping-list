@@ -11,21 +11,22 @@ import styles from "./recipe.module.scss";
 
 const RecipeForm = ({ recipe, handleSubmit }) => {
   const { t } = useTranslation();
-  // TODO: Move the ingredientRows state to the IngredientsList component.
+  // @TODO: Move the ingredientRows state to the IngredientsList component.
   // Possibly use redux instead of context?
   const ingredientRows = useState(
     recipe?.ingredients && recipe?.ingredients !== undefined
       ? recipe.ingredients
-      : [{ unit: "", amount: "", ingredient: "" }]
+      : [{ unit: "", amount: "", ingredient: "" }],
   );
 
   const handleSubmitRecipe = (e) => {
-    // Converts the form data into an object with key-value pairs.
+    // Convert the form data into an object with key-value pairs.
     const formData = new FormData(e.target);
     const values = Object.fromEntries(formData.entries());
 
-    // Extracts data from the values object by filtering out keys
-    // that include "amount", "unit", or "ingredient".
+    // Extract data from the values object.
+    // Filter out keys that include "amount", "unit", or "ingredient" as these are pulled from the IngredientRows
+    // Filter out keys that incluse "stap" and "label" as these are handled separately.
     const responseData = Object.keys(values).reduce((obj, key) => {
       if (
         !key.includes("amount") &&
@@ -42,7 +43,7 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
     responseData.persons = parseInt(responseData.persons);
     responseData.time = parseInt(responseData.time);
 
-    // Combine the value of the steps input field into an array.
+    // Combine the value of the steps and labels input fields into an array.
     const steps = Object.keys(values)
       .filter((key) => key.includes("step"))
       .map((key) => values[key]);
@@ -68,7 +69,6 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
     >
       <div className="bg-white p-5 rounded-top-l rounded-m df fdc gap-4">
         <h3 className="fs-20 fw-semibold">{t("Recipe details")}</h3>
-        {/* <h2 className="fs-24 fw-bold">{t("Add a new recipe")}</h2> */}
         <Input
           id="name"
           label={t("Recipe name")}
@@ -139,7 +139,13 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
         <StepsList steps={recipe ? recipe.steps : null} />
       </div>
 
-      <Button text={t("Save recipe")} type="submit" />
+      <div className={`w-100 ${styles.submitButtonWrapper}`}>
+        <Button
+          className={styles.submitButton}
+          text={t("Save recipe")}
+          type="submit"
+        />
+      </div>
     </form>
   );
 };

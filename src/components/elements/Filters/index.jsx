@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
-import { updateTags, updateTime } from "../../store/searchParamsSlice";
+import { updateTags, updateTime } from "../../../store/searchParamsSlice";
 import { useTranslation } from "react-i18next";
-import getRecipeFilter from "../../pages/recipe/api/filters/getRecipeFilter";
+import getRecipeFilter from "../../../pages/recipe/api/filters/getRecipeFilter";
 import { FaSliders, FaX } from "react-icons/fa6";
 import styles from "./filters.module.scss";
-import Button from "../ui/Button";
+import Button from "../../ui/Button";
 
 const Filters = () => {
   const user = useSelector((state) => state.user.value);
@@ -16,9 +16,13 @@ const Filters = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const results = useQuery(["tags", user.token, "tags"], getRecipeFilter, {
-    // The query will not execute until the userToken exists.
-    enabled: !!user.token,
+  const results = useQuery({
+    queryKey: ["tags", user.token, "tags"],
+    queryFn: getRecipeFilter,
+    ...{
+      // The query will not execute until the userToken exists.
+      enabled: !!user.token,
+    },
   });
 
   const filterOptions = results?.data?.data ?? [];
@@ -47,17 +51,19 @@ const Filters = () => {
   ];
 
   return (
-    <aside className={`${styles.filter}`}>
+    <aside>
       <button
         onClick={() => setOpen(!open)}
-        className={`${styles.filterToggle} bg-main p-3 rounded-full text-white df aic jcc`}
+        className={`bg-main p-3 rounded-full text-white df aic jcc ${styles.filterToggle} `}
       >
         <FaSliders />
       </button>
       <div
-        className={`bg-white rounded-m mr-5 d-pb-3 ${styles.content} ${
-          open ? styles.open : null
-        }`}
+        className={`
+          bg-white rounded-m mr-5 d-pb-3 
+          ${styles.content} 
+          ${open ? styles.open : null}
+        `}
       >
         <div className="px-5 py-4 bg-main-light rounded-top-m df jcsb">
           <h2 className="fw-bold fs-20">{t("Filter")}</h2>

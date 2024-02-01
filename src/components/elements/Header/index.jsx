@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { FaChevronLeft } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Search from "../Search";
+import Search from "../../elements/Search";
 import styles from "./header.module.scss";
 
 const Header = ({ title, returnUrl, returnText, hiddenMobile }) => {
@@ -14,9 +14,11 @@ const Header = ({ title, returnUrl, returnText, hiddenMobile }) => {
 
   return (
     <header
-      className={`pl-5 df aic ${styles.header} ${
-        hiddenMobile ? styles.hiddenMobile : null
-      }`}
+      className={`
+        pl-5 df aic 
+        ${styles.header} ${hiddenMobile ? styles.hiddenMobile : null}
+        ${open ? styles.open : null}
+      `}
     >
       <div className="df jcsb w-100">
         {returnUrl && returnText ? (
@@ -36,12 +38,22 @@ const Header = ({ title, returnUrl, returnText, hiddenMobile }) => {
             <h2 className="fs-28 fw-bold">{t("What's on the menu today?")}</h2>
           </div>
         )}
-        <button className="desktop-hidden p-3" onClick={() => setOpen(!open)}>
-          <FaSearch />
+        <button
+          className={`desktop-hidden p-3 ${styles.searchButton}`}
+          onClick={() => setOpen(!open)}
+        >
+          {/* <FaSearch className="fs-24 text-white mobile-hidden" /> */}
+          <span
+            className={`desktop-hidden ${styles.searchIcon} ${open ? styles.close : null}`}
+          ></span>
         </button>
       </div>
 
-      <Search openState={open} />
+      <Search openState={open} setOpenState={setOpen} />
+      <button
+        className={styles.overlay}
+        onClick={() => setOpen(false)}
+      ></button>
     </header>
   );
 };

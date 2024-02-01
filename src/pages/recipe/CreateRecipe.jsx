@@ -14,8 +14,9 @@ const CreateRecipe = () => {
 
   const mutation = useMutation({
     mutationFn: createRecipe,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["recipes"] });
+    onSuccess: (data) => {
+      queryClient.setQueryData("recipes", data);
+      // queryClient.invalidateQueries({ queryKey: ["recipes"] });
       navigate("/");
     },
   });

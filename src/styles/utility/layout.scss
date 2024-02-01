@@ -22,22 +22,22 @@
 
 // Grid alignment
 .ass {
-  align-self: start
+  align-self: flex-start
 }
 .asc {
   align-self: center
 }
 .ase {
-  align-self: end
+  align-self: flex-end
 }
 .jss {
-  justify-self: start
+  justify-self: flex-start
 }
 .jsc {
   justify-self: center
 }
 .jse {
-  justify-self: end
+  justify-self: flex-end
 }
 
 
@@ -90,11 +90,15 @@
   position: relative
 }
 
-
+//
+//  Sizing
+//  _____________________________________________
 .h-100 {
   height: 100%
 }
-
 .w-100 {
   width: 100%;
+}
+.w-50 {
+  width: 50%;
 }

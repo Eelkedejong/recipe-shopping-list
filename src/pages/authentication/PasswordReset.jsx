@@ -18,10 +18,10 @@ const PasswordReset = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { data, isSuccess, refetch } = useQuery(
-    ["reset", password, id, token],
-    passwordReset,
-    {
+  const { data, isSuccess, refetch } = useQuery({
+    queryKey: ["reset", password, id, token],
+    queryFn: passwordReset,
+    ...{
       // useQuery will only trigger on refetch.
       enabled: false,
       retry: false,
@@ -30,7 +30,7 @@ const PasswordReset = () => {
         setErrorMessage(error.message);
       },
     }
-  );
+  });
 
   return (
     <>

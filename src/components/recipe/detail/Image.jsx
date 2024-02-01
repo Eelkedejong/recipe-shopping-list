@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage } from "@cloudinary/react";
 import { fill } from "@cloudinary/url-gen/actions/resize";
@@ -6,7 +5,6 @@ import logo from "../../../assets/logo-white.svg";
 import styles from "../recipe.module.scss";
 
 const Image = ({ image }) => {
-  const { t } = useTranslation();
   // Create a Cloudinary instance
   const cld = new Cloudinary({
     cloud: {

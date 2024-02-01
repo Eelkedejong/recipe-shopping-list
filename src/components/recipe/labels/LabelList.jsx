@@ -12,12 +12,11 @@ const StepsList = ({ tags }) => {
   return (
     <>
       <div className="df aic fww gap-3">
-        {/* <div className={styles.labelGrid}> */}
         {labels.map((label, index) => {
           return (
             <div
               className={`df aic pos-relative w-100 ${styles.labelWrapper}`}
-              key={`${index} + ${label}`} // TODO: Change this to a unique key.
+              key={`${index} + ${label}`} // @TODO: Change this to a unique key.
             >
               <Input
                 id={`label-${index + 1}`}
@@ -25,7 +24,7 @@ const StepsList = ({ tags }) => {
                 value={label ? label : null}
                 classes={`${styles.ingreidentInput} pr-4`}
                 labelClasses={`w-100 ${styles.label}`}
-                key={`${index} + ${label}`} // TODO: Change this to a unique key.
+                key={`${index} + ${label}`} // @TODO: Change this to a unique key.
               />
               <button
                 type="button"

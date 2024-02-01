@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import LanguageSelect from "../language/LanguageSelect";
-// import styles from "./navigation.module.scss";
+import LanguageSelect from "../../language/LanguageSelect";
+import styles from "./navigation.module.scss";
 import {
   FaHouse,
   FaUtensils,
@@ -18,53 +18,60 @@ const Navigation = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const openClass = open ? "open" : "";
+  const openClass = open ? styles.open : "";
 
   useEffect(() => {
     if (open) {
-      document.body.classList.add("nav-open");
+      document.body.classList.add("overlay");
     } else {
-      document.body.classList.remove("nav-open");
+      document.body.classList.remove("overlay");
     }
   }, [open]);
+
+  // Reset the open state when the location changes.
+  useEffect(() => {
+    setOpen(false);
+  }, [location]);
 
   const home = "/";
   const locationPath = location.pathname;
 
   return (
-    <div className="navigation-wrapper bg-white navigation">
+    <div className={`navigation ${styles.navigationWrapper}`}>
       <button
         className={`
-          nav-toggle
+          ${styles.openNav}
           ${openClass} 
           desktop-hidden`}
         onClick={() => setOpen(!open)} // Toggle the open state.
       >
-        <span className="burger"></span>
-        <span className="burger-text">Menu</span>
+        <span className={styles.burger}></span>
+        <span className={styles.burgerText}>Menu</span>
       </button>
-      <div className={`px-5 pt-3 text-white logo-wrapper`}>
-        <h1 className={`logo df ff-logo`}>
+      <div className={`px-5 pt-3 text-white ${styles.logoWrapper}`}>
+        <h1 className={`${styles.logo} df ff-logo`}>
           <span className="pr-3 pb-2">Cookbook</span>
         </h1>
       </div>
-      <nav className={`navigation df px-5 py-3 fw-light fs-16 ${openClass}`}>
-        <button className="overlay" onClick={() => setOpen(false)}></button>
+      <nav
+        className={`df px-5 py-3 text-medium-grey ff-text fw-light fs-18 ${styles.navigation} ${openClass}`}
+      >
+        <button
+          className={styles.overlay}
+          onClick={() => setOpen(false)}
+        ></button>
         <ul className="df fdc gap-3 mt-5 mr-3 w-100">
           <h4 className="mobile-hidden mb-1">
             {`${userName}'s`} {t("Cookbook")}
           </h4>
-          <li
-            className={`
-              ${locationPath === home ? "active" : null}`}
-          >
+          <li className={`${locationPath === home ? styles.active : null}`}>
             <Link className="link" to={home}>
               <div className="df aic gap-4 py-3">
                 <FaHouse className="fs-18" /> {t("Overview")}
               </div>
             </Link>
           </li>
-          <li className={locationPath === "/recipes" ? "active" : null}>
+          <li className={locationPath === "/recipes" ? styles.active : null}>
             <Link className="link two" to="/recipes">
               <div className="df aic gap-4 py-3">
                 <FaBook className="fs-18" />
@@ -73,7 +80,9 @@ const Navigation = () => {
             </Link>
           </li>
           <li
-            className={`${locationPath === "/shopping-list" ? "active" : null}`}
+            className={`${
+              locationPath === "/shopping-list" ? styles.active : null
+            }`}
           >
             <Link className="link" to="/shopping-list">
               <div className="df aic gap-4 py-3">
@@ -83,7 +92,7 @@ const Navigation = () => {
           </li>
           <li
             className={`mb-5 ${
-              locationPath === "/recipes/all" ? "active" : null
+              locationPath === "/recipes/all" ? styles.active : null
             }`}
           >
             <Link className="link" to="/recipes/all">
@@ -94,7 +103,11 @@ const Navigation = () => {
           </li>
           <hr />
           <h4 className="mt-5">{t("Quick actions")}</h4>
-          <li className={`${locationPath === "/recipe/new" ? "active" : null}`}>
+          <li
+            className={`${
+              locationPath === "/recipe/new" ? styles.active : null
+            }`}
+          >
             <Link className="link" to="/recipe/new">
               <div className="df aic gap-4 py-3">
                 <FaFileCirclePlus className="fs-18" /> {t("New recipe")}{" "}

@@ -8,9 +8,10 @@ body {
 }
 
 
+// TODO: Move to a module scss
 // Checkbox styling: https://codepen.io/cesque/pen/QxjyKR
 
-$checkbox-size: 14px;
+$checkbox-size: 20px;
 
 .checkbox-label {
   display: flex;
@@ -25,6 +26,7 @@ $checkbox-size: 14px;
   // margin: 16px;
   box-sizing: content-box;
   overflow: hidden;
+  cursor: pointer;
 
   // circle
   &:before {

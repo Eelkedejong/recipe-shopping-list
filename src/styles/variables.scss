@@ -18,14 +18,20 @@ $color-main-light: #FFD8A9;
 $color-main-bg: #FFEBD4;
 $color-main-bg-light: #FDEEDC;
 
+// Secondary theme colors
+$color-secondary: #5C8D89;
+
 //
 // Font
 //________________________________________
 $font-family-logo: 'Titan One';
 $font-family-main: 'Poppins';
 
-// $font-family-body: 'Poppins';
-// $font-family-header: 'Poppins';
+//
+// Borders / Shadows
+//
+$default-border: 1px solid #ddd;
+$shadow-top: 0px -4px 8px 0px rgba(108, 108, 108, 0.25);
 
 //
 // Breakpoints

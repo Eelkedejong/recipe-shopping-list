@@ -26,7 +26,7 @@ const IngredientsRow = ({ ingredient, index }) => {
           required={true}
           value={ingredient.ingredient}
           key={`ingredient_${ingredient.ingredient}`}
-          classes={styles.ingreidentInput}
+          classes={styles.ingredientInput}
           onChange={(e) =>
             setRowData({ ...rowData, ingredient: e.target.value })
           }

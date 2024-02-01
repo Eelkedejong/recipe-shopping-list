@@ -1,4 +1,4 @@
-import Logout from "../../pages/authentication/Logout";
+import Logout from "../../../pages/authentication/Logout";
 import styles from "./aside.module.scss";
 
 const Aside = () => {

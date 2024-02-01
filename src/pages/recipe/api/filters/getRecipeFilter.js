@@ -12,7 +12,7 @@ const getRecipeFilter = async ({ queryKey }) => {
   try {
     const res = await fetch(
       `http://localhost:3001/api/recipe-${type}`,
-      requestOptions
+      requestOptions,
     );
 
     if (!res.ok) {

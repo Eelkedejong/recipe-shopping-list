@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSearch } from "../../store/searchParamsSlice";
-import Input from "../ui/Input";
+import { updateSearch } from "../../../store/searchParamsSlice";
+import Input from "../../ui/Input";
 import { FaSearch } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
+import styles from "./search.module.scss";
 
-const Search = ({ openState }) => {
+const Search = ({ openState, setOpenState }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = useSelector((state) => state.searchParams.value);
@@ -18,6 +19,14 @@ const Search = ({ openState }) => {
   const [disabled, setDisabled] = useState(true);
   const [inputKey, setInputKey] = useState(0);
 
+  useEffect(() => {
+    if (openState) {
+      document.body.classList.add("overlay");
+    } else {
+      document.body.classList.remove("overlay");
+    }
+  }, [openState]);
+
   // Reset the search input when the search query is reset.
   useEffect(() => {
     if (search === "") {
@@ -27,23 +36,28 @@ const Search = ({ openState }) => {
   }, [search]);
 
   return (
-    <div className={`search-wrapper ${openState ? "open" : ""}`}>
+    <div
+      className={`p-3 bg-white ${styles.wrapper} ${openState ? styles.open : ""}`}
+    >
       <form
         className="df fdc gap-4 pos-relative"
         onSubmit={(e) => {
           e.preventDefault();
+          // Set the search query in the store.
           dispatch(updateSearch(searchQuery));
 
           // Navigate to the recipes page if the user is not already there.
           if (location.pathname !== "/recipes") {
             navigate("/recipes");
           }
+
+          setOpenState(false);
         }}
       >
         <Input
           id="search"
           label={t("Zoek recept")}
-          classes="search-input"
+          classes={styles.input}
           value={searchQuery ? searchQuery : ""}
           key={inputKey}
           onChange={(e) => {
@@ -65,13 +79,13 @@ const Search = ({ openState }) => {
               setDisabled(true);
               dispatch(updateSearch(""));
             }}
-            className="search-clear df aic"
+            className={`${styles.clear} df aic`}
           >
             <FaX />
           </button>
         ) : null}
 
-        <button className="search-button" disabled={disabled}>
+        <button className={styles.searchButton} disabled={disabled}>
           <FaSearch />
         </button>
       </form>

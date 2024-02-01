@@ -31,9 +31,10 @@ const LanguageSelect = () => {
           onClick={() => {
             i18n.changeLanguage(lng);
           }}
-          className={`df aic gap-3 pt-2 ${
-            i18n.resolvedLanguage === lng ? "hidden" : ""
-          }`}
+          className={`
+            df aic gap-3 pt-2 
+            ${i18n.resolvedLanguage === lng ? "hidden" : ""}
+          `}
         >
           <img
             src={flag(lng)}

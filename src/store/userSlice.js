@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// The user slice stores the user's information.
 export const userSlice = createSlice({
   name: "user",
   initialState: {

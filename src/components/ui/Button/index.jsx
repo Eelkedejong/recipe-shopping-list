@@ -1,10 +1,11 @@
-// import styles from "./button.module.scss";
+import styles from "./button.module.scss";
 
 const Button = ({ type, text, onClick, className }) => {
   const classes = `
-    btn bg-main rounded-s df aic jcc text-white fs-18 
+    bg-main rounded-s df aic jcc text-white fs-18 
+    ${styles.btn}
     ${className ? className : ""}
-    ${type !== "undefined" ? type : " "} 
+    ${type !== "undefined" ? styles[type] : " "} 
   `;
 
   return (

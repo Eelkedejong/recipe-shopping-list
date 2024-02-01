@@ -1,4 +1,4 @@
-import { useEffect, useContext, useId } from "react";
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import IngredientContext from "./utils/ingredientContext";
 import { FaPlusCircle } from "react-icons/fa";
@@ -24,7 +24,7 @@ const IngredientsList = () => {
                 <IngredientsRow
                   index={index}
                   ingredient={ingredient}
-                  key={index} // TODO: Change this to a unique key.
+                  key={index} // @TODO: Change this to a unique key.
                 />
               );
             })

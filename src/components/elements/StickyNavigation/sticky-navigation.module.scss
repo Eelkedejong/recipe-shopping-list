@@ -1,0 +1,43 @@
+@import '../../../styles/variables.scss';
+
+.stickyNav {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  position: fixed;
+  z-index: 50;
+  height: 65px;
+  bottom: 0;
+
+  &:not(.formPage) {
+    &:not(.open) {
+      box-shadow: $shadow-top;
+    }
+  }
+
+  &.open {
+    button {
+      background-color: $color-main;
+      border-radius: 0 0 10px 10px;
+      color: $color-white
+    }
+  }
+
+  .active {
+    color: $color-main;
+  }
+}
+
+.stickySubNav {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  position: fixed;
+  height: 65px;
+  bottom: 65px;
+  z-index: 40;
+
+  &:not(.open) {
+    transform: translateY(65px);
+  }
+
+  &:not(.formPage) {
+    box-shadow: $shadow-top;
+  }
+}

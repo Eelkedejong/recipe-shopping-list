@@ -68,7 +68,7 @@ const RecipeDetail = ({ recipe }) => {
               className={`df fdc aic jcc f1 p-2 bg-main-lighter rounded-s ${styles.detailBlock}`}
             >
               <div className="df aic gap-2 text-main fs-14">
-                <img src={difficultyicon()} alt="recipe difficulty" />{" "}
+                <img src={difficultyicon()} alt="recipe difficulty" />
                 {recipe.difficulty}
               </div>
               <span className="fs-12">{t("Difficulty")}</span>

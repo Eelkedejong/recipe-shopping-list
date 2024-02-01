@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
+import PersonSelector from "../../elements/PersonSelector";
 import styles from "../recipe.module.scss";
 
 const Ingredients = ({ ingredients, persons }) => {
@@ -10,22 +10,10 @@ const Ingredients = ({ ingredients, persons }) => {
   return (
     <>
       <div className={`w-100 df jcc py-2 my-5 ${styles.persons} `}>
-        <div className="df aic gap-5">
-          <button
-            onClick={() =>
-              personsState > 1 ? setPersonsState(personsState - 1) : null
-            }
-          >
-            <FaCircleMinus style={{ color: "#6291F4", fontSize: "22px" }} />
-          </button>
-          <div className="df fdc aic">
-            <span className="fs-14">{t("Persons")}</span>
-            <span className="text-main fw-semibold">{personsState}</span>
-          </div>
-          <button onClick={() => setPersonsState(personsState + 1)}>
-            <FaCirclePlus style={{ color: "#6291F4", fontSize: "22px" }} />
-          </button>
-        </div>
+        <PersonSelector
+          personsState={personsState}
+          setPersonsState={setPersonsState}
+        />
       </div>
 
       <div className="df pt-3">
@@ -45,7 +33,7 @@ const Ingredients = ({ ingredients, persons }) => {
                     <label className="mr-3 df gap-4 label">
                       <input
                         type="checkbox"
-                        className="input"
+                        className="checkbox"
                         defaultChecked={true}
                       />
                       <span>

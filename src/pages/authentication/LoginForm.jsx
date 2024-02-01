@@ -25,11 +25,11 @@ const LoginForm = ({ refetch }) => {
           refetch();
         }}
       >
+        {/* @TODO: Also allow login with username */}
         <Input
           id="email"
           type="email"
           label={t("E-mail")}
-          // required={true}
           onChange={(e) => setEmail(e.target.value)}
           key="email"
         />
@@ -38,7 +38,6 @@ const LoginForm = ({ refetch }) => {
           id="password"
           type="password"
           label={t("Password")}
-          // required={true}
           onChange={(e) => setPassword(e.target.value)}
           key="password"
           autocomplete="on"

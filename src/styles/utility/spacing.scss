@@ -220,5 +220,5 @@ $space-5: 1.5rem; /* 24px */
 // Responsive spacing
 //________________________
 @include screen-s(min) {
-    .d-pb-3 { padding-bottom: $space-3 }
+  .d-pb-3 { padding-bottom: $space-3 }
 }

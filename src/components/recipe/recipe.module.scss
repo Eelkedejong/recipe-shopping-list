@@ -1,7 +1,9 @@
 @import '../../styles/variables.scss';
 
 
-// Recipe form styling
+// 
+// Recipe form
+// ________________________________
 .form {
   @include screen-l (min) {
     display: grid !important;
@@ -18,8 +20,24 @@
       }
     }
 
-    > button {
+    > .submitButtonWrapper {
       grid-column: 1;
+    }
+  }
+}
+
+.submitButtonWrapper {
+  @include screen-s(max) {
+    position: fixed;
+    bottom: 65px;
+    z-index: 30;
+    padding: 15px;
+    background-color: $color-white;
+    border-bottom: $default-border;
+    box-shadow: $shadow-top;
+
+    button {
+      height: 38px;
     }
   }
 }
@@ -28,7 +46,7 @@
   grid-template-columns: 2fr 1fr 1fr 15px;
 }
 
-.ingreidentInput {
+.ingredientInput {
   min-width: auto;
 }
 
@@ -60,7 +78,9 @@
 }
 
 
-// Recipe tile styling
+// 
+// Recipe tile 
+// ________________________________
 section {
   .recipeTile {
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.10);
@@ -98,7 +118,9 @@ section {
   }
 }
 
-// Recipe details styling
+// 
+// Recipe details
+// ________________________________
 .detailBlock {
   max-width: 120px;
 }
@@ -149,8 +171,9 @@ section {
   }
 }
 
-
+// 
 // Type list filter
+// ________________________________
 .activeType {
   background-color: $color-main !important;
   color: $color-white !important;

@@ -1,14 +1,4 @@
-@import '../../styles/variables.scss';
-
-.filter {
-  @include screen-m(min) {
-    margin-top: 100px;
-  }
-
-  hr {
-    border: 1px solid #DDDDDD;
-  }
-}
+@import '../../../styles/variables.scss';
 
 .filterToggle {
   @include screen-m(min) {

@@ -17,24 +17,28 @@ const EditRecipe = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const results = useQuery(["recipes", userToken, id], getRecipe, {
-    enabled: !!userToken,
+  const results = useQuery({
+    queryKey: ["recipes", userToken, id],
+    queryFn: getRecipe,
+    ...{ enabled: !!userToken },
   });
 
   const recipe = results?.data?.data ?? [];
 
   const editMutation = useMutation({
     mutationFn: updateRecipe,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["recipes"] });
+    onSuccess: (data) => {
+      queryClient.setQueryData("recipes", data);
+      // queryClient.invalidateQueries({ queryKey: ["recipes"] });
       navigate("/");
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteRecipe,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["recipes"] });
+    onSuccess: (data) => {
+      queryClient.setQueryData("recipes", data);
+      // queryClient.invalidateQueries({ queryKey: ["recipes"] });
       navigate("/");
     },
   });

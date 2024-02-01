@@ -13,14 +13,18 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { data, isSuccess, refetch } = useQuery(["pw", email], passwordReset, {
-    // useQuery will only trigger on refetch.
-    enabled: false,
-    retry: false,
-    cacheTime: 0,
-    onError: (error) => {
-      setErrorMessage(error.message);
-    },
+  const { data, isSuccess, refetch } = useQuery({
+    queryKey: ["pw", email], 
+    queryFn: passwordReset, 
+    ...{
+      // useQuery will only trigger on refetch.
+      enabled: false,
+      retry: false,
+      cacheTime: 0,
+      onError: (error) => {
+        setErrorMessage(error.message);
+      },
+    }
   });
 
   return (

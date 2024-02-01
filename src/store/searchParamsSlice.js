@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// All search parameters for recipes are stored in the searchParams slice.
 const initialState = {
   type: "",
   tags: [],
@@ -25,7 +26,7 @@ export const searchParamsSlice = createSlice({
       } else {
         // Otherwise, remove the tag from the array
         state.value.tags = state.value.tags.filter(
-          (tag) => tag !== action.payload
+          (tag) => tag !== action.payload,
         );
       }
     },

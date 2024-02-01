@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Suspense, lazy } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -6,20 +6,31 @@ import { useDispatch } from "react-redux";
 import { user } from "./store/userSlice";
 import LoginContext from "./pages/authentication/utils/loginContext";
 import getUser from "./pages/authentication/api/getUser";
-import CreateForm from "./pages/authentication/CreateForm";
-import LoginForm from "./pages/authentication/LoginForm";
-import ErrorMessage from "./pages/authentication/utils/ErrorMessage";
-import ForgotPassword from "./pages/authentication/ForgotPassword";
-import PasswordReset from "./pages/authentication/PasswordReset";
+// import CreateForm from "./pages/authentication/CreateForm";
+// import LoginForm from "./pages/authentication/LoginForm";
+// import ErrorMessage from "./pages/authentication/utils/ErrorMessage";
+// import ForgotPassword from "./pages/authentication/ForgotPassword";
+// import PasswordReset from "./pages/authentication/PasswordReset";
+const CreateForm = lazy(() => import("./pages/authentication/CreateForm"));
+const LoginForm = lazy(() => import("./pages/authentication/LoginForm"));
+const ErrorMessage = lazy(
+  () => import("./pages/authentication/utils/ErrorMessage"),
+);
+const ForgotPassword = lazy(
+  () => import("./pages/authentication/ForgotPassword"),
+);
+const PasswordReset = lazy(
+  () => import("./pages/authentication/PasswordReset"),
+);
 import {
   getStoredUserData,
   removeUserData,
   saveUserData,
 } from "./pages/authentication/utils/storage";
-import Layout from "./Layout";
 import Button from "./components/ui/Button";
 import styles from "./pages/authentication/authentication.module.scss";
 import logo from "./assets/logo.svg";
+const Layout = lazy(() => import("./Layout"));
 
 const Authentication = () => {
   const { t } = useTranslation();
@@ -29,10 +40,10 @@ const Authentication = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   // Fetch the user data.
-  const { data, isSuccess, refetch } = useQuery(
-    ["user", loginData, formType],
-    getUser,
-    {
+  const { data, isSuccess, refetch } = useQuery({
+    queryKey: ["user", loginData, formType],
+    queryFn: getUser,
+    ...{
       // useQuery will only trigger on refetch.
       enabled: false,
       initialData: getStoredUserData(),
@@ -41,8 +52,8 @@ const Authentication = () => {
         setErrorMessage(error.message);
         removeUserData;
       },
-    }
-  );
+    },
+  });
 
   // Check if there is saved user data.
   const userData = getStoredUserData();
@@ -69,7 +80,12 @@ const Authentication = () => {
 
   return (
     <>
-      {newUserData ? <Layout /> : null}
+      {newUserData ? (
+        // @TODO: Add a loading component.
+        <Suspense fallback={<div>Loading...</div>}>
+          <Layout />
+        </Suspense>
+      ) : null}
 
       {showLoginForm ? (
         <>

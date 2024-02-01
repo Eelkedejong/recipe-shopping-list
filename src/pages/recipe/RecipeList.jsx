@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -13,6 +13,7 @@ import styles from "./recipe.module.scss";
 const RecipeList = () => {
   const user = useSelector((state) => state.user.value);
   const searchParams = useSelector((state) => state.searchParams.value);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -23,16 +24,20 @@ const RecipeList = () => {
     };
   }, [dispatch]);
 
-  const results = useQuery(
-    ["recipes", user.token, "", searchParams],
-    getRecipes,
-    {
+  console.log("searchParams", searchParams);
+
+  const results = useQuery({
+    queryKey: ["recipes", user.token, "", searchParams],
+    queryFn: getRecipes,
+    ...{
       // The query will not execute until the userToken exists.
       enabled: !!user.token && !!searchParams,
-    }
-  );
+    },
+  });
 
   const recipes = results?.data?.data ?? [];
+
+  // console.log("recipes", recipes);
 
   return (
     <div className="bg-white p-5 rounded-m">
@@ -68,7 +73,9 @@ const RecipeList = () => {
             <FaPlus />
           </button>
         </Link>
-        <span>{t("Add recipe")}</span>
+        <button onClick={() => navigate("/recipe/new")}>
+          <span>{t("Add recipe")}</span>
+        </button>
       </div>
     </div>
   );

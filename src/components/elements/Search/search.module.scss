@@ -1,19 +1,24 @@
-@import '../../styles/variables.scss';
+@import '../../../styles/variables.scss';
 
-.search-wrapper {
+.wrapper {
   @include screen-s(max) {
-    height: 0;
-    overflow: hidden;
+    top: -78px;
+    z-index: 10;
+    position: absolute;
     width: 100%;
   }
 
   &.open {
     @include screen-s(max) {
-      height: 100%;
+      top: 78px;
+
+      .overlay {
+        opacity: 1;
+      }
     }
   }
 
-  .search-input {
+  .input {
     background-color: $color-white;
     border: none !important;
     min-width: 400px;
@@ -23,7 +28,7 @@
     }
   }
 
-  .search-button {
+  .searchButton {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -47,7 +52,7 @@
     }
   }
 
-  .search-clear {
+  .clear {
     position: absolute;
     right: 75px;
     top: 50%;

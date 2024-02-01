@@ -11,9 +11,13 @@ const TypesList = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const results = useQuery(["types", user.token, "types"], getRecipeFilter, {
-    // The query will not execute until the userToken exists.
-    enabled: !!user.token,
+  const results = useQuery({
+    queryKey: ["types", user.token, "types"],
+    queryFn: getRecipeFilter,
+    ...{
+      // The query will not execute until the userToken exists.
+      enabled: !!user.token,
+    },
   });
 
   const filterOptions = results?.data?.data ?? [];
@@ -39,18 +43,20 @@ const TypesList = () => {
                     dispatch(updateType(type));
                   }
                 }}
-                className={`py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
+                className={`
+                  py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
                   ${
                     (SelectedType === "" && type === "All") ||
                     SelectedType === type
                       ? styles.activeType
                       : ""
-                  }`}
+                  }
+                `}
                 key={type}
               >
                 {type}
               </button>
-            ) : null
+            ) : null,
           )}
         </div>
       ) : null}

@@ -23,8 +23,10 @@ const RecipeDetail = () => {
   }, []);
 
   const recipeIdentifier = "recipe" + id;
-  const results = useQuery([recipeIdentifier, userToken, id], getRecipe, {
-    enabled: !!userToken,
+  const results = useQuery({
+    queryKey: [recipeIdentifier, userToken, id],
+    queryFn: getRecipe,
+    ...{ enabled: !!userToken },
   });
 
   const recipe = results?.data?.data ?? [];

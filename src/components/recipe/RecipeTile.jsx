@@ -9,7 +9,7 @@ import styles from "./recipe.module.scss";
 
 const RecipeTile = ({ id, name, image, labels, time, type }) => {
   const { t } = useTranslation();
-  // Create a Cloudinary instance
+  // Create a Cloudinary instance for the recipe image.
   const cld = new Cloudinary({
     cloud: {
       cloudName: "dr8avu1nv",

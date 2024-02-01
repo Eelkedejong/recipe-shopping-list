@@ -25,7 +25,7 @@ function CloudinaryUploadWidget({ uwConfig, image }) {
   });
 
   useEffect(() => {
-    // Check if the script is already loaded
+    // Check if the script is already loaded.
     if (!loaded) {
       const uwScript = document.getElementById("uw");
       if (!uwScript) {
@@ -52,7 +52,7 @@ function CloudinaryUploadWidget({ uwConfig, image }) {
             console.log("Done! Here is the image info: ", result.info);
             setImageId(result.info.public_id);
           }
-        }
+        },
       );
 
       myWidget.open();
@@ -62,12 +62,10 @@ function CloudinaryUploadWidget({ uwConfig, image }) {
         function () {
           myWidget.open();
         },
-        false
+        false,
       );
     }
   };
-
-  console.log("imageId", imageId);
 
   return (
     <CloudinaryScriptContext.Provider value={{ loaded }}>

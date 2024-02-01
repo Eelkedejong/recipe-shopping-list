@@ -15,7 +15,7 @@ const Logout = () => {
     queryClient.invalidateQueries();
     removeUserData();
 
-    // TODO: find a different solution to redirect after logging out.
+    // @TODO: find a different solution to redirect after logging out.
     navigate("/");
     window.location.reload(true);
   };

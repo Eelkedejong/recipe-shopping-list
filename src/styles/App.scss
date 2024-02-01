@@ -2,7 +2,8 @@
 
 .wrapper {
   height: 100vh;
-  background-image: url('../assets/bg.svg');
+  // background-image: url('../assets/bg.svg');
+  background-position: 30% 30%;
   background-size: cover;
 }
 
@@ -14,6 +15,16 @@ section {
   @include screen-s(max) {
     margin-top: -26px
   }
+}
+
+aside {
+  @include screen-m(min) {
+    margin-top: 100px;
+  }
+}
+
+hr {
+  border: 1px solid #DDDDDD;
 }
 
 .message {
@@ -41,6 +52,10 @@ body > * {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
   }
+
+  @include screen-s(max) {
+    padding-bottom: 70px;
+  }
 }
 
 @include screen-s(max) {
@@ -51,7 +66,7 @@ body > * {
     }
   }
 
-  body.nav-open {
+  body.overlay {
     overflow: hidden;
   }
 }

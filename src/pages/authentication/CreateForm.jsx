@@ -9,7 +9,6 @@ const LoginForm = ({ refetch }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
   const [, setLoginData] = useContext(LoginContext);
 
   return (

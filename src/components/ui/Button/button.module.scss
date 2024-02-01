@@ -1,0 +1,30 @@
+@import '../../../styles/variables.scss';
+
+.btn {
+  height: 52px;
+
+  @include screen-m(min) {
+    min-width: 250px;
+  }
+
+  @include screen-m(max) {
+    width: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-main-dark;
+  }
+
+  &.ghost {
+    background-color: transparent;
+    border: 2px solid $color-main;
+    color: $color-main;
+
+    &:hover {
+      background-color: $color-main;
+      border-color: $color-main;
+      color: $color-white;
+    }
+  }
+}
