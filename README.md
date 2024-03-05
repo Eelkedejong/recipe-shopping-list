@@ -44,6 +44,11 @@ Components contains both re-usable components and components that are used as bu
 
 ## Technology
 
+## Images
+
+All images are under the free license of Usplash.
+Most photo's come from https://unsplash.com/@brookelark
+
 ## Contact
 
 Eelke de Jong - eelkesdejong@gmail.com

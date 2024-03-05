@@ -1,15 +1,17 @@
 @import '../../../styles/variables.scss';
 
 .wrapper {
-  @include screen-s(max) {
+  @include screen-m(max) {
     top: -78px;
     z-index: 10;
     position: absolute;
     width: 100%;
+    padding: 12px;
+    background-color: $color-white;
   }
 
   &.open {
-    @include screen-s(max) {
+    @include screen-m(max) {
       top: 78px;
 
       .overlay {
@@ -23,7 +25,7 @@
     border: none !important;
     min-width: 400px;
 
-    @include screen-s(max) {
+    @include screen-m(max) {
       background-color: $color-light-grey;
     }
   }

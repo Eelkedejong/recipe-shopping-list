@@ -109,15 +109,26 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
             id="difficulty"
             label={t("Difficulty")}
             key="difficulty"
-            value={recipe ? recipe.carb : " "}
+            value={recipe ? recipe.difficulty : " "}
             options={[`${t("Easy")}`, `${t("Medium")}`, `${t("Difficult")}`]}
-            placeholder={t("Difficulty")}
+            placeholder={t("Choose difficulty")}
           />
-          <Input
+          <Select
             id="type"
             label={t("Dish type")}
-            value={recipe ? recipe.type : null}
             key="type"
+            value={recipe ? recipe.type : " "}
+            options={[
+              `${t("Main")}`,
+              `${t("Starter")}`,
+              `${t("Dessert")}`,
+              `${t("Side dish")}`,
+              `${t("Breakfast")}`,
+              `${t("Lunch")}`,
+              `${t("Snack")}`,
+              `${t("Pastry")}`,
+            ]}
+            placeholder={t("Choose type")}
           />
         </div>
       </div>

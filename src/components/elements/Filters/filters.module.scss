@@ -6,11 +6,10 @@
   }
 
   @include screen-m(max) {
-    position: fixed;
+    position: absolute;
     right: 20px;
-    bottom: 50px;
-    width: 48px;
-    height: 48px;
+    top: 100px;
+    border: 1px solid $color-main;
   }
 }
 

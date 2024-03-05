@@ -5,11 +5,11 @@
     margin-top: -5px;
   }
   
-  @include screen-s(min) {
+  @include screen-m(min) {
     height: 100px;
   }
 
-  @include screen-s(max) {
+  @include screen-m(max) {
     flex-direction: column;
     background-color: $color-white;
     border-radius: 20px 20px 0 0;
@@ -37,7 +37,7 @@
   }
 }
 
-@include screen-s(max) {
+@include screen-m(max) {
   .hiddenMobile {
     display: none !important;
   }

@@ -5,28 +5,28 @@
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 30px;
 
-  @include screen-m(min) {
+  @include screen-s(min) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include screen-l(min) {
+  @include screen-xl(min) {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 .detailPage {
-  @include screen-s(max) {
+  @include screen-m(max) {
     grid-template-columns: 1fr;
   }
 
-  @include screen-s(min) {
+  @include screen-m(min) {
     grid-template-columns: repeat(2, 1fr);
     padding: 24px;
   }
 }
 
 .detailsInfoWrapper {
-  @include screen-s(max) {
+  @include screen-m(max) {
     margin-top: -80px;
     background-color: $color-white;
     padding: 24px 24px 0 24px;
@@ -34,13 +34,20 @@
     z-index: 1;
   }
 
-  @include screen-s(min) {
+  @include screen-m(min) {
     grid-row: 1/3;
   }
 }
 
 .formWrapper {
-  @include screen-s(max) {
+  @include screen-m(max) {
     margin-top: -26px;
   }
+}
+
+.banner {
+  width: 100%;
+  height: 180px;
+  background-position: 22% 22%;
+  background-size: cover;
 }

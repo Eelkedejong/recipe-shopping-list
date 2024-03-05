@@ -1,10 +1,19 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
 import { FaXmark } from "react-icons/fa6";
 import { FaCircleMinus } from "react-icons/fa6";
 import PersonSelector from "../elements/PersonSelector";
+import removeShippingListRecipe from "../../pages/shoppingList/api/removeShoppingListRecipe";
 
-const ShoppingListRecipe = ({ setRecipes, name, ingredients, persons }) => {
+const ShoppingListRecipe = ({ setRecipes, name, ingredients, persons, id }) => {
+  // const queryClient = useQueryClient();
+  const userToken = useSelector((state) => state.user.value.token);
   const [personsState, setPersonsState] = useState(persons);
+
+  const deleteMutation = useMutation({
+    mutationFn: removeShippingListRecipe,
+  });
 
   return (
     <div className="bg-white p-5 rounded-m mb-5">
@@ -17,6 +26,7 @@ const ShoppingListRecipe = ({ setRecipes, name, ingredients, persons }) => {
             setRecipes((prevRecipes) =>
               prevRecipes.filter((recipe) => recipe.name !== name),
             );
+            deleteMutation.mutate([userToken, id]);
           }}
         >
           <FaXmark className="fs-20" />
@@ -26,6 +36,7 @@ const ShoppingListRecipe = ({ setRecipes, name, ingredients, persons }) => {
       <PersonSelector
         personsState={personsState}
         setPersonsState={setPersonsState}
+        recipeId={id}
       />
 
       <div className="df fww mt-3">

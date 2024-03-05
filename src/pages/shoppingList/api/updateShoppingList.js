@@ -1,22 +1,22 @@
-const updateShoppingListRecipes = async ({ queryKey }) => {
-  const token = queryKey[1];
-  const type = queryKey[2];
-
-  let url = `http://localhost:3001/api/list/${type}`;
-
+const updateShoppingListRecipes = async ([recipes, token]) => {
   const requestOptions = {
     method: "PUT",
+    body: JSON.stringify(recipes),
     headers: {
       Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
     },
   };
 
   try {
-    const res = await fetch(url, requestOptions);
+    const res = await fetch(
+      "http://localhost:3001/api/list/recipes",
+      requestOptions,
+    );
 
     if (!res.ok) {
-      console.log("error in updateShoppingList");
-      throw new Error(`updateShoppingList not ok`);
+      console.log("Could not add recipe to shopping list");
+      throw new Error(`updateShoppingListRecipes not ok`);
     }
 
     return res.json();

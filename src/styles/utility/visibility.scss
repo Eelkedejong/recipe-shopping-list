@@ -6,13 +6,13 @@
 }
 
 .mobile-hidden {
-  @include screen-s(max) {
+  @include screen-m(max) {
     display: none !important
   }
 }
 
 .desktop-hidden {
-  @include screen-s(min) {
+  @include screen-m(min) {
     display: none !important
   }
 }

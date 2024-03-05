@@ -13,6 +13,9 @@ import styles from "./shoppinglist.module.scss";
 
 const ShoppingList = () => {
   const user = useSelector((state) => state.user.value);
+  const shoppingListRecipes = useSelector(
+    (state) => state.shoppingListRecipes.value,
+  );
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -24,7 +27,7 @@ const ShoppingList = () => {
       // queryClient.setQueryData("shoppingList", data?.data);
       queryClient.invalidateQueries({ queryKey: ["shoppingList"] });
       console.log("success");
-      navigate("/list");
+      // navigate("/list");
     },
   });
 
@@ -40,11 +43,7 @@ const ShoppingList = () => {
     },
   });
 
-  // const QueryData = queryClient.getQueryData("shoppingList");
-  // console.log("QueryData", QueryData);
-
   const list = shopplingList?.data?.data ?? [];
-  // console.log("ShoppingList", list);
 
   if (!shopplingList.isLoading) {
     if (list.recipes) {
@@ -52,8 +51,6 @@ const ShoppingList = () => {
       ids = list.recipes.map((item) => item.id).join(",");
     }
   }
-
-  // console.log("ids", ids, ids.length);
 
   const recipes = useQuery({
     queryKey: ["shoppingList recipes", user.token, ids],
@@ -66,38 +63,6 @@ const ShoppingList = () => {
 
   const recipeList = recipes?.data?.data ?? [];
 
-  console.log("recipeList", recipeList);
-
-  /**
-   * Handles the submission of a recipe form.
-   *
-   * @param {Event} e - The form submission event.
-   */
-  // const handleSubmitRecipe = (e) => {
-  //   const formData = new FormData(e.target);
-  //   const values = Object.fromEntries(formData.entries());
-
-  //   console.log("values", values, typeof values);
-
-  //   // All values of which the key starts with "extra" sould go in an array.
-  //   // Create an array of all the values that start with "extra".
-  //   const extraItems = {
-  //     extraItems: Object.keys(values)
-  //       .filter((key) => key.startsWith("extra"))
-  //       .map((key) => values[key]),
-  //   };
-
-  //   // console.log("extraValues", extraItems);
-
-  //   // Get the values from the values const, and create an array of strings.
-  //   const items = { items: Object.values(values) };
-
-  //   // combine items and extraValues into a single object
-  //   // console.log("items", items);
-
-  //   editMutation.mutate([Object.assign(items, extraItems), user.token]);
-  // };
-
   return (
     <form
       className={`gap-5 dg gap-30 ${styles.grid}`}
@@ -105,7 +70,11 @@ const ShoppingList = () => {
         e.preventDefault();
         // handleSubmitRecipe(e);
         const items = submbitShoppingList(e);
+        console.log("shoppingListRecipes", shoppingListRecipes);
+        // console.log("items", items);
         editMutation.mutate([items, user.token]);
+
+        // @TODO: Add another call to update the recipes in the shopping list.
       }}
     >
       <div className="">
@@ -115,11 +84,15 @@ const ShoppingList = () => {
       </div>
 
       <div>
-        {!shopplingList.isLoading && recipes.isSuccess ? (
+        {!shopplingList.isLoading ? (
           <ShoppingListItems items={list.extraItems} />
         ) : null}
 
-        <Button text={t("Save recipe")} type="submit" className="w-100" />
+        <Button
+          text={t("Save shopping list")}
+          type="submit"
+          className="w-100"
+        />
       </div>
     </form>
   );

@@ -1,7 +1,7 @@
 @import '../../../styles/variables.scss';
 
 .logoWrapper {
-  @include screen-s(min) {
+  @include screen-m(min) {
     background-image: url('../../../assets/bg.svg');
     background-size: cover;
     border-radius: 0 0 30px 0;
@@ -12,11 +12,11 @@
 .logo {
   font-size: 38px;
 
-  @include screen-s(max) {
+  @include screen-m(max) {
     justify-content: center
   }
 
-  @include screen-s(min) {
+  @include screen-m(min) {
     margin-top: 20px;
 
     span {
@@ -26,7 +26,7 @@
 }
 
 .navigation {
-  @include screen-s(min) {
+  @include screen-m(min) {
     min-height: 100vh;
     grid-template-columns: 1fr 4fr 1fr;
 
@@ -56,20 +56,20 @@
   hr {
     border: 1px solid #eee;
 
-    @include screen-s(max) {
+    @include screen-m(max) {
       margin: 0 40px;
     }
   }
 }
 
 .navigationWrapper {
-  @include screen-s(max) {
+  @include screen-m(max) {
     background-image: url('../../../assets/bg.svg');
     background-size: cover;
     padding-bottom: 40px;
   }
 
-  @include screen-s(min) {
+  @include screen-m(min) {
     box-shadow: 4px 0px 8px 0px rgba(0, 0, 0, 0.05);
     z-index: 1;
   }
@@ -78,7 +78,7 @@
 
 .active {
   color: $color-main;
-  @include screen-s(min) {
+  @include screen-m(min) {
     background-color: $color-main-bg;
     margin-left: -1.5rem;
     padding-left: 1.5rem;
@@ -162,7 +162,7 @@
 }
 
 // TODO: Cleanup-Code
-@include screen-s(max) {
+@include screen-m(max) {
   .navigation {
     padding: 0 !important;
     position: fixed;

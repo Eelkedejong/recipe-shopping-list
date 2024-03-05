@@ -36,9 +36,7 @@ const Search = ({ openState, setOpenState }) => {
   }, [search]);
 
   return (
-    <div
-      className={`p-3 bg-white ${styles.wrapper} ${openState ? styles.open : ""}`}
-    >
+    <div className={`${styles.wrapper} ${openState ? styles.open : ""}`}>
       <form
         className="df fdc gap-4 pos-relative"
         onSubmit={(e) => {

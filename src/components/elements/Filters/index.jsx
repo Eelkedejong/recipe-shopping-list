@@ -27,6 +27,7 @@ const Filters = () => {
 
   const filterOptions = results?.data?.data ?? [];
 
+  // @TODO: Add this to the utilities.
   const timeOptions = [
     {
       label: `${t("All")}`,
@@ -52,11 +53,17 @@ const Filters = () => {
 
   return (
     <aside>
-      <button
+      {/* <button
         onClick={() => setOpen(!open)}
         className={`bg-main p-3 rounded-full text-white df aic jcc ${styles.filterToggle} `}
       >
         <FaSliders />
+      </button> */}
+      <button
+        onClick={() => setOpen(!open)}
+        className={`p-3 text-main fs-14 fw-semibold rounded-s df aic jcc ${styles.filterToggle} `}
+      >
+        <FaSliders className="mr-3" /> {t("Filter")}
       </button>
       <div
         className={`

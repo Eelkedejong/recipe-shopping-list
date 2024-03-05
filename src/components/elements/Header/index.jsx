@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Search from "../../elements/Search";
 import styles from "./header.module.scss";
 
-const Header = ({ title, returnUrl, returnText, hiddenMobile }) => {
+const Header = ({ title, returnUrl, returnText, hiddenMobile, hideSearch }) => {
   const userName = useSelector((state) => state.user.value.username);
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
@@ -38,18 +38,21 @@ const Header = ({ title, returnUrl, returnText, hiddenMobile }) => {
             <h2 className="fs-28 fw-bold">{t("What's on the menu today?")}</h2>
           </div>
         )}
-        <button
-          className={`desktop-hidden p-3 ${styles.searchButton}`}
-          onClick={() => setOpen(!open)}
-        >
-          {/* <FaSearch className="fs-24 text-white mobile-hidden" /> */}
-          <span
-            className={`desktop-hidden ${styles.searchIcon} ${open ? styles.close : null}`}
-          ></span>
-        </button>
+        {!hideSearch && (
+          <button
+            className={`desktop-hidden p-3 ${styles.searchButton}`}
+            onClick={() => setOpen(!open)}
+          >
+            {/* <FaSearch className="fs-24 text-white mobile-hidden" /> */}
+            <span
+              className={`desktop-hidden ${styles.searchIcon} ${open ? styles.close : null}`}
+            ></span>
+          </button>
+        )}
       </div>
 
-      <Search openState={open} setOpenState={setOpen} />
+      {!hideSearch && <Search openState={open} setOpenState={setOpen} />}
+
       <button
         className={styles.overlay}
         onClick={() => setOpen(false)}

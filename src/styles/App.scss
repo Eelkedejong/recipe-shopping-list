@@ -8,11 +8,15 @@
 }
 
 section {
-  @include screen-s(min) {
+  @include screen-m(min) {
     padding: 0 42px;
+
+    &.full-page {
+      grid-column: 2/4;
+    }
   }
 
-  @include screen-s(max) {
+  @include screen-m(max) {
     margin-top: -26px
   }
 }
@@ -48,17 +52,17 @@ body > * {
 }
 
 .main {
-  @include screen-s(min) {
+  @include screen-m(min) {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
   }
 
-  @include screen-s(max) {
+  @include screen-m(max) {
     padding-bottom: 70px;
   }
 }
 
-@include screen-s(max) {
+@include screen-m(max) {
   body.detail-page {
     .navigation,
     .lang {

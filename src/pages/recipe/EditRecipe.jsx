@@ -28,8 +28,8 @@ const EditRecipe = () => {
   const editMutation = useMutation({
     mutationFn: updateRecipe,
     onSuccess: (data) => {
-      queryClient.setQueryData("recipes", data);
-      // queryClient.invalidateQueries({ queryKey: ["recipes"] });
+      // queryClient.setQueryData("recipes", data);
+      queryClient.invalidateQueries({ queryKey: ["recipes"] });
       navigate("/");
     },
   });
@@ -37,8 +37,8 @@ const EditRecipe = () => {
   const deleteMutation = useMutation({
     mutationFn: deleteRecipe,
     onSuccess: (data) => {
-      queryClient.setQueryData("recipes", data);
-      // queryClient.invalidateQueries({ queryKey: ["recipes"] });
+      // queryClient.setQueryData("recipes", data);
+      queryClient.invalidateQueries({ queryKey: ["recipes"] });
       navigate("/");
     },
   });

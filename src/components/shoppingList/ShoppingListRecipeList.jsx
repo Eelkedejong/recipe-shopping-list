@@ -4,9 +4,10 @@ import ShoppingListRecipe from "./ShoppingListRecipe";
 
 const ShoppingListRecipeList = ({ recipeList }) => {
   const { t } = useTranslation();
+  // setListRecipes(recipeList);
   const [recipes, setRecipes] = useState(recipeList);
 
-  console.log("RESCEPTA", recipes);
+  // console.log("RESCEPTA", recipes);
 
   return (
     <>
@@ -23,6 +24,7 @@ const ShoppingListRecipeList = ({ recipeList }) => {
                 name={recipe.name}
                 ingredients={recipe.ingredients}
                 persons={recipe.persons}
+                id={recipe.id}
                 key={recipe.id}
               />
             );
