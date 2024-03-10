@@ -1,47 +1,37 @@
-import { useState, Suspense, lazy } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { Routes, Route } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { user } from "./store/userSlice";
-import LoginContext from "./pages/authentication/utils/loginContext";
-import getUser from "./pages/authentication/api/getUser";
+import { useState, Suspense, lazy } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { user } from './store/userSlice';
+import LoginContext from './pages/authentication/utils/loginContext';
+import getUser from './pages/authentication/api/getUser';
 // import CreateForm from "./pages/authentication/CreateForm";
 // import LoginForm from "./pages/authentication/LoginForm";
 // import ErrorMessage from "./pages/authentication/utils/ErrorMessage";
 // import ForgotPassword from "./pages/authentication/ForgotPassword";
 // import PasswordReset from "./pages/authentication/PasswordReset";
-const CreateForm = lazy(() => import("./pages/authentication/CreateForm"));
-const LoginForm = lazy(() => import("./pages/authentication/LoginForm"));
-const ErrorMessage = lazy(
-  () => import("./pages/authentication/utils/ErrorMessage"),
-);
-const ForgotPassword = lazy(
-  () => import("./pages/authentication/ForgotPassword"),
-);
-const PasswordReset = lazy(
-  () => import("./pages/authentication/PasswordReset"),
-);
-import {
-  getStoredUserData,
-  removeUserData,
-  saveUserData,
-} from "./pages/authentication/utils/storage";
-import Button from "./components/ui/Button";
-import styles from "./pages/authentication/authentication.module.scss";
-import logo from "./assets/logo.svg";
-const Layout = lazy(() => import("./Layout"));
+const CreateForm = lazy(() => import('./pages/authentication/CreateForm'));
+const LoginForm = lazy(() => import('./pages/authentication/LoginForm'));
+const ErrorMessage = lazy(() => import('./pages/authentication/utils/ErrorMessage'));
+const ForgotPassword = lazy(() => import('./pages/authentication/ForgotPassword'));
+const PasswordReset = lazy(() => import('./pages/authentication/PasswordReset'));
+import { getStoredUserData, removeUserData, saveUserData } from './pages/authentication/utils/storage';
+import Button from './components/ui/Button';
+import styles from './pages/authentication/authentication.module.scss';
+import logo from './assets/logo.svg';
+const Layout = lazy(() => import('./Layout'));
 
 const Authentication = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const loginData = useState(null);
-  const [formType, setFormType] = useState("signin");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [formType, setFormType] = useState('signin');
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Fetch the user data.
   const { data, isSuccess, refetch } = useQuery({
-    queryKey: ["user", loginData, formType],
+    queryKey: ['user', loginData, formType],
     queryFn: getUser,
     ...{
       // useQuery will only trigger on refetch.
@@ -89,19 +79,15 @@ const Authentication = () => {
 
       {showLoginForm ? (
         <>
-          <h1 className="ff-logo text-white mt-4" style={{ fontSize: "38px" }}>
+          <h1 className="ff-logo text-white mt-4" style={{ fontSize: '38px' }}>
             Cookbook
           </h1>
           <div className="mb-5 df aic jcc h-100">
-            <main
-              className={`bg-white rounded-l centered p-5 ${styles.authentication}`}
-            >
+            <main className={`bg-white rounded-l centered p-5 ${styles.authentication}`}>
               <div className="mb-4 df jcc">
                 <img src={logo} alt="Chef" />
               </div>
-              {errorMessage ? (
-                <ErrorMessage errorMessage={errorMessage} />
-              ) : null}
+              {errorMessage ? <ErrorMessage errorMessage={errorMessage} /> : null}
               {/* Define the routes for the website authentication */}
               <Routes>
                 <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -111,28 +97,18 @@ const Authentication = () => {
                   element={
                     <>
                       <LoginContext.Provider value={loginData}>
-                        {formType === "signin" ? (
-                          <LoginForm refetch={refetch} />
-                        ) : (
-                          <CreateForm refetch={refetch} />
-                        )}
+                        {formType === 'signin' ? <LoginForm refetch={refetch} /> : <CreateForm refetch={refetch} />}
                         <Button
-                          className={"w-100"}
+                          className={'w-100'}
                           onClick={() => {
                             {
                               // Toggle between the forms.
-                              formType === "signin"
-                                ? setFormType("user")
-                                : setFormType("signin");
-                              setErrorMessage("");
+                              formType === 'signin' ? setFormType('user') : setFormType('signin');
+                              setErrorMessage('');
                             }
                           }}
-                          text={
-                            formType === "signin"
-                              ? `${t("Create account")}`
-                              : `${t("Sign in")}`
-                          }
-                          type={"ghost"}
+                          text={formType === 'signin' ? `${t('Create account')}` : `${t('Sign in')}`}
+                          type={'ghost'}
                         />
                       </LoginContext.Provider>
                     </>

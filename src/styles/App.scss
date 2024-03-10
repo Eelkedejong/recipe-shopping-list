@@ -17,7 +17,7 @@ section {
   }
 
   @include screen-m(max) {
-    margin-top: -26px
+    margin-top: -26px;
   }
 }
 
@@ -28,7 +28,7 @@ aside {
 }
 
 hr {
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
 }
 
 .message {
@@ -48,7 +48,7 @@ hr {
   }
 }
 body > * {
-  color: $color-black
+  color: $color-black;
 }
 
 .main {

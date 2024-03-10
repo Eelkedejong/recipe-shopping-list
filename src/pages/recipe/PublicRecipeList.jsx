@@ -1,19 +1,19 @@
-import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import {
   resetSearchParams,
   updateType,
-} from "../../store/publicSearchParamsSlice";
-import getPublicRecipes from "./api/getPublicRecipes";
-import { useState } from "react";
-import RecipeTile from "../../components/recipe/RecipeTile";
+} from '../../store/publicSearchParamsSlice';
+import getPublicRecipes from './api/getPublicRecipes';
+import { useState } from 'react';
+import RecipeTile from '../../components/recipe/RecipeTile';
 // import TypesList from "../../components/recipe/TypesList";
-import styles from "./recipe.module.scss";
-import { dishTypes } from "../../utils/dishTypes";
-import defaultImage from "../../assets/bg/default.jpg";
+import styles from './recipe.module.scss';
+import { dishTypes } from '../../utils/dishTypes';
+import defaultImage from '../../assets/bg/default.jpg';
 
 const PublicRecipeList = () => {
   const searchParams = useSelector((state) => state.publicSearchParams.value);
@@ -27,7 +27,7 @@ const PublicRecipeList = () => {
     dispatch(resetSearchParams());
     type
       ? dispatch(updateType(type.charAt(0).toUpperCase() + type.slice(1)))
-      : dispatch(updateType(""));
+      : dispatch(updateType(''));
   }, [dispatch, type]);
 
   // type
@@ -44,10 +44,10 @@ const PublicRecipeList = () => {
   //   };
   // }, [dispatch, type]);
 
-  console.log("type", type);
+  console.log('type', type);
 
   const results = useQuery({
-    queryKey: ["publicRecipes", searchParams],
+    queryKey: ['publicRecipes', searchParams],
     queryFn: getPublicRecipes,
     ...{ enabled: !!searchParams },
   });
@@ -57,7 +57,7 @@ const PublicRecipeList = () => {
   let backgroundImage;
 
   if (!results.isLoading) {
-    console.log("dishTypes", dishTypes);
+    console.log('dishTypes', dishTypes);
 
     // match the type to the dishTypes array of objects, get the background image from the dishTypes array and set it as the background image for the recipe list.
     dishTypes.find((dishType) => {
@@ -72,7 +72,7 @@ const PublicRecipeList = () => {
     }
   }
 
-  console.log("backgroundImage", backgroundImage);
+  console.log('backgroundImage', backgroundImage);
 
   return (
     <>
@@ -85,17 +85,17 @@ const PublicRecipeList = () => {
         <div className={`recipe-list ${styles.grid}`}>
           {!recipes.length && !results.isLoading ? (
             <div>
-              <div>{t("No recipes found")}</div>
+              <div>{t('No recipes found')}</div>
               <button
                 onClick={() => {
                   dispatch(resetSearchParams());
                   // If there is a type, immediately update the type in the search params.
                   dispatch(
-                    updateType(type.charAt(0).toUpperCase() + type.slice(1)),
+                    updateType(type.charAt(0).toUpperCase() + type.slice(1))
                   );
                 }}
               >
-                {t("Reset filters")}
+                {t('Reset filters')}
               </button>
             </div>
           ) : (
