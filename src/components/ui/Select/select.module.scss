@@ -7,6 +7,7 @@
   width: 100%;
   resize: vertical;
   border-bottom: 2px solid $color-dark-grey;
+  transition: $default-transition;
 
   @include screen-m(min) {
     // min-width: 250px;
@@ -23,6 +24,7 @@
   top: 30%;
   transform: translateY(-50%);
   left: 0.75rem;
+  transition: $default-transition;
 }
 
 .icon {

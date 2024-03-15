@@ -1,8 +1,6 @@
 const getRecipe = async ({ queryKey }) => {
   const searchParams = queryKey[1];
 
-  console.log('searchParams', searchParams);
-
   let url = import.meta.env.VITE_API_KEY + `public/recipe/`;
 
   if (searchParams) {
@@ -37,8 +35,6 @@ const getRecipe = async ({ queryKey }) => {
       url += `${isFirstQueryParam ? '?' : '&'}search=${search}`;
     }
   }
-
-  console.log('url', url);
 
   const requestOptions = {
     method: 'GET',

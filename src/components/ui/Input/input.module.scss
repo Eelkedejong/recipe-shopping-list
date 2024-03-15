@@ -6,6 +6,7 @@
   width: 100%;
   resize: vertical;
   border-bottom: 2px solid $color-dark-grey;
+  transition: $default-transition;
 
   @include screen-m(min) {
     // min-width: 250px;
@@ -29,6 +30,7 @@
   top: 50%;
   transform: translateY(-50%);
   left: 0.75rem;
+  transition: $default-transition;
 
   &.focus {
     font-size: 10px;

@@ -54,8 +54,6 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
       .map((key) => values[key]);
     responseData.tags = labels;
 
-    console.log('responseData', responseData);
-
     handleSubmit(responseData);
   };
 

@@ -8,18 +8,18 @@ $color-black-full: #111;
 $color-grey: #999;
 $color-dark-grey: #666;
 $color-light-grey: #f5f5f5;
-$color-lightest-grey: #F1F5FE;
+$color-lightest-grey: #f1f5fe;
 $color-white: #fff;
 
 // Theme colors
-$color-main: #F1A661;
+$color-main: #f1a661;
 $color-main-dark: #e18733;
-$color-main-light: #FFD8A9;
-$color-main-bg: #FFEBD4;
-$color-main-bg-light: #FDEEDC;
+$color-main-light: #ffd8a9;
+$color-main-bg: #ffebd4;
+$color-main-bg-light: #fdeedc;
 
 // Secondary theme colors
-$color-secondary: #5C8D89;
+$color-secondary: #5c8d89;
 
 //
 // Font
@@ -34,6 +34,11 @@ $default-border: 1px solid #ddd;
 $shadow-top: 0px -4px 8px 0px rgba(108, 108, 108, 0.25);
 
 //
+// Transitions
+//________________________________________
+$default-transition: all 0.3s;
+
+//
 // Breakpoints
 //________________________________________
 $screen-xxs: 360px; // Mobile extra small
@@ -43,4 +48,4 @@ $screen-m: 1025px; // Tablet
 $screen-l: 1200px; // Desktop
 $screen-xl: 1400px; // Desktop XL
 
-@import './mixins/breakpoints.scss'
+@import './mixins/breakpoints.scss';

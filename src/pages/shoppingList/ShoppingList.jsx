@@ -5,7 +5,10 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import getShoppingList from './api/getShoppingList';
 import getShoppingListRecipes from './api/getShoppingListRecipes';
-import { updateShoppingListItems, updateShoppingListRecipes } from './api/updateShoppingList';
+import {
+  updateShoppingListItems,
+  updateShoppingListRecipes,
+} from './api/updateShoppingList';
 import ShoppingListRecipeList from '../../components/shoppingList/ShoppingListRecipeList';
 import ShoppingListItems from '../../components/shoppingList/ShoppingListItems';
 import { submbitShoppingList } from './utils/sumbitShopingList';
@@ -15,7 +18,9 @@ import styles from './shoppinglist.module.scss';
 const ShoppingList = () => {
   const [message, setMessage] = useState('');
   const user = useSelector((state) => state.user.value);
-  const shoppingListRecipes = useSelector((state) => state.shoppingListRecipes.value);
+  const shoppingListRecipes = useSelector(
+    (state) => state.shoppingListRecipes.value
+  );
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -23,11 +28,7 @@ const ShoppingList = () => {
   const editItems = useMutation({
     mutationFn: updateShoppingListItems,
     onSuccess: (data) => {
-      console.log('mutation data', data?.data);
-      // queryClient.setQueryData("shoppingList", data?.data);
       queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
-      console.log('update items success');
-      // navigate("/list");
       setMessage(t('Shopping list saved successfully'));
     },
   });
@@ -35,11 +36,7 @@ const ShoppingList = () => {
   const editRecipes = useMutation({
     mutationFn: updateShoppingListRecipes,
     onSuccess: (data) => {
-      console.log('mutation data', data?.data);
-      // queryClient.setQueryData("shoppingList", data?.data);
       queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
-      console.log('update recipe success');
-      // navigate("/list");
     },
   });
 
@@ -89,15 +86,24 @@ const ShoppingList = () => {
     >
       <div className="">
         {!recipes.isLoading && recipes.isSuccess ? (
-          <ShoppingListRecipeList recipeList={recipeList} shoppingListRecipes={list.recipes} />
+          <ShoppingListRecipeList
+            recipeList={recipeList}
+            shoppingListRecipes={list.recipes}
+          />
         ) : null}
       </div>
 
       <div>
-        {!shopplingList.isLoading ? <ShoppingListItems items={list.extraItems} /> : null}
+        {!shopplingList.isLoading ? (
+          <ShoppingListItems items={list.extraItems} />
+        ) : null}
 
         {message ? <p className="message success mb-3">{message}</p> : null}
-        <Button text={t('Save shopping list')} type="submit" className="w-100" />
+        <Button
+          text={t('Save shopping list')}
+          type="submit"
+          className="w-100"
+        />
       </div>
     </form>
   );

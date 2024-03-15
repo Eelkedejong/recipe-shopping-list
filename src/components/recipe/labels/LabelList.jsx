@@ -5,7 +5,6 @@ import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa';
 import styles from '../recipe.module.scss';
 
 const StepsList = ({ tags }) => {
-  console.log('tags', tags);
   const { t } = useTranslation();
   const [labels, setLabels] = useState(tags ? tags : ['']);
 
@@ -50,7 +49,7 @@ const StepsList = ({ tags }) => {
             setLabels([...labels, '']);
           }}
         >
-          <span>{t('Add Label')}</span>
+          <span>{t('Add label')}</span>
           <FaPlusCircle />
         </button>
       </div>

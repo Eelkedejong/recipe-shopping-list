@@ -21,6 +21,7 @@
   top: 25px;
   transform: translateY(-50%);
   left: 0.75rem;
+  transition: $default-transition;
 
   &.focus {
     font-size: 10px;

@@ -24,8 +24,6 @@ const RecipeList = () => {
     };
   }, [dispatch]);
 
-  console.log('searchParams', searchParams);
-
   const results = useQuery({
     queryKey: ['recipes', user.token, '', searchParams],
     queryFn: getRecipes,
@@ -36,8 +34,6 @@ const RecipeList = () => {
   });
 
   const recipes = results?.data?.data ?? [];
-
-  // console.log("recipes", recipes);
 
   return (
     <div className="bg-white p-5 rounded-m">

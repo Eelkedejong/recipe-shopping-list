@@ -27,22 +27,6 @@ const PublicRecipeList = () => {
       : dispatch(updateType(''));
   }, [dispatch, type]);
 
-  // type
-  //   ? dispatch(updateType(type.charAt(0).toUpperCase() + type.slice(1)))
-  //   : dispatch(updateType(""));
-
-  // Reset the search params when the component unmounts.
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(resetSearchParams());
-  //     type
-  //       ? dispatch(updateType(type.charAt(0).toUpperCase() + type.slice(1)))
-  //       : dispatch(updateType(""));
-  //   };
-  // }, [dispatch, type]);
-
-  console.log('type', type);
-
   const results = useQuery({
     queryKey: ['publicRecipes', searchParams],
     queryFn: getPublicRecipes,
@@ -54,21 +38,30 @@ const PublicRecipeList = () => {
   return (
     <>
       <div className="bg-white p-5 rounded-m">
-        {!type ? (
-          <div className="df gap-3 mb-5">
-            {dishTypes.map((type) => (
-              <button
-                onClick={() => {
-                  navigate(`${type.label}`);
-                }}
-                className={`py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold`}
-                key={type.label}
-              >
-                {type.value}
-              </button>
-            ))}
-          </div>
-        ) : null}
+        <div className="df gap-3 mb-5">
+          {dishTypes.map((recipeType) => (
+            <button
+              onClick={() => {
+                // If there is a type in the search params, update the type in the URL.
+                if (type) {
+                  navigate(`/recipes/all/${recipeType.label}`);
+                } else {
+                  navigate(`${recipeType.label}`);
+                }
+              }}
+              className={`py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
+              ${
+                (type === '' && type === 'All') || type === recipeType.label
+                  ? styles.activeType
+                  : ''
+              }
+              `}
+              key={recipeType.label}
+            >
+              {recipeType.value}
+            </button>
+          ))}
+        </div>
 
         <div className={`recipe-list ${styles.grid}`}>
           {!recipes.length && !results.isLoading ? (

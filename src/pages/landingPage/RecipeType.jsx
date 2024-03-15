@@ -1,9 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PublicRecipeList from '../../pages/recipe/PublicRecipeList';
 import Header from '../../components/elements/Header';
 import PublicFilters from '../../components/elements/Filters/Public';
-import dishTypes from '../../utils/dishTypes';
 
 const RecipeType = () => {
   const { t } = useTranslation();

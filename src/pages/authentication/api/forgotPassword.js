@@ -2,8 +2,6 @@ const forgotPassword = async ({ queryKey }) => {
   const email = queryKey[1];
 
   if (email) {
-    console.log('start reset request', email);
-
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

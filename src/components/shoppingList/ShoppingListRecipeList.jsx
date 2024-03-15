@@ -4,10 +4,7 @@ import ShoppingListRecipe from './ShoppingListRecipe';
 
 const ShoppingListRecipeList = ({ recipeList, shoppingListRecipes }) => {
   const { t } = useTranslation();
-  // setListRecipes(recipeList);
   const [recipes, setRecipes] = useState(recipeList);
-
-  // console.log('RESCEPTA', recipes);
 
   return (
     <>

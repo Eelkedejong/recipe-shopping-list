@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { FaXmark } from 'react-icons/fa6';
-import { FaCircleMinus } from 'react-icons/fa6';
 import PersonSelector from '../elements/PersonSelector';
 import removeShippingListRecipe from '../../pages/shoppingList/api/removeShoppingListRecipe';
 
@@ -14,11 +13,8 @@ const ShoppingListRecipe = ({
   id,
   shoppingListPersons,
 }) => {
-  // const queryClient = useQueryClient();
   const userToken = useSelector((state) => state.user.value.token);
   const [personsState, setPersonsState] = useState(shoppingListPersons);
-
-  console.log('shoppingListPersons', shoppingListPersons);
 
   const deleteMutation = useMutation({
     mutationFn: removeShippingListRecipe,
@@ -50,7 +46,7 @@ const ShoppingListRecipe = ({
 
       <div className="df fww mt-3">
         {ingredients
-          ? ingredients.map((ingredient, index) => {
+          ? ingredients.map((ingredient) => {
               const amount = ingredient.amount * (personsState / persons);
               const ingredientText =
                 // Show max 2 decimals

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { FaCirclePlus, FaCircleMinus } from 'react-icons/fa6';
@@ -20,28 +19,6 @@ const PersonSelector = ({ personsState, setPersonsState, recipeId }) => {
     };
     dispatch(updateRecipes(shopplingListRecipeData));
   };
-
-  // let shoppingListRecipeData = [];
-
-  // const handlePersonsChange = (recipeId, newPersonsState) => {
-  //   setPersonsState(newPersonsState);
-  //   // Check if the recipe already exists in the state
-  //   const existingRecipeIndex = shoppingListRecipeData.findIndex((recipe) => recipe.id === recipeId);
-
-  //   if (existingRecipeIndex !== -1) {
-  //     // If it exists, update the persons value
-  //     shoppingListRecipeData[existingRecipeIndex].persons = newPersonsState;
-  //   } else {
-  //     // If it doesn't exist, add a new recipe object to the state
-  //     shoppingListRecipeData.push({
-  //       id: recipeId,
-  //       persons: newPersonsState,
-  //     });
-  //   }
-
-  //   dispatch(updateRecipes([...shoppingListRecipeData]));
-  //   console.log('shoppingListRecipeData', shoppingListRecipeData);
-  // };
 
   return (
     <div className="df aic gap-5">

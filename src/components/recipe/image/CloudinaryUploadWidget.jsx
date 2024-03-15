@@ -12,7 +12,6 @@ function CloudinaryUploadWidget({ uwConfig, image }) {
   const { t } = useTranslation();
   const [loaded, setLoaded] = useState(false);
   const [imageId, setImageId] = useState(image ? image : null);
-  console.log('loaded', loaded);
 
   // Cloudinary cloud name
   const [cloudName] = useState('dr8avu1nv');

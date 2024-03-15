@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import getRecipe from './api/getRecipe';
 import Info from '../../components/recipe/detail/Info';
 import Image from '../../components/recipe/detail/Image';
@@ -14,13 +15,12 @@ const RecipeDetail = () => {
   const userToken = useSelector((state) => state.user.value.token);
   const queryClient = useQueryClient();
   const { id } = useParams();
+  const { t } = useTranslation();
 
   const editMutation = useMutation({
     mutationFn: updateShoppingListRecipes,
-    onSuccess: (data) => {
-      console.log('mutation data', data?.data);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
-      console.log('success');
     },
   });
 
@@ -66,7 +66,7 @@ const RecipeDetail = () => {
                 editMutation.mutate([recipes, userToken]);
               }}
             >
-              Add to shopping list
+              {t('Add to shopping list')}
             </button>
           </div>
           <div>

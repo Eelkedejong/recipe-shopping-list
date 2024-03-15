@@ -1,42 +1,42 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
-import HttpApi from "i18next-http-backend";
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import HttpApi from 'i18next-http-backend';
 
 const options = {
   // Order and from where user language should be detected
   order: [
-    "querystring",
-    "cookie",
-    "localStorage",
-    "sessionStorage",
-    "navigator",
-    "htmlTag",
-    "path",
-    "subdomain",
+    'querystring',
+    'cookie',
+    'localStorage',
+    'sessionStorage',
+    'navigator',
+    'htmlTag',
+    'path',
+    'subdomain',
   ],
 
   // Keys or params to lookup language from
-  lookupQuerystring: "lng",
-  lookupCookie: "i18next",
-  lookupLocalStorage: "i18nextLng",
-  lookupSessionStorage: "i18nextLng",
+  lookupQuerystring: 'lng',
+  lookupCookie: 'i18next',
+  lookupLocalStorage: 'i18nextLng',
+  lookupSessionStorage: 'i18nextLng',
   lookupFromPathIndex: 0,
   lookupFromSubdomainIndex: 0,
 
   // Cache user language on
-  caches: ["localStorage", "cookie"],
-  excludeCacheFor: ["cimode"], // languages to not persist (cookie, localStorage)
+  caches: ['localStorage', 'cookie'],
+  excludeCacheFor: ['cimode'], // languages to not persist (cookie, localStorage)
 
   // Optional expire and domain for set cookie
   cookieMinutes: 10,
-  cookieDomain: "myDomain",
+  cookieDomain: 'myDomain',
 
   // Optional htmlTag with lang attribute, the default is:
   htmlTag: document.documentElement,
 
   // Optional set cookie options, reference:[MDN Set-Cookie docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)
-  cookieOptions: { path: "/", sameSite: "strict" },
+  cookieOptions: { path: '/', sameSite: 'strict' },
 };
 
 i18n
@@ -44,16 +44,16 @@ i18n
   .use(initReactI18next)
   // Detect user language
   // Learn more: https://github.com/i18next/i18next-browser-languageDetector
-  .use(LanguageDetector)
+  // .use(LanguageDetector)
   .use(HttpApi)
   // Init i18next
   // For all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    fallbackLng: "en",
+    fallbackLng: 'nl',
     debug: false,
-    detection: options,
+    // detection: options,
     backend: {
-      loadPath: "../locales/{{lng}}/{{ns}}.json",
+      loadPath: '../locales/{{lng}}/{{ns}}.json',
     },
 
     interpolation: {

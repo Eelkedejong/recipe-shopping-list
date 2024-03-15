@@ -54,7 +54,7 @@ const Search = ({ openState, setOpenState }) => {
       >
         <Input
           id="search"
-          label={t('Zoek recept')}
+          label={t('Search recipe')}
           classes={styles.input}
           value={searchQuery ? searchQuery : ''}
           key={inputKey}

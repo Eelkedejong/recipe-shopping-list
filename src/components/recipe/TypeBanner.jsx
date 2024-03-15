@@ -23,8 +23,6 @@ const TypeBanner = () => {
     backgroundPosition = '0 10%';
   }
 
-  console.log('backgroundImage', backgroundImage);
-
   return (
     <div
       className={`rounded-m mb-5 ${styles.banner}`}
