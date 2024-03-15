@@ -17,9 +17,11 @@ const CreateRecipe = lazy(() => import('./pages/recipe/CreateRecipe'));
 const EditRecipe = lazy(() => import('./pages/recipe/EditRecipe'));
 const Overview = lazy(() => import('./pages/overview/Overview'));
 const ShoppingList = lazy(() => import('./pages/shoppingList/ShoppingList'));
-const RecipeType = lazy(() => import('./pages/landingPage/RecipeType'));
+const TypeBanner = lazy(() => import('./components/recipe/TypeBanner'));
 const Filters = lazy(() => import('./components/elements/Filters'));
-const PublicFilters = lazy(() => import('./components/elements/Filters/Public'));
+const PublicFilters = lazy(
+  () => import('./components/elements/Filters/Public')
+);
 import Navigation from './components/elements/Navigation';
 import StickyNavigation from './components/elements/StickyNavigation';
 import Header from './components/elements/Header';
@@ -51,6 +53,7 @@ const Layout = () => {
               <>
                 <section className={`section w-100 rounded-top-l`}>
                   <Header title={t('Discover new tastes')} />
+                  <TypeBanner />
                   <PublicRecipeList />
                 </section>
                 <PublicFilters />
@@ -63,7 +66,8 @@ const Layout = () => {
             element={
               <>
                 <section className={`section w-100 rounded-top-l`}>
-                  <Header returnUrl={'/recipes/all'} returnText={t('All recipes')} hiddenMobile={true} />
+                  <Header useParamTitle={true} hiddenMobile={true} />
+                  <TypeBanner />
                   <PublicRecipeList />
                 </section>
                 <PublicFilters />
@@ -76,7 +80,11 @@ const Layout = () => {
             element={
               <>
                 <section className={`section w-100 rounded-top-l`}>
-                  <Header returnUrl={'/recipes'} returnText={t('All recipes')} hiddenMobile={true} />
+                  <Header
+                    returnUrl={'/recipes'}
+                    returnText={t('All recipes')}
+                    hiddenMobile={true}
+                  />
                   <RecipeDetail />
                 </section>
                 <RecipeActions />

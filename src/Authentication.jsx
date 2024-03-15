@@ -13,10 +13,20 @@ import getUser from './pages/authentication/api/getUser';
 // import PasswordReset from "./pages/authentication/PasswordReset";
 const CreateForm = lazy(() => import('./pages/authentication/CreateForm'));
 const LoginForm = lazy(() => import('./pages/authentication/LoginForm'));
-const ErrorMessage = lazy(() => import('./pages/authentication/utils/ErrorMessage'));
-const ForgotPassword = lazy(() => import('./pages/authentication/ForgotPassword'));
-const PasswordReset = lazy(() => import('./pages/authentication/PasswordReset'));
-import { getStoredUserData, removeUserData, saveUserData } from './pages/authentication/utils/storage';
+const ErrorMessage = lazy(
+  () => import('./pages/authentication/utils/ErrorMessage')
+);
+const ForgotPassword = lazy(
+  () => import('./pages/authentication/ForgotPassword')
+);
+const PasswordReset = lazy(
+  () => import('./pages/authentication/PasswordReset')
+);
+import {
+  getStoredUserData,
+  removeUserData,
+  saveUserData,
+} from './pages/authentication/utils/storage';
 import Button from './components/ui/Button';
 import styles from './pages/authentication/authentication.module.scss';
 import logo from './assets/logo.svg';
@@ -83,11 +93,15 @@ const Authentication = () => {
             Cookbook
           </h1>
           <div className="mb-5 df aic jcc h-100">
-            <main className={`bg-white rounded-l centered p-5 ${styles.authentication}`}>
+            <main
+              className={`bg-white rounded-l centered p-5 ${styles.authentication}`}
+            >
               <div className="mb-4 df jcc">
                 <img src={logo} alt="Chef" />
               </div>
-              {errorMessage ? <ErrorMessage errorMessage={errorMessage} /> : null}
+              {errorMessage ? (
+                <ErrorMessage errorMessage={errorMessage} />
+              ) : null}
               {/* Define the routes for the website authentication */}
               <Routes>
                 <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -97,17 +111,27 @@ const Authentication = () => {
                   element={
                     <>
                       <LoginContext.Provider value={loginData}>
-                        {formType === 'signin' ? <LoginForm refetch={refetch} /> : <CreateForm refetch={refetch} />}
+                        {formType === 'signin' ? (
+                          <LoginForm refetch={refetch} />
+                        ) : (
+                          <CreateForm refetch={refetch} />
+                        )}
                         <Button
                           className={'w-100'}
                           onClick={() => {
                             {
                               // Toggle between the forms.
-                              formType === 'signin' ? setFormType('user') : setFormType('signin');
+                              formType === 'signin'
+                                ? setFormType('user')
+                                : setFormType('signin');
                               setErrorMessage('');
                             }
                           }}
-                          text={formType === 'signin' ? `${t('Create account')}` : `${t('Sign in')}`}
+                          text={
+                            formType === 'signin'
+                              ? `${t('Create account')}`
+                              : `${t('Sign in')}`
+                          }
                           type={'ghost'}
                         />
                       </LoginContext.Provider>

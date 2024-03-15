@@ -1,16 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
-import RecipeTile from "../../components/recipe/RecipeTile";
-import TypesList from "../../components/recipe/TypesList";
-import getRecipes from "../recipe/api/getRecipe";
-import styles from "./overview.module.scss";
-import bannerImage from "../../assets/img/cookbook.jpeg?w=2000&format=webp";
+import { useQuery } from '@tanstack/react-query';
+import { useSelector } from 'react-redux';
+import RecipeTile from '../../components/recipe/RecipeTile';
+import TypesList from '../../components/recipe/TypesList';
+import getRecipes from '../recipe/api/getRecipe';
+import styles from './overview.module.scss';
+import bannerImage from '../../assets/img/cookbook.jpeg?w=2000&format=webp';
 
 const Overview = () => {
-  const searchParams = { limit: "3", tags: [] };
+  const searchParams = { limit: '3', tags: [] };
   const user = useSelector((state) => state.user.value);
   const results = useQuery({
-    queryKey: ["recipes", user.token, "", searchParams],
+    queryKey: ['recipes', user.token, '', searchParams],
     queryFn: getRecipes,
     ...{
       enabled: !!user.token,

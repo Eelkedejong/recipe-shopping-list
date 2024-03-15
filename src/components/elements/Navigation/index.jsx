@@ -4,7 +4,15 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LanguageSelect from '../../language/LanguageSelect';
 import styles from './navigation.module.scss';
-import { FaHouse, FaUtensils, FaFileCirclePlus, FaFileLines, FaBook, FaBasketShopping } from 'react-icons/fa6';
+import {
+  FaHouse,
+  FaUtensils,
+  FaFileCirclePlus,
+  FaFileLines,
+  FaBook,
+  FaBasketShopping,
+} from 'react-icons/fa6';
+import Logout from '../../../pages/authentication/Logout';
 
 const Navigation = () => {
   const userName = useSelector((state) => state.user.value.username);
@@ -46,8 +54,13 @@ const Navigation = () => {
           <span className="pr-3 pb-2">Cookbook</span>
         </h1>
       </div>
-      <nav className={`df px-5 py-3 text-medium-grey ff-text fw-light fs-18 ${styles.navigation} ${openClass}`}>
-        <button className={styles.overlay} onClick={() => setOpen(false)}></button>
+      <nav
+        className={`df px-5 py-3 text-medium-grey ff-text fw-light fs-18 ${styles.navigation} ${openClass}`}
+      >
+        <button
+          className={styles.overlay}
+          onClick={() => setOpen(false)}
+        ></button>
         <ul className="df fdc gap-3 mt-5 mr-3 w-100">
           <h4 className="mobile-hidden mb-1">
             {`${userName}'s`} {t('Cookbook')}
@@ -67,14 +80,18 @@ const Navigation = () => {
               </div>
             </Link>
           </li>
-          <li className={`${locationPath === '/shopping-list' ? styles.active : null}`}>
+          <li
+            className={`${locationPath === '/shopping-list' ? styles.active : null}`}
+          >
             <Link className="link" to="/shopping-list">
               <div className="df aic gap-4 py-3">
                 <FaBasketShopping className="fs-18" /> {t('My Shopping List')}
               </div>
             </Link>
           </li>
-          <li className={`mb-5 ${locationPath === '/recipes/all' ? styles.active : null}`}>
+          <li
+            className={`mb-5 ${locationPath === '/recipes/all' ? styles.active : null}`}
+          >
             <Link className="link" to="/recipes/all">
               <div className="df aic gap-4 py-3">
                 <FaUtensils className="fs-18" /> {t('Public Recipes')}
@@ -83,15 +100,20 @@ const Navigation = () => {
           </li>
           <hr />
           <h4 className="mt-5">{t('Quick actions')}</h4>
-          <li className={`${locationPath === '/recipe/new' ? styles.active : null}`}>
+          <li
+            className={`mb-5 ${locationPath === '/recipe/new' ? styles.active : null}`}
+          >
             <Link className="link" to="/recipe/new">
               <div className="df aic gap-4 py-3">
                 <FaFileCirclePlus className="fs-18" /> {t('New recipe')}{' '}
               </div>
             </Link>
           </li>
-          <hr className="desktop-hidden" />
-          <h4 className="mt-5 desktop-hidden">{t('My Account')}</h4>
+          <hr />
+          <h4 className="mt-5 ">{t('My Account')}</h4>
+          <li className="">
+            <Logout />
+          </li>
           <li className="desktop-hidden">
             <LanguageSelect />
           </li>

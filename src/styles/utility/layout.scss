@@ -2,13 +2,13 @@
 //  Grid
 //  _____________________________________________
 .dg {
-  display: grid
+  display: grid;
 }
 
 // Grid templates
 .gtc-2 {
   grid-template-columns: repeat(2, 1fr);
-} 
+}
 .gtr-2 {
   grid-template-rows: repeat(2, 1fr);
 }
@@ -19,82 +19,82 @@
   grid-template-rows: repeat(4, 1fr);
 }
 
-
 // Grid alignment
 .ass {
-  align-self: flex-start
+  align-self: flex-start;
 }
 .asc {
-  align-self: center
+  align-self: center;
 }
 .ase {
-  align-self: flex-end
+  align-self: flex-end;
 }
 .jss {
-  justify-self: flex-start
+  justify-self: flex-start;
 }
 .jsc {
-  justify-self: center
+  justify-self: center;
 }
 .jse {
-  justify-self: flex-end
+  justify-self: flex-end;
 }
-
-
 
 //
 //  Flex
 //  _____________________________________________
 .df {
-  display: flex
+  display: flex;
 }
 .fdc {
-  flex-direction: column
+  flex-direction: column;
 }
 .aic {
-  align-items: center
+  align-items: center;
+}
+.aife {
+  align-items: flex-end;
 }
 .jcc {
-  justify-content: center
+  justify-content: center;
 }
 .jcsb {
-  justify-content: space-between
+  justify-content: space-between;
 }
 .jcfe {
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 .acc {
-  align-content: center
+  align-content: center;
 }
 .asfs {
-  align-self: start
+  align-self: start;
 }
 .fww {
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
 .f1 {
-  flex: 1
+  flex: 1;
 }
 
 //
 //  Alignment
 //  _____________________________________________
 .centered {
-  margin: auto
+  margin: auto;
 }
 
 //
 //  Positioning
 //  _____________________________________________
 .pos-relative {
-  position: relative
+  position: relative;
 }
 
 //
 //  Sizing
 //  _____________________________________________
 .h-100 {
-  height: 100%
+  height: 100%;
 }
 .w-100 {
   width: 100%;

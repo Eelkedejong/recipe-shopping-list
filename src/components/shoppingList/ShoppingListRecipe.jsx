@@ -6,7 +6,14 @@ import { FaCircleMinus } from 'react-icons/fa6';
 import PersonSelector from '../elements/PersonSelector';
 import removeShippingListRecipe from '../../pages/shoppingList/api/removeShoppingListRecipe';
 
-const ShoppingListRecipe = ({ setRecipes, name, ingredients, persons, id, shoppingListPersons }) => {
+const ShoppingListRecipe = ({
+  setRecipes,
+  name,
+  ingredients,
+  persons,
+  id,
+  shoppingListPersons,
+}) => {
   // const queryClient = useQueryClient();
   const userToken = useSelector((state) => state.user.value.token);
   const [personsState, setPersonsState] = useState(shoppingListPersons);
@@ -25,7 +32,9 @@ const ShoppingListRecipe = ({ setRecipes, name, ingredients, persons, id, shoppi
           className="df jcc"
           onClick={(e) => {
             e.preventDefault();
-            setRecipes((prevRecipes) => prevRecipes.filter((recipe) => recipe.name !== name));
+            setRecipes((prevRecipes) =>
+              prevRecipes.filter((recipe) => recipe.name !== name)
+            );
             deleteMutation.mutate([userToken, id]);
           }}
         >
@@ -33,7 +42,11 @@ const ShoppingListRecipe = ({ setRecipes, name, ingredients, persons, id, shoppi
         </button>
       </div>
 
-      <PersonSelector personsState={personsState} setPersonsState={setPersonsState} recipeId={id} />
+      <PersonSelector
+        personsState={personsState}
+        setPersonsState={setPersonsState}
+        recipeId={id}
+      />
 
       <div className="df fww mt-3">
         {ingredients
@@ -41,10 +54,17 @@ const ShoppingListRecipe = ({ setRecipes, name, ingredients, persons, id, shoppi
               const amount = ingredient.amount * (personsState / persons);
               const ingredientText =
                 // Show max 2 decimals
-                parseFloat(amount.toFixed(2)) + ' ' + ingredient.unit + ' ' + ingredient.ingredient;
+                parseFloat(amount.toFixed(2)) +
+                ' ' +
+                ingredient.unit +
+                ' ' +
+                ingredient.ingredient;
 
               return (
-                <div className="df w-50 gap-4 mb-4 pb-1" key={ingredient.ingredient}>
+                <div
+                  className="df w-50 gap-4 mb-4 pb-1"
+                  key={ingredient.ingredient}
+                >
                   <label className="mr-3 df gap-4 label">
                     <input
                       type="checkbox"

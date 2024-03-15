@@ -1,8 +1,8 @@
-const USER_LOCAL_STORAGE_KEY = "recipe-user";
+const USER_LOCAL_STORAGE_KEY = 'recipe-user';
 
 export const getStoredUserData = () => {
   const savedData = localStorage.getItem(USER_LOCAL_STORAGE_KEY);
-  if (savedData !== "undefined") {
+  if (savedData !== 'undefined') {
     return savedData ? JSON.parse(savedData) : undefined;
   }
 };

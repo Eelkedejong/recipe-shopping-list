@@ -1,20 +1,20 @@
-import { useState, useContext } from "react";
-import { useTranslation } from "react-i18next";
-import LoginContext from "./utils/loginContext";
-import Button from "../../components/ui/Button";
-import Input from "../../components/ui/Input";
+import { useState, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import LoginContext from './utils/loginContext';
+import Button from '../../components/ui/Button';
+import Input from '../../components/ui/Input';
 
 const LoginForm = ({ refetch }) => {
   const { t } = useTranslation();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [, setLoginData] = useContext(LoginContext);
 
   return (
     <>
       <h2 className="my-5 ta-center">
-        {t("Create your account and start collecting recipes right away!")}
+        {t('Create your account and start collecting recipes right away!')}
       </h2>
       <form
         className="mb-5 df fdc gap-4"
@@ -25,7 +25,7 @@ const LoginForm = ({ refetch }) => {
       >
         <Input
           id="username"
-          label={t("Username")}
+          label={t('Username')}
           required={true}
           onChange={(e) => setUsername(e.target.value)}
           key="username"
@@ -33,7 +33,7 @@ const LoginForm = ({ refetch }) => {
 
         <Input
           id="email"
-          label={t("E-mail")}
+          label={t('E-mail')}
           required={true}
           onChange={(e) => setEmail(e.target.value)}
           key="email"
@@ -42,7 +42,7 @@ const LoginForm = ({ refetch }) => {
         <Input
           id="password"
           type="password"
-          label={t("Password")}
+          label={t('Password')}
           required={true}
           onChange={(e) => setPassword(e.target.value)}
           key="password"
@@ -50,7 +50,7 @@ const LoginForm = ({ refetch }) => {
         />
 
         <Button
-          className={"mt-4"}
+          className={'mt-4'}
           onClick={() => {
             setLoginData({
               username: username,
@@ -58,7 +58,7 @@ const LoginForm = ({ refetch }) => {
               email: email,
             });
           }}
-          text={t("Create account")}
+          text={t('Create account')}
         />
       </form>
     </>

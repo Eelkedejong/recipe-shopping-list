@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { FaClockRotateLeft, FaUtensils, FaPen } from "react-icons/fa6";
-import styles from "../recipe.module.scss";
-import easy from "../../../assets/icons/easy.svg";
-import medium from "../../../assets/icons/medium.svg";
-import difficult from "../../../assets/icons/difficult.svg";
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { FaClockRotateLeft, FaUtensils, FaPen } from 'react-icons/fa6';
+import styles from '../recipe.module.scss';
+import easy from '../../../assets/icons/easy.svg';
+import medium from '../../../assets/icons/medium.svg';
+import difficult from '../../../assets/icons/difficult.svg';
 
 const RecipeDetail = ({ recipe }) => {
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ const RecipeDetail = ({ recipe }) => {
                 return (
                   <span key={label}>
                     {label}
-                    {index !== recipe.tags.length - 1 ? ", " : ""}
+                    {index !== recipe.tags.length - 1 ? ', ' : ''}
                   </span>
                 );
               })
@@ -46,9 +46,9 @@ const RecipeDetail = ({ recipe }) => {
               className={`df fdc aic jcc f1 p-2 bg-main-lighter rounded-s ${styles.detailBlock}`}
             >
               <div className="df aic gap-2 text-main fs-14">
-                <FaClockRotateLeft /> {recipe.time} {t("min")}
+                <FaClockRotateLeft /> {recipe.time} {t('min')}
               </div>
-              <span className="fs-12">{t("Cooking time")}</span>
+              <span className="fs-12">{t('Cooking time')}</span>
             </div>
           ) : null}
 
@@ -59,7 +59,7 @@ const RecipeDetail = ({ recipe }) => {
               <div className="df aic gap-2 text-main fs-14">
                 <FaUtensils /> {recipe.type}
               </div>
-              <span className="fs-12">{t("Type")}</span>
+              <span className="fs-12">{t('Type')}</span>
             </div>
           ) : null}
 
@@ -71,7 +71,7 @@ const RecipeDetail = ({ recipe }) => {
                 <img src={difficultyicon()} alt="recipe difficulty" />
                 {recipe.difficulty}
               </div>
-              <span className="fs-12">{t("Difficulty")}</span>
+              <span className="fs-12">{t('Difficulty')}</span>
             </div>
           ) : null}
         </div>

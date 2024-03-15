@@ -1,6 +1,6 @@
-import { useState } from "react";
-import styles from "./select.module.scss";
-import { FaChevronDown } from "react-icons/fa";
+import { useState } from 'react';
+import styles from './select.module.scss';
+import { FaChevronDown } from 'react-icons/fa';
 
 const Select = ({
   id,

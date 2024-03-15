@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import {
@@ -8,19 +8,16 @@ import {
   updateType,
 } from '../../store/publicSearchParamsSlice';
 import getPublicRecipes from './api/getPublicRecipes';
-import { useState } from 'react';
 import RecipeTile from '../../components/recipe/RecipeTile';
-// import TypesList from "../../components/recipe/TypesList";
 import styles from './recipe.module.scss';
 import { dishTypes } from '../../utils/dishTypes';
-import defaultImage from '../../assets/bg/default.jpg';
 
 const PublicRecipeList = () => {
   const searchParams = useSelector((state) => state.publicSearchParams.value);
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
   const { type } = useParams();
+  const navigate = useNavigate();
 
   // If there is a type in the URL, update the type in the search params.
   useEffect(() => {
@@ -54,34 +51,25 @@ const PublicRecipeList = () => {
 
   const recipes = results?.data?.data ?? [];
 
-  let backgroundImage;
-
-  if (!results.isLoading) {
-    console.log('dishTypes', dishTypes);
-
-    // match the type to the dishTypes array of objects, get the background image from the dishTypes array and set it as the background image for the recipe list.
-    dishTypes.find((dishType) => {
-      if (dishType.label === type) {
-        backgroundImage = dishType.background;
-      }
-    });
-
-    //if the type is not found in the dishTypes array, set the default image as the background image.
-    if (!backgroundImage) {
-      backgroundImage = defaultImage;
-    }
-  }
-
-  console.log('backgroundImage', backgroundImage);
-
   return (
     <>
-      <div
-        className={`rounded-m mb-5 ${styles.banner}`}
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      ></div>
       <div className="bg-white p-5 rounded-m">
-        {/* @TODO: ADD types tiles for all dishTypes as all exist in the public recipes so we don't need an APi call here. */}
+        {!type ? (
+          <div className="df gap-3 mb-5">
+            {dishTypes.map((type) => (
+              <button
+                onClick={() => {
+                  navigate(`${type.label}`);
+                }}
+                className={`py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold`}
+                key={type.label}
+              >
+                {type.value}
+              </button>
+            ))}
+          </div>
+        ) : null}
+
         <div className={`recipe-list ${styles.grid}`}>
           {!recipes.length && !results.isLoading ? (
             <div>

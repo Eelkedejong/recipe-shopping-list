@@ -9,7 +9,10 @@ const updateShoppingListRecipes = async ([recipes, token]) => {
   };
 
   try {
-    const res = await fetch('http://localhost:3001/api/list/recipes', requestOptions);
+    const res = await fetch(
+      import.meta.env.VITE_API_KEY + `api/list/recipes`,
+      requestOptions
+    );
 
     if (!res.ok) {
       console.log('Could not add recipe to shopping list');
@@ -33,7 +36,10 @@ const updateShoppingListItems = async ([items, token]) => {
   };
 
   try {
-    const res = await fetch(`http://localhost:3001/api/list/items`, requestOptions);
+    const res = await fetch(
+      import.meta.env.VITE_API_KEY + `api/list/items`,
+      requestOptions
+    );
 
     if (!res.ok) {
       console.log('Did not update list, please try again later');

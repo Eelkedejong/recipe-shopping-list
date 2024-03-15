@@ -1,9 +1,9 @@
 const getRecipe = async ({ queryKey }) => {
   const searchParams = queryKey[1];
 
-  console.log("searchParams", searchParams);
+  console.log('searchParams', searchParams);
 
-  let url = `http://localhost:3001/public/recipe/`;
+  let url = import.meta.env.VITE_API_KEY + `public/recipe/`;
 
   if (searchParams) {
     // Deconstruct the searchParams object
@@ -18,37 +18,37 @@ const getRecipe = async ({ queryKey }) => {
       isFirstQueryParam = false;
     }
     if (tags.length > 0) {
-      url += `${isFirstQueryParam ? "?" : "&"}tags=${tags}`;
+      url += `${isFirstQueryParam ? '?' : '&'}tags=${tags}`;
       isFirstQueryParam = false;
     }
     if (time) {
-      url += `${isFirstQueryParam ? "?" : "&"}time=${time}`;
+      url += `${isFirstQueryParam ? '?' : '&'}time=${time}`;
       isFirstQueryParam = false;
     }
     if (page) {
-      url += `${isFirstQueryParam ? "?" : "&"}page=${page}`;
+      url += `${isFirstQueryParam ? '?' : '&'}page=${page}`;
       isFirstQueryParam = false;
     }
     if (limit) {
-      url += `${isFirstQueryParam ? "?" : "&"}limit=${limit}`;
+      url += `${isFirstQueryParam ? '?' : '&'}limit=${limit}`;
       isFirstQueryParam = false;
     }
     if (search) {
-      url += `${isFirstQueryParam ? "?" : "&"}search=${search}`;
+      url += `${isFirstQueryParam ? '?' : '&'}search=${search}`;
     }
   }
 
-  console.log("url", url);
+  console.log('url', url);
 
   const requestOptions = {
-    method: "GET",
+    method: 'GET',
   };
 
   try {
     const res = await fetch(url, requestOptions);
 
     if (!res.ok) {
-      console.log("error in public getRecipe");
+      console.log('error in public getRecipe');
       throw new Error(`recipe/ get not ok`);
     }
 

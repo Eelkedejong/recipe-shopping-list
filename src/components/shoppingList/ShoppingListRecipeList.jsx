@@ -19,7 +19,9 @@ const ShoppingListRecipeList = ({ recipeList, shoppingListRecipes }) => {
         ) : (
           recipes.map((recipe) => {
             // Get the persons value from the shoppingListRecipes for this recipe
-            const shoppingListPersons = shoppingListRecipes.find((item) => item.id === recipe.id);
+            const shoppingListPersons = shoppingListRecipes.find(
+              (item) => item.id === recipe.id
+            );
 
             return (
               <ShoppingListRecipe

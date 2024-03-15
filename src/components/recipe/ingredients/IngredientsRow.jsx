@@ -1,8 +1,8 @@
-import { useState, useContext, useEffect } from "react";
-import IngredientContext from "./utils/ingredientContext";
-import Input from "../../ui/Input";
-import { FaMinusCircle } from "react-icons/fa";
-import styles from "../recipe.module.scss";
+import { useState, useContext, useEffect } from 'react';
+import IngredientContext from './utils/ingredientContext';
+import Input from '../../ui/Input';
+import { FaMinusCircle } from 'react-icons/fa';
+import styles from '../recipe.module.scss';
 
 const IngredientsRow = ({ ingredient, index }) => {
   const [ingredientRows, setIngredientRows] = useContext(IngredientContext);
@@ -35,13 +35,13 @@ const IngredientsRow = ({ ingredient, index }) => {
         <Input
           id={`amount_${index}`}
           required={true}
-          type={"number"}
-          step={"any"}
+          type={'number'}
+          step={'any'}
           value={ingredient.amount}
           key={`amount_${ingredient.amount}`}
           classes={styles.ingreidentInput}
           onChange={(e) => {
-            const value = e.target.value.replace(/,/g, ".");
+            const value = e.target.value.replace(/,/g, '.');
             setRowData({ ...rowData, amount: parseFloat(value) });
           }}
         />

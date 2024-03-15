@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Input } from "../../ui/Fields";
-import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
-import styles from "../recipe.module.scss";
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Input } from '../../ui/Fields';
+import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa';
+import styles from '../recipe.module.scss';
 
 const StepsList = ({ tags }) => {
-  console.log("tags", tags);
+  console.log('tags', tags);
   const { t } = useTranslation();
-  const [labels, setLabels] = useState(tags ? tags : [""]);
+  const [labels, setLabels] = useState(tags ? tags : ['']);
 
   return (
     <>
@@ -20,7 +20,7 @@ const StepsList = ({ tags }) => {
             >
               <Input
                 id={`label-${index + 1}`}
-                label={t("Label")}
+                label={t('Label')}
                 value={label ? label : null}
                 classes={`${styles.ingreidentInput} pr-4`}
                 labelClasses={`w-100 ${styles.label}`}
@@ -47,10 +47,10 @@ const StepsList = ({ tags }) => {
           className="df aic jcfe gap-3 py-2 fs-16"
           onClick={(e) => {
             e.preventDefault;
-            setLabels([...labels, ""]);
+            setLabels([...labels, '']);
           }}
         >
-          <span>{t("Add Label")}</span>
+          <span>{t('Add Label')}</span>
           <FaPlusCircle />
         </button>
       </div>

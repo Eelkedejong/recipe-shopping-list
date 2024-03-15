@@ -48,7 +48,8 @@ const PersonSelector = ({ personsState, setPersonsState, recipeId }) => {
       <button
         type="button"
         onClick={() => {
-          const newPersonsState = personsState > 1 ? personsState - 1 : personsState;
+          const newPersonsState =
+            personsState > 1 ? personsState - 1 : personsState;
           handlePersonsChange(newPersonsState);
         }}
       >

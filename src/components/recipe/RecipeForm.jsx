@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import ImageUploader from "./image/ImageUploader";
-import IngredientContext from "./ingredients/utils/ingredientContext";
-import { Input, Textarea, Select } from "../ui/Fields";
-import Button from "../ui/Button";
-import IngredientsList from "./ingredients/IngredientsList";
-import StepsList from "./steps/StepsList";
-import LabelList from "./labels/LabelList";
-import styles from "./recipe.module.scss";
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import ImageUploader from './image/ImageUploader';
+import IngredientContext from './ingredients/utils/ingredientContext';
+import { Input, Textarea, Select } from '../ui/Fields';
+import Button from '../ui/Button';
+import IngredientsList from './ingredients/IngredientsList';
+import StepsList from './steps/StepsList';
+import LabelList from './labels/LabelList';
+import styles from './recipe.module.scss';
 
 const RecipeForm = ({ recipe, handleSubmit }) => {
   const { t } = useTranslation();
@@ -16,7 +16,7 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
   const ingredientRows = useState(
     recipe?.ingredients && recipe?.ingredients !== undefined
       ? recipe.ingredients
-      : [{ unit: "", amount: "", ingredient: "" }],
+      : [{ unit: '', amount: '', ingredient: '' }]
   );
 
   const handleSubmitRecipe = (e) => {
@@ -29,11 +29,11 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
     // Filter out keys that incluse "stap" and "label" as these are handled separately.
     const responseData = Object.keys(values).reduce((obj, key) => {
       if (
-        !key.includes("amount") &&
-        !key.includes("unit") &&
-        !key.includes("ingredient") &&
-        !key.includes("step") &&
-        !key.includes("label")
+        !key.includes('amount') &&
+        !key.includes('unit') &&
+        !key.includes('ingredient') &&
+        !key.includes('step') &&
+        !key.includes('label')
       ) {
         obj[key] = values[key];
       }
@@ -45,16 +45,16 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
 
     // Combine the value of the steps and labels input fields into an array.
     const steps = Object.keys(values)
-      .filter((key) => key.includes("step"))
+      .filter((key) => key.includes('step'))
       .map((key) => values[key]);
     responseData.steps = steps;
 
     const labels = Object.keys(values)
-      .filter((key) => key.includes("label"))
+      .filter((key) => key.includes('label'))
       .map((key) => values[key]);
     responseData.tags = labels;
 
-    console.log("responseData", responseData);
+    console.log('responseData', responseData);
 
     handleSubmit(responseData);
   };
@@ -68,10 +68,10 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
       }}
     >
       <div className="bg-white p-5 rounded-top-l rounded-m df fdc gap-4">
-        <h3 className="fs-20 fw-semibold">{t("Recipe details")}</h3>
+        <h3 className="fs-20 fw-semibold">{t('Recipe details')}</h3>
         <Input
           id="name"
-          label={t("Recipe name")}
+          label={t('Recipe name')}
           required={true}
           value={recipe ? recipe.name : null}
           key="name"
@@ -79,7 +79,7 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
 
         <Textarea
           id="description"
-          label={t("Description")}
+          label={t('Description')}
           value={recipe ? recipe.description : null}
           key="description"
         />
@@ -88,18 +88,18 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
       </div>
 
       <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 fw-semibold">{t("Advanced")}</h3>
+        <h3 className="fs-20 mb-4 fw-semibold">{t('Advanced')}</h3>
         <div className="dg gtc-2 gtr-2 gap-4">
           <Input
             id="time"
-            label={t("Cooking time")}
+            label={t('Cooking time')}
             type="number"
             value={recipe ? recipe.time : null}
             key="time"
           />
           <Input
             id="persons"
-            label={t("For how many persons")}
+            label={t('For how many persons')}
             key="persons"
             type="number"
             required={true}
@@ -107,53 +107,53 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
           />
           <Select
             id="difficulty"
-            label={t("Difficulty")}
+            label={t('Difficulty')}
             key="difficulty"
-            value={recipe ? recipe.difficulty : " "}
-            options={[`${t("Easy")}`, `${t("Medium")}`, `${t("Difficult")}`]}
-            placeholder={t("Choose difficulty")}
+            value={recipe ? recipe.difficulty : ' '}
+            options={[`${t('Easy')}`, `${t('Medium')}`, `${t('Difficult')}`]}
+            placeholder={t('Choose difficulty')}
           />
           <Select
             id="type"
-            label={t("Dish type")}
+            label={t('Dish type')}
             key="type"
-            value={recipe ? recipe.type : " "}
+            value={recipe ? recipe.type : ' '}
             options={[
-              `${t("Main")}`,
-              `${t("Starter")}`,
-              `${t("Dessert")}`,
-              `${t("Side dish")}`,
-              `${t("Breakfast")}`,
-              `${t("Lunch")}`,
-              `${t("Snack")}`,
-              `${t("Pastry")}`,
+              `${t('Main')}`,
+              `${t('Starter')}`,
+              `${t('Dessert')}`,
+              `${t('Side dish')}`,
+              `${t('Breakfast')}`,
+              `${t('Lunch')}`,
+              `${t('Snack')}`,
+              `${t('Pastry')}`,
             ]}
-            placeholder={t("Choose type")}
+            placeholder={t('Choose type')}
           />
         </div>
       </div>
 
       <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 fw-semibold">{t("Image")}</h3>
+        <h3 className="fs-20 mb-4 fw-semibold">{t('Image')}</h3>
         <ImageUploader image={recipe ? recipe?.image : null} />
       </div>
 
       <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 fw-semibold">{t("Ingredients")}</h3>
+        <h3 className="fs-20 mb-4 fw-semibold">{t('Ingredients')}</h3>
         <IngredientContext.Provider value={ingredientRows}>
           <IngredientsList ingredients={recipe ? recipe.ingredients : null} />
         </IngredientContext.Provider>
       </div>
 
       <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 fw-semibold">{t("Cooking steps")}</h3>
+        <h3 className="fs-20 mb-4 fw-semibold">{t('Cooking steps')}</h3>
         <StepsList steps={recipe ? recipe.steps : null} />
       </div>
 
       <div className={`w-100 ${styles.submitButtonWrapper}`}>
         <Button
           className={styles.submitButton}
-          text={t("Save recipe")}
+          text={t('Save recipe')}
           type="submit"
         />
       </div>

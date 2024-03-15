@@ -1,15 +1,24 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { FaChevronLeft } from "react-icons/fa6";
-import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import Search from "../../elements/Search";
-import styles from "./header.module.scss";
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { FaChevronLeft } from 'react-icons/fa6';
+import { FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import Search from '../../elements/Search';
+import styles from './header.module.scss';
 
-const Header = ({ title, returnUrl, returnText, hiddenMobile, hideSearch }) => {
+const Header = ({
+  title,
+  returnUrl,
+  returnText,
+  hiddenMobile,
+  hideSearch,
+  useParamTitle,
+}) => {
   const userName = useSelector((state) => state.user.value.username);
   const [open, setOpen] = useState(false);
+  const { type } = useParams();
   const { t } = useTranslation();
 
   return (
@@ -29,11 +38,15 @@ const Header = ({ title, returnUrl, returnText, hiddenMobile, hideSearch }) => {
             <span className="fs-16 fw-light text-grey">{returnText}</span>
           </Link>
         ) : title ? (
-          <h2 className="fs-28 fw-bold pt-5">{title}</h2>
+          <h2 className="fs-32 fw-bold pt-5">{title}</h2>
+        ) : useParamTitle ? (
+          <h2 className="fs-32 fw-bold pt-5">
+            {type.charAt(0).toUpperCase() + type.slice(1)}
+          </h2>
         ) : (
           <div className={styles.greeting}>
             <div className="fs-16 fw-light text-grey">
-              {t("Welcome")}, {userName}
+              {t('Welcome')}, {userName}
             </div>
             <h2 className="fs-28 fw-bold">{t("What's on the menu today?")}</h2>
           </div>

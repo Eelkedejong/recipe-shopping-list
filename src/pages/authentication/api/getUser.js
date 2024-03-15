@@ -6,8 +6,8 @@ const getUser = async ({ queryKey }) => {
 
   if (email && password) {
     const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         username: username,
         email: email,
@@ -15,7 +15,10 @@ const getUser = async ({ queryKey }) => {
       }),
     };
 
-    const res = await fetch(`http://localhost:3001/${type}`, requestOptions);
+    const res = await fetch(
+      import.meta.env.VITE_API_KEY + `${type}`,
+      requestOptions
+    );
 
     if (!res.ok) {
       const message = await res.json();
@@ -24,7 +27,7 @@ const getUser = async ({ queryKey }) => {
 
     return res.json();
   } else {
-    throw new Error("Please enter an email and password");
+    throw new Error('Please enter an email and password');
   }
 };
 

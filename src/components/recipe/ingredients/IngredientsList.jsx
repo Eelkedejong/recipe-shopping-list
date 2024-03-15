@@ -1,21 +1,21 @@
-import { useContext } from "react";
-import { useTranslation } from "react-i18next";
-import IngredientContext from "./utils/ingredientContext";
-import { FaPlusCircle } from "react-icons/fa";
-import IngredientsRow from "./IngredientsRow";
-import styles from "../recipe.module.scss";
+import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import IngredientContext from './utils/ingredientContext';
+import { FaPlusCircle } from 'react-icons/fa';
+import IngredientsRow from './IngredientsRow';
+import styles from '../recipe.module.scss';
 
 const IngredientsList = () => {
   const { t } = useTranslation();
   const [ingredientRows, setIngredientRows] = useContext(IngredientContext);
-  const emptyIngredientRow = { unit: "", amount: "", ingredient: "" };
+  const emptyIngredientRow = { unit: '', amount: '', ingredient: '' };
 
   return (
     <div className="dg gap-3">
       <div className={`dg gap-4 fs-16 ${styles.ingredientGrid}`}>
-        <div>{t("Ingredient name")}</div>
-        <div>{t("Amount")}</div>
-        <div>{t("Unit (optional)")}</div>
+        <div>{t('Ingredient name')}</div>
+        <div>{t('Amount')}</div>
+        <div>{t('Unit (optional)')}</div>
       </div>
       <div className="df fdc gap-3 fs-14">
         {ingredientRows
@@ -39,7 +39,7 @@ const IngredientsList = () => {
             setIngredientRows([...ingredientRows, emptyIngredientRow]);
           }}
         >
-          <span>{t("Add ingredient")}</span>
+          <span>{t('Add ingredient')}</span>
           <FaPlusCircle />
         </button>
       </div>

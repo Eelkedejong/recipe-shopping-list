@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import { useSelector, useDispatch } from "react-redux";
-import { updateType } from "../../store/searchParamsSlice";
-import { useTranslation } from "react-i18next";
-import getRecipeFilter from "../../pages/recipe/api/filters/getRecipeFilter";
-import styles from "./recipe.module.scss";
+import { useQuery } from '@tanstack/react-query';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateType } from '../../store/searchParamsSlice';
+import { useTranslation } from 'react-i18next';
+import getRecipeFilter from '../../pages/recipe/api/filters/getRecipeFilter';
+import styles from './recipe.module.scss';
 
 const TypesList = () => {
   const user = useSelector((state) => state.user.value);
@@ -12,7 +12,7 @@ const TypesList = () => {
   const { t } = useTranslation();
 
   const results = useQuery({
-    queryKey: ["types", user.token, "types"],
+    queryKey: ['types', user.token, 'types'],
     queryFn: getRecipeFilter,
     ...{
       // The query will not execute until the userToken exists.
@@ -24,8 +24,8 @@ const TypesList = () => {
 
   // Add an extra "All" type to the filter options.
   if (results.isSuccess) {
-    if (!filterOptions.includes(t("All"))) {
-      filterOptions.unshift(t("All"));
+    if (!filterOptions.includes(t('All'))) {
+      filterOptions.unshift(t('All'));
     }
   }
 
@@ -34,11 +34,11 @@ const TypesList = () => {
       {filterOptions.length ? (
         <div className="df gap-3 mb-5">
           {filterOptions.map((type) =>
-            type !== "" ? (
+            type !== '' ? (
               <button
                 onClick={() => {
-                  if (type === "All") {
-                    dispatch(updateType(""));
+                  if (type === 'All') {
+                    dispatch(updateType(''));
                   } else {
                     dispatch(updateType(type));
                   }
@@ -46,17 +46,17 @@ const TypesList = () => {
                 className={`
                   py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
                   ${
-                    (SelectedType === "" && type === "All") ||
+                    (SelectedType === '' && type === 'All') ||
                     SelectedType === type
                       ? styles.activeType
-                      : ""
+                      : ''
                   }
                 `}
                 key={type}
               >
                 {type}
               </button>
-            ) : null,
+            ) : null
           )}
         </div>
       ) : null}

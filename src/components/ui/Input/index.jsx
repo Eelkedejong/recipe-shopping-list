@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import styles from "./input.module.scss";
+import { useState, useEffect } from 'react';
+import styles from './input.module.scss';
 
 const Input = ({
   id,
@@ -31,7 +31,7 @@ const Input = ({
             className={`
               fw-light text-dark-grey 
               ${styles.label} 
-              ${focus ? styles.focus : ""}
+              ${focus ? styles.focus : ''}
             `}
           >
             {label}

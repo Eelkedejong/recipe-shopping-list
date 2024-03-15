@@ -1,14 +1,14 @@
-import { Cloudinary } from "@cloudinary/url-gen";
-import { AdvancedImage } from "@cloudinary/react";
-import { fill } from "@cloudinary/url-gen/actions/resize";
-import logo from "../../../assets/logo-white.svg";
-import styles from "../recipe.module.scss";
+import { Cloudinary } from '@cloudinary/url-gen';
+import { AdvancedImage } from '@cloudinary/react';
+import { fill } from '@cloudinary/url-gen/actions/resize';
+import logo from '../../../assets/logo-white.svg';
+import styles from '../recipe.module.scss';
 
 const Image = ({ image }) => {
   // Create a Cloudinary instance
   const cld = new Cloudinary({
     cloud: {
-      cloudName: "dr8avu1nv",
+      cloudName: 'dr8avu1nv',
     },
   });
 

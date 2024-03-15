@@ -1,19 +1,19 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const ErrorMessage = ({ errorMessage }) => {
   const { t } = useTranslation();
 
   const errorMessages = [
-    "The username or password did not match. Please try again.",
-    "There is already a user with that username.",
-    "The email address is already used by another account.",
-    "Please enter an email and password",
-    "No user with that email.",
-    "Passwords do not match.",
+    'The username or password did not match. Please try again.',
+    'There is already a user with that username.',
+    'The email address is already used by another account.',
+    'Please enter an email and password',
+    'No user with that email.',
+    'Passwords do not match.',
   ];
 
   if (!errorMessages.includes(errorMessage)) {
-    errorMessage = "Something went wrong, please try again later";
+    errorMessage = 'Something went wrong, please try again later';
   }
 
   return (

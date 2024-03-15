@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import styles from "./textarea.module.scss";
+import { useState, useEffect } from 'react';
+import styles from './textarea.module.scss';
 
 const Textarea = ({ id, name, label, value, onChange, type, required }) => {
   if (!name) {
@@ -17,7 +17,7 @@ const Textarea = ({ id, name, label, value, onChange, type, required }) => {
         className={`
           fw-light text-dark-grey 
           ${styles.label} 
-          ${focus ? styles.focus : ""}
+          ${focus ? styles.focus : ''}
         `}
       >
         {label}

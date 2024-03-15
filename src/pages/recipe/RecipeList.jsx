@@ -1,14 +1,14 @@
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { useSelector, useDispatch } from "react-redux";
-import { useTranslation } from "react-i18next";
-import { resetSearchParams } from "../../store/searchParamsSlice";
-import { FaPlus } from "react-icons/fa6";
-import getRecipes from "./api/getRecipe";
-import RecipeTile from "../../components/recipe/RecipeTile";
-import TypesList from "../../components/recipe/TypesList";
-import styles from "./recipe.module.scss";
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { resetSearchParams } from '../../store/searchParamsSlice';
+import { FaPlus } from 'react-icons/fa6';
+import getRecipes from './api/getRecipe';
+import RecipeTile from '../../components/recipe/RecipeTile';
+import TypesList from '../../components/recipe/TypesList';
+import styles from './recipe.module.scss';
 
 const RecipeList = () => {
   const user = useSelector((state) => state.user.value);
@@ -24,10 +24,10 @@ const RecipeList = () => {
     };
   }, [dispatch]);
 
-  console.log("searchParams", searchParams);
+  console.log('searchParams', searchParams);
 
   const results = useQuery({
-    queryKey: ["recipes", user.token, "", searchParams],
+    queryKey: ['recipes', user.token, '', searchParams],
     queryFn: getRecipes,
     ...{
       // The query will not execute until the userToken exists.
@@ -45,9 +45,9 @@ const RecipeList = () => {
       <div className={`recipe-list ${styles.grid}`}>
         {!recipes.length && !results.isLoading ? (
           <div>
-            <div>{t("No recipes found")}</div>
+            <div>{t('No recipes found')}</div>
             <button onClick={() => dispatch(resetSearchParams())}>
-              {t("Reset filters")}
+              {t('Reset filters')}
             </button>
           </div>
         ) : (
@@ -73,8 +73,8 @@ const RecipeList = () => {
             <FaPlus />
           </button>
         </Link>
-        <button onClick={() => navigate("/recipe/new")}>
-          <span>{t("Add recipe")}</span>
+        <button onClick={() => navigate('/recipe/new')}>
+          <span>{t('Add recipe')}</span>
         </button>
       </div>
     </div>

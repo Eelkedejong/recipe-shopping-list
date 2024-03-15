@@ -48,7 +48,10 @@ const RecipeDetail = () => {
         <div className={`dg bg-white rounded-m gap-5 ${styles.detailPage}`}>
           <div className={styles.detailsInfoWrapper}>
             <Info recipe={recipe} />
-            <Ingredients ingredients={recipe.ingredients} persons={recipe.persons} />
+            <Ingredients
+              ingredients={recipe.ingredients}
+              persons={recipe.persons}
+            />
             <button
               onClick={(e) => {
                 e.preventDefault();

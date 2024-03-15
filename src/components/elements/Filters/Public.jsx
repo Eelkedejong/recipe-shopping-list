@@ -1,27 +1,27 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { updateTags, updateTime } from "../../../store/publicSearchParamsSlice";
-import { useTranslation } from "react-i18next";
-import getPublicRecipeFilter from "../../../pages/recipe/api/filters/getPublicRecipeFilter";
-import { FaSliders, FaX } from "react-icons/fa6";
-import styles from "./filters.module.scss";
-import Button from "../../ui/Button";
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateTags, updateTime } from '../../../store/publicSearchParamsSlice';
+import { useTranslation } from 'react-i18next';
+import getPublicRecipeFilter from '../../../pages/recipe/api/filters/getPublicRecipeFilter';
+import { FaSliders, FaX } from 'react-icons/fa6';
+import styles from './filters.module.scss';
+import Button from '../../ui/Button';
 
 const Filters = () => {
   const selectedTags = useSelector(
-    (state) => state.publicSearchParams.value.tags,
+    (state) => state.publicSearchParams.value.tags
   );
   const selecedTime = useSelector(
-    (state) => state.publicSearchParams.value.time,
+    (state) => state.publicSearchParams.value.time
   );
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const results = useQuery({
-    queryKey: ["publicTags", "tags"],
+    queryKey: ['publicTags', 'tags'],
     queryFn: getPublicRecipeFilter,
   });
 
@@ -29,23 +29,23 @@ const Filters = () => {
 
   const timeOptions = [
     {
-      label: `${t("All")}`,
-      value: "",
+      label: `${t('All')}`,
+      value: '',
     },
     {
-      label: "< 60",
+      label: '< 60',
       value: 60,
     },
     {
-      label: "< 45",
+      label: '< 45',
       value: 45,
     },
     {
-      label: "< 30",
+      label: '< 30',
       value: 30,
     },
     {
-      label: "< 15",
+      label: '< 15',
       value: 15,
     },
   ];
@@ -62,7 +62,7 @@ const Filters = () => {
         onClick={() => setOpen(!open)}
         className={`p-3 text-main fs-14 fw-semibold rounded-s df aic jcc ${styles.filterToggle} `}
       >
-        <FaSliders className="mr-3" /> {t("Filter")}
+        <FaSliders className="mr-3" /> {t('Filter')}
       </button>
       <div
         className={`
@@ -72,7 +72,7 @@ const Filters = () => {
         `}
       >
         <div className="px-5 py-4 bg-main-light rounded-top-m df jcsb">
-          <h2 className="fw-bold fs-20">{t("Filter")}</h2>
+          <h2 className="fw-bold fs-20">{t('Filter')}</h2>
           <button onClick={() => setOpen(!open)}>
             <FaX />
           </button>
@@ -80,7 +80,7 @@ const Filters = () => {
         {filterOptions.length ? (
           <>
             <ul className="p-5 df fdc gap-3 my-3">
-              <h3 className="fw-semibold fs-26 mb-2">{t("Labels")}</h3>
+              <h3 className="fw-semibold fs-26 mb-2">{t('Labels')}</h3>
               {filterOptions.map((tag) => (
                 <li key={tag} className="fw-light fs-14 text-dark-grey">
                   <label className="mr-2 df gap-3 label">
@@ -104,7 +104,7 @@ const Filters = () => {
         ) : null}
 
         <ul className="p-5 df fdc gap-3 my-3">
-          <h3 className="fw-semibold fs-26 mb-2">{t("Cooking time")}</h3>
+          <h3 className="fw-semibold fs-26 mb-2">{t('Cooking time')}</h3>
           {timeOptions.map((time, index) => {
             return (
               <li key={time.label} className="fw-light fs-14 text-dark-grey">
@@ -118,12 +118,12 @@ const Filters = () => {
                       if (time.value) {
                         dispatch(updateTime(time.value));
                       } else {
-                        dispatch(updateTime(""));
+                        dispatch(updateTime(''));
                       }
                     }}
                     className="checkbox filled"
                   />
-                  {time.label} {index > 0 ? t("min") : null}
+                  {time.label} {index > 0 ? t('min') : null}
                 </label>
               </li>
             );
@@ -131,7 +131,7 @@ const Filters = () => {
         </ul>
 
         <div className="m-4 mt-5 desktop-hidden">
-          <Button text={t("View recipes")} onClick={() => setOpen(!open)} />
+          <Button text={t('View recipes')} onClick={() => setOpen(!open)} />
         </div>
       </div>
     </aside>

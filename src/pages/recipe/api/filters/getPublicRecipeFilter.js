@@ -2,13 +2,13 @@ const getPublicRecipeFilter = async ({ queryKey }) => {
   const type = queryKey[1];
 
   const requestOptions = {
-    method: "GET",
+    method: 'GET',
   };
 
   try {
     const res = await fetch(
-      `http://localhost:3001/public/recipe-${type}`,
-      requestOptions,
+      import.meta.env.VITE_API_KEY + `public/recipe-${type}`,
+      requestOptions
     );
 
     if (!res.ok) {

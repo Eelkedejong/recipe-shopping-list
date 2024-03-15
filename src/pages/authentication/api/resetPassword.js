@@ -4,15 +4,15 @@ const passwordReset = async ({ queryKey }) => {
   const token = queryKey[3];
 
   const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       password: password,
     }),
   };
 
   const res = await fetch(
-    `http://localhost:3001/password-reset/${id}?token=${token}`,
+    import.meta.env.VITE_API_KEY + `password-reset/${id}?token=${token}`,
     requestOptions
   );
 

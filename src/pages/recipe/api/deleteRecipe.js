@@ -1,12 +1,15 @@
 const deleteRecipe = async ([token, id]) => {
   const requestOptions = {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      Authorization: "Bearer " + token,
+      Authorization: 'Bearer ' + token,
     },
   };
 
-  await fetch(`http://localhost:3001/api/recipe/${id}`, requestOptions);
+  await fetch(
+    import.meta.env.VITE_API_KEY + `api/recipe/${id}`,
+    requestOptions
+  );
 };
 
 export default deleteRecipe;

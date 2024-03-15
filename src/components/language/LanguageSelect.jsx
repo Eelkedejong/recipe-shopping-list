@@ -1,22 +1,22 @@
-import { useTranslation } from "react-i18next";
-import styles from "./language.module.scss";
-import enFlag from "../../assets/flags/en.svg";
-import nlFlag from "../../assets/flags/nl.svg";
+import { useTranslation } from 'react-i18next';
+import styles from './language.module.scss';
+import enFlag from '../../assets/flags/en.svg';
+import nlFlag from '../../assets/flags/nl.svg';
 
 const LanguageSelect = () => {
   const { i18n } = useTranslation();
   const { t } = useTranslation();
 
   const lngs = {
-    en: { nativeName: "English" },
-    nl: { nativeName: "Nederlands" },
+    en: { nativeName: 'English' },
+    nl: { nativeName: 'Nederlands' },
   };
 
   const flag = (lng) => {
-    if (lng === "en") {
+    if (lng === 'en') {
       return enFlag;
     }
-    if (lng === "nl") {
+    if (lng === 'nl') {
       return nlFlag;
     }
   };
@@ -33,7 +33,7 @@ const LanguageSelect = () => {
           }}
           className={`
             df aic gap-3 pt-2 
-            ${i18n.resolvedLanguage === lng ? "hidden" : ""}
+            ${i18n.resolvedLanguage === lng ? 'hidden' : ''}
           `}
         >
           <img

@@ -3,16 +3,16 @@ const getRecipeFilter = async ({ queryKey }) => {
   const type = queryKey[2];
 
   const requestOptions = {
-    method: "GET",
+    method: 'GET',
     headers: {
-      Authorization: "Bearer " + token,
+      Authorization: 'Bearer ' + token,
     },
   };
 
   try {
     const res = await fetch(
-      `http://localhost:3001/api/recipe-${type}`,
-      requestOptions,
+      import.meta.env.VITE_API_KEY + `api/recipe-${type}`,
+      requestOptions
     );
 
     if (!res.ok) {

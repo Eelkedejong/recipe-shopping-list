@@ -1,12 +1,11 @@
 body {
-  font-family: $font-family-main
+  font-family: $font-family-main;
 }
 
 // Default transition on interactive elements
 * {
-  transition:  all .2s ease;
+  // transition:  all .2s ease;
 }
-
 
 // TODO: Move to a module scss
 // Checkbox styling: https://codepen.io/cesque/pen/QxjyKR
@@ -38,12 +37,12 @@ $checkbox-size: 20px;
     border: 1px solid #666;
     transition: 0.2s border-color ease;
   }
-  
+
   &:checked:before {
     border-color: $color-main;
     transition: 0.5s border-color ease;
   }
-  
+
   &:disabled:before {
     border-color: #ccc;
     background-color: #ccc;
@@ -65,7 +64,7 @@ $checkbox-size: 20px;
     transform: translate(-50%, -50%) scale(0);
   }
 
-  &[type="radio"] {
+  &[type='radio'] {
     &:before {
       border-radius: 100vh;
     }
@@ -82,7 +81,7 @@ $checkbox-size: 20px;
     }
   }
 
-  &[type="checkbox"] {
+  &[type='checkbox'] {
     &:before {
       border-radius: calc($checkbox-size / 4);
     }
@@ -100,13 +99,15 @@ $checkbox-size: 20px;
       animation: toggleOnCheckbox 0.2s ease forwards;
     }
   }
-  
-  &[type="checkbox"].filled  {
+
+  &[type='checkbox'].filled {
     &:before {
       border-radius: calc($checkbox-size / 4);
-      transition: 0.2s border-color ease, 0.2s background-color ease;
+      transition:
+        0.2s border-color ease,
+        0.2s background-color ease;
     }
-    
+
     &:checked:not(:disabled):before {
       background-color: $color-main;
     }
@@ -127,7 +128,7 @@ $checkbox-size: 20px;
     opacity: 1;
     transform: translate(-50%, -85%) scale(0.8) rotate(45deg);
   }
-  
+
   100% {
     transform: translate(-50%, -85%) scale(0.7) rotate(45deg);
   }
@@ -143,7 +144,7 @@ $checkbox-size: 20px;
     opacity: 1;
     transform: translate(-50%, -50%) scale(0.8);
   }
-  
+
   100% {
     transform: translate(-50%, -50%) scale(0.7);
   }

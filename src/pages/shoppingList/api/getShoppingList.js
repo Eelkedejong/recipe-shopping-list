@@ -1,7 +1,7 @@
 const getShoppingList = async ({ queryKey }) => {
   const token = queryKey[1];
 
-  const url = `http://localhost:3001/api/list/`;
+  const url = import.meta.env.VITE_API_KEY + 'api/list/';
 
   const requestOptions = {
     method: 'GET',

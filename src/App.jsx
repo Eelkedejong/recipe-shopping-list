@@ -22,7 +22,10 @@ const App = () => {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
-          <div className="wrapper bg-main df fdc aic" style={{ backgroundImage: `url(${bannerImage})` }}>
+          <div
+            className="wrapper bg-main df fdc aic"
+            style={{ backgroundImage: `url(${bannerImage})` }}
+          >
             <Authentication />
           </div>
         </Provider>

@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import PersonSelector from "../../elements/PersonSelector";
-import styles from "../recipe.module.scss";
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import PersonSelector from '../../elements/PersonSelector';
+import styles from '../recipe.module.scss';
 
 const Ingredients = ({ ingredients, persons }) => {
   const [personsState, setPersonsState] = useState(persons);
@@ -20,7 +20,7 @@ const Ingredients = ({ ingredients, persons }) => {
         <div
           className={`bg-main-lighter rounded-m p-5 df fdc ${styles.ingredientsBlock}`}
         >
-          <h3 className="fs-18 fw-semibold pb-4 mb-2">{t("Ingredients")}</h3>
+          <h3 className="fs-18 fw-semibold pb-4 mb-2">{t('Ingredients')}</h3>
           {ingredients
             ? ingredients.map((ingredient, index) => {
                 const amount = ingredient.amount * (personsState / persons);
@@ -38,7 +38,7 @@ const Ingredients = ({ ingredients, persons }) => {
                       />
                       <span>
                         {/* Show max 2 decimals */}
-                        {parseFloat(amount.toFixed(2))} {ingredient.unit}{" "}
+                        {parseFloat(amount.toFixed(2))} {ingredient.unit}{' '}
                         {ingredient.ingredient}
                       </span>
                     </label>

@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { updateSearch } from "../../../store/searchParamsSlice";
-import Input from "../../ui/Input";
-import { FaSearch } from "react-icons/fa";
-import { FaX } from "react-icons/fa6";
-import styles from "./search.module.scss";
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateSearch } from '../../../store/searchParamsSlice';
+import Input from '../../ui/Input';
+import { FaSearch } from 'react-icons/fa';
+import { FaX } from 'react-icons/fa6';
+import styles from './search.module.scss';
 
 const Search = ({ openState, setOpenState }) => {
   const navigate = useNavigate();
@@ -21,22 +21,22 @@ const Search = ({ openState, setOpenState }) => {
 
   useEffect(() => {
     if (openState) {
-      document.body.classList.add("overlay");
+      document.body.classList.add('overlay');
     } else {
-      document.body.classList.remove("overlay");
+      document.body.classList.remove('overlay');
     }
   }, [openState]);
 
   // Reset the search input when the search query is reset.
   useEffect(() => {
-    if (search === "") {
-      setSearchQuery("");
+    if (search === '') {
+      setSearchQuery('');
       setInputKey((prevKey) => prevKey + 1);
     }
   }, [search]);
 
   return (
-    <div className={`${styles.wrapper} ${openState ? styles.open : ""}`}>
+    <div className={`${styles.wrapper} ${openState ? styles.open : ''}`}>
       <form
         className="df fdc gap-4 pos-relative"
         onSubmit={(e) => {
@@ -45,8 +45,8 @@ const Search = ({ openState, setOpenState }) => {
           dispatch(updateSearch(searchQuery));
 
           // Navigate to the recipes page if the user is not already there.
-          if (location.pathname !== "/recipes") {
-            navigate("/recipes");
+          if (location.pathname !== '/recipes') {
+            navigate('/recipes');
           }
 
           setOpenState(false);
@@ -54,13 +54,13 @@ const Search = ({ openState, setOpenState }) => {
       >
         <Input
           id="search"
-          label={t("Zoek recept")}
+          label={t('Zoek recept')}
           classes={styles.input}
-          value={searchQuery ? searchQuery : ""}
+          value={searchQuery ? searchQuery : ''}
           key={inputKey}
           onChange={(e) => {
             setSearchQuery(e.target.value);
-            if (e.target.value !== "") {
+            if (e.target.value !== '') {
               setDisabled(false);
             } else {
               setDisabled(true);
@@ -73,9 +73,9 @@ const Search = ({ openState, setOpenState }) => {
             type="button"
             onClick={(e) => {
               e.preventDefault();
-              setSearchQuery("");
+              setSearchQuery('');
               setDisabled(true);
-              dispatch(updateSearch(""));
+              dispatch(updateSearch(''));
             }}
             className={`${styles.clear} df aic`}
           >

@@ -1,9 +1,9 @@
-import { Routes, Route } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import PublicRecipeList from "../../pages/recipe/PublicRecipeList";
-import Header from "../../components/elements/Header";
-import PublicFilters from "../../components/elements/Filters/Public";
-import dishTypes from "../../utils/dishTypes";
+import { Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import PublicRecipeList from '../../pages/recipe/PublicRecipeList';
+import Header from '../../components/elements/Header';
+import PublicFilters from '../../components/elements/Filters/Public';
+import dishTypes from '../../utils/dishTypes';
 
 const RecipeType = () => {
   const { t } = useTranslation();
@@ -15,7 +15,7 @@ const RecipeType = () => {
         element={
           <>
             <section className={`section w-100 rounded-top-l`}>
-              <Header title={t("Discover new tastes")} />
+              <Header title={t('Discover new tastes')} />
               <PublicRecipeList />
             </section>
             <PublicFilters />
