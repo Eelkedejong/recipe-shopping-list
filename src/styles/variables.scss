@@ -47,5 +47,6 @@ $screen-s: 768px; // Mobile
 $screen-m: 1025px; // Tablet
 $screen-l: 1200px; // Desktop
 $screen-xl: 1400px; // Desktop XL
+$screen-xxl: 2000px; // Desktop XXL
 
 @import './mixins/breakpoints.scss';

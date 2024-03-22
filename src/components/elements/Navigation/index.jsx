@@ -12,6 +12,7 @@ import {
   FaBook,
   FaBasketShopping,
 } from 'react-icons/fa6';
+import { IoReceipt } from 'react-icons/io5';
 import Logout from '../../../pages/authentication/Logout';
 
 const Navigation = () => {
@@ -80,12 +81,10 @@ const Navigation = () => {
               </div>
             </Link>
           </li>
-          <li
-            className={`${locationPath === '/shopping-list' ? styles.active : null}`}
-          >
-            <Link className="link" to="/shopping-list">
+          <li className={`${locationPath === '/list' ? styles.active : null}`}>
+            <Link className="link" to="/list">
               <div className="df aic gap-4 py-3">
-                <FaBasketShopping className="fs-18" /> {t('My Shopping List')}
+                <FaBasketShopping className="fs-18" /> {t('My Groceries')}
               </div>
             </Link>
           </li>
@@ -101,11 +100,20 @@ const Navigation = () => {
           <hr />
           <h4 className="mt-5">{t('Quick actions')}</h4>
           <li
-            className={`mb-5 ${locationPath === '/recipe/new' ? styles.active : null}`}
+            className={`${locationPath === '/recipe/new' ? styles.active : null}`}
           >
             <Link className="link" to="/recipe/new">
               <div className="df aic gap-4 py-3">
                 <FaFileCirclePlus className="fs-18" /> {t('New recipe')}{' '}
+              </div>
+            </Link>
+          </li>
+          <li
+            className={`mb-5 ${locationPath === '/shopping-list' ? styles.active : null}`}
+          >
+            <Link className="link" to="/shopping-list">
+              <div className="df aic gap-4 py-3">
+                <IoReceipt className="fs-18" /> {t('Edit Shopping List')}
               </div>
             </Link>
           </li>

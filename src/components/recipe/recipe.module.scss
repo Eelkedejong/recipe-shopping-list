@@ -4,7 +4,7 @@
 // Recipe form
 // ________________________________
 .form {
-  @include screen-l(min) {
+  @include screen-xl(min) {
     display: grid !important;
     align-items: start;
     grid-template-columns: repeat(2, 1fr);
@@ -122,7 +122,7 @@ section {
 // Recipe details
 // ________________________________
 .detailBlock {
-  max-width: 120px;
+  // max-width: 120px;
 }
 
 .persons {
@@ -134,11 +134,19 @@ section {
   @include screen-m(max) {
     width: 100%;
   }
+
+  @include screen-s(min) {
+    min-width: 350px;
+  }
+}
+
+.ingredient {
+  border-bottom: 1px dashed $color-main;
 }
 
 .indicator {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
 .stepsDetailsGrid {
@@ -150,12 +158,10 @@ section {
     padding: 24px;
   }
 
-  @include screen-m(min) {
-    margin-top: 8px;
-    padding: 8px;
-    grid-column: 2;
-    grid-row: 2;
-  }
+  // @include screen-m(min) {
+  //   grid-column: 2;
+  //   grid-row: 2;
+  // }
 }
 
 .detailsImage {

@@ -1,3 +1,31 @@
-.grid {
-  grid-template-columns: 3fr 2fr;
+@import '../../styles/variables.scss';
+
+.shoppingListGrid {
+  @include screen-l(min) {
+    grid-template-columns: 3fr 2fr;
+  }
+
+  @include screen-l(max) {
+    padding-bottom: 150px;
+  }
+}
+
+.groceryGrid {
+  // grid-template-columns: 1fr 1fr;
+}
+
+.submitButtonWrapper {
+  @include screen-l(max) {
+    position: fixed;
+    bottom: 65px;
+    z-index: 30;
+    padding: 13px 15px;
+    background-color: $color-white;
+    border-bottom: $default-border;
+    box-shadow: $shadow-top;
+
+    button {
+      height: 38px;
+    }
+  }
 }

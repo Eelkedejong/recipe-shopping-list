@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
@@ -23,11 +23,11 @@ const ShoppingList = () => {
   );
   const queryClient = useQueryClient();
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const editItems = useMutation({
     mutationFn: updateShoppingListItems,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
       setMessage(t('Shopping list saved successfully'));
     },
@@ -35,7 +35,7 @@ const ShoppingList = () => {
 
   const editRecipes = useMutation({
     mutationFn: updateShoppingListRecipes,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
     },
   });
@@ -74,7 +74,7 @@ const ShoppingList = () => {
 
   return (
     <form
-      className={`gap-5 dg gap-30 ${styles.grid}`}
+      className={`gap-5 dg gap-30 ${styles.shoppingListGrid}`}
       onSubmit={(e) => {
         e.preventDefault();
         const items = submbitShoppingList(e);
@@ -99,11 +99,14 @@ const ShoppingList = () => {
         ) : null}
 
         {message ? <p className="message success mb-3">{message}</p> : null}
-        <Button
-          text={t('Save shopping list')}
-          type="submit"
-          className="w-100"
-        />
+
+        <div className={`w-100 ${styles.submitButtonWrapper}`}>
+          <Button
+            text={t('Save shopping list')}
+            type="submit"
+            className={`w-100 ${styles.submitButton}`}
+          />
+        </div>
       </div>
     </form>
   );

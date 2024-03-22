@@ -1,8 +1,8 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 // eslint-disable-next-line import/no-unresolved
-import { imagetools } from "vite-imagetools";
-import sass from "sass";
+import { imagetools } from 'vite-imagetools';
+import sass from 'sass';
 
 export default defineConfig({
   plugins: [react(), imagetools()],
@@ -12,5 +12,8 @@ export default defineConfig({
         implementation: sass,
       },
     },
+  },
+  optimizeDeps: {
+    exclude: ['dnd-kit'],
   },
 });

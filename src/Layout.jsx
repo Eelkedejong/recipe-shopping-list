@@ -30,16 +30,22 @@ const Layout = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="main w-100 bg-light-grey">
-      <Suspense fallback={<div>Loading...</div>}>
-        <Navigation />
-        <StickyNavigation />
+    <main className="main w-100 h-100 bg-light-grey">
+      <Navigation />
+      <StickyNavigation />
+      <Suspense
+        fallback={
+          <div className="h-100 w-100 df aic jcc">
+            <div className="loader"></div>
+          </div>
+        }
+      >
         <Routes>
           <Route
             path="/recipes"
             element={
               <>
-                <section className={`section w-100 rounded-top-l`}>
+                <section className="w-100 rounded-top-l">
                   <Header title={t('Your recipes')} />
                   <RecipeList />
                 </section>
@@ -51,7 +57,7 @@ const Layout = () => {
             path="/recipes/all"
             element={
               <>
-                <section className={`section w-100 rounded-top-l`}>
+                <section className="w-100 rounded-top-l">
                   <Header title={t('Discover new tastes')} />
                   <TypeBanner />
                   <PublicRecipeList />
@@ -65,7 +71,7 @@ const Layout = () => {
             path="/recipes/all/:type"
             element={
               <>
-                <section className={`section w-100 rounded-top-l`}>
+                <section className="w-100 rounded-top-l">
                   <Header useParamTitle={true} hiddenMobile={true} />
                   <TypeBanner />
                   <PublicRecipeList />
@@ -79,7 +85,7 @@ const Layout = () => {
             path="/recipe/:id"
             element={
               <>
-                <section className={`section w-100 rounded-top-l`}>
+                <section className="full-page w-100 rounded-top-l">
                   <Header
                     returnUrl={'/recipes'}
                     returnText={t('All recipes')}
@@ -87,7 +93,7 @@ const Layout = () => {
                   />
                   <RecipeDetail />
                 </section>
-                <RecipeActions />
+                {/* <RecipeActions /> */}
               </>
             }
           />
@@ -95,7 +101,7 @@ const Layout = () => {
             path="/recipe/new"
             element={
               <>
-                <section className={`full-page`}>
+                <section className="full-page">
                   <Header title={t('New recipe')} hideSearch={true} />
                   <CreateRecipe />
                 </section>
@@ -106,7 +112,7 @@ const Layout = () => {
             path="/recipe/edit/:id"
             element={
               <>
-                <section className={`full-page`}>
+                <section className="full-page">
                   <Header title={t('Edit recipe')} hideSearch={true} />
                   <EditRecipe />
                 </section>
@@ -117,8 +123,8 @@ const Layout = () => {
             path="/shopping-list"
             element={
               <>
-                <section>
-                  <Header title={t('My Shopping list')} />
+                <section className="full-page">
+                  <Header title={t('Shopping list')} />
                   <ShoppingList />
                 </section>
               </>
@@ -139,7 +145,7 @@ const Layout = () => {
             path="/"
             element={
               <>
-                <section className={`w-100 rounded-top-l`}>
+                <section className="w-100 rounded-top-l">
                   <Header />
                   <Overview />
                 </section>

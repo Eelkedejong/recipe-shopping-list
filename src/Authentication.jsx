@@ -82,7 +82,7 @@ const Authentication = () => {
     <>
       {newUserData ? (
         // @TODO: Add a loading component.
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>Loading... </div>}>
           <Layout />
         </Suspense>
       ) : null}

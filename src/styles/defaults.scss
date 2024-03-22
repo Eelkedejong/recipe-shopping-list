@@ -20,11 +20,11 @@ $checkbox-size: 20px;
 }
 
 .checkbox {
+  height: 25px;
   position: relative !important;
   appearance: none;
-  // margin: 16px;
   box-sizing: content-box;
-  overflow: hidden;
+  // overflow: hidden;
   cursor: pointer;
 
   // circle

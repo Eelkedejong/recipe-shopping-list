@@ -1,0 +1,7 @@
+@import '../../styles/variables.scss';
+
+.groceryListItem {
+  touch-action: none;
+  border-bottom: 1px dashed $color-main;
+  cursor: grab;
+}

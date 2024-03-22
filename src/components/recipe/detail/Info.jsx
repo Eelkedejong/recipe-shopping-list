@@ -11,18 +11,18 @@ const RecipeDetail = ({ recipe }) => {
 
   const difficultyicon = () => {
     const icons = {
-      Easy: easy,
-      Medium: medium,
-      Difficult: difficult,
+      [t('Easy')]: easy,
+      [t('Medium')]: medium,
+      [t('Difficult')]: difficult,
     };
-    return icons[recipe.difficulty] || difficult;
+    return icons[t(recipe.difficulty)] || difficult;
   };
 
   return (
     <>
       <div>
         <div className="df aic jcsb">
-          <h1 className="fs-28 fw-bold">{recipe.name}</h1>
+          <h1 className="fs-32 fw-bold">{recipe.name}</h1>
           <Link to={`/recipe/edit/${recipe.id}`}>
             <FaPen />
           </Link>
@@ -40,7 +40,7 @@ const RecipeDetail = ({ recipe }) => {
             : null}
         </div>
         <div className="my-5">{recipe.description}</div>
-        <div className="df fww gap-5">
+        <div className="df fww gap-5 py-3">
           {recipe.time ? (
             <div
               className={`df fdc aic jcc f1 p-2 bg-main-lighter rounded-s ${styles.detailBlock}`}
@@ -65,7 +65,7 @@ const RecipeDetail = ({ recipe }) => {
 
           {recipe.difficulty ? (
             <div
-              className={`df fdc aic jcc f1 p-2 bg-main-lighter rounded-s ${styles.detailBlock}`}
+              className={`df fdc aic jcc f1 p-2 py-3 bg-main-lighter rounded-s ${styles.detailBlock}`}
             >
               <div className="df aic gap-2 text-main fs-14">
                 <img src={difficultyicon()} alt="recipe difficulty" />

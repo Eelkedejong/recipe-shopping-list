@@ -26,6 +26,10 @@
 }
 
 .navigation {
+  @include screen-xl(min) {
+    min-width: 360px;
+  }
+
   @include screen-m(min) {
     min-height: 100vh;
     grid-template-columns: 1fr 4fr 1fr;
@@ -62,6 +66,10 @@
     @include screen-m(max) {
       margin: 0 40px;
     }
+  }
+
+  > ul {
+    transition: $default-transition;
   }
 }
 
@@ -103,6 +111,7 @@
   background: none;
   border: 0;
   cursor: pointer;
+  transition: $default-transition;
 
   &:focus {
     outline: none;

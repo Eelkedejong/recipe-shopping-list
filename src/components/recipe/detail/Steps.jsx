@@ -6,8 +6,8 @@ const Steps = ({ steps }) => {
 
   return (
     <>
-      <div className={` ${styles.stepsDetailsWrapper} pb-5`}>
-        <h3 className="fs-18 fw-semibold pb-5">{t('Cooking steps')}</h3>
+      <div className={` ${styles.stepsDetailsWrapper} bg-white p-5 rounded-m`}>
+        <h3 className="fs-20 fw-semibold pb-5">{t('Cooking steps')}</h3>
         {steps
           ? steps.map((step, index) => {
               return (
@@ -18,7 +18,7 @@ const Steps = ({ steps }) => {
                   key={index}
                 >
                   <span
-                    className={`df aic jcc bg-main-light text-main fw-semibold rounded-full fs-14 ${styles.indicator}`}
+                    className={`df aic jcc bg-main text-white fw-semibold rounded-full fs-14 ${styles.indicator}`}
                   >
                     {index + 1}
                   </span>

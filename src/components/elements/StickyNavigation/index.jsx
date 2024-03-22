@@ -42,7 +42,9 @@ const StickyNavigation = () => {
   // On the recipe form the sticky nav is different.
   // @TODO: Find a better way to do this.
   const formPage =
-    locationPath === '/recipe/new' || locationPath.includes('/recipe/edit');
+    locationPath === '/recipe/new' ||
+    locationPath.includes('/recipe/edit') ||
+    locationPath === '/shopping-list';
 
   return (
     <div ref={wrapperRef} className="desktop-hidden">

@@ -24,41 +24,48 @@ div {
 // Mobile extra small -- 360px
 @mixin screen-xxs($orientation) {
   @media (#{$orientation}-width: #{$screen-xxs}) {
-      @content;
+    @content;
   }
 }
 
 // Mobile small -- 480px
 @mixin screen-xs($orientation) {
   @media (#{$orientation}-width: #{$screen-xs}) {
-      @content;
+    @content;
   }
 }
 
 // Mobile -- 768px
 @mixin screen-s($orientation) {
   @media (#{$orientation}-width: #{$screen-s}) {
-      @content;
+    @content;
   }
 }
 
 // Tablet -- 1024px
 @mixin screen-m($orientation) {
   @media (#{$orientation}-width: #{$screen-m}) {
-      @content;
+    @content;
   }
 }
 
 // Desktop -- 1200px
 @mixin screen-l($orientation) {
   @media (#{$orientation}-width: #{$screen-l}) {
-      @content;
+    @content;
   }
 }
 
 // Desktop -- 1400px
 @mixin screen-xl($orientation) {
   @media (#{$orientation}-width: #{$screen-xl}) {
-      @content;
+    @content;
+  }
+}
+
+// Desktop XL -- 1600px
+@mixin screen-xxl($orientation) {
+  @media (#{$orientation}-width: #{$screen-xxl}) {
+    @content;
   }
 }

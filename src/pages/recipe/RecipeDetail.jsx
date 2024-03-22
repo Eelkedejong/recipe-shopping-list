@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import getRecipe from './api/getRecipe';
 import Info from '../../components/recipe/detail/Info';
-import Image from '../../components/recipe/detail/Image';
+const Image = lazy(() => import('../../components/recipe/detail/Image'));
 import Ingredients from '../../components/recipe/detail/Ingredients';
 import Steps from '../../components/recipe/detail/Steps';
 import styles from './recipe.module.scss';
@@ -45,9 +45,13 @@ const RecipeDetail = () => {
   return (
     <>
       {results.isSuccess ? (
-        <div className={`dg bg-white rounded-m gap-5 ${styles.detailPage}`}>
-          <div className={styles.detailsInfoWrapper}>
+        <div className={`dg gap-5 ${styles.detailPage}`}>
+          <div
+            className={`bg-white rounded-m p-5 ${styles.detailsInfoWrapper}`}
+          >
             <Info recipe={recipe} />
+          </div>
+          <div className={`bg-white rounded-m p-5`}>
             <Ingredients
               ingredients={recipe.ingredients}
               persons={recipe.persons}
@@ -69,10 +73,12 @@ const RecipeDetail = () => {
               {t('Add to shopping list')}
             </button>
           </div>
+
+          <Image image={recipe.image} />
+
           <div>
-            <Image image={recipe.image} />
+            <Steps steps={recipe.steps} />
           </div>
-          <Steps steps={recipe.steps} />
         </div>
       ) : null}
     </>

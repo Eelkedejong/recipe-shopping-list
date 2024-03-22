@@ -61,7 +61,7 @@ const ShoppingListRecipe = ({
                   className="df w-50 gap-4 mb-4 pb-1"
                   key={ingredient.ingredient}
                 >
-                  <label className="mr-3 df gap-4 label">
+                  <label className="mr-3 df gap-4 label cursor-pointer">
                     <input
                       type="checkbox"
                       className="checkbox"
