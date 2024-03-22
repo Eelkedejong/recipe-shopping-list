@@ -34,14 +34,10 @@ const GroceryList = () => {
   console.log('list', list);
 
   // @TODO: Check if this is still necessary. Else remove the entire extraItems logic
-  // if (list !== undefined) {
-  //   // merge the list.items and list.extraItems arrays.
-  //   items = list.items.concat(list.extraItems);
-  // }
-
-  items = list.items;
-
-  console.log('items', items);
+  if (list !== undefined) {
+    // merge the list.items and list.extraItems arrays.
+    items = list.items.concat(list.extraItems);
+  }
 
   const [groceries, setGroceries] = useState([]);
 
