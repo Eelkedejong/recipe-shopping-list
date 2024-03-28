@@ -23,6 +23,10 @@
       grid-column: 1;
     }
   }
+
+  @include screen-l(max) {
+    padding-bottom: 160px;
+  }
 }
 
 .submitButtonWrapper {

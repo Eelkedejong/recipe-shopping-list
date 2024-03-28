@@ -15,9 +15,10 @@ const CreateRecipe = () => {
   const mutation = useMutation({
     mutationFn: createRecipe,
     onSuccess: (data) => {
-      queryClient.setQueryData('recipes', data);
-      // queryClient.invalidateQueries({ queryKey: ["recipes"] });
-      navigate('/');
+      // queryClient.setQueryData('recipes', data);
+      queryClient.invalidateQueries({ queryKey: ['recipes'] });
+      // Check if the data has an id, if not, navigate to the home page.
+      navigate('/recipe/' + data);
     },
   });
 
@@ -27,15 +28,6 @@ const CreateRecipe = () => {
         handleSubmit={(responseData) => {
           mutation.mutate([responseData, userToken]);
         }}
-      />
-
-      <Button
-        onClick={() => {
-          navigate('/');
-        }}
-        text={t('Cancel')}
-        type="ghost"
-        className="my-4"
       />
     </>
   );

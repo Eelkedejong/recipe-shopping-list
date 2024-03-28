@@ -51,7 +51,7 @@ const ShoppingListItems = ({ items }) => {
             setIngredients([...ingredients, ['']]);
           }}
         >
-          <span>{t('Add ingredient')}</span>
+          <span>{t('Add extra item')}</span>
           <FaPlusCircle />
         </button>
       </div>

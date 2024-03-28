@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import ImageUploader from './image/ImageUploader';
 import IngredientContext from './ingredients/utils/ingredientContext';
 import { Input, Textarea, Select } from '../ui/Fields';
@@ -11,6 +12,8 @@ import styles from './recipe.module.scss';
 
 const RecipeForm = ({ recipe, handleSubmit }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
   // @TODO: Move the ingredientRows state to the IngredientsList component.
   // Possibly use redux instead of context?
   const ingredientRows = useState(
@@ -59,7 +62,7 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
 
   return (
     <form
-      className={`df fdc gap-4 ${styles.form}`}
+      className={`df fdc gap-4 pb-5 ${styles.form}`}
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmitRecipe(e);
@@ -148,11 +151,22 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
         <StepsList steps={recipe ? recipe.steps : null} />
       </div>
 
-      <div className={`w-100 ${styles.submitButtonWrapper}`}>
+      <div
+        className={`w-100 bg-white rounded-m p-5 ${styles.submitButtonWrapper}`}
+      >
         <Button
-          className={styles.submitButton}
+          className={`w-100 ${styles.submitButton}`}
           text={t('Save recipe')}
           type="submit"
+        />
+
+        <Button
+          onClick={() => {
+            navigate(-1);
+          }}
+          text={t('Cancel')}
+          type="ghost"
+          className="my-4 w-100"
         />
       </div>
     </form>

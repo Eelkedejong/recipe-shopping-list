@@ -32,7 +32,7 @@ const IngredientsList = () => {
       </div>
       <div className="df jcfe">
         <button
-          type="button"
+          // type="button"
           className="df aic jcfe gap-3 py-2 fs-16"
           onClick={(e) => {
             e.preventDefault;

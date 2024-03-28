@@ -31,7 +31,6 @@
   }
 
   @include screen-m(min) {
-    min-height: 100vh;
     grid-template-columns: 1fr 4fr 1fr;
 
     // TODO check why the transitions do not work properly
@@ -81,6 +80,7 @@
   }
 
   @include screen-m(min) {
+    min-height: 100vh;
     box-shadow: 4px 0px 8px 0px rgba(0, 0, 0, 0.05);
     z-index: 1;
   }

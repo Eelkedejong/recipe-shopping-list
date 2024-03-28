@@ -1,5 +1,5 @@
-import { useEffect, lazy, Suspense } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, lazy, useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -8,18 +8,23 @@ import Info from '../../components/recipe/detail/Info';
 const Image = lazy(() => import('../../components/recipe/detail/Image'));
 import Ingredients from '../../components/recipe/detail/Ingredients';
 import Steps from '../../components/recipe/detail/Steps';
-import styles from './recipe.module.scss';
+import Button from '../../components/ui/Button';
 import { updateShoppingListRecipes } from '../shoppingList/api/updateShoppingList';
+import { FaChevronLeft, FaBasketShopping } from 'react-icons/fa6';
+import styles from './recipe.module.scss';
 
 const RecipeDetail = () => {
   const userToken = useSelector((state) => state.user.value.token);
   const queryClient = useQueryClient();
   const { id } = useParams();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [message, setMessage] = useState('');
 
   const editMutation = useMutation({
     mutationFn: updateShoppingListRecipes,
     onSuccess: () => {
+      setMessage(t('Recipe added to shopping list'));
       queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
     },
   });
@@ -45,7 +50,7 @@ const RecipeDetail = () => {
   return (
     <>
       {results.isSuccess ? (
-        <div className={`dg gap-5 ${styles.detailPage}`}>
+        <div className={`dg gap-5 pb-5 ${styles.detailPage}`}>
           <div
             className={`bg-white rounded-m p-5 ${styles.detailsInfoWrapper}`}
           >
@@ -56,7 +61,18 @@ const RecipeDetail = () => {
               ingredients={recipe.ingredients}
               persons={recipe.persons}
             />
+
+            {message ? (
+              <Link
+                to="/shopping-list"
+                className="message success my-4 td-underline"
+              >
+                {message}
+              </Link>
+            ) : null}
+
             <button
+              className="mt-4 df aic gap-3"
               onClick={(e) => {
                 e.preventDefault();
                 const recipes = {
@@ -70,6 +86,7 @@ const RecipeDetail = () => {
                 editMutation.mutate([recipes, userToken]);
               }}
             >
+              <FaBasketShopping />
               {t('Add to shopping list')}
             </button>
           </div>
@@ -81,6 +98,15 @@ const RecipeDetail = () => {
           </div>
         </div>
       ) : null}
+
+      <button
+        className={`df aic rounded-full bg-white p-2 desktop-hidden ${styles.backButton}`}
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        <FaChevronLeft className="fs-18" />
+      </button>
     </>
   );
 };

@@ -30,7 +30,7 @@ const EditRecipe = () => {
     onSuccess: (data) => {
       // queryClient.setQueryData("recipes", data);
       queryClient.invalidateQueries({ queryKey: ['recipes'] });
-      navigate('/');
+      navigate('/recipe/' + recipe.id);
     },
   });
 
@@ -39,23 +39,22 @@ const EditRecipe = () => {
     onSuccess: (data) => {
       // queryClient.setQueryData("recipes", data);
       queryClient.invalidateQueries({ queryKey: ['recipes'] });
-      navigate('/');
+      navigate('/recipes');
     },
   });
 
   return (
     <>
-      {/* <div className="df jcsb mb-4">
-        <h2 className="fs-24">{t("Edit recipe")}</h2>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            deleteMutation.mutate([userToken, id]);
-          }}
-        >
-          <FaTrash />
-        </button>
-      </div> */}
+      <button
+        className={`df aic gap-2 ${styles.deleteButton}`}
+        onClick={(e) => {
+          e.preventDefault();
+          deleteMutation.mutate([userToken, id]);
+        }}
+      >
+        <FaTrash />
+        <span className="mobile-hidden">{t('Delete recipe')}</span>
+      </button>
 
       {results.isSuccess ? (
         <RecipeForm
@@ -65,15 +64,6 @@ const EditRecipe = () => {
           }}
         />
       ) : null}
-
-      <Button
-        onClick={() => {
-          navigate('/');
-        }}
-        text={t('Cancel')}
-        type="ghost"
-        className="my-4"
-      />
     </>
   );
 };

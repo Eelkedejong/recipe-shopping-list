@@ -21,6 +21,10 @@ const Header = ({
   const { type } = useParams();
   const { t } = useTranslation();
 
+  if (hideSearch === undefined) {
+    hideSearch = false;
+  }
+
   return (
     <header
       className={`
@@ -56,7 +60,7 @@ const Header = ({
             className={`desktop-hidden p-3 ${styles.searchButton}`}
             onClick={() => setOpen(!open)}
           >
-            {/* <FaSearch className="fs-24 text-white mobile-hidden" /> */}
+            {/* <FaSearch className="fs-24 text-white mobile-hidden asdasd" /> */}
             <span
               className={`desktop-hidden ${styles.searchIcon} ${open ? styles.close : null}`}
             ></span>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   DndContext,
   KeyboardSensor,
@@ -31,13 +32,14 @@ const GroceryList = () => {
   let items = []; // Track the items in the shopping list.
   const list = shopplingList?.data?.data;
 
-  console.log('list', list);
-
   // @TODO: Check if this is still necessary. Else remove the entire extraItems logic
   if (list !== undefined) {
     // merge the list.items and list.extraItems arrays.
-    items = list.items.concat(list.extraItems);
+    // items = list.items.concat(list.extraItems);
+    items = list.items;
   }
+
+  console.log('items', items);
 
   const [groceries, setGroceries] = useState([]);
 
@@ -87,7 +89,18 @@ const GroceryList = () => {
       ) : null}
 
       {shopplingList.isSuccess && items.length === 0 ? (
-        <p>{t('Your grocery list is empty')}</p>
+        <>
+          <h3 className="pb-2">{t('Your grocery list is empty')}</h3>
+          <span className="df aic gap-1">
+            <Link className="text-main" to="/recipes">
+              {t('Add recipes')}
+            </Link>
+            {t('or')}
+            <Link className="text-main" to="/shopping-list">
+              {t('Add items manually')}
+            </Link>
+          </span>
+        </>
       ) : null}
     </div>
   );

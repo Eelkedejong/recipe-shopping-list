@@ -42,7 +42,10 @@ const RecipeList = () => {
         {!recipes.length && !results.isLoading ? (
           <div>
             <div>{t('No recipes found')}</div>
-            <button onClick={() => dispatch(resetSearchParams())}>
+            <button
+              className="text-main td-underline mt-3"
+              onClick={() => dispatch(resetSearchParams())}
+            >
               {t('Reset filters')}
             </button>
           </div>

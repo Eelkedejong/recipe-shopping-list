@@ -2,6 +2,7 @@
 
 .wrapper {
   @include screen-m(max) {
+    display: none;
     top: -78px;
     z-index: 10;
     position: absolute;
@@ -12,7 +13,9 @@
 
   &.open {
     @include screen-m(max) {
-      top: 78px;
+      // Todo: Add an animation for the search bar.
+      top: 0;
+      display: block;
 
       .overlay {
         opacity: 1;

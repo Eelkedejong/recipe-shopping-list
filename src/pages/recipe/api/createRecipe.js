@@ -8,7 +8,23 @@ const createRecipe = async ([recipeData, token]) => {
     },
   };
 
-  await fetch(import.meta.env.VITE_API_KEY + 'api/recipe/', requestOptions);
+  try {
+    const res = await fetch(
+      import.meta.env.VITE_API_KEY + 'api/recipe/',
+      requestOptions
+    );
+
+    if (!res.ok) {
+      console.log('error in getRecipe');
+      throw new Error(`recipe/ get not ok`);
+    }
+
+    const responseData = await res.json();
+
+    return responseData?.data?.id;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export default createRecipe;

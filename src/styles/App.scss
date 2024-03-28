@@ -8,6 +8,8 @@
 }
 
 section {
+  position: relative;
+
   @include screen-m(min) {
     padding: 0 42px;
   }
@@ -34,6 +36,7 @@ hr {
 }
 
 .message {
+  display: block;
   padding: 16px;
   font-size: 14px;
 

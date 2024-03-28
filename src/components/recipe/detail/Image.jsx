@@ -20,26 +20,25 @@ const Image = ({ image }) => {
 
   const recipeImage = cld.image(image);
 
-  console.log('image', image);
-  console.log('recipeImage', recipeImage);
-
   // Set the delivery format to WebP
   recipeImage.delivery(Delivery.format('webp'));
 
   // Resize to fit in the recipe tile
   recipeImage.quality('auto');
-  recipeImage.resize(fill().width(900).height(350));
-
-  console.log('recipeImage final', recipeImage);
+  recipeImage.format('auto');
+  // recipeImage.resize(fill().width(900).height(600));
 
   return (
     <>
       {image ? (
-        <AdvancedImage
-          cldImg={recipeImage}
-          className={styles.detailsImage}
-          plugins={[lazyload()]}
-        />
+        <>
+          <AdvancedImage
+            // style={{ maxHeight: '300px' }}
+            cldImg={recipeImage}
+            className={styles.detailsImage}
+            plugins={[responsive()]}
+          />
+        </>
       ) : (
         <div
           className={`df jcc bg-main rounded-top-m f1 ${styles.placeholderImage}`}

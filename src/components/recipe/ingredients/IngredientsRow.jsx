@@ -56,7 +56,9 @@ const IngredientsRow = ({ ingredient, index }) => {
         />
 
         <button
+          type="button"
           onClick={(e) => {
+            console.log('delete', e);
             e.preventDefault();
             const newRows = ingredientRows.filter((_, i) => i !== index);
             setIngredientRows(newRows);

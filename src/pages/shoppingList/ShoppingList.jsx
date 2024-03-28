@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
@@ -14,7 +15,6 @@ import ShoppingListItems from '../../components/shoppingList/ShoppingListItems';
 import { submbitShoppingList } from './utils/sumbitShopingList';
 import Button from '../../components/ui/Button';
 import styles from './shoppinglist.module.scss';
-
 const ShoppingList = () => {
   const [message, setMessage] = useState('');
   const user = useSelector((state) => state.user.value);
@@ -90,7 +90,18 @@ const ShoppingList = () => {
             recipeList={recipeList}
             shoppingListRecipes={list.recipes}
           />
-        ) : null}
+        ) : !recipes.isLoading || !shopplingList.isLoading ? (
+          <div className="bg-white rounded-m p-5">
+            <h4 className="pb-2">{t('No recipes in your shopping list')}</h4>
+            <span>
+              <Link className="text-main" to="/recipes">
+                {t('Add recipes')}
+              </Link>
+            </span>
+          </div>
+        ) : (
+          <p>loading</p>
+        )}
       </div>
 
       <div>
