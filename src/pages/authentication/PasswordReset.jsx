@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -18,7 +18,7 @@ const PasswordReset = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const { data, isSuccess, refetch } = useQuery({
+  const { data, error, isSuccess, refetch } = useQuery({
     queryKey: ['reset', password, id, token],
     queryFn: passwordReset,
     ...{
@@ -26,11 +26,15 @@ const PasswordReset = () => {
       enabled: false,
       retry: false,
       cache: 0,
-      onError: (error) => {
-        setErrorMessage(error.message);
-      },
     },
   });
+
+  useEffect(() => {
+    console.log(error);
+    if (error) {
+      setErrorMessage(error.message);
+    }
+  }, [error]);
 
   return (
     <>

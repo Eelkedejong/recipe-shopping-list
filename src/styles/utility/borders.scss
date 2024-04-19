@@ -1,6 +1,6 @@
 // Radius
 .rounded-l {
-  border-radius: 35px
+  border-radius: 35px;
 }
 .rounded-m {
   border-radius: 20px;
@@ -17,13 +17,18 @@
   border-radius: 10px;
 }
 .rounded-full {
-  border-radius: 50%
+  border-radius: 50%;
 }
 
 // Borders
 .bordered {
-  border: 2px solid $color-black
+  border: 2px solid $color-black;
 }
 .border-bottom {
   border-bottom: 1px solid $color-black;
+}
+
+// Box shadow {
+.shadow-top {
+  box-shadow: $shadow-top;
 }

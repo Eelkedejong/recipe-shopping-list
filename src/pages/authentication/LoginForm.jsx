@@ -7,8 +7,7 @@ import Input from '../../components/ui/Input';
 
 const LoginForm = ({ refetch }) => {
   const { t } = useTranslation();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [loginname, setLoginname] = useState('');
   const [password, setPassword] = useState('');
 
   const [, setLoginData] = useContext(LoginContext);
@@ -25,13 +24,12 @@ const LoginForm = ({ refetch }) => {
           refetch();
         }}
       >
-        {/* @TODO: Also allow login with username */}
         <Input
-          id="email"
-          type="email"
-          label={t('E-mail')}
-          onChange={(e) => setEmail(e.target.value)}
-          key="email"
+          id="loginname"
+          type="text"
+          label={t('E-mail or username')}
+          onChange={(e) => setLoginname(e.target.value)}
+          key="loginname"
         />
 
         <Input
@@ -51,7 +49,7 @@ const LoginForm = ({ refetch }) => {
           className={'fs-14'}
           onClick={() => {
             setLoginData({
-              email: email,
+              loginname: loginname,
               password: password,
             });
           }}

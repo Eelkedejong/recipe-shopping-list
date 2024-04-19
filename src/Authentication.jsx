@@ -1,4 +1,4 @@
-import { useState, Suspense, lazy } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Routes, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -6,22 +6,22 @@ import { useDispatch } from 'react-redux';
 import { user } from './store/userSlice';
 import LoginContext from './pages/authentication/utils/loginContext';
 import getUser from './pages/authentication/api/getUser';
-// import CreateForm from "./pages/authentication/CreateForm";
-// import LoginForm from "./pages/authentication/LoginForm";
-// import ErrorMessage from "./pages/authentication/utils/ErrorMessage";
-// import ForgotPassword from "./pages/authentication/ForgotPassword";
-// import PasswordReset from "./pages/authentication/PasswordReset";
-const CreateForm = lazy(() => import('./pages/authentication/CreateForm'));
-const LoginForm = lazy(() => import('./pages/authentication/LoginForm'));
-const ErrorMessage = lazy(
-  () => import('./pages/authentication/utils/ErrorMessage')
-);
-const ForgotPassword = lazy(
-  () => import('./pages/authentication/ForgotPassword')
-);
-const PasswordReset = lazy(
-  () => import('./pages/authentication/PasswordReset')
-);
+import CreateForm from './pages/authentication/CreateForm';
+import LoginForm from './pages/authentication/LoginForm';
+import ErrorMessage from './pages/authentication/utils/ErrorMessage';
+import ForgotPassword from './pages/authentication/ForgotPassword';
+import PasswordReset from './pages/authentication/PasswordReset';
+// const CreateForm = lazy(() => import('./pages/authentication/CreateForm'));
+// const LoginForm = lazy(() => import('./pages/authentication/LoginForm'));
+// const ErrorMessage = lazy(
+//   () => import('./pages/authentication/utils/ErrorMessage')
+// );
+// const ForgotPassword = lazy(
+//   () => import('./pages/authentication/ForgotPassword')
+// );
+// const PasswordReset = lazy(
+//   () => import('./pages/authentication/PasswordReset')
+// );
 import {
   getStoredUserData,
   removeUserData,
@@ -40,7 +40,7 @@ const Authentication = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   // Fetch the user data.
-  const { data, isSuccess, refetch } = useQuery({
+  const { data, error, isSuccess, refetch } = useQuery({
     queryKey: ['user', loginData, formType],
     queryFn: getUser,
     ...{
@@ -48,12 +48,15 @@ const Authentication = () => {
       enabled: false,
       initialData: getStoredUserData(),
       retry: false,
-      onError: (error) => {
-        setErrorMessage(error.message);
-        removeUserData;
-      },
     },
   });
+
+  useEffect(() => {
+    if (error) {
+      setErrorMessage(error.message);
+      removeUserData();
+    }
+  }, [error]);
 
   // Check if there is saved user data.
   const userData = getStoredUserData();
@@ -82,15 +85,21 @@ const Authentication = () => {
     <>
       {newUserData ? (
         // @TODO: Add a loading component.
-        <Suspense fallback={<div>Loading... </div>}>
+        <Suspense
+          fallback={
+            <div className="h-100 w-100 df aic jcc">
+              <div className="loader"></div>
+            </div>
+          }
+        >
           <Layout />
         </Suspense>
       ) : null}
 
       {showLoginForm ? (
         <>
-          <h1 className="ff-logo text-white mt-4" style={{ fontSize: '38px' }}>
-            Cookbook
+          <h1 className="ff-logo text-black mt-4" style={{ fontSize: '38px' }}>
+            My Cookbook
           </h1>
           <div className="mb-5 df aic jcc h-100">
             <main

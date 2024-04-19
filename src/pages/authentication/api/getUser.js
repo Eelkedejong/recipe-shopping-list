@@ -1,16 +1,18 @@
 const getUser = async ({ queryKey }) => {
-  const username = queryKey[1][0].username;
   const password = queryKey[1][0].password;
+  const loginname = queryKey[1][0].loginname;
   const email = queryKey[1][0].email;
+  const username = queryKey[1][0].username;
   const type = queryKey[2];
 
-  if (email && password) {
+  if ((loginname && password) || (email && username && password)) {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: username,
         email: email,
+        username: username,
+        loginname: loginname,
         password: password,
       }),
     };
@@ -25,7 +27,7 @@ const getUser = async ({ queryKey }) => {
       throw new Error(message?.message);
     }
 
-    return res.json();
+    return await res.json();
   } else {
     throw new Error('Please enter an email and password');
   }
