@@ -38,7 +38,7 @@ const PublicRecipeList = () => {
   return (
     <>
       <div className="bg-white p-5 rounded-m">
-        <div className="df gap-3 mb-5">
+        <div className="df gap-3 mb-5 fww">
           {dishTypes.map((recipeType) => (
             <button
               onClick={() => {
@@ -58,7 +58,7 @@ const PublicRecipeList = () => {
               `}
               key={recipeType.label}
             >
-              {recipeType.value}
+              {t(`${recipeType.value}`)}
             </button>
           ))}
         </div>

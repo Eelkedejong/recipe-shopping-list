@@ -3,6 +3,10 @@
 .header {
   h2 {
     margin-top: -5px;
+
+    @include screen-m(max) {
+      font-size: 24px;
+    }
   }
 
   @include screen-m(min) {

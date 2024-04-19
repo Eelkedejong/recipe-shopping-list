@@ -58,7 +58,7 @@
   "Home": "Home",
   "Recipes": "Recepten",
   "Shopping list": "Boodschappenlijst",
-  "Find recipes": "Zoek recepten",
+  "Find Recipes": "Zoek recepten",
   "Language": "Taal",
   "Recipe details": "Recept details",
   "Recipe name:": "Recept naam:",
@@ -78,7 +78,7 @@
   "Breakfast": "Ontbijt",
   "Lunch": "Lunch",
   "Snack": "Tussendoortje",
-  "Pasty": "Gebak",
+  "Pastry": "Gebak",
   "Choose type": "Kies type",
   "Image": "Afbeelding",
   "Cooking steps": "Bereidingswijze",
@@ -102,5 +102,9 @@
   "Add items manually": "Voeg items handmatig toe",
   "No recipes in your shopping list": "Geen recepten in je boodschappenlijst",
   "Add extra item": "Voeg extra item toe",
-  "Recipe added to shopping list": "Recept toegevoegd aan boodschappenlijst"
+  "Recipe added to shopping list": "Recept toegevoegd aan boodschappenlijst",
+  "Shopping": "Boodschappen",
+  "Scroll on the right side, rearrange grocery items on the left side.": "Scroll aan de rechterkant, rangschik boodschappen aan de linkerkant",
+  "recipes": "recepten",
+  "recipe": "recept"
 }

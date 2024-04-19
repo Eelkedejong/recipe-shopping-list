@@ -44,9 +44,9 @@ $default-transition: all 0.3s;
 $screen-xxs: 360px; // Mobile extra small
 $screen-xs: 480px; // Mobile small
 $screen-s: 768px; // Mobile
-$screen-m: 1025px; // Tablet
-$screen-l: 1200px; // Desktop
-$screen-xl: 1400px; // Desktop XL
+$screen-m: 1200px; // Tablet
+$screen-l: 1400px; // Desktop
+$screen-xl: 1600px; // Desktop XL
 $screen-xxl: 2000px; // Desktop XXL
 
 @import './mixins/breakpoints.scss';

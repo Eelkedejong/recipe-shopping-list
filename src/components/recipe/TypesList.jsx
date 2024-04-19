@@ -32,7 +32,7 @@ const TypesList = () => {
   return (
     <>
       {filterOptions.length ? (
-        <div className="df gap-3 mb-5">
+        <div className="df gap-3">
           {filterOptions.map((type) =>
             type !== '' ? (
               <button

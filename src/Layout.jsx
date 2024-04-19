@@ -30,7 +30,7 @@ const Layout = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="main w-100 bg-light-grey">
+    <main className="main w-100 h-100 bg-light-grey">
       <Navigation />
       <StickyNavigation />
       <Suspense

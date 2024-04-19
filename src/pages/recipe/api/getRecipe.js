@@ -2,6 +2,7 @@ const getRecipe = async ({ queryKey }) => {
   const token = queryKey[1];
   const id = queryKey[2];
   const searchParams = queryKey[3];
+  const page = queryKey[4];
 
   console.log('searchParams', searchParams);
 
@@ -9,7 +10,7 @@ const getRecipe = async ({ queryKey }) => {
 
   if (searchParams) {
     // Deconstruct the searchParams object
-    const { type, tags, time, search, limit, page } = searchParams;
+    const { type, tags, time, search, limit } = searchParams;
 
     // Add searchParams to URL if they have a value
     let isFirstQueryParam = true;

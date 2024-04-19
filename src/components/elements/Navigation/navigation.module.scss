@@ -201,10 +201,12 @@
       background-color: $color-white;
       overflow-y: auto;
       height: 100vh;
+      gap: 5px;
 
       li,
       h4 {
         padding-left: 30px;
+        font-size: 16px;
       }
     }
   }

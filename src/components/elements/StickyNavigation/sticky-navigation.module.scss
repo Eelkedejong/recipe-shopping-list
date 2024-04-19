@@ -13,8 +13,16 @@
     }
   }
 
-  &.open {
-    button {
+  &.openRecipe {
+    .recipe {
+      background-color: $color-main;
+      border-radius: 0 0 10px 10px;
+      color: $color-white;
+    }
+  }
+
+  &.openShopping {
+    .shopping {
       background-color: $color-main;
       border-radius: 0 0 10px 10px;
       color: $color-white;
@@ -34,11 +42,21 @@
   z-index: 40;
   transition: $default-transition;
 
+  &.recipeSubNav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  &.shoppingSubNav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   &:not(.open) {
     transform: translateY(65px);
   }
 
-  &:not(.formPage) {
-    box-shadow: $shadow-top;
+  &.open {
+    &:not(.formPage) {
+      box-shadow: $shadow-top;
+    }
   }
 }

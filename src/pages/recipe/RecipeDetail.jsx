@@ -56,39 +56,41 @@ const RecipeDetail = () => {
           >
             <Info recipe={recipe} />
           </div>
-          <div className={`bg-white rounded-m p-5`}>
-            <Ingredients
-              ingredients={recipe.ingredients}
-              persons={recipe.persons}
-            />
+          <div className={styles.detailsIngredientsWrapper}>
+            <div className={`bg-white rounded-m p-5 $`}>
+              <Ingredients
+                ingredients={recipe.ingredients}
+                persons={recipe.persons}
+              />
 
-            {message ? (
-              <Link
-                to="/shopping-list"
-                className="message success my-4 td-underline"
+              {message ? (
+                <Link
+                  to="/shopping-list"
+                  className="message success mobile my-4 td-underline"
+                >
+                  {message}
+                </Link>
+              ) : null}
+
+              <button
+                className={`mt-4 df aic gap-3 ${styles.addToShoppingList}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const recipes = {
+                    recipes: [
+                      {
+                        id: recipe.id,
+                        persons: recipe.persons,
+                      },
+                    ],
+                  };
+                  editMutation.mutate([recipes, userToken]);
+                }}
               >
-                {message}
-              </Link>
-            ) : null}
-
-            <button
-              className="mt-4 df aic gap-3"
-              onClick={(e) => {
-                e.preventDefault();
-                const recipes = {
-                  recipes: [
-                    {
-                      id: recipe.id,
-                      persons: recipe.persons,
-                    },
-                  ],
-                };
-                editMutation.mutate([recipes, userToken]);
-              }}
-            >
-              <FaBasketShopping />
-              {t('Add to shopping list')}
-            </button>
+                <FaBasketShopping />
+                <span>{t('Add to shopping list')}</span>
+              </button>
+            </div>
           </div>
 
           <Image image={recipe.image} />
@@ -105,7 +107,7 @@ const RecipeDetail = () => {
           navigate(-1);
         }}
       >
-        <FaChevronLeft className="fs-18" />
+        <FaChevronLeft className="fs-20" />
       </button>
     </>
   );

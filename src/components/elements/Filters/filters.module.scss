@@ -24,6 +24,7 @@
     height: 0;
     overflow: hidden;
     padding: 0;
+    transition: $default-transition;
 
     &.open {
       height: 100%;

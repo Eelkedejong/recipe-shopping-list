@@ -24,13 +24,15 @@ const TypeBanner = () => {
   }
 
   return (
-    <div
-      className={`rounded-m mb-5 ${styles.banner}`}
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundPosition: backgroundPosition,
-      }}
-    ></div>
+    <div className={styles.bannerWrapper}>
+      <div
+        className={styles.banner}
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundPosition: backgroundPosition,
+        }}
+      ></div>
+    </div>
   );
 };
 

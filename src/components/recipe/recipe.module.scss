@@ -25,12 +25,16 @@
   }
 
   @include screen-l(max) {
-    padding-bottom: 160px;
+    padding-bottom: 200px;
   }
 }
 
 .submitButtonWrapper {
+  gap: 20px;
+  flex-direction: column;
+
   @include screen-m(max) {
+    border-radius: 0;
     position: fixed;
     bottom: 65px;
     z-index: 30;
@@ -38,9 +42,16 @@
     background-color: $color-white;
     border-bottom: $default-border;
     box-shadow: $shadow-top;
+    flex-direction: row-reverse;
 
     button {
       height: 38px;
+      font-size: 14px;
+      flex: 1;
+
+      &:first-of-type {
+        flex: 2;
+      }
     }
   }
 }
@@ -88,6 +99,11 @@ section {
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
     transition: $default-transition ease;
 
+    .tileImage {
+      background-size: cover;
+      background-position: 50% 50%;
+    }
+
     @include screen-m(min) {
       &:hover {
         box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
@@ -95,20 +111,19 @@ section {
         transition: $default-transition ease;
       }
 
-      img {
-        min-height: 120px;
+      .tileImage,
+      .placeholderImage {
+        min-height: 240px;
       }
     }
 
     @include screen-m(max) {
       flex-direction: row;
-      // display: grid;
-      // grid-template-columns: 1fr 1.5fr;
-      // gap: 10px;
+      display: grid;
+      grid-template-columns: 3fr 4fr;
 
-      img,
+      .tileImage,
       .placeholderImage {
-        max-width: 40%;
         min-height: 120px;
         border-radius: 20px 0 0 20px;
       }
@@ -169,6 +184,11 @@ section {
 }
 
 .detailsImage {
+  background-size: cover;
+  background-position: 50% 50%;
+  min-height: 400px;
+  max-height: 500px;
+
   @include screen-m(max) {
     width: 100%;
     grid-row: 1;
@@ -177,7 +197,7 @@ section {
   @include screen-m(min) {
     border-radius: 20px;
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 1/3;
   }
 }
 
@@ -197,4 +217,16 @@ section {
   height: 180px;
   background-position: 22% 22%;
   background-size: cover;
+
+  @include screen-m(min) {
+    margin-bottom: 24px;
+    border-radius: 20px;
+  }
+}
+
+.bannerWrapper {
+  @include screen-m(max) {
+    padding-top: 32px;
+    background-color: $color-white;
+  }
 }

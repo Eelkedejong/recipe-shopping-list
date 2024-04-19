@@ -52,15 +52,9 @@ const Filters = () => {
 
   return (
     <aside>
-      {/* <button
-        onClick={() => setOpen(!open)}
-        className={`bg-main p-3 rounded-full text-white df aic jcc ${styles.filterToggle} `}
-      >
-        <FaSliders />
-      </button> */}
       <button
         onClick={() => setOpen(!open)}
-        className={`p-3 text-main fs-14 fw-semibold rounded-s df aic jcc ${styles.filterToggle} `}
+        className={`p-3 mt-2 text-main fs-14 fw-regular rounded-s df aic jcc ${styles.filterToggle} `}
       >
         <FaSliders className="mr-3" /> {t('Filter')}
       </button>

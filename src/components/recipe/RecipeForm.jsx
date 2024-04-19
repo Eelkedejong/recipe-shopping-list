@@ -152,7 +152,7 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
       </div>
 
       <div
-        className={`w-100 bg-white rounded-m p-5 ${styles.submitButtonWrapper}`}
+        className={`w-100 bg-white rounded-m p-5 df ${styles.submitButtonWrapper}`}
       >
         <Button
           className={`w-100 ${styles.submitButton}`}
@@ -166,7 +166,7 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
           }}
           text={t('Cancel')}
           type="ghost"
-          className="my-4 w-100"
+          className="w-100"
         />
       </div>
     </form>

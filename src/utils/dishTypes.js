@@ -28,7 +28,7 @@ export const dishTypes = [
   },
   {
     label: 'side',
-    value: 'Side',
+    value: 'Side dish',
     background: sideImage,
     backgroundPosition: '0% 75%',
   },

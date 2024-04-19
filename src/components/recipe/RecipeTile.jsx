@@ -10,16 +10,18 @@ import styles from './recipe.module.scss';
 const RecipeTile = ({ id, name, image, labels, time, type }) => {
   const { t } = useTranslation();
   // Create a Cloudinary instance for the recipe image.
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: 'dr8avu1nv',
-    },
-  });
+  // const cld = new Cloudinary({
+  //   cloud: {
+  //     cloudName: 'dr8avu1nv',
+  //   },
+  // });
 
-  const recipeImage = cld.image(image);
+  // const recipeImage = cld.image(image);
 
-  // Resize to fit in the recipe tile
-  recipeImage.resize(fill().width(600).height(300).gravity('auto'));
+  // // Resize to fit in the recipe tile
+  // recipeImage.resize(fill().width(600).height(300).gravity('auto'));
+
+  const imageUrl = `https://res.cloudinary.com/dr8avu1nv/image/upload/c_crop,g_custom/${image}.jpg`;
 
   return (
     <Link
@@ -27,7 +29,10 @@ const RecipeTile = ({ id, name, image, labels, time, type }) => {
       className={`df fdc rounded-m ${styles.recipeTile}`}
     >
       {image ? (
-        <AdvancedImage cldImg={recipeImage} className="rounded-top-m" />
+        <div
+          className={`df jcc bg-main rounded-top-m f1 ${styles.tileImage}`}
+          style={{ backgroundImage: `url(${imageUrl})` }}
+        ></div>
       ) : (
         <div
           className={`df jcc bg-main rounded-top-m f1 ${styles.placeholderImage}`}

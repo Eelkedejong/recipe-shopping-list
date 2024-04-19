@@ -3,6 +3,7 @@ import CloudinaryUploadWidget from './CloudinaryUploadWidget';
 
 // const ImageUploader = ({ publicId, setPublicId }) => {
 const ImageUploader = ({ image }) => {
+  console.log('ImageUploader image:', image);
   // Cloudinary cloud name
   const [cloudName] = useState('dr8avu1nv');
   // Cloudinary upload preset

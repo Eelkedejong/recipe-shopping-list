@@ -25,6 +25,12 @@
   }
 }
 
+.detailsIngredientsWrapper {
+  @include screen-m(min) {
+    grid-row: 2/5;
+  }
+}
+
 .detailsInfoWrapper {
   @include screen-m(max) {
     margin-top: -60px;
@@ -60,4 +66,34 @@
 .activeType {
   background-color: $color-main !important;
   color: $color-white !important;
+}
+
+.addToShoppingList {
+  @include screen-m(max) {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background-color: #fff;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 50%;
+
+    span {
+      display: none;
+    }
+  }
+}
+
+//
+// Recipes List page
+// ________________________________
+
+.listWrapper {
+  @include screen-m(max) {
+    padding-bottom: 90px;
+  }
+
+  @include screen-m(min) {
+    border-radius: 20px;
+  }
 }

@@ -1,43 +1,17 @@
-import { Cloudinary } from '@cloudinary/url-gen';
-import { Delivery } from '@cloudinary/url-gen/actions/delivery';
-import {
-  AdvancedImage,
-  responsive,
-  lazyload,
-  placeholder,
-} from '@cloudinary/react';
-import { fill } from '@cloudinary/url-gen/actions/resize';
 import logo from '../../../assets/logo-white.svg';
 import styles from '../recipe.module.scss';
 
 const Image = ({ image }) => {
-  // Create a Cloudinary instance
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: 'dr8avu1nv',
-    },
-  });
-
-  const recipeImage = cld.image(image);
-
-  // Set the delivery format to WebP
-  recipeImage.delivery(Delivery.format('webp'));
-
-  // Resize to fit in the recipe tile
-  recipeImage.quality('auto');
-  recipeImage.format('auto');
-  // recipeImage.resize(fill().width(900).height(600));
+  const imageUrl = `https://res.cloudinary.com/dr8avu1nv/image/upload/c_crop,g_custom/${image}.jpg`;
 
   return (
     <>
       {image ? (
         <>
-          <AdvancedImage
-            // style={{ maxHeight: '300px' }}
-            cldImg={recipeImage}
-            className={styles.detailsImage}
-            plugins={[responsive()]}
-          />
+          <div
+            className={`df jcc bg-main rounded-top-m f1 ${styles.detailsImage}`}
+            style={{ backgroundImage: `url(${imageUrl})` }}
+          ></div>
         </>
       ) : (
         <div

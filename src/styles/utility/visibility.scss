@@ -2,17 +2,29 @@
 // Visibility
 //________________________
 .hidden {
-  display: none !important
+  display: none !important;
 }
 
 .mobile-hidden {
   @include screen-m(max) {
-    display: none !important
+    display: none !important;
   }
 }
 
 .desktop-hidden {
   @include screen-m(min) {
-    display: none !important
+    display: none !important;
+  }
+}
+
+.mobile-hidden-s {
+  @include screen-s(max) {
+    display: none !important;
+  }
+}
+
+.desktop-hidden-s {
+  @include screen-s(min) {
+    display: none !important;
   }
 }

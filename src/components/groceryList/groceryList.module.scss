@@ -5,3 +5,9 @@
   border-bottom: 1px dashed $color-main;
   cursor: grab;
 }
+
+.groceryGrid {
+  @include screen-m(max) {
+    width: 70%;
+  }
+}
