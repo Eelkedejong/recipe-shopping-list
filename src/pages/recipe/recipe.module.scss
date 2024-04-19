@@ -36,15 +36,15 @@
     margin-top: -60px;
     background-color: $color-white;
     padding: 24px 24px 0 24px;
-    border-radius: 40px 40px 0 0;
+    border-radius: 40px 40px 20px 20px;
     z-index: 1;
   }
 }
 
 .backButton {
   position: absolute;
-  top: 36px;
-  left: 24px;
+  top: 48px;
+  left: 32px;
 }
 
 .formWrapper {
@@ -71,8 +71,8 @@
 .addToShoppingList {
   @include screen-m(max) {
     position: absolute;
-    top: 20px;
-    right: 24px;
+    top: 32px;
+    right: 32px;
     background-color: #fff;
     padding: 8px;
     font-size: 20px;

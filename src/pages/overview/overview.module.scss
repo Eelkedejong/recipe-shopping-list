@@ -2,9 +2,10 @@
 
 .banner {
   width: 100%;
-  height: 180px;
+  height: 220px;
   background-position: 22% 22%;
   background-size: cover;
+  position: relative;
 }
 
 .grid {
@@ -19,4 +20,10 @@
   @include screen-l(min) {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.bannerText {
+  position: absolute;
+  top: 90px;
+  right: 250px;
 }

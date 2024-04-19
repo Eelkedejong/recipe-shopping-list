@@ -15,6 +15,8 @@ const Header = ({
   hiddenMobile,
   hideSearch,
   useParamTitle,
+  withBanner,
+  searchOnBanner,
 }) => {
   const userName = useSelector((state) => state.user.value.username);
   const [open, setOpen] = useState(false);
@@ -30,6 +32,7 @@ const Header = ({
       className={`
         pl-5 df aic 
         ${styles.header} ${hiddenMobile ? styles.hiddenMobile : null}
+        ${withBanner ? styles.withBanner : null}
         ${open ? styles.open : null}
       `}
     >
@@ -45,7 +48,7 @@ const Header = ({
           <h2 className="fs-32 fw-bold pt-5">{title}</h2>
         ) : useParamTitle ? (
           <h2 className="fs-32 fw-bold pt-5">
-            {type.charAt(0).toUpperCase() + type.slice(1)}
+            {t(`${type.charAt(0).toUpperCase() + type.slice(1)}`)}
           </h2>
         ) : (
           <div className={styles.greeting}>
@@ -68,7 +71,13 @@ const Header = ({
         )}
       </div>
 
-      {!hideSearch && <Search openState={open} setOpenState={setOpen} />}
+      {!hideSearch && (
+        <Search
+          openState={open}
+          setOpenState={setOpen}
+          searchOnBanner={searchOnBanner}
+        />
+      )}
 
       <button
         className={styles.overlay}

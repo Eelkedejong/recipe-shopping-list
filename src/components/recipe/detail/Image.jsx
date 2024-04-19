@@ -15,7 +15,7 @@ const Image = ({ image }) => {
         </>
       ) : (
         <div
-          className={`df jcc bg-main rounded-top-m f1 ${styles.placeholderImage}`}
+          className={`df jcc bg-main rounded-top-m f1 ${styles.placeholderDetailsImage}`}
         >
           <img src={logo} alt="Chef" />
         </div>

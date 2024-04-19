@@ -30,7 +30,7 @@ const Layout = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="main w-100 h-100 bg-light-grey">
+    <main className="main w-100 bg-light-grey">
       <Navigation />
       <StickyNavigation />
       <Suspense
@@ -57,8 +57,8 @@ const Layout = () => {
             path="/recipes/all"
             element={
               <>
-                <section className="w-100 rounded-top-l">
-                  <Header title={t('Discover new tastes')} />
+                <section className="grid w-100 rounded-top-l">
+                  <Header title={t('Discover new tastes')} withBanner={true} />
                   <TypeBanner />
                   <PublicRecipeList />
                 </section>
@@ -71,8 +71,8 @@ const Layout = () => {
             path="/recipes/all/:type"
             element={
               <>
-                <section className="w-100 rounded-top-l">
-                  <Header useParamTitle={true} hiddenMobile={true} />
+                <section className="grid w-100 rounded-top-l">
+                  <Header useParamTitle={true} withBanner={true} />
                   <TypeBanner />
                   <PublicRecipeList />
                 </section>
@@ -145,8 +145,8 @@ const Layout = () => {
             path="/"
             element={
               <>
-                <section className="w-100 rounded-top-l">
-                  <Header />
+                <section className="full-page w-100 rounded-top-l">
+                  <Header searchOnBanner={true} />
                   <Overview />
                 </section>
               </>

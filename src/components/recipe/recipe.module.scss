@@ -113,7 +113,7 @@ section {
 
       .tileImage,
       .placeholderImage {
-        min-height: 240px;
+        min-height: 220px;
       }
     }
 
@@ -133,7 +133,7 @@ section {
 
 .placeholderImage {
   img {
-    width: 60px;
+    width: 80px;
   }
 }
 
@@ -183,18 +183,44 @@ section {
   // }
 }
 
+.placeholderDetailsImage {
+  height: 200px;
+
+  @include screen-m(max) {
+    grid-row: 1;
+
+    img {
+      width: 80px;
+    }
+  }
+
+  @include screen-m(min) {
+    height: 250px;
+    border-radius: 20px;
+    grid-column: 2;
+    grid-row: 1/3;
+
+    img {
+      width: 120px;
+    }
+  }
+}
+
 .detailsImage {
   background-size: cover;
   background-position: 50% 50%;
-  min-height: 400px;
   max-height: 500px;
 
   @include screen-m(max) {
+    min-height: 300px;
+    max-height: 400px;
     width: 100%;
     grid-row: 1;
   }
 
   @include screen-m(min) {
+    min-height: 400px;
+    max-height: 500px;
     border-radius: 20px;
     grid-column: 2;
     grid-row: 1/3;
@@ -226,7 +252,7 @@ section {
 
 .bannerWrapper {
   @include screen-m(max) {
-    padding-top: 32px;
+    // padding-top: 32px;
     background-color: $color-white;
   }
 }

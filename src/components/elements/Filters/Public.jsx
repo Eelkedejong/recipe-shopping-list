@@ -10,6 +10,8 @@ import styles from './filters.module.scss';
 import Button from '../../ui/Button';
 
 const Filters = () => {
+  const searchParams = useSelector((state) => state.publicSearchParams.value);
+  // const searchParams = useSelector((state) => state.publicSearchParams.value);
   const selectedTags = useSelector(
     (state) => state.publicSearchParams.value.tags
   );
@@ -21,8 +23,9 @@ const Filters = () => {
   const { t } = useTranslation();
 
   const results = useQuery({
-    queryKey: ['publicTags', 'tags'],
+    queryKey: ['publicTags', 'tags', searchParams.type],
     queryFn: getPublicRecipeFilter,
+    ...{ enabled: !!searchParams.type },
   });
 
   const filterOptions = results?.data?.data ?? [];
@@ -54,7 +57,7 @@ const Filters = () => {
     <aside>
       <button
         onClick={() => setOpen(!open)}
-        className={`p-3 mt-2 text-main fs-14 fw-regular rounded-s df aic jcc ${styles.filterToggle} `}
+        className={`p-3 mt-2 text-main fs-14 fw-regular rounded-s df aic jcc ${styles.filterToggle} ${styles.publicFilter}`}
       >
         <FaSliders className="mr-3" /> {t('Filter')}
       </button>

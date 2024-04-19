@@ -76,10 +76,13 @@ const GroceryList = () => {
 
   return (
     <div className="bg-white p-5 rounded-m">
-      <p className="dekstop-hidden pb-4 fs-14">
+      <p className="desktop-hidden pb-4 fs-14">
         {t(
           'Scroll on the right side, rearrange grocery items on the left side.'
         )}
+      </p>
+      <p className="mobile-hidden pb-4 fs-14">
+        {t('Drag and drop grocery items to rearrange them.')}
       </p>
       {!shopplingList.isLoading ? (
         <>

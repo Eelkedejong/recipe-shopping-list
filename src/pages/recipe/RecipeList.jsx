@@ -41,18 +41,16 @@ const RecipeList = () => {
   const currentPage = data?.page;
   const totalRecipes = data?.count;
 
-  console.log('recipes', data);
-
   return (
     <div className={`bg-white p-5 ${styles.listWrapper}`}>
       <div className="df jcsb aic mb-3 fww gap-3">
         <TypesList />
         {totalRecipes && totalRecipes > 1 ? (
-          <span>
+          <span className="mobile-hidden">
             {totalRecipes} {t('recipes')}
           </span>
         ) : totalRecipes & (totalRecipes === 1) ? (
-          <span>
+          <span className="mobile-hidden">
             {totalRecipes} {t('recipe')}
           </span>
         ) : null}
@@ -135,6 +133,18 @@ const RecipeList = () => {
           )}
         </div>
       ) : null}
+
+      <div className="df arc jcc mt-5 desktop-hidden">
+        {totalRecipes && totalRecipes > 1 ? (
+          <>
+            {totalRecipes} {t('recipes')}
+          </>
+        ) : totalRecipes & (totalRecipes === 1) ? (
+          <>
+            {totalRecipes} {t('recipe')}
+          </>
+        ) : null}
+      </div>
     </div>
   );
 };

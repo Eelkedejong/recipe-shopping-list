@@ -77,6 +77,7 @@ const ShoppingList = () => {
       className={`gap-5 dg gap-30 ${styles.shoppingListGrid}`}
       onSubmit={(e) => {
         e.preventDefault();
+        setMessage('');
         const items = submbitShoppingList(e);
         // Save the shopping list items.
         editItems.mutate([items, user.token]);
@@ -109,7 +110,9 @@ const ShoppingList = () => {
           <ShoppingListItems items={list.extraItems} />
         ) : null}
 
-        {message ? <p className="message success mb-3">{message}</p> : null}
+        {message ? (
+          <p className="message success mobile mb-3">{message}</p>
+        ) : null}
 
         <div className={`w-100 ${styles.submitButtonWrapper}`}>
           <Button

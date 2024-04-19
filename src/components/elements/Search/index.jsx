@@ -8,7 +8,7 @@ import { FaSearch } from 'react-icons/fa';
 import { FaX } from 'react-icons/fa6';
 import styles from './search.module.scss';
 
-const Search = ({ openState, setOpenState }) => {
+const Search = ({ openState, setOpenState, searchOnBanner = false }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = useSelector((state) => state.searchParams.value);
@@ -36,7 +36,12 @@ const Search = ({ openState, setOpenState }) => {
   }, [search]);
 
   return (
-    <div className={`${styles.wrapper} ${openState ? styles.open : ''}`}>
+    <div
+      className={`
+        ${styles.wrapper} 
+        ${openState ? styles.open : ''} 
+        ${searchOnBanner ? styles.searchOnBanner : ''}`}
+    >
       <form
         className="df fdc gap-4 pos-relative"
         onSubmit={(e) => {

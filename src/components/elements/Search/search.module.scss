@@ -11,6 +11,14 @@
     background-color: $color-white;
   }
 
+  @include screen-m(min) {
+    &.searchOnBanner {
+      margin-top: 400px;
+      margin-right: 40px;
+      z-index: 2;
+    }
+  }
+
   &.open {
     @include screen-m(max) {
       // Todo: Add an animation for the search bar.

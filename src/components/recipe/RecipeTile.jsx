@@ -66,7 +66,7 @@ const RecipeTile = ({ id, name, image, labels, time, type }) => {
 
           {type ? (
             <div className="df aic gap-2 fs-14">
-              <FaUtensils fontSize="14px" /> {type}
+              <FaUtensils fontSize="14px" /> {t(`${type}`)}
             </div>
           ) : null}
         </div>

@@ -54,7 +54,7 @@ const TypesList = () => {
                 `}
                 key={type}
               >
-                {type}
+                {t(`${type}`)}
               </button>
             ) : null
           )}

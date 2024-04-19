@@ -20,6 +20,10 @@
     padding-top: 10px;
     padding-right: 24px;
 
+    &.withBanner {
+      grid-row: 2;
+    }
+
     .overlay {
       border-radius: 20px 20px 0 0;
       width: 100%;

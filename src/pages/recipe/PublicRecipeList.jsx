@@ -68,6 +68,7 @@ const PublicRecipeList = () => {
             <div>
               <div>{t('No recipes found')}</div>
               <button
+                className="text-main td-underline mt-3"
                 onClick={() => {
                   dispatch(resetSearchParams());
                   // If there is a type, immediately update the type in the search params.
