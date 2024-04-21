@@ -5,7 +5,6 @@ import store from './store/store';
 import Authentication from './Authentication';
 import './styles/index.scss';
 import './styles/App.scss';
-import bannerImage from './assets/img/cookbook.webp';
 
 // Set the query client
 const queryClient = new QueryClient({
@@ -22,12 +21,7 @@ const App = () => {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
-          <div
-            className="wrapper df fdc aic"
-            style={{ backgroundImage: `url(${bannerImage})` }}
-          >
-            <Authentication />
-          </div>
+          <Authentication />
         </Provider>
       </QueryClientProvider>
     </BrowserRouter>

@@ -1,5 +1,9 @@
 @import './variables.scss';
 
+body {
+  background-color: #f5f5f5;
+}
+
 .wrapper {
   height: 100vh;
   // background-image: url('../assets/bg.svg');
@@ -97,7 +101,7 @@ body > * {
 
   @include screen-m(max) {
     padding-bottom: 70px;
-    min-height: 100%;
+    // min-height: 100%;
   }
 }
 

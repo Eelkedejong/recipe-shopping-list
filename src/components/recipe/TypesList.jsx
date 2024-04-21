@@ -32,12 +32,12 @@ const TypesList = () => {
   return (
     <>
       {filterOptions.length ? (
-        <div className="df gap-3">
+        <div className="df gap-3 fww">
           {filterOptions.map((type) =>
             type !== '' ? (
               <button
                 onClick={() => {
-                  if (type === 'All') {
+                  if (type === `${t('All')}`) {
                     dispatch(updateType(''));
                   } else {
                     dispatch(updateType(type));
@@ -46,7 +46,7 @@ const TypesList = () => {
                 className={`
                   py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
                   ${
-                    (SelectedType === '' && type === 'All') ||
+                    (SelectedType === '' && type === `${t('All')}`) ||
                     SelectedType === type
                       ? styles.activeType
                       : ''

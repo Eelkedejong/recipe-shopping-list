@@ -90,6 +90,25 @@ const RecipeDetail = () => {
                 <FaBasketShopping />
                 <span>{t('Add to shopping list')}</span>
               </button>
+
+              <button
+                className={`mt-4 df aic gap-3 `}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const recipes = {
+                    recipes: [
+                      {
+                        id: recipe.id,
+                        persons: recipe.persons,
+                      },
+                    ],
+                  };
+                  editMutation.mutate([recipes, userToken]);
+                }}
+              >
+                <FaBasketShopping />
+                <span>{t('Add to shopping list')}</span>
+              </button>
             </div>
           </div>
 

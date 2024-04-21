@@ -31,6 +31,7 @@ import Button from './components/ui/Button';
 import styles from './pages/authentication/authentication.module.scss';
 import logo from './assets/logo.svg';
 const Layout = lazy(() => import('./Layout'));
+import bannerImage from './assets/img/cookbook.webp';
 
 const Authentication = () => {
   const { t } = useTranslation();
@@ -97,9 +98,12 @@ const Authentication = () => {
       ) : null}
 
       {showLoginForm ? (
-        <>
+        <div
+          className="wrapper df fdc aic"
+          style={{ backgroundImage: `url(${bannerImage})` }}
+        >
           <h1 className="ff-logo text-black mt-4" style={{ fontSize: '38px' }}>
-            My Cookbook
+            {t('My Cookbook')}
           </h1>
           <div className="mb-5 df aic jcc h-100">
             <main
@@ -150,7 +154,7 @@ const Authentication = () => {
               </Routes>
             </main>
           </div>
-        </>
+        </div>
       ) : null}
     </>
   );

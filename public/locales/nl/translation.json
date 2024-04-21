@@ -1,5 +1,7 @@
 {
-  "Create your account and start collecting recipes right away!": "Maak een account aan en begin direct met het verzamelen van recepten!",
+  "My Cookbook": "Mijn Kookboek",
+  "cookbook": "kookboek",
+  "Create your account and start collecting recipes right away!": "Maak een account aan en begin direct met het maken van je eigen kookboek!",
   "Log in to your personal cookbook!": "Log in op je persoonlijke kookboek!",
   "Sign in": "Inloggen",
   "Create account": "Account aanmaken",
@@ -107,5 +109,6 @@
   "Scroll on the right side, rearrange grocery items on the left side.": "Scroll aan de rechterkant, rangschik boodschappen aan de linkerkant",
   "Drag and drop grocery items to rearrange them.": "Sleep boodschappen om ze te rangschikken",
   "recipes": "recepten",
-  "recipe": "recept"
+  "recipe": "recept",
+  "Update recipe ingredients and click save to update items on the grocery list.": "Update de ingrediënten van het recept en klik op opslaan om de boodschappenlijst bij te werken"
 }

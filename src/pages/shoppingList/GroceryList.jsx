@@ -75,7 +75,7 @@ const GroceryList = () => {
   };
 
   return (
-    <div className="bg-white p-5 rounded-m">
+    <div className="bg-white p-5 rounded-m mobile-exclude-top ">
       <p className="desktop-hidden pb-4 fs-14">
         {t(
           'Scroll on the right side, rearrange grocery items on the left side.'

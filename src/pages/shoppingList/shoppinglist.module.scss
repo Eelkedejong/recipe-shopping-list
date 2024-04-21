@@ -6,6 +6,8 @@
   }
 
   @include screen-l(max) {
+    margin: 0 15px;
+    padding-top: 24px;
     padding-bottom: 150px;
   }
 }

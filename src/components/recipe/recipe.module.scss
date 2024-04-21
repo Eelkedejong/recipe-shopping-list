@@ -10,10 +10,6 @@
     grid-template-columns: repeat(2, 1fr);
 
     > div {
-      &:nth-child(1) {
-        margin: 0 12px;
-      }
-
       &:nth-child(4) {
         margin-top: -140px; // @todo: find a better solution for this.
       }
@@ -24,8 +20,16 @@
     }
   }
 
+  @include screen-m(min) {
+    > div {
+      &:nth-child(1) {
+        margin: 0 12px;
+      }
+    }
+  }
+
   @include screen-l(max) {
-    padding-bottom: 200px;
+    padding-bottom: 120px;
   }
 }
 
@@ -53,6 +57,13 @@
         flex: 2;
       }
     }
+  }
+}
+
+.advancedFields {
+  @include screen-s(min) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
   }
 }
 
@@ -118,15 +129,26 @@ section {
     }
 
     @include screen-m(max) {
-      flex-direction: row;
-      display: grid;
-      grid-template-columns: 3fr 4fr;
-
-      .tileImage,
-      .placeholderImage {
-        min-height: 120px;
-        border-radius: 20px 0 0 20px;
+      .tileImage {
+        min-height: 200px;
       }
+
+      .placeholderImage {
+        min-height: 160px;
+      }
+      // flex-direction: row;
+      // display: grid;
+      // grid-template-columns: 3fr 4fr;
+
+      // .tileImage,
+      // .placeholderImage {
+      //   min-height: 120px;
+      //   border-radius: 20px 0 0 20px;
+      // }
+
+      // h2 {
+      //   line-height: 24px;
+      // }
     }
   }
 }

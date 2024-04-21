@@ -68,7 +68,7 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
         handleSubmitRecipe(e);
       }}
     >
-      <div className="bg-white p-5 rounded-top-l rounded-m df fdc gap-4">
+      <div className="bg-white p-5 rounded-top-l rounded-m mobile-exclude-top df fdc gap-4">
         <h3 className="fs-20 fw-semibold">{t('Recipe details')}</h3>
         <Input
           id="name"
@@ -90,7 +90,7 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
 
       <div className="bg-white rounded-m p-5 mx-3">
         <h3 className="fs-20 mb-4 fw-semibold">{t('Advanced')}</h3>
-        <div className="dg gtc-2 gtr-2 gap-4">
+        <div className={`dg gap-4 ${styles.advancedFields}`}>
           <Input
             id="time"
             label={t('Cooking time')}

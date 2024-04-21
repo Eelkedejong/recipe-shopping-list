@@ -20,6 +20,13 @@
   border-radius: 50%;
 }
 
+// Mobile variations {
+@include screen-m(max) {
+  .mobile-exclude-top {
+    border-radius: 0 0 20px 20px;
+  }
+}
+
 // Borders
 .bordered {
   border: 2px solid $color-black;

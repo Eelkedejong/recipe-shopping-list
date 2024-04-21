@@ -57,7 +57,7 @@ const RecipeTile = ({ id, name, image, labels, time, type }) => {
             : null}
         </div>
 
-        <div className="df gap-4 mt-5 mb-2 fww">
+        <div className={`df gap-4 mt-5 mb-2 fww`}>
           {time ? (
             <div className="df aic gap-2 fs-14">
               <FaClockRotateLeft fontSize="14px" /> {time} {t('min')}

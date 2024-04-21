@@ -52,7 +52,7 @@ const Navigation = () => {
       </button>
       <div className={`px-5 pt-3 text-white ${styles.logoWrapper}`}>
         <h1 className={`${styles.logo} df ff-logo`}>
-          <span className="pr-3 pb-2">Cookbook</span>
+          <span className="pr-3 pb-2">{t('My Cookbook')}</span>
         </h1>
       </div>
       <nav
@@ -64,7 +64,7 @@ const Navigation = () => {
         ></button>
         <ul className="df fdc gap-3 mt-5 mr-3 w-100">
           <h4 className="mobile-hidden mb-1">
-            {`${userName}'s`} {t('Cookbook')}
+            {`${userName}'s`} {t('cookbook')}
           </h4>
           <li className={`${locationPath === home ? styles.active : null}`}>
             <Link className="link" to={home}>

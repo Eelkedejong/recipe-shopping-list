@@ -73,56 +73,63 @@ const ShoppingList = () => {
   const recipeList = recipes?.data?.data ?? [];
 
   return (
-    <form
-      className={`gap-5 dg gap-30 ${styles.shoppingListGrid}`}
-      onSubmit={(e) => {
-        e.preventDefault();
-        setMessage('');
-        const items = submbitShoppingList(e);
-        // Save the shopping list items.
-        editItems.mutate([items, user.token]);
-        // Save the shopping list recipes.
-        editRecipes.mutate([shoppingListRecipes, user.token]);
-      }}
-    >
-      <div className="">
-        {!recipes.isLoading && recipes.isSuccess ? (
-          <ShoppingListRecipeList
-            recipeList={recipeList}
-            shoppingListRecipes={list.recipes}
-          />
-        ) : !recipes.isLoading || !shopplingList.isLoading ? (
-          <div className="bg-white rounded-m p-5">
-            <h4 className="pb-2">{t('No recipes in your shopping list')}</h4>
-            <span>
-              <Link className="text-main" to="/recipes">
-                {t('Add recipes')}
-              </Link>
-            </span>
-          </div>
-        ) : (
-          <p>loading</p>
+    <>
+      <div className="bg-white fs-14 rounded-m mobile-exclude-top px-5 py-3">
+        {t(
+          'Update recipe ingredients and click save to update items on the grocery list.'
         )}
       </div>
-
-      <div>
-        {!shopplingList.isLoading ? (
-          <ShoppingListItems items={list.extraItems} />
-        ) : null}
-
-        {message ? (
-          <p className="message success mobile mb-3">{message}</p>
-        ) : null}
-
-        <div className={`w-100 ${styles.submitButtonWrapper}`}>
-          <Button
-            text={t('Save shopping list')}
-            type="submit"
-            className={`w-100 ${styles.submitButton}`}
-          />
+      <form
+        className={`gap-5 dg gap-30 ${styles.shoppingListGrid}`}
+        onSubmit={(e) => {
+          e.preventDefault();
+          setMessage('');
+          const items = submbitShoppingList(e);
+          // Save the shopping list items.
+          editItems.mutate([items, user.token]);
+          // Save the shopping list recipes.
+          editRecipes.mutate([shoppingListRecipes, user.token]);
+        }}
+      >
+        <div className="">
+          {!recipes.isLoading && recipes.isSuccess ? (
+            <ShoppingListRecipeList
+              recipeList={recipeList}
+              shoppingListRecipes={list.recipes}
+            />
+          ) : !recipes.isLoading || !shopplingList.isLoading ? (
+            <div className="bg-white rounded-m p-5">
+              <h4 className="pb-2">{t('No recipes in your shopping list')}</h4>
+              <span>
+                <Link className="text-main" to="/recipes">
+                  {t('Add recipes')}
+                </Link>
+              </span>
+            </div>
+          ) : (
+            <p>loading</p>
+          )}
         </div>
-      </div>
-    </form>
+
+        <div>
+          {!shopplingList.isLoading ? (
+            <ShoppingListItems items={list.extraItems} />
+          ) : null}
+
+          {message ? (
+            <p className="message success mobile mb-3">{message}</p>
+          ) : null}
+
+          <div className={`w-100 ${styles.submitButtonWrapper}`}>
+            <Button
+              text={t('Save shopping list')}
+              type="submit"
+              className={`w-100 ${styles.submitButton}`}
+            />
+          </div>
+        </div>
+      </form>
+    </>
   );
 };
 
