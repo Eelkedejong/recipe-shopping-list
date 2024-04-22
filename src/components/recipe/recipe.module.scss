@@ -28,6 +28,12 @@
     }
   }
 
+  @include screen-xl(max) {
+    img {
+      max-height: 500px;
+    }
+  }
+
   @include screen-l(max) {
     padding-bottom: 120px;
   }
@@ -37,25 +43,33 @@
   gap: 20px;
   flex-direction: column;
 
+  border-radius: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 30;
+  padding: 13px 15px;
+  background-color: $color-white;
+  border-bottom: $default-border;
+  box-shadow: $shadow-top;
+  flex-direction: row-reverse;
+
+  button {
+    height: 42px;
+    font-size: 16px;
+    flex: 1;
+
+    &:first-of-type {
+      flex: 2;
+    }
+  }
+
   @include screen-m(max) {
-    border-radius: 0;
-    position: fixed;
     bottom: 65px;
-    z-index: 30;
-    padding: 13px 15px;
-    background-color: $color-white;
-    border-bottom: $default-border;
-    box-shadow: $shadow-top;
-    flex-direction: row-reverse;
 
     button {
       height: 38px;
       font-size: 14px;
-      flex: 1;
-
-      &:first-of-type {
-        flex: 2;
-      }
     }
   }
 }

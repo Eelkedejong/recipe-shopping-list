@@ -18,6 +18,11 @@
 }
 
 .content {
+  @include screen-m(min) {
+    position: sticky;
+    top: 0;
+  }
+
   @include screen-m(max) {
     position: fixed;
     bottom: 0;

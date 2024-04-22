@@ -19,12 +19,13 @@ const RecipeList = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  // Reset the search params when the component unmounts.
   useEffect(() => {
     return () => {
       dispatch(resetSearchParams());
     };
   }, [dispatch]);
+
+  console.log('searchParams recepten', searchParams);
 
   const { data, error, isLoading } = useQuery({
     queryKey: ['recipes', user.token, '', searchParams, page],

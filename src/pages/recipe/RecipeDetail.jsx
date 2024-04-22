@@ -92,7 +92,7 @@ const RecipeDetail = () => {
               </button>
 
               <button
-                className={`mt-4 df aic gap-3 `}
+                className={`mt-4 df aic gap-3 desktop-hidden`}
                 onClick={(e) => {
                   e.preventDefault();
                   const recipes = {

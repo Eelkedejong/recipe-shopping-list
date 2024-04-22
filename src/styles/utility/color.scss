@@ -1,52 +1,54 @@
 // Background colors
 .bg-white {
-  background-color: $color-white
+  background-color: $color-white;
 }
 .bg-black {
-  background-color: $color-black
+  background-color: $color-black;
+}
+.bg-medium-grey {
+  background-color: $color-medium-grey;
 }
 .bg-light-grey {
-  background-color: $color-light-grey
+  background-color: $color-light-grey;
 }
 .bg-lightest-grey {
-  background-color: $color-light-grey
+  background-color: $color-light-grey;
 }
 .bg-main {
-  background-color: $color-main
+  background-color: $color-main;
 }
 .bg-main-light {
-  background-color: $color-main-bg
+  background-color: $color-main-bg;
 }
 .bg-main-lighter {
-  background-color: $color-main-bg-light
+  background-color: $color-main-bg-light;
 }
-
 
 // Text colors
 .text-white {
-  color: $color-white
+  color: $color-white;
 }
 .text-black {
-  color: $color-black
+  color: $color-black;
 }
 .text-main {
-  color: $color-main
+  color: $color-main;
 }
 .text-dark-grey {
-  color: $color-dark-grey
+  color: $color-dark-grey;
 }
 .text-grey {
-  color: $color-grey
+  color: $color-grey;
 }
 
 // Hover colors
 .hover-white {
   &:hover {
-    color: $color-white
+    color: $color-white;
   }
 }
 .hover-black {
   &:hover {
-    color: $color-black
+    color: $color-black;
   }
 }

@@ -4,8 +4,6 @@ const getRecipe = async ({ queryKey }) => {
   const searchParams = queryKey[3];
   const page = queryKey[4];
 
-  console.log('searchParams', searchParams);
-
   let url = import.meta.env.VITE_API_KEY + `api/recipe/${id}`;
 
   if (searchParams) {
@@ -41,8 +39,6 @@ const getRecipe = async ({ queryKey }) => {
     }
   }
 
-  console.log('url', url);
-
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -54,7 +50,6 @@ const getRecipe = async ({ queryKey }) => {
     const res = await fetch(url, requestOptions);
 
     if (!res.ok) {
-      console.log('error in getRecipe');
       throw new Error(`recipe/ get not ok`);
     }
 

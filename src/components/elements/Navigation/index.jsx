@@ -63,7 +63,7 @@ const Navigation = () => {
           onClick={() => setOpen(false)}
         ></button>
         <ul className="df fdc gap-3 mt-5 mr-3 w-100">
-          <h4 className="mobile-hidden mb-1">
+          <h4 className="mobile-hidden mb-1 fw-semibold">
             {`${userName}'s`} {t('cookbook')}
           </h4>
           <li className={`${locationPath === home ? styles.active : null}`}>
@@ -98,7 +98,7 @@ const Navigation = () => {
             </Link>
           </li>
           <hr />
-          <h4 className="mt-5">{t('Quick actions')}</h4>
+          <h4 className="mt-5 fw-semibold">{t('Quick actions')}</h4>
           <li
             className={`${locationPath === '/recipe/new' ? styles.active : null}`}
           >
@@ -118,7 +118,7 @@ const Navigation = () => {
             </Link>
           </li>
           <hr />
-          <h4 className="mt-5 ">{t('My Account')}</h4>
+          <h4 className="mt-5 fw-semibold">{t('My Account')}</h4>
           <li className="">
             <Logout />
           </li>
