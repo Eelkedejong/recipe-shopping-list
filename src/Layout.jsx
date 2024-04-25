@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 // import ShoppingList from "./pages/shoppingList/ShoppingList";
 // import Filters from "./components/elements/Filters";
 import GroceryList from './pages/shoppingList/GroceryList';
-import RecipeActions from './components/recipe/detail/Actions';
 const RecipeList = lazy(() => import('./pages/recipe/RecipeList'));
 const PublicRecipeList = lazy(() => import('./pages/recipe/PublicRecipeList'));
 const RecipeDetail = lazy(() => import('./pages/recipe/RecipeDetail'));

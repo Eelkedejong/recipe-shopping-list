@@ -2,7 +2,7 @@
 
 .logoWrapper {
   min-height: 62px;
-  
+
   @include screen-m(min) {
     // background-image: url('../../../assets/bg.svg');
     // background-size: cover;
@@ -18,7 +18,6 @@
   @include screen-xl(max) {
     font-size: 27px;
   }
-
 
   @include screen-m(max) {
     justify-content: center;
@@ -194,7 +193,7 @@
   .navigation {
     padding: 0 !important;
     position: fixed;
-    top: 78px;
+    top: 76px;
     width: 100%;
     visibility: hidden;
     transition: all 0.375s;
@@ -203,7 +202,7 @@
       border-radius: 20px 20px 0 0;
       width: 100%;
       bottom: 0;
-      top: 78px;
+      top: 76px;
       position: fixed;
       opacity: 0;
       background: rgba(0, 0, 0, 0.5);

@@ -27,23 +27,22 @@ const EditRecipe = () => {
 
   const editMutation = useMutation({
     mutationFn: updateRecipe,
-    onSuccess: (data) => {
-      // queryClient.setQueryData("recipes", data);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['recipe' + recipe.id] });
       queryClient.invalidateQueries({ queryKey: ['recipes'] });
-      // Clear the ingredient Slice
       navigate('/recipe/' + recipe.id);
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteRecipe,
-    onSuccess: (data) => {
-      // queryClient.setQueryData("recipes", data);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['recipes'] });
       navigate('/recipes');
     },
   });
+
+  console.log('loading', editMutation.isPending);
 
   return (
     <>
@@ -61,6 +60,7 @@ const EditRecipe = () => {
       {results.isSuccess ? (
         <RecipeForm
           recipe={recipe}
+          loading={editMutation.isPending}
           handleSubmit={(responseData) => {
             editMutation.mutate([responseData, userToken, id]);
           }}

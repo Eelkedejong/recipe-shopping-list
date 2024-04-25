@@ -10,7 +10,7 @@ import StepsList from './steps/StepsList';
 import LabelList from './labels/LabelList';
 import styles from './recipe.module.scss';
 
-const RecipeForm = ({ recipe, handleSubmit }) => {
+const RecipeForm = ({ recipe, loading, handleSubmit }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const store = useStore();
@@ -154,6 +154,8 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
       >
         <Button
           className={`w-100 ${styles.submitButton}`}
+          // Change text when loading
+          loading={loading}
           text={t('Save recipe')}
           type="submit"
         />
