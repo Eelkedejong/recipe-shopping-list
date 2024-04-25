@@ -74,7 +74,7 @@ const ShoppingList = () => {
 
   return (
     <>
-      <div className="bg-white fs-14 rounded-m mobile-exclude-top px-5 py-3">
+      <div className="bg-white fs-14 rounded-s mobile-exclude-top px-5 py-3">
         {t(
           'Update recipe ingredients and click save to update items on the grocery list.'
         )}

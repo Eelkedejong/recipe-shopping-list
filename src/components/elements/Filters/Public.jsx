@@ -78,23 +78,25 @@ const Filters = () => {
           <>
             <ul className="p-5 df fdc gap-3 my-3">
               <h3 className="fw-semibold fs-26 mb-2">{t('Labels')}</h3>
-              {filterOptions.map((tag) => (
-                <li key={tag} className="fw-light fs-14 text-dark-grey">
-                  <label className="mr-2 df gap-3 label">
-                    <input
-                      type="checkbox"
-                      name={tag}
-                      id={tag}
-                      checked={selectedTags.includes(tag)}
-                      onChange={() => {
-                        dispatch(updateTags(tag));
-                      }}
-                      className="checkbox filled"
-                    />
-                    {tag}
-                  </label>
-                </li>
-              ))}
+              {filterOptions.map((tag) =>
+                tag === '' ? null : (
+                  <li key={tag} className="fw-light fs-14 text-dark-grey">
+                    <label className="mr-2 df gap-3 label">
+                      <input
+                        type="checkbox"
+                        name={tag}
+                        id={tag}
+                        checked={selectedTags.includes(tag)}
+                        onChange={() => {
+                          dispatch(updateTags(tag));
+                        }}
+                        className="checkbox filled"
+                      />
+                      {tag}
+                    </label>
+                  </li>
+                )
+              )}
             </ul>
             <hr className="mx-3" />
           </>

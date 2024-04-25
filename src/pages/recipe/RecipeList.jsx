@@ -25,8 +25,6 @@ const RecipeList = () => {
     };
   }, [dispatch]);
 
-  console.log('searchParams recepten', searchParams);
-
   const { data, error, isLoading } = useQuery({
     queryKey: ['recipes', user.token, '', searchParams, page],
     queryFn: getRecipes,

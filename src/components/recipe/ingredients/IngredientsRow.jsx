@@ -1,26 +1,49 @@
-import { useState, useContext, useEffect } from 'react';
-import IngredientContext from './utils/ingredientContext';
+import { useState } from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateIngredientList } from '../../../store/ingredientSlice';
 import Input from '../../ui/Input';
 import { FaMinusCircle } from 'react-icons/fa';
 import styles from '../recipe.module.scss';
 
-const IngredientsRow = ({ ingredient, index }) => {
-  const [ingredientRows, setIngredientRows] = useContext(IngredientContext);
+const IngredientsRow = ({ ingredient, index, id }) => {
+  const ingredientSlice = useSelector((state) => state.ingredientList.value);
+  const dispatch = useDispatch();
   const [rowData, setRowData] = useState(ingredient);
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id, animateLayoutChanges: () => false });
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform),
+  };
 
-  useEffect(() => {
-    let newData = (ingredientRows[index] = rowData);
-    ingredientRows[index] = newData;
-    setIngredientRows(ingredientRows);
-  }, [rowData]);
+  /**
+   * Handles the blur event for the ingredient row.
+   * Updates the ingredient list with the modified row data.
+   */
+  const handleBlur = () => {
+    console.log('row data:', rowData);
+    const newRows = ingredientSlice.map((row, i) =>
+      i === index ? rowData : row
+    );
+    dispatch(updateIngredientList(newRows));
+  };
 
   return (
     <>
       <div
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
         className={`dg gap-4 ${styles.ingredientGrid}`}
         id={`row_${index}`}
         key={index}
       >
+        <div className={`px-2 df aic ${styles.ingredientIndex}`}>
+          {index + 1}
+        </div>
         <Input
           id={`ingredient_${index}`}
           required={true}
@@ -30,11 +53,12 @@ const IngredientsRow = ({ ingredient, index }) => {
           onChange={(e) =>
             setRowData({ ...rowData, ingredient: e.target.value })
           }
+          onBlur={handleBlur}
+          onMouseDown={(e) => e.stopPropagation()}
         />
 
         <Input
           id={`amount_${index}`}
-          required={true}
           type={'number'}
           step={'any'}
           value={ingredient.amount}
@@ -44,6 +68,8 @@ const IngredientsRow = ({ ingredient, index }) => {
             const value = e.target.value.replace(/,/g, '.');
             setRowData({ ...rowData, amount: parseFloat(value) });
           }}
+          onBlur={handleBlur}
+          onMouseDown={(e) => e.stopPropagation()}
         />
 
         <Input
@@ -53,16 +79,18 @@ const IngredientsRow = ({ ingredient, index }) => {
           key={`unit_${ingredient.unit}`}
           classes={styles.ingreidentInput}
           onChange={(e) => setRowData({ ...rowData, unit: e.target.value })}
+          onBlur={handleBlur}
+          onMouseDown={(e) => e.stopPropagation()}
         />
 
         <button
           type="button"
           onClick={(e) => {
-            console.log('delete', e);
             e.preventDefault();
-            const newRows = ingredientRows.filter((_, i) => i !== index);
-            setIngredientRows(newRows);
+            const newRows = ingredientSlice.filter((_, i) => i !== index);
+            dispatch(updateIngredientList(newRows));
           }}
+          onMouseDown={(e) => e.stopPropagation()}
         >
           <FaMinusCircle />
         </button>

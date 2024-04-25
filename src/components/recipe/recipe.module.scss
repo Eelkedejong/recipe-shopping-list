@@ -82,7 +82,14 @@
 }
 
 .ingredientGrid {
-  grid-template-columns: 2fr 1fr 1fr 15px;
+  grid-template-columns: 15px 2fr 1fr 1fr 15px;
+  // touch-action: none;
+  // cursor: grab;
+}
+
+.ingredientIndex {
+  cursor: grab;
+  touch-action: none;
 }
 
 .ingredientInput {
