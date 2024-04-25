@@ -1,6 +1,8 @@
 {
   "My Cookbook": "Mijn Kookboek",
   "cookbook": "kookboek",
+  "My": "Mijn",
+  "Cookbook": "Kookboek",
   "Create your account and start collecting recipes right away!": "Maak een account aan en begin direct met het maken van je eigen kookboek!",
   "Log in to your personal cookbook!": "Log in op je persoonlijke kookboek!",
   "Sign in": "Inloggen",
@@ -115,5 +117,6 @@
   "What dish are you looking for?": "Naar welk gerecht ben je op zoek?",
   "Discover new recipes": "Ontdek nieuwe recepten",
   "Discover more recipes": "Ontdek onze recepten",
-  "Search your recipes": "Zoek in je recepten"
+  "Search your recipes": "Zoek in je recepten",
+  "Drag the numbers to re-arrange the ingredient order.": "Sleep de nummers om de volgorde van de ingrediënten aan te passen",
 }

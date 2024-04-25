@@ -49,13 +49,13 @@ const ShoppingListRecipe = ({
           ? ingredients.map((ingredient) => {
               const amount = ingredient.amount * (personsState / persons);
               const ingredientText =
-                // Show max 2 decimals
-                parseFloat(amount.toFixed(2)) +
-                ' ' +
-                ingredient.unit +
-                ' ' +
-                ingredient.ingredient;
-
+                amount > 0
+                  ? parseFloat(amount.toFixed(2)) + // Show max 2 decimals
+                    ' ' +
+                    ingredient.unit +
+                    ' ' +
+                    ingredient.ingredient
+                  : ingredient.unit + ' ' + ingredient.ingredient;
               return (
                 <div
                   className="df w-50 gap-4 mb-4 pb-1"

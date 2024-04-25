@@ -29,7 +29,9 @@ const EditRecipe = () => {
     mutationFn: updateRecipe,
     onSuccess: (data) => {
       // queryClient.setQueryData("recipes", data);
+      queryClient.invalidateQueries({ queryKey: ['recipe' + recipe.id] });
       queryClient.invalidateQueries({ queryKey: ['recipes'] });
+      // Clear the ingredient Slice
       navigate('/recipe/' + recipe.id);
     },
   });

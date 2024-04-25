@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LanguageSelect from '../../language/LanguageSelect';
-import styles from './navigation.module.scss';
 import {
   FaHouse,
   FaUtensils,
@@ -14,6 +13,7 @@ import {
 } from 'react-icons/fa6';
 import { IoReceipt } from 'react-icons/io5';
 import Logout from '../../../pages/authentication/Logout';
+import styles from './navigation.module.scss';
 
 const Navigation = () => {
   const userName = useSelector((state) => state.user.value.username);
@@ -52,7 +52,10 @@ const Navigation = () => {
       </button>
       <div className={`px-5 pt-3 text-white ${styles.logoWrapper}`}>
         <h1 className={`${styles.logo} df ff-logo`}>
-          <span className="pr-3 pb-2">{t('My Cookbook')}</span>
+          <span className="pr-3 pb-2">
+            <span className={styles.logoPrefix}>{t('My')} </span>
+            {t('Cookbook')}
+          </span>
         </h1>
       </div>
       <nav

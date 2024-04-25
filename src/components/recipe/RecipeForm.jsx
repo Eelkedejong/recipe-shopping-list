@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { useStore } from 'react-redux';
 import ImageUploader from './image/ImageUploader';
-import IngredientContext from './ingredients/utils/ingredientContext';
+// import IngredientContext from './ingredients/utils/ingredientContext';
 import { Input, Textarea, Select } from '../ui/Fields';
 import Button from '../ui/Button';
 import IngredientsList from './ingredients/IngredientsList';
@@ -13,14 +13,7 @@ import styles from './recipe.module.scss';
 const RecipeForm = ({ recipe, handleSubmit }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
-  // @TODO: Move the ingredientRows state to the IngredientsList component.
-  // Possibly use redux instead of context?
-  const ingredientRows = useState(
-    recipe?.ingredients && recipe?.ingredients !== undefined
-      ? recipe.ingredients
-      : [{ unit: '', amount: '', ingredient: '' }]
-  );
+  const store = useStore();
 
   const handleSubmitRecipe = (e) => {
     // Convert the form data into an object with key-value pairs.
@@ -42,7 +35,11 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
       }
       return obj;
     }, {});
-    responseData.ingredients = ingredientRows[0];
+
+    // Get the ingredients from the store.
+    const ingredients = store.getState().ingredientList.value;
+
+    responseData.ingredients = ingredients;
     responseData.persons = parseInt(responseData.persons);
     responseData.time = parseInt(responseData.time);
 
@@ -140,10 +137,11 @@ const RecipeForm = ({ recipe, handleSubmit }) => {
       </div>
 
       <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 fw-semibold">{t('Ingredients')}</h3>
-        <IngredientContext.Provider value={ingredientRows}>
-          <IngredientsList ingredients={recipe ? recipe.ingredients : null} />
-        </IngredientContext.Provider>
+        <h3 className="fs-20 mb-2 fw-semibold">{t('Ingredients')}</h3>
+        <p className="mb-4 fs-14">
+          {t('Drag the numbers to re-arrange the ingredient order')}
+        </p>
+        <IngredientsList ingredients={recipe ? recipe.ingredients : null} />
       </div>
 
       <div className="bg-white rounded-m p-5 mx-3">

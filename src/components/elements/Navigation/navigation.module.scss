@@ -1,6 +1,8 @@
 @import '../../../styles/variables.scss';
 
 .logoWrapper {
+  min-height: 62px;
+  
   @include screen-m(min) {
     // background-image: url('../../../assets/bg.svg');
     // background-size: cover;
@@ -13,20 +15,32 @@
 .logo {
   font-size: 38px;
 
+  @include screen-xl(max) {
+    font-size: 27px;
+  }
+
+
   @include screen-m(max) {
     justify-content: center;
+    padding-top: 10px;
+
+    > span {
+      // font-size: 32px;
+    }
   }
 
   @include screen-m(min) {
     margin-top: 20px;
 
-    span {
+    > span {
       border-bottom: 2px solid $color-white;
     }
   }
 }
 
 .navigation {
+  min-width: 280px;
+
   @include screen-xl(min) {
     min-width: 360px;
   }

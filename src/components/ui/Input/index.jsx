@@ -7,6 +7,8 @@ const Input = ({
   label,
   value,
   onChange,
+  onBlur,
+  onMouseDown,
   type,
   step,
   required,
@@ -22,6 +24,16 @@ const Input = ({
   useEffect(() => {
     setFocus(value);
   }, [value]);
+
+  const handleBlur = (e) => {
+    // Call the onBlur function in your component
+    if (!e.target.value) setFocus(false);
+
+    // Call the onBlur function passed in the props
+    if (typeof onBlur === 'function') {
+      onBlur(e);
+    }
+  };
 
   return (
     <>
@@ -46,9 +58,8 @@ const Input = ({
             autoComplete={autocomplete}
             onChange={onChange}
             onFocus={() => setFocus(true)}
-            onBlur={(e) => {
-              if (!e.target.value) setFocus(false);
-            }}
+            onBlur={handleBlur}
+            onMouseDown={onMouseDown}
             className={`
               rounded-s df aic jcc pl-3 pt-3 text-black 
               ${styles.input} 
@@ -65,6 +76,8 @@ const Input = ({
           step={step}
           defaultValue={value}
           onChange={onChange}
+          onBlur={onBlur}
+          onMouseDown={onMouseDown}
           className={`
             rounded-s df aic jcc pl-3 
             ${styles.input} 

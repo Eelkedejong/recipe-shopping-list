@@ -38,8 +38,8 @@ const Ingredients = ({ ingredients, persons }) => {
                       />
                       <span>
                         {/* Show max 2 decimals */}
-                        {parseFloat(amount.toFixed(2))} {ingredient.unit}{' '}
-                        {ingredient.ingredient}
+                        {amount > 0 && parseFloat(amount.toFixed(2))}{' '}
+                        {ingredient.unit} {ingredient.ingredient}
                       </span>
                     </label>
                   </div>

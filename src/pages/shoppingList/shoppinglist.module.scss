@@ -1,13 +1,14 @@
 @import '../../styles/variables.scss';
 
 .shoppingListGrid {
+  padding-top: 24px;
+
   @include screen-l(min) {
     grid-template-columns: 3fr 2fr;
   }
 
-  @include screen-l(max) {
+  @include screen-m(max) {
     margin: 0 15px;
-    padding-top: 24px;
     padding-bottom: 150px;
   }
 }
