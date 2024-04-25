@@ -19,9 +19,6 @@ const Search = ({ openState, setOpenState, searchOnBanner = false }) => {
   const [disabled, setDisabled] = useState(true);
   const [inputKey, setInputKey] = useState(0);
 
-  console.log('searchParams', searchParams);
-  console.log('searchQuery', searchQuery);
-
   useEffect(() => {
     if (openState) {
       document.body.classList.add('overlay');
@@ -49,7 +46,6 @@ const Search = ({ openState, setOpenState, searchOnBanner = false }) => {
         className="df fdc gap-4 pos-relative"
         onSubmit={(e) => {
           e.preventDefault();
-          console.log('clicked search');
           // Set the search query in the store.
           dispatch(updateSearch(searchQuery));
 

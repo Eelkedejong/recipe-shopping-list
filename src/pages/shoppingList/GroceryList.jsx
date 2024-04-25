@@ -39,8 +39,6 @@ const GroceryList = () => {
     items = list.items;
   }
 
-  console.log('items', items);
-
   const [groceries, setGroceries] = useState([]);
 
   // If the shoppingList query is finished or items change, set the groceries state.

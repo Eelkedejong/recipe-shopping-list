@@ -25,8 +25,6 @@ const RecipeList = () => {
     };
   }, [dispatch]);
 
-  console.log('searchParams recepten', searchParams);
-
   const { data, error, isLoading } = useQuery({
     queryKey: ['recipes', user.token, '', searchParams, page],
     queryFn: getRecipes,
@@ -105,7 +103,10 @@ const RecipeList = () => {
           {currentPage > 1 && (
             <button
               type="button"
-              onClick={() => setPage(currentPage - 1)}
+              onClick={() => {
+                setPage(currentPage - 1);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className={`px-3 py-4 df aic gap-5 rounded-s bg-main-light text-main ${styles.prev}`}
             >
               <FaChevronLeft className="text-main fw-bold" />
@@ -116,7 +117,13 @@ const RecipeList = () => {
             <button
               key={i}
               type="button"
-              onClick={() => setPage(i + 1)}
+              onClick={() => {
+                if (i + 1 === page) {
+                  return;
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setPage(i + 1);
+              }}
               className={`px-4 py-3  rounded-s ${i + 1 === page ? 'bg-main text-white' : 'bg-main-light text-main'}`}
             >
               {i + 1}
@@ -126,7 +133,10 @@ const RecipeList = () => {
           {currentPage < totalPages && (
             <button
               type="button"
-              onClick={() => setPage(currentPage + 1)}
+              onClick={() => {
+                setPage(currentPage + 1);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className={`px-3 py-4 df aic gap-5 rounded-s bg-main-light text-main`}
             >
               <FaChevronRight className="text-main" />
