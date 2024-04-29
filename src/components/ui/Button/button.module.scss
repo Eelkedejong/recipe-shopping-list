@@ -29,7 +29,14 @@
     }
   }
 
+  &:not(.ghost) {
+    .btnLoader {
+      border: 4px solid $color-white;
+    }
+  }
+
   .btnLoader {
-    // width:;
+    width: 25px;
+    border: 4px solid $color-main;
   }
 }

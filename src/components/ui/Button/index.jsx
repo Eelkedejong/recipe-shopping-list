@@ -8,12 +8,9 @@ const Button = ({ type, text, onClick, className, loading }) => {
     ${type !== 'undefined' ? styles[type] : ' '} 
   `;
 
-  // loading = true;
-
   return (
     <button onClick={onClick} className={classes}>
-      {text}
-      {/* {loading ? <span className={`loader ${styles.btnLoader}`}></span> : text} */}
+      {loading ? <span className={`loader ${styles.btnLoader}`}></span> : text}
     </button>
   );
 };

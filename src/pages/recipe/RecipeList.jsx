@@ -56,7 +56,7 @@ const RecipeList = () => {
       </div>
 
       {isLoading && (
-        <div className="h-100 w-100 mb-5 df aic jcc">
+        <div className="h-100 w-100 mb-5 pt-5 df aic jcc">
           <div className="loader"></div>
         </div>
       )}

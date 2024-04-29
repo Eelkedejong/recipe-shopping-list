@@ -20,12 +20,22 @@
 .submitButtonWrapper {
   @include screen-l(max) {
     position: fixed;
-    bottom: 65px;
+    bottom: 0px;
+    left: 0;
     z-index: 30;
     padding: 13px 15px;
     background-color: $color-white;
     border-bottom: $default-border;
     box-shadow: $shadow-top;
+
+    button {
+      height: 42px;
+      font-size: 16px;
+    }
+  }
+
+  @include screen-m(max) {
+    bottom: 65px;
 
     button {
       height: 38px;

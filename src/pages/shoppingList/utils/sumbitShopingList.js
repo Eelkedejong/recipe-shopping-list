@@ -2,6 +2,13 @@ export const submbitShoppingList = (e) => {
   const formData = new FormData(e.target);
   const values = Object.fromEntries(formData.entries());
 
+  //filter out empty values
+  for (const key in values) {
+    if (values[key] === '') {
+      delete values[key];
+    }
+  }
+
   // // Get the inputs with the name "recipe_"
   // // Create an object with the name "recipes" with an array of objects.
   // // the objects should have the key "id", which has the value of the number behind "recipe_", which should be a number.
@@ -19,7 +26,7 @@ export const submbitShoppingList = (e) => {
   // Create an array of all the values that start with "extra".
   const extraItems = {
     extraItems: Object.keys(values)
-      .filter((key) => key.startsWith("extra"))
+      .filter((key) => key.startsWith('extra'))
       .map((key) => values[key]),
   };
 

@@ -42,8 +42,6 @@ const EditRecipe = () => {
     },
   });
 
-  console.log('loading', editMutation.isPending);
-
   return (
     <>
       <button

@@ -21,7 +21,7 @@ const GroceryList = () => {
 
   // Get the shopping list.
   const shopplingList = useQuery({
-    queryKey: ['Groceries', user.token],
+    queryKey: ['groceries', user.token],
     queryFn: getShoppingList,
     ...{
       // The query will not execute until the userToken exists.
@@ -74,14 +74,21 @@ const GroceryList = () => {
 
   return (
     <div className="bg-white p-5 rounded-m mobile-exclude-top ">
-      <p className="desktop-hidden pb-4 fs-14">
-        {t(
-          'Scroll on the right side, rearrange grocery items on the left side.'
-        )}
-      </p>
-      <p className="mobile-hidden pb-4 fs-14">
-        {t('Drag and drop grocery items to rearrange them.')}
-      </p>
+      {shopplingList.isSuccess && items.length !== 0 ? (
+        <div className="df aic jcsb pb-4 fs-14">
+          <p className="desktop-hidden">
+            {t(
+              'Scroll on the right side, rearrange grocery items on the left side.'
+            )}
+          </p>
+          <p className="mobile-hidden">
+            {t('Drag and drop grocery items to rearrange them.')}
+          </p>
+          <Link className="text-main" to="/shopping-list">
+            {t('Edit shopping list')}
+          </Link>
+        </div>
+      ) : null}
       {!shopplingList.isLoading ? (
         <>
           <DndContext
@@ -103,7 +110,7 @@ const GroceryList = () => {
             </Link>
             {t('or')}
             <Link className="text-main" to="/shopping-list">
-              {t('Add items manually')}
+              {t('add items manually')}
             </Link>
           </span>
         </>

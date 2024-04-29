@@ -34,7 +34,7 @@ const Layout = () => {
       <StickyNavigation />
       <Suspense
         fallback={
-          <div className="h-100 w-100 df aic jcc">
+          <div className="h-100 w-100 pt-5 df aic jcc">
             <div className="loader"></div>
           </div>
         }

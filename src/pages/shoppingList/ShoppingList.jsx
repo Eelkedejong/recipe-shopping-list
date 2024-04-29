@@ -29,6 +29,7 @@ const ShoppingList = () => {
     mutationFn: updateShoppingListItems,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
+      queryClient.invalidateQueries({ queryKey: ['groceries'] });
       setMessage(t('Shopping list saved successfully'));
     },
   });
@@ -107,7 +108,9 @@ const ShoppingList = () => {
               </span>
             </div>
           ) : (
-            <p>loading</p>
+            <div className="h-100 w-100 pt-5 df aic jcc">
+              <div className="loader"></div>
+            </div>
           )}
         </div>
 
@@ -123,6 +126,7 @@ const ShoppingList = () => {
           <div className={`w-100 ${styles.submitButtonWrapper}`}>
             <Button
               text={t('Save shopping list')}
+              loading={editItems.isPending || editRecipes.isPending}
               type="submit"
               className={`w-100 ${styles.submitButton}`}
             />

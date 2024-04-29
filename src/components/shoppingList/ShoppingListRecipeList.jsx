@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ShoppingListRecipe from './ShoppingListRecipe';
 
@@ -11,7 +12,10 @@ const ShoppingListRecipeList = ({ recipeList, shoppingListRecipes }) => {
       <div className="">
         {recipes.length === 0 ? (
           <div className="bg-white p-5 rounded-m mb-5">
-            <div>{t('Your shopping list is empty')}</div>
+            <div className="pb-3">{t('Your shopping list is empty')}</div>
+            <Link className="text-main" to="/recipes">
+              {t('Add recipes')}
+            </Link>
           </div>
         ) : (
           recipes.map((recipe) => {
