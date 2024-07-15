@@ -105,7 +105,7 @@ const IngredientsList = ({ ingredients }) => {
           // type="button"
           className="df aic jcfe gap-3 py-2 fs-16"
           onClick={(e) => {
-            e.preventDefault;
+            e.preventDefault();
             // Add an empty ingredient row to the ingredientsSlice
             dispatch(
               updateIngredientList([...ingredientSlice, emptyIngredientRow])

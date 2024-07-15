@@ -1,11 +1,13 @@
 const getRecipe = async ({ queryKey }) => {
   const searchParams = queryKey[1];
+  const id = queryKey[2];
+  const page = queryKey[3];
 
-  let url = import.meta.env.VITE_API_KEY + `public/recipe/`;
+  let url = import.meta.env.VITE_API_KEY + `public/recipe/${id}`;
 
   if (searchParams) {
     // Deconstruct the searchParams object
-    const { type, tags, time, search, limit, page } = searchParams;
+    const { type, tags, time, search, limit } = searchParams;
 
     // Add searchParams to URL if they have a value
     let isFirstQueryParam = true;

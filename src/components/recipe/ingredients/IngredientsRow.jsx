@@ -23,7 +23,6 @@ const IngredientsRow = ({ ingredient, index, id }) => {
    * Updates the ingredient list with the modified row data.
    */
   const handleBlur = () => {
-    console.log('row data:', rowData);
     const newRows = ingredientSlice.map((row, i) =>
       i === index ? rowData : row
     );

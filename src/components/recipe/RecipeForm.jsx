@@ -59,7 +59,7 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
 
   return (
     <form
-      className={`df fdc gap-4 pb-5 ${styles.form}`}
+      className={`df fdc gap-4 pb-5 mb-5 ${styles.form}`}
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmitRecipe(e);
@@ -144,7 +144,7 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
         <IngredientsList ingredients={recipe ? recipe.ingredients : null} />
       </div>
 
-      <div className="bg-white rounded-m p-5 mx-3">
+      <div className="bg-white rounded-m p-5 mx-3 mb-5">
         <h3 className="fs-20 mb-4 fw-semibold">{t('Cooking steps')}</h3>
         <StepsList steps={recipe ? recipe.steps : null} />
       </div>

@@ -62,6 +62,7 @@ const ShoppingList = () => {
     }
   }
 
+  // @TODO: Add public recipes as well
   const recipes = useQuery({
     queryKey: ['shoppingList recipes', user.token, ids],
     queryFn: getShoppingListRecipes,

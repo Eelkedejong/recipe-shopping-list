@@ -7,7 +7,7 @@ import { FaClockRotateLeft, FaUtensils } from 'react-icons/fa6';
 import logo from '../../assets/logo-white.svg';
 import styles from './recipe.module.scss';
 
-const RecipeTile = ({ id, name, image, labels, time, type }) => {
+const RecipeTile = ({ id, name, image, labels, time, type, isPublic }) => {
   const { t } = useTranslation();
   // Create a Cloudinary instance for the recipe image.
   // const cld = new Cloudinary({
@@ -25,7 +25,7 @@ const RecipeTile = ({ id, name, image, labels, time, type }) => {
 
   return (
     <Link
-      to={`/recipe/${id}`}
+      to={`${isPublic ? `/public/recipe/${id}` : `/recipe/${id}`}`}
       className={`df fdc rounded-m ${styles.recipeTile}`}
     >
       {image ? (

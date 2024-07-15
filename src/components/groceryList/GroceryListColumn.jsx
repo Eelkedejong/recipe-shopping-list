@@ -6,7 +6,6 @@ import {
 import styles from './groceryList.module.scss';
 
 const GroceryListColumn = ({ groceries }) => {
-  console.log('groceries:', groceries, typeof groceries);
   return (
     <div className={`${styles.groceryGrid} dg`}>
       <SortableContext items={groceries} strategy={verticalListSortingStrategy}>

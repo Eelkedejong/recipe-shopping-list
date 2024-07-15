@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,8 +11,10 @@ import getPublicRecipes from './api/getPublicRecipes';
 import RecipeTile from '../../components/recipe/RecipeTile';
 import styles from './recipe.module.scss';
 import { dishTypes } from '../../utils/dishTypes';
+import { FaChevronRight, FaChevronLeft } from 'react-icons/fa6';
 
 const PublicRecipeList = () => {
+  const [page, setPage] = useState(1);
   const searchParams = useSelector((state) => state.publicSearchParams.value);
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -27,13 +29,16 @@ const PublicRecipeList = () => {
       : dispatch(updateType(''));
   }, [dispatch, type]);
 
-  const results = useQuery({
-    queryKey: ['publicRecipes', searchParams],
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['publicRecipes', searchParams, '', page],
     queryFn: getPublicRecipes,
     ...{ enabled: !!searchParams },
   });
 
-  const recipes = results?.data?.data ?? [];
+  const recipes = data?.data ?? [];
+  const totalPages = data?.totalPages;
+  const currentPage = data?.page;
+  const totalRecipes = data?.count;
 
   return (
     <>
@@ -44,14 +49,15 @@ const PublicRecipeList = () => {
               onClick={() => {
                 // If there is a type in the search params, update the type in the URL.
                 if (type) {
-                  navigate(`/recipes/all/${recipeType.label}`);
+                  // @TODO: Make translations work properly
+                  navigate(`/recipes/all/${t(recipeType.label)}`);
                 } else {
-                  navigate(`${recipeType.label}`);
+                  navigate(`${t(recipeType.label)}`);
                 }
               }}
               className={`py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
               ${
-                (type === '' && type === 'All') || type === recipeType.label
+                (type === '' && type === 'All') || type === t(recipeType.label)
                   ? styles.activeType
                   : ''
               }
@@ -64,7 +70,7 @@ const PublicRecipeList = () => {
         </div>
 
         <div className={`recipe-list ${styles.grid}`}>
-          {!recipes.length && !results.isLoading ? (
+          {!recipes.length && !isLoading ? (
             <div>
               <div>{t('No recipes found')}</div>
               <button
@@ -91,10 +97,70 @@ const PublicRecipeList = () => {
                   time={recipe.time}
                   type={recipe.type}
                   key={recipe.id}
+                  isPublic={true}
                 />
               );
             })
           )}
+        </div>
+
+        {!isLoading & (totalPages > 1) ? (
+          <div className={`df aic jcc mt-5 gap-3 ${styles.pagination}`}>
+            {currentPage > 1 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setPage(currentPage - 1);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`px-3 py-4 df aic gap-5 rounded-s bg-main-light text-main ${styles.prev}`}
+              >
+                <FaChevronLeft className="text-main fw-bold" />
+              </button>
+            )}
+
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => {
+                  if (i + 1 === page) {
+                    return;
+                  }
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  setPage(i + 1);
+                }}
+                className={`px-4 py-3  rounded-s ${i + 1 === page ? 'bg-main text-white' : 'bg-main-light text-main'}`}
+              >
+                {i + 1}
+              </button>
+            ))}
+
+            {currentPage < totalPages && (
+              <button
+                type="button"
+                onClick={() => {
+                  setPage(currentPage + 1);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`px-3 py-4 df aic gap-5 rounded-s bg-main-light text-main`}
+              >
+                <FaChevronRight className="text-main" />
+              </button>
+            )}
+          </div>
+        ) : null}
+
+        <div className="df arc jcc mt-5 desktop-hidden">
+          {totalRecipes && totalRecipes > 1 ? (
+            <>
+              {totalRecipes} {t('recipes')}
+            </>
+          ) : totalRecipes & (totalRecipes === 1) ? (
+            <>
+              {totalRecipes} {t('recipe')}
+            </>
+          ) : null}
         </div>
       </div>
     </>

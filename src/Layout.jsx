@@ -12,6 +12,9 @@ import GroceryList from './pages/shoppingList/GroceryList';
 const RecipeList = lazy(() => import('./pages/recipe/RecipeList'));
 const PublicRecipeList = lazy(() => import('./pages/recipe/PublicRecipeList'));
 const RecipeDetail = lazy(() => import('./pages/recipe/RecipeDetail'));
+const PublicRecipeDetail = lazy(
+  () => import('./pages/recipe/PublicRecipeDetail')
+);
 const CreateRecipe = lazy(() => import('./pages/recipe/CreateRecipe'));
 const EditRecipe = lazy(() => import('./pages/recipe/EditRecipe'));
 const Overview = lazy(() => import('./pages/overview/Overview'));
@@ -91,6 +94,22 @@ const Layout = () => {
                     hiddenMobile={true}
                   />
                   <RecipeDetail />
+                </section>
+                {/* <RecipeActions /> */}
+              </>
+            }
+          />
+          <Route
+            path="/public/recipe/:id"
+            element={
+              <>
+                <section className="full-page w-100 rounded-top-l">
+                  <Header
+                    returnUrl={'/recipes/all'}
+                    returnText={t('All recipes')}
+                    hiddenMobile={true}
+                  />
+                  <PublicRecipeDetail />
                 </section>
                 {/* <RecipeActions /> */}
               </>

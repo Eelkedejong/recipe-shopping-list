@@ -49,6 +49,7 @@ i18n
   // Init i18next
   // For all options read: https://www.i18next.com/overview/configuration-options
   .init({
+    lng: 'nl',
     fallbackLng: 'nl',
     debug: false,
     // detection: options,

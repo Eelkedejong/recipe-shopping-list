@@ -40,7 +40,7 @@ const TypesList = () => {
                   if (type === `${t('All')}`) {
                     dispatch(updateType(''));
                   } else {
-                    dispatch(updateType(type));
+                    dispatch(updateType(`${t(type)}`));
                   }
                 }}
                 className={`

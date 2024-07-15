@@ -85,6 +85,9 @@ const Input = ({
             ${classes ? classes : null}
           `}
           required={required}
+          onKeyDown={(event) => {
+            event.stopPropagation();
+          }}
         />
       )}
     </>
