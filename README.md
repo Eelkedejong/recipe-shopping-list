@@ -1,26 +1,22 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Issues][issues-shield]][issues-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-<br />
-
 # Mijn Kookboek (My Cookbook)
 
-Live enviroment: [https://mijn-kookboek.nl](mijn-kookboek.nl)
+Live environment: [mijn-kookboek.nl](https://mijn-kookboek.nl)
 
 Your personal cookbook! Create an account and start adding your recipes or explore new recipes. Automatically create shopping lists with the required ingredients and make grocery shopping easier than ever.
 
 Check out the demo account:
 
-Username: demo
-password: demo
+- Username: demo
+- Password: demo
 
 Note: This project is still work in progress and not all features work as intended yet.
 
 ## About The Project
 
-This project contains the front-end for my recipe shopping list web-app.
+This project contains the ehadless front-end for my recipe shopping list web-app.
 Front-end, back-end and design is done by me.
+
+- Back-end project:[https://github.com/Eelkedejong/recipe-data](https://github.com/Eelkedejong/recipe-data)
 
 ## Project structure
 
@@ -42,11 +38,11 @@ Components contains both re-usable components and components that are used as bu
 - The components folder contains elements used across different pages, like the aside, header and navigation.
 - The subfolder recipe and shopping list contain components that are used as building blocks for their respective
 
-#### Utils
+#### utils
 
 Contains all utility functions used on a global level.
 
-#### Styles
+#### styles
 
 Contains the (global) styling for the application. See the Theming section for more info.
 
@@ -72,16 +68,23 @@ A few gobal styling rules are defined in the defaults.scss and app.scss files.
 
 - Proper error handling, both for user error messages as well as system error logging. Mostly when dealing with API calls.
 - Lot's of bugfixes and overal quality improvements on the front-end UX.
--
+- Better shopping list UX, especially for grocery shopping.
+- Shopping list functionality for public recipes.
+- Automated menu generation.
+- AI recipe suggestions.
 
 ## Images
 
 All recipe banner images are under the free license of Usplash.
 Most photo's come from https://unsplash.com/@brookelark
 
+## Development
+
+Development is currently still done by me. For the project to function locally, the project needs a VITE_API_KEY variable in the root .env file.
+
 ## Contact
 
-Eelke de Jong - eelkesdejong@gmail.com - [https://eelke.me](eelke.me)
+Eelke de Jong - eelkesdejong@gmail.com - [eelke.me](https://eelke.me)
 
 Project Link: [https://github.com/Eelkedejong/recipe-shopping-list](https://github.com/Eelkedejong/recipe-shopping-list)
 
