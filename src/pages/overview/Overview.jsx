@@ -26,7 +26,7 @@ const Overview = () => {
 
   const publicSearchParams = { limit: '3', tags: [] };
   const publicRecipesResults = useQuery({
-    queryKey: ['publicRecipes', publicSearchParams],
+    queryKey: ['publicRecipesOverview', publicSearchParams, ''],
     queryFn: getPublicRecipes,
     ...{ enabled: !!publicSearchParams },
   });
@@ -94,7 +94,7 @@ const Overview = () => {
           <h3 className="fs-20 fw-semibold pb-4">
             {t('Want to try something new?')}
           </h3>
-          <Link to="/recipes" className="text-main df aic gap-2">
+          <Link to="/recipes/all" className="text-main df aic gap-2">
             {t('Discover more recipes')} <FaChevronRight />
           </Link>
         </div>

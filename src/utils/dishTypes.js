@@ -37,24 +37,24 @@ export const dishTypes = [
     background: sideImage,
     backgroundPosition: '0% 75%',
   },
-  {
-    label: 'breakfast',
-    value: 'Breakfast',
-    background: breakfastImage,
-    backgroundPosition: '0% 60%',
-  },
-  {
-    label: 'lunch',
-    value: 'Lunch',
-    background: lunchImage,
-    backgroundPosition: '0% 60%',
-  },
-  {
-    label: 'snack',
-    value: 'Snack',
-    background: snackImage,
-    backgroundPosition: '0% 50%',
-  },
+  // {
+  //   label: 'breakfast',
+  //   value: 'Breakfast',
+  //   background: breakfastImage,
+  //   backgroundPosition: '0% 60%',
+  // },
+  // {
+  //   label: 'lunch',
+  //   value: 'Lunch',
+  //   background: lunchImage,
+  //   backgroundPosition: '0% 60%',
+  // },
+  // {
+  //   label: 'snack',
+  //   value: 'Snack',
+  //   background: snackImage,
+  //   backgroundPosition: '0% 50%',
+  // },
   {
     label: 'pastry',
     value: 'Pastry',
