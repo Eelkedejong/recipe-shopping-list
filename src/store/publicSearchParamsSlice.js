@@ -1,17 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-// All search parameters for recipes are stored in the searchParams slice.
+// Search params for public recipes are stored separatly from the search params for the user's recipes.
 const initialState = {
-  type: "",
+  type: '',
   tags: [],
   time: null,
-  search: "",
-  limit: "",
-  page: "",
+  search: '',
+  limit: '',
+  page: '',
 };
 
 export const publicSearchParamsSlice = createSlice({
-  name: "publicSearchParams",
+  name: 'publicSearchParams',
   initialState: {
     value: initialState,
   },
@@ -26,7 +26,7 @@ export const publicSearchParamsSlice = createSlice({
       } else {
         // Otherwise, remove the tag from the array
         state.value.tags = state.value.tags.filter(
-          (tag) => tag !== action.payload,
+          (tag) => tag !== action.payload
         );
       }
     },

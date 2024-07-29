@@ -13,10 +13,6 @@
   }
 }
 
-.groceryGrid {
-  // grid-template-columns: 1fr 1fr;
-}
-
 .submitButtonWrapper {
   @include screen-l(max) {
     position: fixed;

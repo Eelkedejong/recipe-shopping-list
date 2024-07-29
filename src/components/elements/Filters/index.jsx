@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateTags, updateTime } from '../../../store/searchParamsSlice';
+import { updateTags, updateTime } from '@/store/searchParamsSlice';
 import { useTranslation } from 'react-i18next';
-import getRecipeFilter from '../../../pages/recipe/api/filters/getRecipeFilter';
+import getRecipeFilter from '@/pages/recipe/api/filters/getRecipeFilter';
 import { FaSliders, FaX } from 'react-icons/fa6';
+import Button from '@/components/ui/Button';
 import styles from './filters.module.scss';
-import Button from '../../ui/Button';
 
 const Filters = () => {
   const user = useSelector((state) => state.user.value);

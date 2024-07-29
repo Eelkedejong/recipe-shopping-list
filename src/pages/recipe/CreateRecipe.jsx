@@ -3,8 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import createRecipe from './api/createRecipe';
-import RecipeForm from '../../components/recipe/RecipeForm';
-import Button from '../../components/ui/Button';
+import RecipeForm from '@/components/recipe/RecipeForm';
 
 const CreateRecipe = () => {
   const userToken = useSelector((state) => state.user.value.token);

@@ -4,35 +4,29 @@ import { Routes, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { user } from './store/userSlice';
-import LoginContext from './pages/authentication/utils/loginContext';
-import getUser from './pages/authentication/api/getUser';
-import CreateForm from './pages/authentication/CreateForm';
-import LoginForm from './pages/authentication/LoginForm';
-import ErrorMessage from './pages/authentication/utils/ErrorMessage';
-import ForgotPassword from './pages/authentication/ForgotPassword';
-import PasswordReset from './pages/authentication/PasswordReset';
-// const CreateForm = lazy(() => import('./pages/authentication/CreateForm'));
-// const LoginForm = lazy(() => import('./pages/authentication/LoginForm'));
-// const ErrorMessage = lazy(
-//   () => import('./pages/authentication/utils/ErrorMessage')
-// );
-// const ForgotPassword = lazy(
-//   () => import('./pages/authentication/ForgotPassword')
-// );
-// const PasswordReset = lazy(
-//   () => import('./pages/authentication/PasswordReset')
-// );
+import LoginContext from '@/pages/authentication/utils/loginContext';
+import getUser from '@/pages/authentication/api/getUser';
+import CreateForm from '@/pages/authentication/CreateForm';
+import LoginForm from '@/pages/authentication/LoginForm';
+import ErrorMessage from '@/pages/authentication/utils/ErrorMessage';
+import ForgotPassword from '@/pages/authentication/ForgotPassword';
+import PasswordReset from '@/pages/authentication/PasswordReset';
 import {
   getStoredUserData,
   removeUserData,
   saveUserData,
-} from './pages/authentication/utils/storage';
-import Button from './components/ui/Button';
-import styles from './pages/authentication/authentication.module.scss';
-import logo from './assets/logo.svg';
+} from '@/pages/authentication/utils/storage';
+import Button from '@/components/ui/Button';
+import styles from '@/pages/authentication/authentication.module.scss';
+import logo from '@/assets/logo.svg';
 const Layout = lazy(() => import('./Layout'));
-import bannerImage from './assets/img/cookbook.webp';
+import bannerImage from '@/assets/img/cookbook.webp';
 
+/**
+ * Authentication component handles user authentication and rendering of login form or main layout.
+ *
+ * @returns {JSX.Element} The rendered Authentication component.
+ */
 const Authentication = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -52,6 +46,7 @@ const Authentication = () => {
     },
   });
 
+  // Show the error message if there is an error.
   useEffect(() => {
     if (error) {
       setErrorMessage(error.message);

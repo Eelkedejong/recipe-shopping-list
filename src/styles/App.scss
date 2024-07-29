@@ -2,11 +2,27 @@
 
 body {
   background-color: #f5f5f5;
+
+  > * {
+    color: $color-black;
+  }
+}
+
+@include screen-m(max) {
+  body.detail-page {
+    .navigation,
+    .lang {
+      display: none;
+    }
+  }
+
+  body.overlay {
+    overflow: hidden;
+  }
 }
 
 .wrapper {
   height: 100vh;
-  // background-image: url('../assets/bg.svg');
   background-position: 30% 30%;
   background-size: cover;
 }
@@ -89,10 +105,6 @@ hr {
   }
 }
 
-body > * {
-  color: $color-black;
-}
-
 .main {
   @include screen-m(min) {
     display: grid;
@@ -101,25 +113,9 @@ body > * {
 
   @include screen-m(max) {
     padding-bottom: 70px;
-    // min-height: 100%;
   }
 }
 
-@include screen-m(max) {
-  body.detail-page {
-    .navigation,
-    .lang {
-      display: none;
-    }
-  }
-
-  body.overlay {
-    overflow: hidden;
-  }
-}
-
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
 .loader {
   width: 50px;
   aspect-ratio: 1;

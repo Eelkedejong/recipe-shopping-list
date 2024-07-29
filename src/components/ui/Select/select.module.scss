@@ -9,10 +9,6 @@
   border-bottom: 2px solid $color-dark-grey;
   transition: $default-transition;
 
-  @include screen-m(min) {
-    // min-width: 250px;
-  }
-
   &:focus {
     border-color: $color-secondary;
   }

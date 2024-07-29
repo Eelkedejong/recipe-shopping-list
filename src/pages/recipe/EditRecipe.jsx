@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux';
 import getRecipe from './api/getRecipe';
 import updateRecipe from './api/updateRecipe';
 import deleteRecipe from './api/deleteRecipe';
-import RecipeForm from '../../components/recipe/RecipeForm';
-import Button from '../../components/ui/Button';
+import RecipeForm from '@/components/recipe/RecipeForm';
 import { FaTrash } from 'react-icons/fa';
 import styles from './recipe.module.scss';
 
@@ -17,6 +16,7 @@ const EditRecipe = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // Get all recipe data.
   const results = useQuery({
     queryKey: ['recipes', userToken, id],
     queryFn: getRecipe,
@@ -25,6 +25,7 @@ const EditRecipe = () => {
 
   const recipe = results?.data?.data ?? [];
 
+  // Update the recipe.
   const editMutation = useMutation({
     mutationFn: updateRecipe,
     onSuccess: () => {
@@ -34,6 +35,7 @@ const EditRecipe = () => {
     },
   });
 
+  // Delete the recipe.
   const deleteMutation = useMutation({
     mutationFn: deleteRecipe,
     onSuccess: () => {

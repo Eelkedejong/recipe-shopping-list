@@ -3,14 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import {
-  resetSearchParams,
-  updateType,
-} from '../../store/publicSearchParamsSlice';
+import { resetSearchParams, updateType } from '@store/publicSearchParamsSlice';
 import getPublicRecipes from './api/getPublicRecipes';
-import RecipeTile from '../../components/recipe/RecipeTile';
+import RecipeTile from '@/components/recipe/RecipeTile';
 import styles from './recipe.module.scss';
-import { dishTypes } from '../../utils/dishTypes';
+import { dishTypes } from '@/utils/dishTypes';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa6';
 
 const PublicRecipeList = () => {

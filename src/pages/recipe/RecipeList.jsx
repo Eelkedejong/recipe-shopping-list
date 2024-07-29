@@ -3,11 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { resetSearchParams } from '../../store/searchParamsSlice';
+import { resetSearchParams } from '@/store/searchParamsSlice';
 import { FaPlus } from 'react-icons/fa6';
 import getRecipes from './api/getRecipe';
-import RecipeTile from '../../components/recipe/RecipeTile';
-import TypesList from '../../components/recipe/TypesList';
+import RecipeTile from '@/components/recipe/RecipeTile';
+import TypesList from '@/components/recipe/TypesList';
 import styles from './recipe.module.scss';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa6';
 

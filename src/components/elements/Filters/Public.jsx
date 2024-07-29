@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateTags, updateTime } from '../../../store/publicSearchParamsSlice';
+import { updateTags, updateTime } from '@/store/publicSearchParamsSlice';
 import { useTranslation } from 'react-i18next';
-import getPublicRecipeFilter from '../../../pages/recipe/api/filters/getPublicRecipeFilter';
+import getPublicRecipeFilter from '@/pages/recipe/api/filters/getPublicRecipeFilter';
 import { FaSliders, FaX } from 'react-icons/fa6';
+import Button from '@/components/ui/Button';
 import styles from './filters.module.scss';
-import Button from '../../ui/Button';
 
 const Filters = () => {
   const searchParams = useSelector((state) => state.publicSearchParams.value);
@@ -30,6 +30,7 @@ const Filters = () => {
 
   const filterOptions = results?.data?.data ?? [];
 
+  // @TODO: Add this to the utilities.
   const timeOptions = [
     {
       label: `${t('All')}`,

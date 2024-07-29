@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { init } from 'i18next';
 
 const initialState = [{ unit: '', amount: '', ingredient: '', id: 1 }];
 export const IngredientSlice = createSlice({

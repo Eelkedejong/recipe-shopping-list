@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import styles from './language.module.scss';
-import enFlag from '../../assets/flags/en.svg';
-import nlFlag from '../../assets/flags/nl.svg';
+import enFlag from '@/assets/flags/en.svg';
+import nlFlag from '@/assets/flags/nl.svg';
 
 const LanguageSelect = () => {
   const { i18n } = useTranslation();

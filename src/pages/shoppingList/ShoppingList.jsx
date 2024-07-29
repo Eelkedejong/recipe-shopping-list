@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
@@ -10,11 +9,12 @@ import {
   updateShoppingListItems,
   updateShoppingListRecipes,
 } from './api/updateShoppingList';
-import ShoppingListRecipeList from '../../components/shoppingList/ShoppingListRecipeList';
-import ShoppingListItems from '../../components/shoppingList/ShoppingListItems';
+import ShoppingListRecipeList from '@/components/shoppingList/ShoppingListRecipeList';
+import ShoppingListItems from '@/components/shoppingList/ShoppingListItems';
 import { submbitShoppingList } from './utils/sumbitShopingList';
-import Button from '../../components/ui/Button';
+import Button from '@/components/ui/Button';
 import styles from './shoppinglist.module.scss';
+
 const ShoppingList = () => {
   const [message, setMessage] = useState('');
   const user = useSelector((state) => state.user.value);
@@ -23,8 +23,8 @@ const ShoppingList = () => {
   );
   const queryClient = useQueryClient();
   const { t } = useTranslation();
-  // const navigate = useNavigate();
 
+  // Save the shopping list items.
   const editItems = useMutation({
     mutationFn: updateShoppingListItems,
     onSuccess: () => {
@@ -34,6 +34,7 @@ const ShoppingList = () => {
     },
   });
 
+  // Save the shopping list recipes.
   const editRecipes = useMutation({
     mutationFn: updateShoppingListRecipes,
     onSuccess: () => {

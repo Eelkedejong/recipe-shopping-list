@@ -1,33 +1,31 @@
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-// import RecipeList from "./pages/recipe/RecipeList";
-// import RecipeDetail from "./pages/recipe/RecipeDetail";
-// import CreateRecipe from "./pages/recipe/CreateRecipe";
-// import EditRecipe from "./pages/recipe/EditRecipe";
-// import Overview from "./pages/overview/Overview";
-// import ShoppingList from "./pages/shoppingList/ShoppingList";
-// import Filters from "./components/elements/Filters";
-import GroceryList from './pages/shoppingList/GroceryList';
-const RecipeList = lazy(() => import('./pages/recipe/RecipeList'));
-const PublicRecipeList = lazy(() => import('./pages/recipe/PublicRecipeList'));
-const RecipeDetail = lazy(() => import('./pages/recipe/RecipeDetail'));
+import GroceryList from '@/pages/shoppingList/GroceryList';
+const RecipeList = lazy(() => import('@/pages/recipe/RecipeList'));
+const PublicRecipeList = lazy(() => import('@/pages/recipe/PublicRecipeList'));
+const RecipeDetail = lazy(() => import('@/pages/recipe/RecipeDetail'));
 const PublicRecipeDetail = lazy(
-  () => import('./pages/recipe/PublicRecipeDetail')
+  () => import('@/pages/recipe/PublicRecipeDetail')
 );
-const CreateRecipe = lazy(() => import('./pages/recipe/CreateRecipe'));
-const EditRecipe = lazy(() => import('./pages/recipe/EditRecipe'));
-const Overview = lazy(() => import('./pages/overview/Overview'));
-const ShoppingList = lazy(() => import('./pages/shoppingList/ShoppingList'));
-const TypeBanner = lazy(() => import('./components/recipe/TypeBanner'));
-const Filters = lazy(() => import('./components/elements/Filters'));
+const CreateRecipe = lazy(() => import('@/pages/recipe/CreateRecipe'));
+const EditRecipe = lazy(() => import('@/pages/recipe/EditRecipe'));
+const Overview = lazy(() => import('@/pages/overview/Overview'));
+const ShoppingList = lazy(() => import('@/pages/shoppingList/ShoppingList'));
+const TypeBanner = lazy(() => import('@/components/recipe/TypeBanner'));
+const Filters = lazy(() => import('@/components/elements/Filters'));
 const PublicFilters = lazy(
-  () => import('./components/elements/Filters/Public')
+  () => import('@/components/elements/Filters/Public')
 );
-import Navigation from './components/elements/Navigation';
-import StickyNavigation from './components/elements/StickyNavigation';
-import Header from './components/elements/Header';
+import Navigation from '@/components/elements/Navigation';
+import StickyNavigation from '@/components/elements/StickyNavigation';
+import Header from '@/components/elements/Header';
 
+/**
+ * Renders the main layout of the application.
+ *
+ * @returns {JSX.Element} The main layout component.
+ */
 const Layout = () => {
   const { t } = useTranslation();
 

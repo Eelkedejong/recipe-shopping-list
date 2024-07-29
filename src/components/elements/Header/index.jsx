@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { FaChevronLeft } from 'react-icons/fa6';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Search from '../../elements/Search';
+import Search from '@/components/elements/Search';
 import styles from './header.module.scss';
 
 const Header = ({
@@ -63,7 +63,6 @@ const Header = ({
             className={`desktop-hidden p-3 ${styles.searchButton}`}
             onClick={() => setOpen(!open)}
           >
-            {/* <FaSearch className="fs-24 text-white mobile-hidden asdasd" /> */}
             <span
               className={`desktop-hidden ${styles.searchIcon} ${open ? styles.close : null}`}
             ></span>

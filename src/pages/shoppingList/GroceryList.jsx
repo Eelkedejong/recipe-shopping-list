@@ -13,7 +13,7 @@ import {
 } from '@dnd-kit/core';
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import getShoppingList from './api/getShoppingList';
-import GroceryListColumn from '../../components/groceryList/GroceryListColumn';
+import GroceryListColumn from '@/components/groceryList/GroceryListColumn';
 
 const GroceryList = () => {
   const user = useSelector((state) => state.user.value);

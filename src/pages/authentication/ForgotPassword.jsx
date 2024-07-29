@@ -4,8 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import passwordReset from './api/forgotPassword';
 import ErrorMessage from './utils/ErrorMessage';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/ui/Button';
-import Input from '../../components/ui/Input';
+import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
 
 const ForgotPassword = () => {
   const { t } = useTranslation();

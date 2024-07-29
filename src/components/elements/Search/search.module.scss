@@ -21,7 +21,7 @@
 
   &.open {
     @include screen-m(max) {
-      // Todo: Add an animation for the search bar.
+      // @TODO: Add an animation for the search bar.
       top: 0;
       display: block;
 

@@ -5,6 +5,9 @@ import publicSearchParams from './publicSearchParamsSlice';
 import shoppingListRecipes from './shoppingListRecipesSlice';
 import ingredientList from './ingredientSlice';
 
+/**
+ * @type {import('@reduxjs/toolkit').EnhancedStore}
+ */
 const store = configureStore({
   reducer: {
     user,

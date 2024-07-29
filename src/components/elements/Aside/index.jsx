@@ -1,5 +1,5 @@
-import Logout from "../../../pages/authentication/Logout";
-import styles from "./aside.module.scss";
+import Logout from '@/pages/authentication/Logout';
+import styles from './aside.module.scss';
 
 const Aside = () => {
   return (

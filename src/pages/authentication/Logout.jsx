@@ -11,7 +11,6 @@ const Logout = () => {
   const { t } = useTranslation();
 
   const handleLogout = () => {
-    // queryClient.removeQueries("user");
     queryClient.invalidateQueries();
     removeUserData();
 

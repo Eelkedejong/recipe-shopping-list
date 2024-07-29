@@ -1,12 +1,17 @@
-import mainImage from '../assets/bg/main.jpg';
-import starterImage from '../assets/bg/starter.png';
-import dessertImage from '../assets/bg/dessert.jpg';
-import sideImage from '../assets/bg/side.png';
-import breakfastImage from '../assets/bg/breakfast.jpg';
-import lunchImage from '../assets/bg/lunch.jpg';
-import snackImage from '../assets/bg/snack.png';
-import pastryImage from '../assets/bg/pastry.png';
+import mainImage from '@/assets/bg/main.jpg';
+import starterImage from '@/assets/bg/starter.png';
+import dessertImage from '@/assets/bg/dessert.jpg';
+import sideImage from '@/assets/bg/side.png';
+import breakfastImage from '@/assets/bg/breakfast.jpg';
+import lunchImage from '@/assets/bg/lunch.jpg';
+import snackImage from '@/assets/bg/snack.png';
+import pastryImage from '@/assets/bg/pastry.png';
 
+/**
+ * Array of available dish types with their corresponding background images.
+ *
+ * @type {Array<Object>}
+ */
 export const dishTypes = [
   {
     label: 'main',

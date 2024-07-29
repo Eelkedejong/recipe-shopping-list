@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { FaCirclePlus, FaCircleMinus } from 'react-icons/fa6';
-import { updateRecipes } from '../../../store/shoppingListRecipesSlice';
+import { updateRecipes } from '@/store/shoppingListRecipesSlice';
 
 const PersonSelector = ({ personsState, setPersonsState, recipeId }) => {
   const dispatch = useDispatch();

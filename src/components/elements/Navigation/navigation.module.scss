@@ -4,8 +4,6 @@
   min-height: 62px;
 
   @include screen-m(min) {
-    // background-image: url('../../../assets/bg.svg');
-    // background-size: cover;
     background-color: $color-main;
     border-radius: 0 0 30px 0;
     padding-bottom: 36px;
@@ -22,10 +20,6 @@
   @include screen-m(max) {
     justify-content: center;
     padding-top: 10px;
-
-    > span {
-      // font-size: 32px;
-    }
   }
 
   @include screen-m(min) {
@@ -117,7 +111,6 @@
   }
 }
 
-/* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
 .openNav {
   position: absolute;
   top: 20px;

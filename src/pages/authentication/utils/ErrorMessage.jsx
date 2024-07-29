@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 const ErrorMessage = ({ errorMessage }) => {
   const { t } = useTranslation();
 
+  // Temporary error messages until proper user error handling is implemented
   const errorMessages = [
     'The username, email or password did not match. Please try again.',
     'The email address is not formatted correctly.',

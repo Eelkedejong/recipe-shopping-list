@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import LoginContext from './utils/loginContext';
-import Button from '../../components/ui/Button';
-import Input from '../../components/ui/Input';
+import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
 
 const LoginForm = ({ refetch }) => {
   const { t } = useTranslation();

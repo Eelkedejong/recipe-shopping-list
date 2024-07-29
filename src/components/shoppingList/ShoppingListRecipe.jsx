@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { FaXmark } from 'react-icons/fa6';
 import PersonSelector from '../elements/PersonSelector';
-import removeShippingListRecipe from '../../pages/shoppingList/api/removeShoppingListRecipe';
+import removeShippingListRecipe from '@/pages/shoppingList/api/removeShoppingListRecipe';
 
 const ShoppingListRecipe = ({
   setRecipes,

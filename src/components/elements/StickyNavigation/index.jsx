@@ -104,17 +104,6 @@ const StickyNavigation = () => {
           <span className="fs-13 desktop-hidden-s">{t('Shopping')}</span>
           <span className="fs-13 mobile-hidden-s">{t('Shopping list')}</span>
         </button>
-
-        {/* <Link
-          className={`jss ${locationPath === '/shopping-list' ? styles.active : null}`}
-          to={'/shopping-list'}
-        >
-          <div className="df fdc aic jcc gap-1">
-            <FaBasketShopping className="fs-16" />
-            <span className="fs-13 desktop-hidden-s">{t('Shopping')}</span>
-            <span className="fs-13 mobile-hidden-s">{t('Shopping list')}</span>
-          </div>
-        </Link> */}
       </div>
 
       <div

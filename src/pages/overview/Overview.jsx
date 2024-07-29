@@ -39,11 +39,7 @@ const Overview = () => {
       <div
         className={`rounded-m mb-5 ${styles.banner}`}
         style={{ backgroundImage: `url(${bannerImage})` }}
-      >
-        {/* <div className={`fs-16 fw-semibold mobile-hidden ${styles.bannerText}`}>
-          {t('Search for recipes')}
-        </div> */}
-      </div>
+      ></div>
       <div className="bg-white p-5 mb-5 rounded-m">
         <div className="df aic jcsb mb-4">
           <h3 className="fs-20 fw-semibold">{t('Your newest recipes')}</h3>
