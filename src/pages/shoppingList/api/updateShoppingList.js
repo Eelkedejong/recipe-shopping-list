@@ -1,3 +1,5 @@
+import logError from '@/utils/errorLogger';
+
 const updateShoppingListRecipes = async ([recipes, token]) => {
   const requestOptions = {
     method: 'PUT',
@@ -15,13 +17,12 @@ const updateShoppingListRecipes = async ([recipes, token]) => {
     );
 
     if (!res.ok) {
-      console.log('Could not add recipe to shopping list');
-      throw new Error(`updateShoppingListRecipes not ok`);
+      throw new Error(`Could not add recipe to shopping list`);
     }
 
     return res.json();
   } catch (e) {
-    console.log(e);
+    logError(e, `updateShoppingListItems ${items}`);
   }
 };
 
@@ -42,13 +43,12 @@ const updateShoppingListItems = async ([items, token]) => {
     );
 
     if (!res.ok) {
-      console.log('Did not update list, please try again later');
-      throw new Error(`updateShoppingListItems not ok`);
+      throw new Error(`Could not update items in the shopping list`);
     }
 
     return res.json();
   } catch (e) {
-    console.log(e);
+    logError(e, `updateShoppingListItems ${items}`);
   }
 };
 

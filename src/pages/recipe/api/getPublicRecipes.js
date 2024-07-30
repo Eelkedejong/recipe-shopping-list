@@ -1,3 +1,5 @@
+import logError from '@/utils/errorLogger';
+
 const getRecipe = async ({ queryKey }) => {
   const searchParams = queryKey[1];
   const id = queryKey[2];
@@ -52,7 +54,7 @@ const getRecipe = async ({ queryKey }) => {
 
     return res.json();
   } catch (e) {
-    console.log(e);
+    logError(e, `Get public recipes with ${searchParams}`);
   }
 };
 

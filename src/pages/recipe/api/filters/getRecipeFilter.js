@@ -1,3 +1,5 @@
+import logError from '@/utils/errorLogger';
+
 const getRecipeFilter = async ({ queryKey }) => {
   const token = queryKey[1];
   const type = queryKey[2];
@@ -21,7 +23,7 @@ const getRecipeFilter = async ({ queryKey }) => {
 
     return res.json();
   } catch (e) {
-    console.log(e);
+    logError(e, `Get Recipe filters for ${type}`);
   }
 };
 

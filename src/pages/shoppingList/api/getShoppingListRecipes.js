@@ -1,3 +1,5 @@
+import logError from '@/utils/errorLogger';
+
 const getShoppingListRecipes = async ({ queryKey }) => {
   const token = queryKey[1];
   const ids = queryKey[2];
@@ -23,7 +25,7 @@ const getShoppingListRecipes = async ({ queryKey }) => {
 
     return res.json();
   } catch (e) {
-    console.log(e);
+    logError(e, `getShoppingListRecipes with ${ids}`);
   }
 };
 

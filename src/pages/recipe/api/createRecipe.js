@@ -1,3 +1,5 @@
+import logError from '@/utils/errorLogger';
+
 const createRecipe = async ([recipeData, token]) => {
   const requestOptions = {
     method: 'POST',
@@ -23,7 +25,7 @@ const createRecipe = async ([recipeData, token]) => {
 
     return responseData?.data?.id;
   } catch (e) {
-    console.log(e);
+    logError(e, `createRecipe with ${recipeData}`);
   }
 };
 

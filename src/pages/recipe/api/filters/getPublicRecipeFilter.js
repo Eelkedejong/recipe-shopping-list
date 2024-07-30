@@ -1,7 +1,8 @@
+import logError from '@/utils/errorLogger';
+
 const getPublicRecipeFilter = async ({ queryKey }) => {
   const callType = queryKey[1];
   const recipeType = queryKey[2];
-  console.log('recipeType', recipeType);
 
   let url = import.meta.env.VITE_API_KEY + `public/recipe-${callType}`;
 
@@ -22,7 +23,7 @@ const getPublicRecipeFilter = async ({ queryKey }) => {
 
     return res.json();
   } catch (e) {
-    console.log(e);
+    logError(e, `Get Public recipe filters for ${recipeType}`);
   }
 };
 

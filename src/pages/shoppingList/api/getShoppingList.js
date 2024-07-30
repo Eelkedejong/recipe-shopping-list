@@ -1,3 +1,5 @@
+import logError from '@/utils/errorLogger';
+
 const getShoppingList = async ({ queryKey }) => {
   const token = queryKey[1];
 
@@ -20,7 +22,7 @@ const getShoppingList = async ({ queryKey }) => {
 
     return res.json();
   } catch (e) {
-    console.log(e);
+    logError(e, `getShoppingList`);
   }
 };
 
