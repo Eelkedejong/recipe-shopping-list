@@ -52,12 +52,12 @@ Contains the Redux store.
 
 ## Tech Stack
 
-- _React_ is the framework the application is build in.
-- _Vite_ is used as the base development server and compiler.
-- _React Query_ in combination with fetch is used to get data from the back-end and store data on the front-end for a smooth user experience.
-- _React Redux_ is used to store user data and user interaction with filters and search inputs, as well as creating shopping lists.
-- _Cloudinary_ is isued for handling user images.
-- _React i18m_ is used for translations.
+- **React** is the framework the application is build in.
+- **Vite** is used as the base development server and compiler.
+- **React Query** in combination with fetch is used to get data from the back-end and store data on the front-end for a smooth user experience.
+- **React Redux** is used to store user data and user interaction with filters and search inputs, as well as creating shopping lists.
+- **Cloudinary** is isued for handling user images.
+- **React i18m** is used for translations.
 
 ## Theming
 
