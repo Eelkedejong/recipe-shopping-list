@@ -24,7 +24,7 @@ App.jsx is the entry point for the entire app where global systems are initializ
 Authentication.jsx is the authentication layer that blocks the app untill the user signed in.
 When the user is signed in, the layout.jsx is used to load the different sections of the application.
 
-## folder structure
+## Folder structure
 
 #### pages
 
