@@ -16,7 +16,7 @@ Note: This project is still work in progress and not all features work as intend
 This project contains the ehadless front-end for my recipe shopping list web-app.
 Front-end, back-end and design is done by me.
 
-- Back-end project:[https://github.com/Eelkedejong/recipe-data](https://github.com/Eelkedejong/recipe-data)
+- Back-end project: [https://github.com/Eelkedejong/recipe-data](https://github.com/Eelkedejong/recipe-data)
 
 ## Project structure
 
