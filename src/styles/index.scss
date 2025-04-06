@@ -1,15 +1,2 @@
-@import './reset.scss';
-@import './variables.scss';
-@import './defaults.scss';
-
-// Utility classes
-@import './utility/borders.scss';
-@import './utility/color.scss';
-@import './utility/font.scss';
-@import './utility/layout.scss';
-@import './utility/spacing.scss';
-@import './utility/visibility.scss';
-@import './utility/interactivity.scss';
-
-// Mixins
-@import './mixins/breakpoints.scss';
+@forward 'variables';
+@forward 'mixins/breakpoints';

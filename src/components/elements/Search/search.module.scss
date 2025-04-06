@@ -1,4 +1,4 @@
-@import '../../../styles/variables.scss';
+@use '@styles/mixins/breakpoints' as *;
 
 .wrapper {
   @include screen-m(max) {
