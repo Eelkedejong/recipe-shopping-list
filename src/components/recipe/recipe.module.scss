@@ -149,7 +149,7 @@ section {
 
     @include screen-m(min) {
       &:hover {
-        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 4px 16px rgba(77, 73, 73, 0.25);
         transform: translateY(-2px);
         transition: $default-transition ease;
       }
