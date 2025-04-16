@@ -11,12 +11,11 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         implementation: sass,
+        additionalData: `@use "@styles/variables.scss" as *;`,
       },
     },
   },
-  optimizeDeps: {
-    exclude: ['dnd-kit'],
-  },
+  optimizeDeps: { exclude: ['dnd-kit'] },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

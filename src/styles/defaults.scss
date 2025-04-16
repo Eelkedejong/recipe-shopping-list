@@ -1,9 +1,10 @@
+@use './variables.scss' as *;
+
 body {
   font-family: $font-family-main;
 }
 
 // Default transition on interactive elements
-
 
 // TODO: Move to a module scss
 // Checkbox styling: https://codepen.io/cesque/pen/QxjyKR

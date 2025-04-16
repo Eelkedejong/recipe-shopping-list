@@ -7,7 +7,17 @@ import { FaClockRotateLeft, FaUtensils } from 'react-icons/fa6';
 import logo from '../../assets/logo-white.svg';
 import styles from './recipe.module.scss';
 
-const RecipeTile = ({ id, name, image, labels, time, type, isPublic }) => {
+const RecipeTile = ({
+  id,
+  name,
+  image,
+  typeOfDish,
+  typeOfMeal,
+  cuisine,
+  time,
+  type,
+  isPublic,
+}) => {
   const { t } = useTranslation();
   // Create a Cloudinary instance for the recipe image.
   // const cld = new Cloudinary({
@@ -45,28 +55,47 @@ const RecipeTile = ({ id, name, image, labels, time, type, isPublic }) => {
         <h2 className="fs-18 fw-bold">{name}</h2>
 
         <div className="df gap-1 text-grey fw-light fs-14">
-          {labels
-            ? labels.map((label, index) => {
+          {typeOfDish
+            ? typeOfDish.map((type, index) => {
                 return (
-                  <span key={label}>
-                    {label}
-                    {index !== labels.length - 1 ? ', ' : ''}
+                  <span key={type}>
+                    {type}
+                    {index !== typeOfDish.length - 1 ? ', ' : ''}
                   </span>
                 );
               })
             : null}
         </div>
 
-        <div className={`df gap-4 mt-5 mb-2 fww`}>
+        <div className={`df gap-4 mt-5 mb-2 mr-5 fww`}>
           {time ? (
             <div className="df aic gap-2 fs-14">
               <FaClockRotateLeft fontSize="14px" /> {time} {t('min')}
             </div>
           ) : null}
 
-          {type ? (
-            <div className="df aic gap-2 fs-14">
-              <FaUtensils fontSize="14px" /> {t(`${type}`)}
+          {cuisine && cuisine.length > 0 ? (
+            <div
+              className={`df aic gap-1 fs-12 ${styles.cuisineLabel} bg-white rounded-s p-1 px-2`}
+            >
+              {/* <FaUtensils fontSize="14px" /> */}
+              {cuisine[0]}
+            </div>
+          ) : null}
+
+          {typeOfMeal && typeOfMeal.length > 0 ? (
+            <div className="df aic gap-1 fs-14">
+              <FaUtensils fontSize="14px" />
+              {typeOfMeal
+                ? typeOfMeal.map((type, index) => {
+                    return (
+                      <span key={type}>
+                        {t(`${type.charAt(0).toUpperCase() + type.slice(1)}`)}
+                        {index !== typeOfMeal.length - 1 ? ', ' : ''}
+                      </span>
+                    );
+                  })
+                : null}
             </div>
           ) : null}
         </div>

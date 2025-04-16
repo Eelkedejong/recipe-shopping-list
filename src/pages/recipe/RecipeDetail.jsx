@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import getRecipe from './api/getRecipe';
 import Info from '@/components/recipe/detail/Info';
+import ExtraInfo from '@/components/recipe/detail/ExtraInfo';
 const Image = lazy(() => import('@/components/recipe/detail/Image'));
 import Ingredients from '@/components/recipe/detail/Ingredients';
 import Steps from '@/components/recipe/detail/Steps';
@@ -50,13 +51,18 @@ const RecipeDetail = () => {
     <>
       {results.isSuccess ? (
         <div className={`dg gap-5 pb-5 ${styles.detailPage}`}>
-          <div
-            className={`bg-white rounded-m p-5 ${styles.detailsInfoWrapper}`}
-          >
-            <Info recipe={recipe} />
+          <div>
+            <div
+              className={`bg-white rounded-m p-5 ${styles.detailsInfoWrapper}`}
+            >
+              <Info recipe={recipe} />
+            </div>
+
+            <ExtraInfo recipe={recipe} />
           </div>
+
           <div className={styles.detailsIngredientsWrapper}>
-            <div className={`bg-white rounded-m p-5 $`}>
+            <div className={`bg-white rounded-m p-5`}>
               <Ingredients
                 ingredients={recipe.ingredients}
                 persons={recipe.persons}

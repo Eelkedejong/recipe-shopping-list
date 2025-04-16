@@ -1,7 +1,8 @@
+@use '@styles/variables' as *;
+
 //
 // Breakpoint mixins
 //________________________________________
-
 /* Usage
 
 Include the mixin with the desired breakpoint and add the 
@@ -20,7 +21,6 @@ div {
     }
 }
 */
-
 // Mobile extra small -- 360px
 @mixin screen-xxs($orientation) {
   @media (#{$orientation}-width: #{$screen-xxs}) {
