@@ -4,7 +4,7 @@ import { Input } from '../../ui/Fields';
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa';
 import styles from '../recipe.module.scss';
 
-const StepsList = ({ tags }) => {
+const StepsList = ({ tags, placeholder, prefix }) => {
   const { t } = useTranslation();
   const [labels, setLabels] = useState(tags ? tags : ['']);
 
@@ -18,8 +18,9 @@ const StepsList = ({ tags }) => {
               key={`${index} + ${label}`} // @TODO: Change this to a unique key.
             >
               <Input
-                id={`label-${index + 1}`}
-                label={t('Label')}
+                id={`${prefix}-${index + 1}`}
+                name={`${prefix}-${index + 1}`}
+                label={t(placeholder)}
                 value={label ? label : null}
                 classes={`${styles.ingreidentInput} pr-4`}
                 labelClasses={`w-100 ${styles.label}`}
@@ -49,7 +50,7 @@ const StepsList = ({ tags }) => {
             setLabels([...labels, '']);
           }}
         >
-          <span>{t('Add label')}</span>
+          <span>{t(`Add ${placeholder}`)}</span>
           <FaPlusCircle />
         </button>
       </div>

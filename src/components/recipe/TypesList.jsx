@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateType } from '../../store/searchParamsSlice';
+import { updateTypeOfMeal } from '../../store/searchParamsSlice';
 import { useTranslation } from 'react-i18next';
 import getRecipeFilter from '../../pages/recipe/api/filters/getRecipeFilter';
 import styles from './recipe.module.scss';
@@ -38,9 +38,9 @@ const TypesList = () => {
               <button
                 onClick={() => {
                   if (type === `${t('All')}`) {
-                    dispatch(updateType(''));
+                    dispatch(updateTypeOfMeal(''));
                   } else {
-                    dispatch(updateType(`${t(type)}`));
+                    dispatch(updateTypeOfMeal(`${t(type)}`));
                   }
                 }}
                 className={`

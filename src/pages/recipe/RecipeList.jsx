@@ -80,7 +80,9 @@ const RecipeList = () => {
                 id={recipe.id}
                 name={recipe.name}
                 image={recipe.image}
-                labels={recipe.tags}
+                typeOfDish={recipe.typeOfDish}
+                typeOfMeal={recipe.typeOfMeal}
+                cuisine={recipe.cuisine}
                 time={recipe.time}
                 type={recipe.type}
                 key={recipe.id}

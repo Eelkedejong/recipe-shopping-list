@@ -36,6 +36,7 @@
     "vite-imagetools": "^6.2.9"
   },
   "dependencies": {
+    "@base-ui-components/react": "^1.0.0-alpha.7",
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.16.0",
     "@dnd-kit/core": "^6.1.0",

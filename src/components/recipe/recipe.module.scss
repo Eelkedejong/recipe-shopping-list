@@ -11,7 +11,7 @@
 
     > div {
       &:nth-child(4) {
-        margin-top: -140px; // @todo: find a better solution for this.
+        // margin-top: -140px; // @todo: find a better solution for this.
       }
     }
 
@@ -81,6 +81,10 @@
   }
 }
 
+.cuisine {
+  grid-column: 1/3;
+}
+
 .ingredientGrid {
   grid-template-columns: 15px 2fr 1fr 1fr 15px;
   // touch-action: none;
@@ -130,10 +134,17 @@ section {
   .recipeTile {
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
     transition: $default-transition ease;
+    position: relative;
 
     .tileImage {
       background-size: cover;
       background-position: 50% 50%;
+    }
+
+    .cuisineLabel {
+      position: absolute;
+      top: 16px;
+      right: 16px;
     }
 
     @include screen-m(min) {
@@ -227,7 +238,7 @@ section {
 }
 
 .placeholderDetailsImage {
-  height: 200px;
+  height: 240px;
 
   @include screen-m(max) {
     grid-row: 1;
@@ -238,10 +249,10 @@ section {
   }
 
   @include screen-m(min) {
-    height: 250px;
+    height: 100%;
     border-radius: 20px;
     grid-column: 2;
-    grid-row: 1/3;
+    grid-row: 1;
 
     img {
       width: 120px;
@@ -262,11 +273,12 @@ section {
   }
 
   @include screen-m(min) {
-    min-height: 400px;
-    max-height: 500px;
+    // min-height: 400px;
+    // max-height: 500px;
+    height: 100%;
     border-radius: 20px;
     grid-column: 2;
-    grid-row: 1/3;
+    grid-row: 1;
   }
 }
 
