@@ -10,34 +10,66 @@ const getRecipe = async ({ queryKey }) => {
 
   if (searchParams) {
     // Deconstruct the searchParams object
-    const { type, tags, time, search, limit } = searchParams;
+    const {
+      typeOfMeal,
+      typeOfDish,
+      cuisine,
+      tags,
+      time,
+      isChildFriendly,
+      isVegetarian,
+      search,
+      limit,
+    } = searchParams;
 
-    // Add searchParams to URL if they have a value
-    let isFirstQueryParam = true;
+    // Build query parameters in a more DRY way
+    const queryParams = [];
 
-    // TODO: Refactor this to be more DRY
-    if (type) {
-      url += `?type=${type}`;
-      isFirstQueryParam = false;
+    // Handle array parameters
+    if (typeOfMeal && typeOfMeal.length > 0) {
+      queryParams.push(`typeOfMeal=${typeOfMeal.join(',')}`);
     }
-    if (tags.length > 0) {
-      url += `${isFirstQueryParam ? '?' : '&'}tags=${tags}`;
-      isFirstQueryParam = false;
+
+    if (typeOfDish && typeOfDish.length > 0) {
+      queryParams.push(`typeOfDish=${typeOfDish.join(',')}`);
     }
+
+    if (cuisine && cuisine.length > 0) {
+      queryParams.push(`cuisine=${cuisine.join(',')}`);
+    }
+
+    if (tags && tags.length > 0) {
+      queryParams.push(`tags=${tags.join(',')}`);
+    }
+
+    // Handle simple parameters
     if (time) {
-      url += `${isFirstQueryParam ? '?' : '&'}time=${time}`;
-      isFirstQueryParam = false;
+      queryParams.push(`time=${time}`);
     }
+
+    if (isChildFriendly !== undefined) {
+      queryParams.push(`isChildFriendly=${isChildFriendly}`);
+    }
+
+    if (isVegetarian !== undefined) {
+      queryParams.push(`isVegetarian=${isVegetarian}`);
+    }
+
     if (page) {
-      url += `${isFirstQueryParam ? '?' : '&'}page=${page}`;
-      isFirstQueryParam = false;
+      queryParams.push(`page=${page}`);
     }
+
     if (limit) {
-      url += `${isFirstQueryParam ? '?' : '&'}limit=${limit}`;
-      isFirstQueryParam = false;
+      queryParams.push(`limit=${limit}`);
     }
+
     if (search) {
-      url += `${isFirstQueryParam ? '?' : '&'}search=${search}`;
+      queryParams.push(`search=${search}`);
+    }
+
+    // Add all query parameters to URL
+    if (queryParams.length > 0) {
+      url += '?' + queryParams.join('&');
     }
   }
 
@@ -57,7 +89,7 @@ const getRecipe = async ({ queryKey }) => {
 
     return res.json();
   } catch (e) {
-    logError(e, `Get user recipes with ${searchParams}`);
+    logError(e, `Get user recipes with ${JSON.stringify(searchParams)}`);
   }
 };
 

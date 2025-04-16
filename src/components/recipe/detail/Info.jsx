@@ -1,12 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { FaClockRotateLeft, FaUtensils, FaPen } from 'react-icons/fa6';
+import {
+  FaClockRotateLeft,
+  FaUtensils,
+  FaPen,
+  FaLeaf,
+  FaChildReaching,
+} from 'react-icons/fa6';
 import styles from '../recipe.module.scss';
 import easy from '../../../assets/icons/easy.svg';
 import medium from '../../../assets/icons/medium.svg';
 import difficult from '../../../assets/icons/difficult.svg';
 
 const RecipeDetail = ({ recipe }) => {
+  console.log('recipe', recipe);
   const { t } = useTranslation();
 
   const difficultyicon = () => {
@@ -27,51 +34,49 @@ const RecipeDetail = ({ recipe }) => {
             <FaPen />
           </Link>
         </div>
-        <div className="df gap-1 text-grey fw-light fs-14">
-          {recipe.tags
-            ? recipe.tags.map((label, index) => {
+        <div className="df gap-1 text-grey fw-light fs-16">
+          {recipe.typeOfDish
+            ? recipe.typeOfDish.map((type, index) => {
                 return (
-                  <span key={label}>
-                    {label}
-                    {index !== recipe.tags.length - 1 ? ', ' : ''}
+                  <span key={type}>
+                    {type}
+                    {index !== recipe.typeOfDish.length - 1 ? ', ' : ''}
                   </span>
                 );
               })
             : null}
         </div>
-        <div className="my-5">{recipe.description}</div>
-        <div className="df fww gap-5 py-3">
-          {recipe.time ? (
-            <div
-              className={`df fdc aic jcc f1 p-2 bg-main-lighter rounded-s ${styles.detailBlock}`}
-            >
-              <div className="df aic gap-2 text-main fs-14">
-                <FaClockRotateLeft /> {recipe.time} {t('min')}
-              </div>
-              <span className="fs-12">{t('Cooking time')}</span>
+        <div className="my-4">{recipe.description}</div>
+
+        <div className="df gap-3 fww">
+          {recipe.typeOfMeal
+            ? recipe.typeOfMeal.map((type, index) => {
+                return (
+                  <div
+                    className={`
+                  py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
+                `}
+                    key={type}
+                  >
+                    {t(`${type.charAt(0).toUpperCase() + type.slice(1)}`)}
+                  </div>
+                );
+              })
+            : null}
+        </div>
+
+        <div className="df gap-5 fww mt-4">
+          {recipe.isVegetarian ? (
+            <div className="df aic gap-2 fs-14">
+              <FaLeaf style={{ color: '#5c8d89' }} />
+              <span style={{ color: '#5c8d89' }}>{t('Vegetarian')}</span>
             </div>
           ) : null}
 
-          {recipe.type ? (
-            <div
-              className={`df fdc aic jcc f1 p-2 bg-main-lighter rounded-s ${styles.detailBlock}`}
-            >
-              <div className="df aic gap-2 text-main fs-14">
-                <FaUtensils /> {recipe.type}
-              </div>
-              <span className="fs-12">{t('Type')}</span>
-            </div>
-          ) : null}
-
-          {recipe.difficulty ? (
-            <div
-              className={`df fdc aic jcc f1 p-2 py-3 bg-main-lighter rounded-s ${styles.detailBlock}`}
-            >
-              <div className="df aic gap-2 text-main fs-14">
-                <img src={difficultyicon()} alt="recipe difficulty" />
-                {recipe.difficulty}
-              </div>
-              <span className="fs-12">{t('Difficulty')}</span>
+          {recipe.isChildFriendly ? (
+            <div className="df gap-2 fs-14">
+              <FaChildReaching />
+              {t('Child friendly')}
             </div>
           ) : null}
         </div>

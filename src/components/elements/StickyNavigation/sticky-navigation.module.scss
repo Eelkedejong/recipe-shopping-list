@@ -1,4 +1,4 @@
-@import '../../../styles/variables.scss';
+@use '@styles/mixins/breakpoints' as *;
 
 .stickyNav {
   grid-template-columns: repeat(3, minmax(0, 1fr));

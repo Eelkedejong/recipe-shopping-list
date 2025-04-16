@@ -3,7 +3,10 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { resetSearchParams, updateType } from '@store/publicSearchParamsSlice';
+import {
+  resetSearchParams,
+  updateTypeOfMeal,
+} from '@store/publicSearchParamsSlice';
 import getPublicRecipes from './api/getPublicRecipes';
 import RecipeTile from '@/components/recipe/RecipeTile';
 import styles from './recipe.module.scss';
@@ -22,8 +25,8 @@ const PublicRecipeList = () => {
   useEffect(() => {
     dispatch(resetSearchParams());
     type
-      ? dispatch(updateType(type.charAt(0).toUpperCase() + type.slice(1)))
-      : dispatch(updateType(''));
+      ? dispatch(updateTypeOfMeal(type.charAt(0).toUpperCase() + type.slice(1)))
+      : dispatch(updateTypeOfMeal(''));
   }, [dispatch, type]);
 
   const { data, error, isLoading } = useQuery({
@@ -76,7 +79,9 @@ const PublicRecipeList = () => {
                   dispatch(resetSearchParams());
                   // If there is a type, immediately update the type in the search params.
                   dispatch(
-                    updateType(type.charAt(0).toUpperCase() + type.slice(1))
+                    updateTypeOfMeal(
+                      type.charAt(0).toUpperCase() + type.slice(1)
+                    )
                   );
                 }}
               >
