@@ -40,8 +40,6 @@ const RecipeList = () => {
   const currentPage = data?.page;
   const totalRecipes = data?.count;
 
-  console.log('recipes', recipes, totalPages, currentPage, totalRecipes);
-
   return (
     <div className={`bg-white p-5 ${styles.listWrapper}`}>
       <div className="df jcsb aic mb-3 fww gap-3">
