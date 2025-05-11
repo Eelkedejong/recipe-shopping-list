@@ -7,7 +7,9 @@ import styles from './recipe.module.scss';
 
 const TypesList = () => {
   const user = useSelector((state) => state.user.value);
-  const SelectedType = useSelector((state) => state.searchParams.value.type);
+  const SelectedType = useSelector(
+    (state) => state.searchParams.value.typeOfMeal
+  );
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -29,6 +31,9 @@ const TypesList = () => {
     }
   }
 
+  const capitalizeFirstLetter = (string) =>
+    string.charAt(0).toUpperCase() + string.slice(1);
+
   return (
     <>
       {filterOptions.length ? (
@@ -38,23 +43,27 @@ const TypesList = () => {
               <button
                 onClick={() => {
                   if (type === `${t('All')}`) {
-                    dispatch(updateTypeOfMeal(''));
+                    dispatch(updateTypeOfMeal([]));
                   } else {
-                    dispatch(updateTypeOfMeal(`${t(type)}`));
+                    // Toggle the type in the SelectedType array
+                    const updatedTypes = SelectedType.includes(type)
+                      ? SelectedType.filter((t) => t !== type) // Remove type if already selected
+                      : [...SelectedType, type]; // Add type if not selected
+                    dispatch(updateTypeOfMeal(updatedTypes));
                   }
                 }}
                 className={`
-                  py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
+                  py-2 px-4 text-main bg-main-light rounded-s fs-13 fw-semibold 
                   ${
-                    (SelectedType === '' && type === `${t('All')}`) ||
-                    SelectedType === type
+                    (SelectedType.length === 0 && type === `${t('All')}`) ||
+                    SelectedType.includes(type)
                       ? styles.activeType
                       : ''
                   }
                 `}
                 key={type}
               >
-                {t(`${type}`)}
+                {capitalizeFirstLetter(t(`${type}`))}
               </button>
             ) : null
           )}

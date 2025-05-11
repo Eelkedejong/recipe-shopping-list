@@ -17,10 +17,22 @@
   }
 }
 
+.filterLabel {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input.filterInput.search {
+  padding-right: 40px;
+  height: 32px;
+  font-size: 12px;
+}
+
 .content {
   @include screen-m(min) {
     position: sticky;
-    top: 0;
+    top: 12px;
   }
 
   @include screen-m(max) {
