@@ -159,7 +159,7 @@ const Filters = () => {
 
     // Determine how many options to display
     const displayAll = expandedSections[sectionKey];
-    const displayCount = displayAll ? searchFilteredOptions.length : 6; // Show only 6 options before "Show more"
+    const displayCount = displayAll ? searchFilteredOptions.length : 6;
     const displayOptions = searchFilteredOptions.slice(0, displayCount);
     const hasMore = searchFilteredOptions.length > 6;
 
@@ -367,7 +367,7 @@ const Filters = () => {
           typeOfDish,
           updateTypeOfDish,
           'typeOfDish',
-          'Dish Type'
+          t('Dish type')
         )}
 
         {/* Cuisines Filter */}
@@ -376,12 +376,12 @@ const Filters = () => {
           cuisine,
           updateCuisine,
           'cuisine',
-          'Cuisine'
+          t('Cuisine')
         )}
 
         {/* Vegetarian Filter */}
         {renderBooleanFilter(
-          'Vegetarian',
+          t('Vegetarian'),
           isVegetarian,
           updateIsVegetarian,
           'vegetarian'
@@ -389,7 +389,7 @@ const Filters = () => {
 
         {/* Child-friendly Filter */}
         {renderBooleanFilter(
-          'Child Friendly',
+          t('Child friendly'),
           isChildFriendly,
           updateIsChildFriendly,
           'childFriendly'
