@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { FaChevronLeft } from 'react-icons/fa6';
 import { FaSearch } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Search from '@/components/elements/Search';
 import styles from './header.module.scss';
 

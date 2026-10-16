@@ -22,7 +22,7 @@ const updateShoppingListRecipes = async ([recipes, token]) => {
 
     return res.json();
   } catch (e) {
-    logError(e, `updateShoppingListItems ${items}`);
+    logError(e, `updateShoppingListRecipes ${recipes}`);
   }
 };
 

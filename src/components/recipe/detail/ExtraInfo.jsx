@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { FaClockRotateLeft, FaUtensils } from 'react-icons/fa6';
 import styles from '../recipe.module.scss';

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';

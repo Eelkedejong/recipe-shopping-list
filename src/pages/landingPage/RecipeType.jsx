@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import PublicRecipeList from '../../pages/recipe/PublicRecipeList';
 import Header from '../../components/elements/Header';
