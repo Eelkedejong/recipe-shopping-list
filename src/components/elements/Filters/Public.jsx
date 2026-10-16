@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTags, updateTime } from '@/store/publicSearchParamsSlice';
 import { useTranslation } from 'react-i18next';

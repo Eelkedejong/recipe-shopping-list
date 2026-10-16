@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import RecipeTile from '../../components/recipe/RecipeTile';
 import getRecipes from '../recipe/api/getRecipe';
 import getPublicRecipes from '../recipe/api/getPublicRecipes';
 import styles from './overview.module.scss';
 import bannerImage from '../../assets/img/cookbook.webp?w=2000';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { FaChevronRight } from 'react-icons/fa6';
 import { dishTypes } from '../../utils/dishTypes';
 

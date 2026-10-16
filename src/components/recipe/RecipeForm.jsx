@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useStore } from 'react-redux';
 import ImageUploader from './image/ImageUploader';
 import { Input, Textarea } from '../ui/Fields';

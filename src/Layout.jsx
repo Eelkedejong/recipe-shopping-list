@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import GroceryList from '@/pages/shoppingList/GroceryList';
 const RecipeList = lazy(() => import('@/pages/recipe/RecipeList'));

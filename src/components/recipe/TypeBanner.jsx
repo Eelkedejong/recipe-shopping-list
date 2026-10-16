@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { dishTypes } from '../../utils/dishTypes';
 import defaultImage from '../../assets/bg/default.jpg';
 import styles from './recipe.module.scss';
