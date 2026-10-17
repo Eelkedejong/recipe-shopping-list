@@ -32,9 +32,22 @@ export const buildSearchable = (ingredients = []) =>
   }));
 
 /**
- * Ranked match. Prefix hits rank above substring hits, then shorter names
- * first, so typing "ui" offers "ui" before "bieslook". An empty query
- * returns nothing: suggestions appear from the first character.
+ * Ranked match, in three tiers:
+ *
+ *   0  the term starts with the query          "ui" -> ui, uien
+ *   1  a whole word inside the term matches     "ui" -> rode ui, lente-ui
+ *   2  it appears anywhere else                 "ui" -> suiker, tonijn
+
+ * Short queries only reach tier 1 on a whole-word hit; from four characters
+ * a word prefix is enough. Without that, "ui" promotes every alias that
+ * happens to contain "uit blik".
+ *
+ * Tier 2 is kept rather than dropped because Dutch compounds genuinely need
+ * it - "kaas" has to find "geitenkaas" - but it sorts last, so the noise sits
+ * below the useful matches instead of crowding them out.
+ *
+ * An empty query returns nothing: suggestions appear from the first
+ * character.
  */
 export const rankIngredients = (searchable, query, limit = 8) => {
   const q = fold(query);
@@ -50,7 +63,17 @@ export const rankIngredients = (searchable, query, limit = 8) => {
         best = 0;
         break;
       }
-      if (term.includes(q)) best = Math.min(best, 1);
+      const at = term.indexOf(q);
+      if (at === -1) continue;
+
+      // A word inside the term starts with the query. Short queries only earn
+      // this tier on a whole-word hit, otherwise "ui" promotes every alias
+      // containing "uit blik".
+      const atWordStart = term[at - 1] === ' ';
+      const endsWord = at + q.length === term.length || term[at + q.length] === ' ';
+      const strongWord = atWordStart && (endsWord || q.length >= 4);
+
+      best = Math.min(best, strongWord ? 1 : 2);
     }
     if (best < Infinity) scored.push({ ingredient, score: best });
   }

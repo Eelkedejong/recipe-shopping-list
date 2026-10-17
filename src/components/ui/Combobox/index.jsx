@@ -15,6 +15,10 @@ import inputStyles from '../Input/input.module.scss';
  * substring) rather than only filtered. The call site also decides when there
  * is anything worth suggesting - an empty query should return nothing rather
  * than an arbitrary slice of the catalog.
+ *
+ * `onInputValueChange` receives Base UI's change reason as a second argument,
+ * because the component also reports resets ("input-clear") through the same
+ * callback and those must not be mistaken for the user editing the text.
  */
 const Combobox = ({
   id,
@@ -42,7 +46,9 @@ const Combobox = ({
       // would drop results that matched on an alias rather than the label.
       filter={null}
       inputValue={query}
-      onInputValueChange={onInputValueChange}
+      onInputValueChange={(next, details) =>
+        onInputValueChange?.(next, details?.reason)
+      }
       // Selection is left uncontrolled on purpose. Pinning `value` to null
       // made Base UI reset the input back to empty straight after a pick,
       // which wiped the name the selection had just set.

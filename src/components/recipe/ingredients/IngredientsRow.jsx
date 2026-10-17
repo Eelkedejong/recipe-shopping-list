@@ -93,7 +93,12 @@ const IngredientsRow = ({ ingredient, index, id }) => {
    * previous keystroke, so the order Base UI fires its events in cannot
    * silently unlink a row.
    */
-  const handleInputValueChange = (value) => {
+  const handleInputValueChange = (value, reason) => {
+    // Base UI reports its own resets through this callback too. Pressing
+    // Enter on text that matches nothing fires "input-clear", which would
+    // otherwise wipe a perfectly good custom ingredient.
+    if (reason && reason !== 'input-change' && reason !== 'item-press') return;
+
     setRowData((current) => {
       const linked = current.ingredientId ? byId.get(current.ingredientId) : null;
       return {
