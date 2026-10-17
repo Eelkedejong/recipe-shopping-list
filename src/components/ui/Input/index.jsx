@@ -1,6 +1,18 @@
-import { useState, useEffect } from 'react';
+import { Field } from '@base-ui/react/field';
+import { Input as BaseInput } from '@base-ui/react/input';
 import styles from './input.module.scss';
 
+/**
+ * Input
+ *
+ * Wraps Base UI's Input (which is Field.Control under the hood). The floating
+ * label is driven by the `data-filled` / `data-focused` attributes Base UI sets
+ * on Field.Root, so the component no longer tracks focus in React state.
+ *
+ * The input stays uncontrolled (`defaultValue`): the forms in this app read
+ * their values back through FormData, and call sites remount via `key` when the
+ * incoming value changes.
+ */
 const Input = ({
   id,
   name,
@@ -15,82 +27,65 @@ const Input = ({
   classes,
   autocomplete,
   labelClasses,
+  placeholder,
+  ...rest
 }) => {
-  if (!name) {
-    name = id;
-  }
-
-  const [focus, setFocus] = useState(value ? true : false);
-  useEffect(() => {
-    setFocus(value);
-  }, [value]);
-
-  const handleBlur = (e) => {
-    // Call the onBlur function in your component
-    if (!e.target.value) setFocus(false);
-
-    // Call the onBlur function passed in the props
-    if (typeof onBlur === 'function') {
-      onBlur(e);
-    }
+  const controlProps = {
+    id,
+    name: name ?? id,
+    type,
+    step,
+    defaultValue: value ?? '',
+    placeholder,
+    autoComplete: autocomplete,
+    required,
+    onChange,
+    onBlur,
+    onMouseDown,
   };
 
-  return (
-    <>
-      {label ? (
-        <label htmlFor={name} className={`relative ${labelClasses}`}>
-          <span
-            className={`
-              font-light text-dark-grey 
-              ${styles.label} 
-              ${focus ? styles.focus : ''}
-            `}
-          >
-            {label}
-          </span>
+  // Without a label there is nothing to float, so the input is rendered bare.
+  // Several call sites drop it straight into a CSS grid (IngredientsRow,
+  // ShoppingListItems), where an extra wrapper element would break the columns.
+  if (!label) {
+    return (
+      <BaseInput
+        {...rest}
+        {...controlProps}
+        onKeyDown={(event) => event.stopPropagation()}
+        className={[
+          'rounded-10 flex items-center justify-center pl-3',
+          styles.input,
+          styles.noLabel,
+          classes,
+        ]
+          .filter(Boolean)
+          .join(' ')}
+      />
+    );
+  }
 
-          <input
-            id={id}
-            name={name}
-            type={type}
-            step={step}
-            defaultValue={value}
-            autoComplete={autocomplete}
-            onChange={onChange}
-            onFocus={() => setFocus(true)}
-            onBlur={handleBlur}
-            onMouseDown={onMouseDown}
-            className={`
-              rounded-10 flex items-center justify-center pl-3 pt-3 text-black 
-              ${styles.input} 
-              ${classes ? classes : null}
-            `}
-            required={required}
-          />
-        </label>
-      ) : (
-        <input
-          id={id}
-          name={name}
-          type={type}
-          step={step}
-          defaultValue={value}
-          onChange={onChange}
-          onBlur={onBlur}
-          onMouseDown={onMouseDown}
-          className={`
-            rounded-10 flex items-center justify-center pl-3 
-            ${styles.input} 
-            ${styles.noLabel} 
-            ${classes ? classes : null}
-          `}
-          required={required}
-          onKeyDown={(event) => {
-            event.stopPropagation();
-          }}
-        />
-      )}
-    </>
+  return (
+    <Field.Root
+      className={[styles.field, labelClasses].filter(Boolean).join(' ')}
+    >
+      {/* Base UI points htmlFor at the registered control, so no id wiring here. */}
+      <Field.Label className={`font-light text-dark-grey ${styles.label}`}>
+        {label}
+      </Field.Label>
+
+      <BaseInput
+        {...rest}
+        {...controlProps}
+        className={[
+          'rounded-10 flex items-center justify-center pl-3 pt-3 text-black',
+          styles.input,
+          classes,
+        ]
+          .filter(Boolean)
+          .join(' ')}
+      />
+    </Field.Root>
   );
 };
 

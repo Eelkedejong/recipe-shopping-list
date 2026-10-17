@@ -143,7 +143,7 @@ const Authentication = () => {
                               ? `${t('Create account')}`
                               : `${t('Sign in')}`
                           }
-                          type={'ghost'}
+                          variant="ghost"
                         />
                       </LoginContext.Provider>
                     </>

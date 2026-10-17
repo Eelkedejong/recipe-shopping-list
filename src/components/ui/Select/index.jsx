@@ -1,68 +1,82 @@
-import { useState } from 'react';
+import { Field } from '@base-ui/react/field';
+import { Select as BaseSelect } from '@base-ui/react/select';
+import { FaChevronDown, FaCheck } from 'react-icons/fa';
 import styles from './select.module.scss';
-import { FaChevronDown } from 'react-icons/fa';
 
+/**
+ * Select
+ *
+ * Base UI's Select is a custom listbox rather than a native <select>, so the
+ * popup can be styled. It still submits through a hidden input, so forms read
+ * it back the same way.
+ *
+ * `options` accepts plain strings or { value, label } objects.
+ */
 const Select = ({
   id,
   name,
   label,
   value,
-  onChange,
-  type,
+  defaultValue,
+  onValueChange,
   required,
-  options,
+  disabled,
+  options = [],
   placeholder,
+  className,
+  ...rest
 }) => {
-  if (!name) {
-    name = id;
-  }
-
-  const [selectValue, setSelectValue] = useState(value);
+  const items = options.map((option) =>
+    typeof option === 'string' ? { value: option, label: option } : option
+  );
 
   return (
-    <label htmlFor={name} className="relative flex">
-      <span
-        className={`
-        font-light text-dark-grey
-        ${styles.label} 
-      `}
-      >
-        {label}
-      </span>
+    <Field.Root className={[styles.field, className].filter(Boolean).join(' ')}>
+      {label ? (
+        <Field.Label className={`font-light text-dark-grey ${styles.label}`}>
+          {label}
+        </Field.Label>
+      ) : null}
 
-      <select
-        id={id}
-        name={name}
-        type={type}
-        value={selectValue ? selectValue : value}
-        onChange={
-          onChange
-            ? onChange
-            : (e) => {
-                setSelectValue(e.target.value);
-              }
-        }
-        className={`rounded-10 flex items-center justify-center pl-3 pt-3 ${styles.select} `}
+      <BaseSelect.Root
+        {...rest}
+        items={items}
+        name={name ?? id}
+        value={value}
+        defaultValue={defaultValue ?? null}
+        onValueChange={onValueChange}
         required={required}
+        disabled={disabled}
       >
-        {placeholder ? (
-          <option value=" " disabled>
-            {placeholder}
-          </option>
-        ) : null}
-        {options.map((option, index) => {
-          return (
-            <option key={index} value={option}>
-              {option}
-            </option>
-          );
-        })}
-      </select>
+        <BaseSelect.Trigger id={id} className={styles.select}>
+          <BaseSelect.Value placeholder={placeholder} />
+          <BaseSelect.Icon className={styles.icon}>
+            <FaChevronDown />
+          </BaseSelect.Icon>
+        </BaseSelect.Trigger>
 
-      <span className={styles.icon}>
-        <FaChevronDown />
-      </span>
-    </label>
+        <BaseSelect.Portal>
+          <BaseSelect.Positioner sideOffset={4} className={styles.positioner}>
+            <BaseSelect.Popup className={styles.popup}>
+              <BaseSelect.List>
+                {items.map((item) => (
+                  <BaseSelect.Item
+                    key={item.value}
+                    value={item.value}
+                    className={styles.item}
+                  >
+                    <BaseSelect.ItemText>{item.label}</BaseSelect.ItemText>
+                    <BaseSelect.ItemIndicator className={styles.itemIndicator}>
+                      <FaCheck />
+                    </BaseSelect.ItemIndicator>
+                  </BaseSelect.Item>
+                ))}
+              </BaseSelect.List>
+            </BaseSelect.Popup>
+          </BaseSelect.Positioner>
+        </BaseSelect.Portal>
+      </BaseSelect.Root>
+    </Field.Root>
   );
 };
 

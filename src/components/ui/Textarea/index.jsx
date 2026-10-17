@@ -1,45 +1,50 @@
-import { useState, useEffect } from 'react';
+import { Field } from '@base-ui/react/field';
 import styles from './textarea.module.scss';
 
-const Textarea = ({ id, name, label, value, onChange, type, required }) => {
-  if (!name) {
-    name = id;
-  }
-
-  const [focus, setFocus] = useState(value ? true : false);
-  useEffect(() => {
-    setFocus(value);
-  }, [value]);
-
+/**
+ * Textarea
+ *
+ * Base UI has no Textarea component, so Field.Control renders one through its
+ * `render` prop. The function form is used because Field.Control is typed
+ * against HTMLInputElement.
+ *
+ * Like Input, the floating label comes from Field.Root's `data-filled` /
+ * `data-focused` attributes and the control stays uncontrolled.
+ */
+const Textarea = ({
+  id,
+  name,
+  label,
+  value,
+  onChange,
+  required,
+  className,
+  classes,
+  ...rest
+}) => {
   return (
-    <label htmlFor={name} className="relative">
-      <span
-        className={`
-          font-light text-dark-grey 
-          ${styles.label} 
-          ${focus ? styles.focus : ''}
-        `}
-      >
+    <Field.Root className={[styles.field, className].filter(Boolean).join(' ')}>
+      <Field.Label className={`font-light text-dark-grey ${styles.label}`}>
         {label}
-      </span>
+      </Field.Label>
 
-      <textarea
+      <Field.Control
+        {...rest}
+        render={(props) => <textarea {...props} />}
         id={id}
-        name={name}
-        type={type}
-        defaultValue={value}
+        name={name ?? id}
+        defaultValue={value ?? ''}
         onChange={onChange}
-        onFocus={() => setFocus(true)}
-        onBlur={(e) => {
-          if (!e.target.value) setFocus(false);
-        }}
-        className={`
-          rounded-10 flex items-center justify-center pl-3 pt-6 
-          ${styles.textarea}
-        `}
         required={required}
+        className={[
+          'rounded-10 flex items-center justify-center pl-3 pt-6',
+          styles.textarea,
+          classes,
+        ]
+          .filter(Boolean)
+          .join(' ')}
       />
-    </label>
+    </Field.Root>
   );
 };
 

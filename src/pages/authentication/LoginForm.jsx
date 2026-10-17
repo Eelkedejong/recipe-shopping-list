@@ -54,6 +54,7 @@ const LoginForm = ({ refetch }) => {
             });
           }}
           text={t('Sign in')}
+          type="submit"
         />
       </form>
     </>

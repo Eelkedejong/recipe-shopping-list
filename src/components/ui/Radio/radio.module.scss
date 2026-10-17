@@ -1,0 +1,54 @@
+@use '@styles/mixins/breakpoints' as *;
+
+$radio-size: 20px;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.radio {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: $radio-size;
+  height: $radio-size;
+  padding: 0;
+  background-color: transparent;
+  border: 1px solid #666;
+  border-radius: 100vh;
+  cursor: pointer;
+  transition: 0.2s border-color ease;
+
+  &[data-checked] {
+    border-color: $color-main;
+  }
+
+  &[data-disabled] {
+    border-color: #ccc;
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+.indicator {
+  display: block;
+  width: calc($radio-size * 0.7);
+  height: calc($radio-size * 0.7);
+  border-radius: 100vh;
+  background-color: $color-main;
+  transition:
+    0.2s opacity ease,
+    0.2s scale ease;
+
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+    scale: 0.6;
+  }
+}

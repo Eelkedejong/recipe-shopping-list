@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { FaXmark } from 'react-icons/fa6';
 import PersonSelector from '../elements/PersonSelector';
 import removeShippingListRecipe from '@/pages/shoppingList/api/removeShoppingListRecipe';
+import Checkbox from '@/components/ui/Checkbox';
 
 const ShoppingListRecipe = ({
   setRecipes,
@@ -62,12 +63,10 @@ const ShoppingListRecipe = ({
                   key={ingredient.ingredient}
                 >
                   <label className="mr-3 flex gap-4 label cursor-pointer">
-                    <input
-                      type="checkbox"
-                      className="checkbox"
+                    <Checkbox
                       name={ingredientText}
-                      defaultChecked={true}
                       value={ingredientText}
+                      defaultChecked={true}
                     />
                     <span>{ingredientText}</span>
                   </label>

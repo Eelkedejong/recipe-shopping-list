@@ -80,7 +80,11 @@ const PasswordReset = () => {
               autocomplete="on"
             />
 
-            <Button className={'mt-4'} text={t('Confirm new password')} />
+            <Button
+              className={'mt-4'}
+              text={t('Confirm new password')}
+              type="submit"
+            />
           </form>
         </>
       )}

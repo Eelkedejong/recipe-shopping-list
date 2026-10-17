@@ -3,9 +3,18 @@
 body {
   background-color: #f5f5f5;
 
+  // Required by Base UI for anchor positioning on iOS 26+ Safari.
+  position: relative;
+
   > * {
     color: $color-black;
   }
+}
+
+// Base UI portals popups (Select, Popover, Dialog) to the end of the body.
+// Isolating the root creates the stacking context they position against.
+#root {
+  isolation: isolate;
 }
 
 @include screen-m(max) {

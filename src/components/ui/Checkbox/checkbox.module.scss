@@ -1,0 +1,69 @@
+@use '@styles/mixins/breakpoints' as *;
+
+$checkbox-size: 20px;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: $checkbox-size;
+  height: $checkbox-size;
+  padding: 0;
+  background-color: transparent;
+  border: 1px solid #666;
+  border-radius: calc($checkbox-size / 4);
+  cursor: pointer;
+  transition:
+    0.2s border-color ease,
+    0.2s background-color ease;
+
+  &[data-checked] {
+    border-color: $color-main;
+  }
+
+  &[data-disabled] {
+    border-color: #ccc;
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  // Solid fill when ticked; the plain variant only shows the checkmark.
+  &.filled[data-checked]:not([data-disabled]) {
+    background-color: $color-main;
+  }
+}
+
+.indicator {
+  display: block;
+  width: 5px;
+  height: 10px;
+  margin-top: -2px;
+  border: solid $color-main;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  transition:
+    0.2s opacity ease,
+    0.2s scale ease;
+
+  .filled & {
+    border-color: $color-white;
+  }
+
+  // Base UI marks the indicator while it enters and leaves, which replaces the
+  // keyframe animations the old global checkbox styles used.
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+    scale: 0.6;
+  }
+}

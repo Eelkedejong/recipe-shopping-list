@@ -8,6 +8,8 @@ import getPublicRecipeFilter from '@/pages/recipe/api/filters/getPublicRecipeFil
 import { FaSliders, FaX } from 'react-icons/fa6';
 import Button from '@/components/ui/Button';
 import styles from './filters.module.scss';
+import Checkbox from '@/components/ui/Checkbox';
+import Radio, { RadioGroup } from '@/components/ui/Radio';
 
 const Filters = () => {
   const searchParams = useSelector((state) => state.publicSearchParams.value);
@@ -83,15 +85,14 @@ const Filters = () => {
                 tag === '' ? null : (
                   <li key={tag} className="font-light text-14 text-dark-grey">
                     <label className="mr-2 flex gap-3 label">
-                      <input
-                        type="checkbox"
+                      <Checkbox
                         name={tag}
                         id={tag}
                         checked={selectedTags.includes(tag)}
-                        onChange={() => {
+                        onCheckedChange={() => {
                           dispatch(updateTags(tag));
                         }}
-                        className="checkbox filled"
+                        variant="filled"
                       />
                       {tag}
                     </label>
@@ -103,7 +104,12 @@ const Filters = () => {
           </>
         ) : null}
 
-        <ul className="p-6 flex flex-col gap-3 my-3">
+        <RadioGroup
+          render={<ul className="p-6 flex flex-col gap-3 my-3" />}
+          name="cooking-time"
+          value={selecedTime}
+          onValueChange={(value) => dispatch(updateTime(value))}
+        >
           <h3 className="font-semibold mb-2">{t('Cooking time')}</h3>
           {timeOptions.map((time, index) => {
             return (
@@ -112,26 +118,13 @@ const Filters = () => {
                 className="font-light text-14 text-dark-grey"
               >
                 <label className="mr-2 flex gap-3 label">
-                  <input
-                    type="radio"
-                    name="cooking-time"
-                    id={time.label}
-                    checked={time.value === selecedTime}
-                    onChange={() => {
-                      if (time.value) {
-                        dispatch(updateTime(time.value));
-                      } else {
-                        dispatch(updateTime(''));
-                      }
-                    }}
-                    className="checkbox filled"
-                  />
+                  <Radio id={time.label} value={time.value} />
                   {time.label} {index > 0 ? t('min') : null}
                 </label>
               </li>
             );
           })}
-        </ul>
+        </RadioGroup>
 
         <div className="m-4 mt-6 m:hidden!">
           <Button text={t('View recipes')} onClick={() => setOpen(!open)} />

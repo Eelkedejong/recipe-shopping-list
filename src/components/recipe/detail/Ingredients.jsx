@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PersonSelector from '../../elements/PersonSelector';
 import styles from '../recipe.module.scss';
+import Checkbox from '@/components/ui/Checkbox';
 
 const Ingredients = ({ ingredients, persons }) => {
   const [personsState, setPersonsState] = useState(persons);
@@ -33,11 +34,7 @@ const Ingredients = ({ ingredients, persons }) => {
                     key={ingredient.ingredient}
                   >
                     <label className="mr-3 flex gap-4 label">
-                      <input
-                        type="checkbox"
-                        className="checkbox"
-                        defaultChecked={true}
-                      />
+                      <Checkbox defaultChecked={true} />
                       <span>
                         {/* Show max 2 decimals */}
                         {amount > 0 && parseFloat(amount.toFixed(2))}{' '}

@@ -12,9 +12,19 @@
     width: 100%;
   }
 
-  &:hover {
+  &:hover:not([data-disabled]) {
     cursor: pointer;
     background-color: $color-main-dark;
+  }
+
+  // Base UI sets data-disabled for both the disabled and the loading state.
+  &[data-disabled] {
+    cursor: not-allowed;
+  }
+
+  // Keep the full-colour button while loading, only fade a plain disabled one.
+  &[data-disabled]:not([aria-busy='true']) {
+    opacity: 0.6;
   }
 
   &.ghost {
@@ -22,7 +32,7 @@
     border: 2px solid $color-main;
     color: $color-main;
 
-    &:hover {
+    &:hover:not([data-disabled]) {
       background-color: $color-main;
       border-color: $color-main;
       color: $color-white;

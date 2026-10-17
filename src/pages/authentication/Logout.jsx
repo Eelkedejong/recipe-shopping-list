@@ -2,7 +2,6 @@ import { removeUserData } from './utils/storage';
 import { useNavigate } from 'react-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/ui/Button';
 import { FaRightFromBracket } from 'react-icons/fa6';
 
 const Logout = () => {

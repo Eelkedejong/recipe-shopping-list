@@ -59,6 +59,7 @@ const LoginForm = ({ refetch }) => {
             });
           }}
           text={t('Create account')}
+          type="submit"
         />
       </form>
     </>

@@ -23,6 +23,8 @@ import styles from './filters.module.scss';
 
 // Import filter API function
 import getRecipeFilter from '@/pages/recipe/api/filters/getRecipeFilter';
+import Checkbox from '@/components/ui/Checkbox';
+import Radio, { RadioGroup } from '@/components/ui/Radio';
 
 const Filters = () => {
   const user = useSelector((state) => state.user.value);
@@ -210,15 +212,14 @@ const Filters = () => {
                     <label
                       className={`mr-2 flex gap-3 label ${styles.filterLabel}`}
                     >
-                      <input
-                        type="checkbox"
+                      <Checkbox
                         name={option}
                         id={option}
                         checked={selectedOptions.includes(option)}
-                        onChange={() => {
+                        onCheckedChange={() => {
                           dispatch(updateAction(option));
                         }}
-                        className="checkbox filled"
+                        variant="filled"
                       />
                       {option}
                     </label>
@@ -273,15 +274,14 @@ const Filters = () => {
             <ul className="flex flex-col gap-3">
               <li className="font-light text-14 text-dark-grey">
                 <label className="mr-2 flex gap-3 label">
-                  <input
-                    type="checkbox"
+                  <Checkbox
                     name={title.toLowerCase().replace(/\s+/g, '-')}
                     id={title.toLowerCase().replace(/\s+/g, '-')}
                     checked={isSelected === true}
-                    onChange={() =>
+                    onCheckedChange={() =>
                       dispatch(updateAction(isSelected === true ? false : true))
                     }
-                    className="checkbox filled"
+                    variant="filled"
                   />
                   {t(`${title}`)}
                 </label>
@@ -312,28 +312,24 @@ const Filters = () => {
           </div>
 
           {!isCollapsed && (
-            <ul className="flex flex-col gap-3">
+            <RadioGroup
+              render={<ul className="flex flex-col gap-3" />}
+              name="cooking-time"
+              value={time}
+              onValueChange={(value) => dispatch(updateTime(value))}
+            >
               {timeOptions.map((timeOption, index) => (
                 <li
                   key={timeOption.label}
                   className="font-light text-14 text-dark-grey"
                 >
                   <label className="mr-2 flex gap-3 label">
-                    <input
-                      type="radio"
-                      name="cooking-time"
-                      id={timeOption.label}
-                      checked={timeOption.value === time}
-                      onChange={() => {
-                        dispatch(updateTime(timeOption.value));
-                      }}
-                      className="checkbox filled"
-                    />
+                    <Radio id={timeOption.label} value={timeOption.value} />
                     {timeOption.label} {index > 0 ? t('min') : null}
                   </label>
                 </li>
               ))}
-            </ul>
+            </RadioGroup>
           )}
         </div>
         <hr className="mx-3" />

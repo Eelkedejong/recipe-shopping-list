@@ -1,6 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import styles from './groceryList.module.scss';
+import Checkbox from '@/components/ui/Checkbox';
 
 const GroceryListItem = ({ item, id }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -20,12 +21,14 @@ const GroceryListItem = ({ item, id }) => {
       className={styles.groceryListItem}
     >
       <div className="mr-3 p-3 flex gap-4 label">
-        <input
-          type="checkbox"
-          className="checkbox cursor-pointer"
+        {/* The whole row is a dnd-kit drag handle. Without this the drag
+            starts on pointerdown and the browser never synthesises the click
+            that toggles the box. */}
+        <Checkbox
           name={item}
-          defaultChecked={true}
           value={item}
+          defaultChecked={true}
+          onPointerDown={(e) => e.stopPropagation()}
         />
         <span>{item}</span>
       </div>

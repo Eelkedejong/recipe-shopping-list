@@ -39,7 +39,7 @@ const ForgotPassword = () => {
               navigate('/');
             }}
             text={t('Back to sign in')}
-            type={'ghost'}
+            variant="ghost"
           />
         </>
       ) : (
@@ -67,14 +67,14 @@ const ForgotPassword = () => {
               key="email"
             />
 
-            <Button className={'mt-1 mb-6'} text={t('Submit')} />
+            <Button className={'mt-1 mb-6'} text={t('Submit')} type="submit" />
 
             <Button
               onClick={() => {
                 navigate('/');
               }}
               text={t('Back to sign in')}
-              type={'ghost'}
+              variant="ghost"
             />
           </form>
         </>

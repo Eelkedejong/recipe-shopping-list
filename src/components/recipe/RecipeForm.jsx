@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { useStore } from 'react-redux';
 import ImageUploader from './image/ImageUploader';
 import { Input, Textarea } from '../ui/Fields';
-import { CheckboxGroup } from '../ui/Fields';
+import { Checkbox, CheckboxGroup } from '../ui/Fields';
 import Button from '../ui/Button';
 import IngredientsList from './ingredients/IngredientsList';
 import StepsList from './steps/StepsList';
@@ -149,27 +149,21 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
             {t('Characteristics')}
           </h4>
           <div className="grid grid-cols-[repeat(2,1fr)] gap-2">
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                id={'isChildFriendly'}
-                name={'isChildFriendly'}
-                defaultChecked={recipe?.isChildFriendly || false}
-                className="checkbox filled"
-              />
-              <span className="checkbox-label">{t('Child friendly')}</span>
-            </label>
+            <Checkbox
+              id="isChildFriendly"
+              name="isChildFriendly"
+              defaultChecked={recipe?.isChildFriendly || false}
+              variant="filled"
+              label={t('Child friendly')}
+            />
 
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                id={'isVegetarian'}
-                name={'isVegetarian'}
-                defaultChecked={recipe?.isVegetarian || false}
-                className="checkbox filled"
-              />
-              <span className="checkbox-label">{t('Vegetarian')}</span>
-            </label>
+            <Checkbox
+              id="isVegetarian"
+              name="isVegetarian"
+              defaultChecked={recipe?.isVegetarian || false}
+              variant="filled"
+              label={t('Vegetarian')}
+            />
           </div>
         </div>
       </div>
@@ -265,7 +259,7 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
             navigate(-1);
           }}
           text={t('Cancel')}
-          type="ghost"
+          variant="ghost"
           className="w-full"
         />
       </div>
