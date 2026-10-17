@@ -5,8 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateTags, updateTime } from '@/store/publicSearchParamsSlice';
 import { useTranslation } from 'react-i18next';
 import getPublicRecipeFilter from '@/pages/recipe/api/filters/getPublicRecipeFilter';
-import { FaSliders, FaX } from 'react-icons/fa6';
+import { FaSliders } from 'react-icons/fa6';
 import Button from '@/components/ui/Button';
+import Drawer from '@/components/ui/Drawer';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 import styles from './filters.module.scss';
 import Checkbox from '@/components/ui/Checkbox';
 import Radio, { RadioGroup } from '@/components/ui/Radio';
@@ -21,6 +23,7 @@ const Filters = () => {
     (state) => state.publicSearchParams.value.time
   );
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -56,79 +59,99 @@ const Filters = () => {
     },
   ];
 
+  // Same controls in both modes; only the container differs.
+  const filterContent = (
+    <>
+      {filterOptions.length ? (
+        <>
+          <ul className="p-6 flex flex-col gap-3 my-3">
+            <li>
+              <h3 className="font-semibold mb-2">{t('Labels')}</h3>
+            </li>
+            {filterOptions.map((tag) =>
+              tag === '' ? null : (
+                <li key={tag} className="font-light text-14 text-dark-grey">
+                  <label className="mr-2 flex gap-3 label">
+                    <Checkbox
+                      name={tag}
+                      id={tag}
+                      checked={selectedTags.includes(tag)}
+                      onCheckedChange={() => {
+                        dispatch(updateTags(tag));
+                      }}
+                      variant="filled"
+                    />
+                    {tag}
+                  </label>
+                </li>
+              )
+            )}
+          </ul>
+          <hr className="mx-3" />
+        </>
+      ) : null}
+
+      <RadioGroup
+        render={<ul className="p-6 flex flex-col gap-3 my-3" />}
+        name="cooking-time"
+        value={selecedTime}
+        onValueChange={(value) => dispatch(updateTime(value))}
+      >
+        <li>
+          <h3 className="font-semibold mb-2">{t('Cooking time')}</h3>
+        </li>
+        {timeOptions.map((time, index) => {
+          return (
+            <li key={time.label} className="font-light text-14 text-dark-grey">
+              <label className="mr-2 flex gap-3 label">
+                <Radio id={time.label} value={time.value} />
+                {time.label} {index > 0 ? t('min') : null}
+              </label>
+            </li>
+          );
+        })}
+      </RadioGroup>
+    </>
+  );
+
+  if (isMobile) {
+    return (
+      <aside>
+        <button
+          onClick={() => setOpen(true)}
+          aria-expanded={open}
+          className={`p-3 mt-2 text-main text-14 font-medium rounded-10 flex items-center justify-center ${styles.filterToggle} ${styles.publicFilter}`}
+        >
+          <FaSliders className="mr-3" /> {t('Filter')}
+        </button>
+
+        <Drawer
+          open={open}
+          onOpenChange={setOpen}
+          title={t('Filter')}
+          closeLabel={t('Close filters')}
+          footer={
+            <Button
+              className="w-full"
+              text={t('View recipes')}
+              onClick={() => setOpen(false)}
+            />
+          }
+        >
+          {filterContent}
+        </Drawer>
+      </aside>
+    );
+  }
+
   return (
     <aside>
-      <button
-        onClick={() => setOpen(!open)}
-        className={`p-3 mt-2 text-main text-14 font-medium rounded-10 flex items-center justify-center ${styles.filterToggle} ${styles.publicFilter}`}
-      >
-        <FaSliders className="mr-3" /> {t('Filter')}
-      </button>
-      <div
-        className={`
-          bg-white rounded-20 mr-6 s:pb-3 
-          ${styles.content} 
-          ${open ? styles.open : null}
-        `}
-      >
-        <div className="px-6 py-4 bg-main-bg rounded-t-20 flex justify-between">
+      <div className={`bg-white rounded-20 mr-6 s:pb-3 ${styles.content}`}>
+        <div className="px-6 py-4 bg-main-bg rounded-t-20">
           <h2 className="font-bold text-20">{t('Filter')}</h2>
-          <button onClick={() => setOpen(!open)}>
-            <FaX />
-          </button>
         </div>
-        {filterOptions.length ? (
-          <>
-            <ul className="p-6 flex flex-col gap-3 my-3">
-              <h3 className="font-semibold mb-2">{t('Labels')}</h3>
-              {filterOptions.map((tag) =>
-                tag === '' ? null : (
-                  <li key={tag} className="font-light text-14 text-dark-grey">
-                    <label className="mr-2 flex gap-3 label">
-                      <Checkbox
-                        name={tag}
-                        id={tag}
-                        checked={selectedTags.includes(tag)}
-                        onCheckedChange={() => {
-                          dispatch(updateTags(tag));
-                        }}
-                        variant="filled"
-                      />
-                      {tag}
-                    </label>
-                  </li>
-                )
-              )}
-            </ul>
-            <hr className="mx-3" />
-          </>
-        ) : null}
 
-        <RadioGroup
-          render={<ul className="p-6 flex flex-col gap-3 my-3" />}
-          name="cooking-time"
-          value={selecedTime}
-          onValueChange={(value) => dispatch(updateTime(value))}
-        >
-          <h3 className="font-semibold mb-2">{t('Cooking time')}</h3>
-          {timeOptions.map((time, index) => {
-            return (
-              <li
-                key={time.label}
-                className="font-light text-14 text-dark-grey"
-              >
-                <label className="mr-2 flex gap-3 label">
-                  <Radio id={time.label} value={time.value} />
-                  {time.label} {index > 0 ? t('min') : null}
-                </label>
-              </li>
-            );
-          })}
-        </RadioGroup>
-
-        <div className="m-4 mt-6 m:hidden!">
-          <Button text={t('View recipes')} onClick={() => setOpen(!open)} />
-        </div>
+        {filterContent}
       </div>
     </aside>
   );

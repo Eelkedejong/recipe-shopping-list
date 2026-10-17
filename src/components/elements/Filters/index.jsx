@@ -12,13 +12,14 @@ import {
 import { useTranslation } from 'react-i18next';
 import {
   FaSliders,
-  FaX,
   FaChevronDown,
   FaChevronUp,
   FaMagnifyingGlass,
 } from 'react-icons/fa6';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
+import Drawer from '@/components/ui/Drawer';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 import styles from './filters.module.scss';
 
 // Import filter API function
@@ -33,6 +34,7 @@ const Filters = () => {
     searchParams;
 
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   // State for expanded filter sections
   const [expandedSections, setExpandedSections] = useState({
@@ -337,72 +339,89 @@ const Filters = () => {
     );
   };
 
+  // Same controls in both modes; only the container differs.
+  const filterContent = (
+    <>
+      {/* Dish Types Filter */}
+      {renderFilterOptions(
+        dishTypeOptions,
+        typeOfDish,
+        updateTypeOfDish,
+        'typeOfDish',
+        t('Dish type')
+      )}
+
+      {/* Cuisines Filter */}
+      {renderFilterOptions(
+        cuisineOptions,
+        cuisine,
+        updateCuisine,
+        'cuisine',
+        t('Cuisine')
+      )}
+
+      {/* Vegetarian Filter */}
+      {renderBooleanFilter(
+        t('Vegetarian'),
+        isVegetarian,
+        updateIsVegetarian,
+        'vegetarian'
+      )}
+
+      {/* Child-friendly Filter */}
+      {renderBooleanFilter(
+        t('Child friendly'),
+        isChildFriendly,
+        updateIsChildFriendly,
+        'childFriendly'
+      )}
+
+      {/* Cooking Time Filter */}
+      {renderTimeFilter()}
+
+      {/* Tags Filter */}
+      {renderFilterOptions(tagOptions, tags, updateTags, 'tags', 'Labels')}
+    </>
+  );
+
+  if (isMobile) {
+    return (
+      <aside>
+        <button
+          onClick={() => setOpen(true)}
+          aria-expanded={open}
+          className={`py-4 px-6 mt-2 text-main text-14 font-medium rounded-10 flex items-center justify-center ${styles.filterToggle}`}
+        >
+          <FaSliders className="mr-3" /> {t('Filter')}
+        </button>
+
+        <Drawer
+          open={open}
+          onOpenChange={setOpen}
+          title={t('Filter')}
+          closeLabel={t('Close filters')}
+          footer={
+            <Button
+              className="w-full"
+              text={t('View recipes')}
+              onClick={() => setOpen(false)}
+            />
+          }
+        >
+          {filterContent}
+        </Drawer>
+      </aside>
+    );
+  }
+
   return (
     <aside>
-      <button
-        onClick={() => setOpen(!open)}
-        className={`py-4 px-6 mt-2 text-main text-14 font-medium rounded-10 flex items-center justify-center ${styles.filterToggle}`}
-      >
-        <FaSliders className="mr-3" /> {t('Filter')}
-      </button>
-
-      <div
-        className={`
-          bg-white rounded-20 mr-6 s:pb-3 
-          ${styles.content} 
-          ${open ? styles.open : null}
-        `}
-      >
-        <div className="px-6 py-4 bg-main-bg rounded-t-20 flex justify-between">
+      <div className={`bg-white rounded-20 mr-6 s:pb-3 ${styles.content}`}>
+        <div className="px-6 py-4 bg-main-bg rounded-t-20">
           <h2 className="font-bold text-20">{t('Filter')}</h2>
-          <button onClick={() => setOpen(!open)}>
-            <FaX />
-          </button>
         </div>
 
-        {/* Dish Types Filter */}
-        {renderFilterOptions(
-          dishTypeOptions,
-          typeOfDish,
-          updateTypeOfDish,
-          'typeOfDish',
-          t('Dish type')
-        )}
-
-        {/* Cuisines Filter */}
-        {renderFilterOptions(
-          cuisineOptions,
-          cuisine,
-          updateCuisine,
-          'cuisine',
-          t('Cuisine')
-        )}
-
-        {/* Vegetarian Filter */}
-        {renderBooleanFilter(
-          t('Vegetarian'),
-          isVegetarian,
-          updateIsVegetarian,
-          'vegetarian'
-        )}
-
-        {/* Child-friendly Filter */}
-        {renderBooleanFilter(
-          t('Child friendly'),
-          isChildFriendly,
-          updateIsChildFriendly,
-          'childFriendly'
-        )}
-
-        {/* Cooking Time Filter */}
-        {renderTimeFilter()}
-
-        {/* Tags Filter */}
-        {renderFilterOptions(tagOptions, tags, updateTags, 'tags', 'Labels')}
-
-        <div className="m-4 mt-6 m:hidden!">
-          <Button text={t('View recipes')} onClick={() => setOpen(!open)} />
-        </div>
+        {filterContent}
       </div>
     </aside>
   );

@@ -181,56 +181,19 @@
   color: #fff;
 }
 
-// TODO: Cleanup-Code
 @include screen-m(max) {
+  // The mobile menu is a Base UI bottom-sheet drawer, so the panel no longer
+  // positions itself; only the typography inside it differs from desktop.
   .navigation {
-    padding: 0 !important;
-    position: fixed;
-    top: 76px;
-    width: 100%;
-    visibility: hidden;
-    transition: all 0.375s;
-
-    .overlay {
-      border-radius: 20px 20px 0 0;
-      width: 100%;
-      bottom: 0;
-      top: 76px;
-      position: fixed;
-      opacity: 0;
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    ul {
-      margin: 0 !important;
-      padding: 40px 0 100px;
-      width: 75%;
-      left: -100%;
-      position: relative;
-      background-color: $color-white;
-      overflow-y: auto;
-      height: 100vh;
-      gap: 5px;
-
-      li,
-      h4 {
-        padding-left: 30px;
-        font-size: 16px;
-      }
+    li,
+    h4 {
+      font-size: 16px;
     }
   }
 
-  .navigation.open {
-    left: 0;
-    z-index: 100;
-    visibility: visible;
-
-    .overlay {
-      opacity: 1;
-    }
-
-    ul {
-      left: 0;
+  .drawer {
+    .navigation > ul {
+      margin-top: 0;
     }
   }
 }
