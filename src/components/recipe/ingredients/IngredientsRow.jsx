@@ -92,7 +92,7 @@ const IngredientsRow = ({ ingredient, index, id }) => {
         onBlur={handleBlur}
         onMouseDown={(e) => e.stopPropagation()}
         emptyMessage={t('No ingredient found')}
-        inputClassName={styles.ingredientInput}
+        classes={styles.ingredientInput}
       />
 
       <Input

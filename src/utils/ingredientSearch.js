@@ -33,11 +33,14 @@ export const buildSearchable = (ingredients = []) =>
 
 /**
  * Ranked match. Prefix hits rank above substring hits, then shorter names
- * first, so typing "ui" offers "ui" before "bieslook".
+ * first, so typing "ui" offers "ui" before "bieslook". An empty query
+ * returns nothing: suggestions appear from the first character.
  */
 export const rankIngredients = (searchable, query, limit = 8) => {
   const q = fold(query);
-  if (!q) return searchable.slice(0, limit);
+  // Nothing typed, nothing to suggest. A slice of the catalog here would be
+  // arbitrary - it would just be whatever sorts first.
+  if (!q) return [];
 
   const scored = [];
   for (const ingredient of searchable) {
