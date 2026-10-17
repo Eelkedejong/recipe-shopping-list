@@ -11,7 +11,6 @@ import {
   DndContext,
   KeyboardSensor,
   MouseSensor,
-  PointerSensor,
   useSensor,
   useSensors,
   closestCorners,
@@ -34,7 +33,12 @@ const IngredientsList = ({ ingredients }) => {
   useEffect(() => {
     if (ingredients && ingredients.length > 0) {
       const ingredientsWithId = ingredients.map((ingredient, index) => ({
+        prep: '',
+        ingredientId: null,
         ...ingredient,
+        // Recipes saved before the catalog existed store the text as
+        // `ingredient` rather than `name`.
+        name: ingredient.name ?? ingredient.ingredient ?? '',
         id: index + 1,
       }));
 
@@ -44,15 +48,16 @@ const IngredientsList = ({ ingredients }) => {
 
   // Create an empty ingredient row for when the user clicks the "Add ingredient" button.
   const emptyIngredientRow = {
-    unit: '',
-    amount: '',
-    ingredient: '',
     id: ingredientSlice.length + 1,
+    ingredientId: null,
+    name: '',
+    amount: '',
+    unit: '',
+    prep: '',
   };
 
   // Build the sensors for the DndContext.
   const sensors = useSensors(
-    // useSensor(PointerSensor),
     useSensor(MouseSensor, {
       activationConstraint: {
         // Enable sort function only when dragging 10px so clickable elements are still clickable.
