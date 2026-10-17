@@ -43,11 +43,15 @@ const Combobox = ({
       filter={null}
       inputValue={query}
       onInputValueChange={onInputValueChange}
-      value={null}
+      // Selection is left uncontrolled on purpose. Pinning `value` to null
+      // made Base UI reset the input back to empty straight after a pick,
+      // which wiped the name the selection had just set.
       onValueChange={(item) => {
         if (item) onItemSelect?.(item);
       }}
       itemToStringLabel={itemToLabel}
+      // Highlight the top match so Enter picks it without arrowing down.
+      autoHighlight
       disabled={disabled}
     >
       <BaseCombobox.Input

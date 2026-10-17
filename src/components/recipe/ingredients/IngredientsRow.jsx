@@ -10,11 +10,22 @@ import Combobox from '../../ui/Combobox';
 import { FaMinusCircle } from 'react-icons/fa';
 import styles from '../recipe.module.scss';
 
+const emptyRow = (id) => ({
+  id,
+  ingredientId: null,
+  name: '',
+  amount: '',
+  unit: '',
+  prep: '',
+});
+
+const isBlank = (row) => !row?.name && !row?.amount && !row?.unit;
+
 const IngredientsRow = ({ ingredient, index, id }) => {
   const ingredientSlice = useSelector((state) => state.ingredientList.value);
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { search } = useIngredientCatalog();
+  const { search, byId } = useIngredientCatalog();
   const [rowData, setRowData] = useState(ingredient);
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id, animateLayoutChanges: () => false });
@@ -31,14 +42,31 @@ const IngredientsRow = ({ ingredient, index, id }) => {
   /**
    * Writes a row back to the store. Takes the next row explicitly rather than
    * reading state, so selecting a suggestion cannot race the blur that
-   * follows it.
+   * follows it. `appendRow` adds a fresh row in the same dispatch, which keeps
+   * the two updates from clobbering one another.
    */
-  const commit = (next) => {
-    dispatch(
-      updateIngredientList(
-        ingredientSlice.map((row, i) => (i === index ? next : row))
-      )
-    );
+  const commit = (next, { appendRow = false } = {}) => {
+    const rows = ingredientSlice.map((row, i) => (i === index ? next : row));
+    const last = rows[rows.length - 1];
+
+    // Only ever grow the list from the end, and never while an empty row is
+    // already waiting - so this is safe to call more than once per keystroke.
+    if (appendRow && !isBlank(last)) {
+      rows.push(emptyRow(Math.max(0, ...rows.map((r) => r.id ?? 0)) + 1));
+    }
+
+    dispatch(updateIngredientList(rows));
+  };
+
+  /**
+   * Moves to the amount field of this row. Deferred by a frame because Base UI
+   * returns focus to its own input as the popup closes, which would otherwise
+   * undo this immediately.
+   */
+  const focusAmount = () => {
+    requestAnimationFrame(() => {
+      document.getElementById(`amount_${index}`)?.focus();
+    });
   };
 
   const handleBlur = () => commit(rowData);
@@ -50,23 +78,45 @@ const IngredientsRow = ({ ingredient, index, id }) => {
       ingredientId: item.id,
       name: item.nameNl,
       // Only fill the unit when the row has none, so an existing choice stands.
-      unit: rowData.unit || item.baseUnit || '',
+      // The catalog stores canonical codes; the label shown is translated.
+      unit: rowData.unit || t(`unit_${item.baseUnit}`, { defaultValue: '' }),
     };
+
     setRowData(next);
-    commit(next);
+    commit(next, { appendRow: true });
+    focusAmount();
   };
 
   /**
-   * Free typing. Editing the text away from the linked ingredient's name
-   * unlinks the row, which is what keeps a renamed row from claiming to be a
-   * catalog ingredient it no longer matches.
+   * Free typing. The row stays linked only while the text still matches the
+   * catalog entry it points at - comparing against the entry rather than the
+   * previous keystroke, so the order Base UI fires its events in cannot
+   * silently unlink a row.
    */
   const handleInputValueChange = (value) => {
-    setRowData((current) => ({
-      ...current,
-      name: value,
-      ingredientId: value === current.name ? current.ingredientId : null,
-    }));
+    setRowData((current) => {
+      const linked = current.ingredientId ? byId.get(current.ingredientId) : null;
+      return {
+        ...current,
+        name: value,
+        ingredientId: linked && linked.nameNl === value ? current.ingredientId : null,
+      };
+    });
+  };
+
+  /**
+   * Enter on free text advances too, not only on a picked suggestion.
+   *
+   * When suggestions are showing, Base UI's own Enter handling picks the
+   * highlighted one and handleSelect takes it from there. Deciding on
+   * `suggestions.length` rather than on which handler fires first keeps this
+   * independent of event ordering.
+   */
+  const handleKeyDown = (event) => {
+    if (event.key !== 'Enter' || suggestions.length > 0) return;
+    event.preventDefault();
+    commit(rowData, { appendRow: true });
+    focusAmount();
   };
 
   return (
@@ -90,6 +140,7 @@ const IngredientsRow = ({ ingredient, index, id }) => {
         onInputValueChange={handleInputValueChange}
         onItemSelect={handleSelect}
         onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
         onMouseDown={(e) => e.stopPropagation()}
         emptyMessage={t('No ingredient found')}
         classes={styles.ingredientInput}

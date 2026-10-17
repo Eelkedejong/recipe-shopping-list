@@ -146,5 +146,9 @@
   "Add dish type (e.g., Soup, Salad, Pasta)": "Voeg type gerecht toe (bijv. Soep, Salade, Pasta)",
   "Add extra labels to recipe": "Voeg extra labels toe aan recept",
   "Show more": "Toon meer",
-  "Show less": "Toon minder"
+  "Show less": "Toon minder",
+  "unit_g": "gram",
+  "unit_ml": "ml",
+  "unit_piece": "stuk",
+  "No ingredient found": "Geen ingrediënt gevonden"
 }

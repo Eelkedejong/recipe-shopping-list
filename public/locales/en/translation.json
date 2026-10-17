@@ -27,5 +27,9 @@
   "Description": "Description",
   "Ingredient name": "Ingredient name",
   "Amount": "Amount",
-  "Unit": "Unit"
+  "Unit": "Unit",
+  "unit_g": "g",
+  "unit_ml": "ml",
+  "unit_piece": "piece",
+  "No ingredient found": "No ingredient found"
 }
