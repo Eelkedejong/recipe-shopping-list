@@ -2,7 +2,7 @@ import styles from './button.module.scss';
 
 const Button = ({ type, text, onClick, className, loading }) => {
   const classes = `
-    bg-main rounded-s df aic jcc text-white fs-18 
+    bg-main rounded-10 flex items-center justify-center text-white text-18 
     ${styles.btn}
     ${className ? className : ''}
     ${type !== 'undefined' ? styles[type] : ' '} 

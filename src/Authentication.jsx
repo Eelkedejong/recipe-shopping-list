@@ -83,7 +83,7 @@ const Authentication = () => {
         // @TODO: Add a loading component.
         <Suspense
           fallback={
-            <div className="h-100 w-100 pt-5 df aic jcc">
+            <div className="h-full w-full pt-6 flex items-center justify-center">
               <div className="loader"></div>
             </div>
           }
@@ -94,17 +94,20 @@ const Authentication = () => {
 
       {showLoginForm ? (
         <div
-          className="wrapper df fdc aic"
+          className="wrapper flex flex-col items-center"
           style={{ backgroundImage: `url(${bannerImage})` }}
         >
-          <h1 className="ff-logo text-black mt-4" style={{ fontSize: '38px' }}>
+          <h1
+            className="font-logo text-black mt-4"
+            style={{ fontSize: '38px' }}
+          >
             {t('My Cookbook')}
           </h1>
-          <div className="mb-5 df aic jcc h-100">
+          <div className="mb-6 flex items-center justify-center h-full">
             <main
-              className={`bg-white rounded-l centered p-5 ${styles.authentication}`}
+              className={`bg-white rounded-35 m-auto p-6 ${styles.authentication}`}
             >
-              <div className="mb-4 df jcc">
+              <div className="mb-4 flex justify-center">
                 <img src={logo} alt="Chef" />
               </div>
               {errorMessage ? (
@@ -125,7 +128,7 @@ const Authentication = () => {
                           <CreateForm refetch={refetch} />
                         )}
                         <Button
-                          className={'w-100'}
+                          className={'w-full'}
                           onClick={() => {
                             {
                               // Toggle between the forms.

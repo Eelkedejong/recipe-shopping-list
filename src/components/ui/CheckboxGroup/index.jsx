@@ -1,9 +1,9 @@
 export const CheckboxGroup = ({ name, options, selected = [] }) => {
   return (
     <div className="checkbox-group">
-      <div className="dg gtc-2 gap-2">
+      <div className="grid grid-cols-[repeat(2,1fr)] gap-2">
         {options.map((option) => (
-          <label key={option.id} className="df aic gap-2">
+          <label key={option.id} className="flex items-center gap-2">
             <input
               type="checkbox"
               id={`${name}-${option.id}`}
@@ -11,7 +11,7 @@ export const CheckboxGroup = ({ name, options, selected = [] }) => {
               defaultChecked={selected.includes(option.id)}
               className="checkbox filled"
             />
-            <span className="text-sm checkbox-label">{option.label}</span>
+            <span className="checkbox-label">{option.label}</span>
           </label>
         ))}
       </div>

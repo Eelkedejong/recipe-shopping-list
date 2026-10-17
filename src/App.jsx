@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import Authentication from './Authentication';
 import '@/styles/style.scss';
+import '@/styles/tailwind.css';
 import '@/styles/App.scss';
 
 // Define the quey client used by the application.

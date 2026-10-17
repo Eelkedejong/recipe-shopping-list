@@ -44,14 +44,14 @@ const Navigation = () => {
         className={`
           ${styles.openNav}
           ${openClass} 
-          desktop-hidden`}
+          m:hidden!`}
         onClick={() => setOpen(!open)} // Toggle the open state.
       >
         <span className={styles.burger}></span>
         <span className={styles.burgerText}>Menu</span>
       </button>
-      <div className={`px-5 pt-3 text-white ${styles.logoWrapper}`}>
-        <h1 className={`${styles.logo} df ff-logo`}>
+      <div className={`px-6 pt-3 text-white ${styles.logoWrapper}`}>
+        <h1 className={`${styles.logo} flex font-logo`}>
           <span className="pr-3 pb-2">
             <span className={styles.logoPrefix}>{t('My')} </span>
             {t('Cookbook')}
@@ -59,73 +59,73 @@ const Navigation = () => {
         </h1>
       </div>
       <nav
-        className={`df px-5 py-3 text-medium-grey ff-text fw-light fs-18 ${styles.navigation} ${openClass}`}
+        className={`flex px-6 py-3 font-light text-18 ${styles.navigation} ${openClass}`}
       >
         <button
           className={styles.overlay}
           onClick={() => setOpen(false)}
         ></button>
-        <ul className="df fdc gap-3 mt-5 mr-3 w-100">
-          <h4 className="mobile-hidden mb-1 fw-semibold">
+        <ul className="flex flex-col gap-3 mt-6 mr-3 w-full">
+          <h4 className="max-m:hidden! mb-1 font-semibold">
             {`${userName}'s`} {t('cookbook')}
           </h4>
           <li className={`${locationPath === home ? styles.active : null}`}>
             <Link className="link" to={home}>
-              <div className="df aic gap-4 py-3">
-                <FaHouse className="fs-18" /> {t('Overview')}
+              <div className="flex items-center gap-4 py-3">
+                <FaHouse className="text-18" /> {t('Overview')}
               </div>
             </Link>
           </li>
           <li className={locationPath === '/recipes' ? styles.active : null}>
             <Link className="link two" to="/recipes">
-              <div className="df aic gap-4 py-3">
-                <FaBook className="fs-18" />
+              <div className="flex items-center gap-4 py-3">
+                <FaBook className="text-18" />
                 {t('My Recipes')}
               </div>
             </Link>
           </li>
           <li className={`${locationPath === '/list' ? styles.active : null}`}>
             <Link className="link" to="/list">
-              <div className="df aic gap-4 py-3">
-                <FaBasketShopping className="fs-18" /> {t('My Groceries')}
+              <div className="flex items-center gap-4 py-3">
+                <FaBasketShopping className="text-18" /> {t('My Groceries')}
               </div>
             </Link>
           </li>
           <li
-            className={`mb-5 ${locationPath === '/recipes/all' ? styles.active : null}`}
+            className={`mb-6 ${locationPath === '/recipes/all' ? styles.active : null}`}
           >
             <Link className="link" to="/recipes/all">
-              <div className="df aic gap-4 py-3">
-                <FaUtensils className="fs-18" /> {t('Public Recipes')}
+              <div className="flex items-center gap-4 py-3">
+                <FaUtensils className="text-18" /> {t('Public Recipes')}
               </div>
             </Link>
           </li>
           <hr />
-          <h4 className="mt-5 fw-semibold">{t('Quick actions')}</h4>
+          <h4 className="mt-6 font-semibold">{t('Quick actions')}</h4>
           <li
             className={`${locationPath === '/recipe/new' ? styles.active : null}`}
           >
             <Link className="link" to="/recipe/new">
-              <div className="df aic gap-4 py-3">
-                <FaFileCirclePlus className="fs-18" /> {t('New recipe')}{' '}
+              <div className="flex items-center gap-4 py-3">
+                <FaFileCirclePlus className="text-18" /> {t('New recipe')}{' '}
               </div>
             </Link>
           </li>
           <li
-            className={`mb-5 ${locationPath === '/shopping-list' ? styles.active : null}`}
+            className={`mb-6 ${locationPath === '/shopping-list' ? styles.active : null}`}
           >
             <Link className="link" to="/shopping-list">
-              <div className="df aic gap-4 py-3">
-                <IoReceipt className="fs-18" /> {t('Edit Shopping List')}
+              <div className="flex items-center gap-4 py-3">
+                <IoReceipt className="text-18" /> {t('Edit Shopping List')}
               </div>
             </Link>
           </li>
           <hr />
-          <h4 className="mt-5 fw-semibold">{t('My Account')}</h4>
+          <h4 className="mt-6 font-semibold">{t('My Account')}</h4>
           <li className="">
             <Logout />
           </li>
-          <li className="desktop-hidden">
+          <li className="m:hidden!">
             <LanguageSelect />
           </li>
         </ul>

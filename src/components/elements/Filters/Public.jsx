@@ -58,31 +58,31 @@ const Filters = () => {
     <aside>
       <button
         onClick={() => setOpen(!open)}
-        className={`p-3 mt-2 text-main fs-14 fw-regular rounded-s df aic jcc ${styles.filterToggle} ${styles.publicFilter}`}
+        className={`p-3 mt-2 text-main text-14 font-medium rounded-10 flex items-center justify-center ${styles.filterToggle} ${styles.publicFilter}`}
       >
         <FaSliders className="mr-3" /> {t('Filter')}
       </button>
       <div
         className={`
-          bg-white rounded-m mr-5 d-pb-3 
+          bg-white rounded-20 mr-6 s:pb-3 
           ${styles.content} 
           ${open ? styles.open : null}
         `}
       >
-        <div className="px-5 py-4 bg-main-light rounded-top-m df jcsb">
-          <h2 className="fw-bold fs-20">{t('Filter')}</h2>
+        <div className="px-6 py-4 bg-main-bg rounded-t-20 flex justify-between">
+          <h2 className="font-bold text-20">{t('Filter')}</h2>
           <button onClick={() => setOpen(!open)}>
             <FaX />
           </button>
         </div>
         {filterOptions.length ? (
           <>
-            <ul className="p-5 df fdc gap-3 my-3">
-              <h3 className="fw-semibold fs-26 mb-2">{t('Labels')}</h3>
+            <ul className="p-6 flex flex-col gap-3 my-3">
+              <h3 className="font-semibold mb-2">{t('Labels')}</h3>
               {filterOptions.map((tag) =>
                 tag === '' ? null : (
-                  <li key={tag} className="fw-light fs-14 text-dark-grey">
-                    <label className="mr-2 df gap-3 label">
+                  <li key={tag} className="font-light text-14 text-dark-grey">
+                    <label className="mr-2 flex gap-3 label">
                       <input
                         type="checkbox"
                         name={tag}
@@ -103,12 +103,15 @@ const Filters = () => {
           </>
         ) : null}
 
-        <ul className="p-5 df fdc gap-3 my-3">
-          <h3 className="fw-semibold fs-26 mb-2">{t('Cooking time')}</h3>
+        <ul className="p-6 flex flex-col gap-3 my-3">
+          <h3 className="font-semibold mb-2">{t('Cooking time')}</h3>
           {timeOptions.map((time, index) => {
             return (
-              <li key={time.label} className="fw-light fs-14 text-dark-grey">
-                <label className="mr-2 df gap-3 label">
+              <li
+                key={time.label}
+                className="font-light text-14 text-dark-grey"
+              >
+                <label className="mr-2 flex gap-3 label">
                   <input
                     type="radio"
                     name="cooking-time"
@@ -130,7 +133,7 @@ const Filters = () => {
           })}
         </ul>
 
-        <div className="m-4 mt-5 desktop-hidden">
+        <div className="m-4 mt-6 m:hidden!">
           <Button text={t('View recipes')} onClick={() => setOpen(!open)} />
         </div>
       </div>

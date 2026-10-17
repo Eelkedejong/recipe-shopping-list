@@ -41,22 +41,22 @@ const RecipeList = () => {
   const totalRecipes = data?.count;
 
   return (
-    <div className={`bg-white p-5 ${styles.listWrapper}`}>
-      <div className="df jcsb aic mb-3 fww gap-3">
+    <div className={`bg-white p-6 ${styles.listWrapper}`}>
+      <div className="flex justify-between items-center mb-3 flex-wrap gap-3">
         <TypesList />
         {totalRecipes && totalRecipes > 1 ? (
-          <span className="mobile-hidden">
+          <span className="max-m:hidden!">
             {totalRecipes} {t('recipes')}
           </span>
         ) : totalRecipes & (totalRecipes === 1) ? (
-          <span className="mobile-hidden">
+          <span className="max-m:hidden!">
             {totalRecipes} {t('recipe')}
           </span>
         ) : null}
       </div>
 
       {isLoading && (
-        <div className="h-100 w-100 mb-5 pt-5 df aic jcc">
+        <div className="h-full w-full mb-6 pt-6 flex items-center justify-center">
           <div className="loader"></div>
         </div>
       )}
@@ -65,7 +65,7 @@ const RecipeList = () => {
           <div>
             <div>{t('No recipes found')}</div>
             <button
-              className="text-main td-underline mt-3"
+              className="text-main underline mt-3"
               onClick={() => dispatch(resetSearchParams())}
             >
               {t('Reset filters')}
@@ -89,9 +89,9 @@ const RecipeList = () => {
           })
         )}
       </div>
-      <div className="df fdc aic p-4 mt-5 desktop-hidden">
+      <div className="flex flex-col items-center p-4 mt-6 m:hidden!">
         <Link to="/recipe/new">
-          <button className="p-4 df aic jcc bg-main text-white rounded-s mb-3">
+          <button className="p-4 flex items-center justify-center bg-main text-white rounded-10 mb-3">
             <FaPlus />
           </button>
         </Link>
@@ -101,7 +101,9 @@ const RecipeList = () => {
       </div>
 
       {!isLoading & (totalPages > 1) ? (
-        <div className={`df aic jcc mt-5 gap-3 ${styles.pagination}`}>
+        <div
+          className={`flex items-center justify-center mt-6 gap-3 ${styles.pagination}`}
+        >
           {currentPage > 1 && (
             <button
               type="button"
@@ -109,9 +111,9 @@ const RecipeList = () => {
                 setPage(currentPage - 1);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`px-3 py-4 df aic gap-5 rounded-s bg-main-light text-main ${styles.prev}`}
+              className={`px-3 py-4 flex items-center gap-6 rounded-10 bg-main-bg text-main ${styles.prev}`}
             >
-              <FaChevronLeft className="text-main fw-bold" />
+              <FaChevronLeft className="text-main font-bold" />
             </button>
           )}
 
@@ -126,7 +128,7 @@ const RecipeList = () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 setPage(i + 1);
               }}
-              className={`px-4 py-3  rounded-s ${i + 1 === page ? 'bg-main text-white' : 'bg-main-light text-main'}`}
+              className={`px-4 py-3  rounded-10 ${i + 1 === page ? 'bg-main text-white' : 'bg-main-bg text-main'}`}
             >
               {i + 1}
             </button>
@@ -139,7 +141,7 @@ const RecipeList = () => {
                 setPage(currentPage + 1);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`px-3 py-4 df aic gap-5 rounded-s bg-main-light text-main`}
+              className={`px-3 py-4 flex items-center gap-6 rounded-10 bg-main-bg text-main`}
             >
               <FaChevronRight className="text-main" />
             </button>
@@ -147,7 +149,7 @@ const RecipeList = () => {
         </div>
       ) : null}
 
-      <div className="df arc jcc mt-5 desktop-hidden">
+      <div className="flex justify-center mt-6 m:hidden!">
         {totalRecipes && totalRecipes > 1 ? (
           <>
             {totalRecipes} {t('recipes')}

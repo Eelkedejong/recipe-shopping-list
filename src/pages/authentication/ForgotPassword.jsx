@@ -31,7 +31,7 @@ const ForgotPassword = () => {
     <>
       {isSuccess ? (
         <>
-          <h2 className="message success my-5 ta-center">
+          <h2 className="message success my-6 text-center">
             {t('Password reset link is send to your email')}
           </h2>
           <Button
@@ -44,15 +44,15 @@ const ForgotPassword = () => {
         </>
       ) : (
         <>
-          <h2 className="my-5 ta-center fs-18">{t('Forgot password?')}</h2>
-          <div className="mb-5 fs-14 ta-center">
+          <h2 className="my-6 text-center text-18">{t('Forgot password?')}</h2>
+          <div className="mb-6 text-14 text-center">
             {t(
               "Enter your email address below and we'll send you a link to reset your password."
             )}
           </div>
           {errorMessage ? <ErrorMessage errorMessage={errorMessage} /> : null}
           <form
-            className="mb-5 df fdc gap-4"
+            className="mb-6 flex flex-col gap-4"
             onSubmit={(e) => {
               e.preventDefault();
               refetch();
@@ -67,7 +67,7 @@ const ForgotPassword = () => {
               key="email"
             />
 
-            <Button className={'mt-1 mb-5'} text={t('Submit')} />
+            <Button className={'mt-1 mb-6'} text={t('Submit')} />
 
             <Button
               onClick={() => {

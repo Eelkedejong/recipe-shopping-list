@@ -69,13 +69,13 @@ function CloudinaryUploadWidget({ uwConfig, image }) {
     <CloudinaryScriptContext.Provider value={{ loaded }}>
       <button
         id="upload_widget"
-        className={`bg-light-grey rounded-s df fdc aic jcc fs-16 w-100 pos-relative ${
+        className={`bg-light-grey rounded-10 flex flex-col items-center justify-center text-16 w-full relative ${
           styles.uploadButton
         } ${imageId ? styles.uploaded : ''} `}
         onClick={initializeCloudinaryWidget}
         type="button"
       >
-        <div className={`df fdc aic ${styles.uploadIcon}`}>
+        <div className={`flex flex-col items-center ${styles.uploadIcon}`}>
           <TbCameraPlus />
           {imageId ? t('Change picture') : t('Add a picture')}
         </div>

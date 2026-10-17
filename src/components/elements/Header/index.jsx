@@ -30,41 +30,43 @@ const Header = ({
   return (
     <header
       className={`
-        pl-5 df aic 
+        pl-6 flex items-center 
         ${styles.header} ${hiddenMobile ? styles.hiddenMobile : null}
         ${withBanner ? styles.withBanner : null}
         ${open ? styles.open : null}
       `}
     >
-      <div className="df jcsb w-100">
+      <div className="flex justify-between w-full">
         {returnUrl && returnText ? (
-          <Link to={returnUrl} className="df aic gap-3">
-            <div className="bg-white rounded-full p-2 df aic">
+          <Link to={returnUrl} className="flex items-center gap-3">
+            <div className="bg-white rounded-[50%] p-2 flex items-center">
               <FaChevronLeft />
             </div>
-            <span className="fs-16 fw-light text-grey">{returnText}</span>
+            <span className="text-16 font-light text-grey">{returnText}</span>
           </Link>
         ) : title ? (
-          <h2 className="fs-32 fw-bold pt-5">{title}</h2>
+          <h2 className="text-32 font-bold pt-6">{title}</h2>
         ) : useParamTitle ? (
-          <h2 className="fs-32 fw-bold pt-5">
+          <h2 className="text-32 font-bold pt-6">
             {t(`${type.charAt(0).toUpperCase() + type.slice(1)}`)}
           </h2>
         ) : (
           <div className={styles.greeting}>
-            <div className="fs-16 fw-light text-grey">
+            <div className="text-16 font-light text-grey">
               {t('Welcome')}, {userName}
             </div>
-            <h2 className="fs-28 fw-bold">{t("What's on the menu today?")}</h2>
+            <h2 className="text-28 font-bold">
+              {t("What's on the menu today?")}
+            </h2>
           </div>
         )}
         {!hideSearch && (
           <button
-            className={`desktop-hidden p-3 ${styles.searchButton}`}
+            className={`m:hidden! p-3 ${styles.searchButton}`}
             onClick={() => setOpen(!open)}
           >
             <span
-              className={`desktop-hidden ${styles.searchIcon} ${open ? styles.close : null}`}
+              className={`m:hidden! ${styles.searchIcon} ${open ? styles.close : null}`}
             ></span>
           </button>
         )}

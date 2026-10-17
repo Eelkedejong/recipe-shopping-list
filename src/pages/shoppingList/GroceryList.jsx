@@ -73,15 +73,15 @@ const GroceryList = () => {
   };
 
   return (
-    <div className="bg-white p-5 rounded-m mobile-exclude-top ">
+    <div className="bg-white p-6 rounded-20 max-m:rounded-[0_0_20px_20px] ">
       {shopplingList.isSuccess && items.length !== 0 ? (
-        <div className="df aic jcsb pb-4 fs-14">
-          <p className="desktop-hidden">
+        <div className="flex items-center justify-between pb-4 text-14">
+          <p className="m:hidden!">
             {t(
               'Scroll on the right side, rearrange grocery items on the left side.'
             )}
           </p>
-          <p className="mobile-hidden">
+          <p className="max-m:hidden!">
             {t('Drag and drop grocery items to rearrange them.')}
           </p>
           <Link className="text-main" to="/shopping-list">
@@ -104,7 +104,7 @@ const GroceryList = () => {
       {shopplingList.isSuccess && items.length === 0 ? (
         <>
           <h3 className="pb-2">{t('Your grocery list is empty')}</h3>
-          <span className="df aic gap-1">
+          <span className="flex items-center gap-1">
             <Link className="text-main" to="/recipes">
               {t('Add recipes')}
             </Link>

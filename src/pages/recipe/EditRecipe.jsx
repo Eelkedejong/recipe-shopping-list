@@ -47,14 +47,14 @@ const EditRecipe = () => {
   return (
     <>
       <button
-        className={`df aic gap-2 ${styles.deleteButton}`}
+        className={`flex items-center gap-2 ${styles.deleteButton}`}
         onClick={(e) => {
           e.preventDefault();
           deleteMutation.mutate([userToken, id]);
         }}
       >
         <FaTrash />
-        <span className="mobile-hidden">{t('Delete recipe')}</span>
+        <span className="max-m:hidden!">{t('Delete recipe')}</span>
       </button>
 
       {results.isSuccess ? (

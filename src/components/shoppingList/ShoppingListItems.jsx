@@ -12,16 +12,16 @@ const ShoppingListItems = ({ items }) => {
 
   return (
     <>
-      <div className="bg-white p-5 rounded-m mb-5">
-        <h3 className="fs-20 fw-bold mb-5">
+      <div className="bg-white p-6 rounded-20 mb-6">
+        <h3 className="text-20 font-bold mb-6">
           {t('Add items to shopping list')}
         </h3>
 
-        <div className="df fdc gap-3 fs-14">
+        <div className="flex flex-col gap-3 text-14">
           {ingredients
             ? ingredients.map((ingredient, index) => {
                 return (
-                  <div className="df gap-3 aic mb-1" key={index}>
+                  <div className="flex gap-3 items-center mb-1" key={index}>
                     <Input
                       id={`extra_${index}`}
                       value={ingredient}
@@ -36,7 +36,7 @@ const ShoppingListItems = ({ items }) => {
                         setIngredients(newRows);
                       }}
                     >
-                      <FaXmark className="fs-18" />
+                      <FaXmark className="text-18" />
                     </button>
                   </div>
                 );
@@ -45,7 +45,7 @@ const ShoppingListItems = ({ items }) => {
         </div>
         <button
           type="button"
-          className="df aic jcfe gap-3 py-2 fs-16 mt-2"
+          className="flex items-center justify-end gap-3 py-2 text-16 mt-2"
           onClick={(e) => {
             e.preventDefault;
             setIngredients([...ingredients, ['']]);

@@ -9,13 +9,13 @@ const Image = ({ image }) => {
       {image ? (
         <>
           <div
-            className={`df jcc bg-main rounded-top-m f1 ${styles.detailsImage}`}
+            className={`flex justify-center bg-main rounded-t-20 flex-1 ${styles.detailsImage}`}
             style={{ backgroundImage: `url(${imageUrl})` }}
           ></div>
         </>
       ) : (
         <div
-          className={`df jcc bg-main rounded-top-m f1 ${styles.placeholderDetailsImage}`}
+          className={`flex justify-center bg-main rounded-t-20 flex-1 ${styles.placeholderDetailsImage}`}
         >
           <img src={logo} alt="Chef" />
         </div>

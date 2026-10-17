@@ -1,14 +1,5 @@
 @use './reset';
 @use './defaults';
 
-// Utility classes
-@use './utility/borders';
-@use './utility/color';
-@use './utility/font';
-@use './utility/layout';
-@use './utility/spacing';
-@use './utility/visibility';
-@use './utility/interactivity';
-
 // Mixins
 @use './mixins/breakpoints';

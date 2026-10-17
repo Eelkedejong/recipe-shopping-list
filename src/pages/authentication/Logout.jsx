@@ -21,7 +21,7 @@ const Logout = () => {
 
   return (
     <>
-      <button onClick={handleLogout} className="df aic gap-4 py-3">
+      <button onClick={handleLogout} className="flex items-center gap-4 py-3">
         <FaRightFromBracket />
         <span className="pr-3">{t('Logout')}</span>
       </button>

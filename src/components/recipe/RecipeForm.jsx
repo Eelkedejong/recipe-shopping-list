@@ -110,14 +110,14 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
 
   return (
     <form
-      className={`df fdc gap-4 pb-5 mb-5 ${styles.form}`}
+      className={`flex flex-col gap-4 pb-6 mb-6 ${styles.form}`}
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmitRecipe(e);
       }}
     >
-      <div className="bg-white p-5 rounded-top-l rounded-m mobile-exclude-top df fdc gap-4">
-        <h3 className="fs-20 fw-semibold">{t('Recipe details')}</h3>
+      <div className="bg-white p-6 rounded-t-30 rounded-20 max-m:rounded-[0_0_20px_20px] flex flex-col gap-4">
+        <h3 className="text-20 font-semibold">{t('Recipe details')}</h3>
         <Input
           id="name"
           label={t('Recipe name')}
@@ -134,7 +134,7 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
         />
 
         <div className="mt-0">
-          <h4 className="fs-16 mb-4 mt-2 fw-semibold">
+          <h4 className="text-16 mb-4 mt-2 font-semibold">
             {t('Select meal category')}
           </h4>
           <CheckboxGroup
@@ -145,11 +145,11 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
         </div>
 
         <div className="mt-0">
-          <h4 className="fs-16 mb-4 mt-2 fw-semibold">
+          <h4 className="text-16 mb-4 mt-2 font-semibold">
             {t('Characteristics')}
           </h4>
-          <div className="dg gtc-2 gap-2">
-            <label className="df aic gap-2">
+          <div className="grid grid-cols-[repeat(2,1fr)] gap-2">
+            <label className="flex items-center gap-2">
               <input
                 type="checkbox"
                 id={'isChildFriendly'}
@@ -157,12 +157,10 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
                 defaultChecked={recipe?.isChildFriendly || false}
                 className="checkbox filled"
               />
-              <span className="text-sm checkbox-label">
-                {t('Child friendly')}
-              </span>
+              <span className="checkbox-label">{t('Child friendly')}</span>
             </label>
 
-            <label className="df aic gap-2">
+            <label className="flex items-center gap-2">
               <input
                 type="checkbox"
                 id={'isVegetarian'}
@@ -170,15 +168,15 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
                 defaultChecked={recipe?.isVegetarian || false}
                 className="checkbox filled"
               />
-              <span className="text-sm checkbox-label">{t('Vegetarian')}</span>
+              <span className="checkbox-label">{t('Vegetarian')}</span>
             </label>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 fw-semibold">{t('Advanced')}</h3>
-        <div className={`dg gap-4 ${styles.advancedFields}`}>
+      <div className="bg-white rounded-20 p-6 mx-3">
+        <h3 className="text-20 mb-4 font-semibold">{t('Advanced')}</h3>
+        <div className={`grid gap-4 ${styles.advancedFields}`}>
           <Input
             id="time"
             label={t('Cooking time (in minutes)')}
@@ -211,9 +209,9 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
           />
         </div>
 
-        <div className="mt-5">
-          <h4 className="fs-16 mb-1 fw-semibold">{t('Dish type')}</h4>
-          <p className="fs-14 mb-2">
+        <div className="mt-6">
+          <h4 className="text-16 mb-1 font-semibold">{t('Dish type')}</h4>
+          <p className="text-14 mb-2">
             {t('Add dish type (e.g., Soup, Salad, Pasta)')}
           </p>
           <LabelList
@@ -224,8 +222,8 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
         </div>
 
         <div className="mt-4">
-          <h4 className="fs-16 mb-1 fw-semibold">{t('Tags')}</h4>
-          <p className="fs-14 mb-2">{t('Add extra labels to recipe')}</p>
+          <h4 className="text-16 mb-1 font-semibold">{t('Tags')}</h4>
+          <p className="text-14 mb-2">{t('Add extra labels to recipe')}</p>
           <LabelList
             tags={recipe ? recipe.tags : null}
             placeholder={t('Label')}
@@ -234,29 +232,29 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
         </div>
       </div>
 
-      <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-4 fw-semibold">{t('Image')}</h3>
+      <div className="bg-white rounded-20 p-6 mx-3">
+        <h3 className="text-20 mb-4 font-semibold">{t('Image')}</h3>
         <ImageUploader image={recipe ? recipe?.image : null} />
       </div>
 
-      <div className="bg-white rounded-m p-5 mx-3">
-        <h3 className="fs-20 mb-2 fw-semibold">{t('Ingredients')}</h3>
-        <p className="mb-4 fs-14">
+      <div className="bg-white rounded-20 p-6 mx-3">
+        <h3 className="text-20 mb-2 font-semibold">{t('Ingredients')}</h3>
+        <p className="mb-4 text-14">
           {t('Drag the numbers to re-arrange the ingredient order')}
         </p>
         <IngredientsList ingredients={recipe ? recipe.ingredients : null} />
       </div>
 
-      <div className="bg-white rounded-m p-5 mx-3 mb-5">
-        <h3 className="fs-20 mb-4 fw-semibold">{t('Cooking steps')}</h3>
+      <div className="bg-white rounded-20 p-6 mx-3 mb-6">
+        <h3 className="text-20 mb-4 font-semibold">{t('Cooking steps')}</h3>
         <StepsList steps={recipe ? recipe.steps : null} />
       </div>
 
       <div
-        className={`w-100 bg-white rounded-m p-5 df ${styles.submitButtonWrapper}`}
+        className={`w-full bg-white rounded-20 p-6 flex ${styles.submitButtonWrapper}`}
       >
         <Button
-          className={`w-100 ${styles.submitButton}`}
+          className={`w-full ${styles.submitButton}`}
           loading={loading}
           text={t('Save recipe')}
           type="submit"
@@ -268,7 +266,7 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
           }}
           text={t('Cancel')}
           type="ghost"
-          className="w-100"
+          className="w-full"
         />
       </div>
     </form>

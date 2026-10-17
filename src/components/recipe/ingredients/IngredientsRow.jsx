@@ -36,11 +36,11 @@ const IngredientsRow = ({ ingredient, index, id }) => {
         style={style}
         {...attributes}
         {...listeners}
-        className={`dg gap-4 ${styles.ingredientGrid}`}
+        className={`grid gap-4 ${styles.ingredientGrid}`}
         id={`row_${index}`}
         key={index}
       >
-        <div className={`px-2 df aic ${styles.ingredientIndex}`}>
+        <div className={`px-2 flex items-center ${styles.ingredientIndex}`}>
           {index + 1}
         </div>
         <Input

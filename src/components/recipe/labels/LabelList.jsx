@@ -10,11 +10,11 @@ const StepsList = ({ tags, placeholder, prefix }) => {
 
   return (
     <>
-      <div className="df aic fww gap-3">
+      <div className="flex items-center flex-wrap gap-3">
         {labels.map((label, index) => {
           return (
             <div
-              className={`df aic pos-relative w-100 ${styles.labelWrapper}`}
+              className={`flex items-center relative w-full ${styles.labelWrapper}`}
               key={`${index} + ${label}`} // @TODO: Change this to a unique key.
             >
               <Input
@@ -23,7 +23,7 @@ const StepsList = ({ tags, placeholder, prefix }) => {
                 label={t(placeholder)}
                 value={label ? label : null}
                 classes={`${styles.ingreidentInput} pr-4`}
-                labelClasses={`w-100 ${styles.label}`}
+                labelClasses={`w-full ${styles.label}`}
                 key={`${index} + ${label}`} // @TODO: Change this to a unique key.
               />
               <button
@@ -41,10 +41,10 @@ const StepsList = ({ tags, placeholder, prefix }) => {
           );
         })}
       </div>
-      <div className="df w-100">
+      <div className="flex w-full">
         <button
           type="button"
-          className="df aic jcfe gap-3 py-2 fs-16"
+          className="flex items-center justify-end gap-3 py-2 text-16"
           onClick={(e) => {
             e.preventDefault;
             setLabels([...labels, '']);

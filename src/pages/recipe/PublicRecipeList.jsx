@@ -42,8 +42,8 @@ const PublicRecipeList = () => {
 
   return (
     <>
-      <div className="bg-white p-5 rounded-m">
-        <div className="df gap-3 mb-5 fww">
+      <div className="bg-white p-6 rounded-20">
+        <div className="flex gap-3 mb-6 flex-wrap">
           {dishTypes.map((recipeType) => (
             <button
               onClick={() => {
@@ -55,7 +55,7 @@ const PublicRecipeList = () => {
                   navigate(`${t(recipeType.label)}`);
                 }
               }}
-              className={`py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
+              className={`py-2 px-4 text-main bg-main-bg rounded-10 text-12 font-semibold 
               ${
                 (type === '' && type === 'All') || type === t(recipeType.label)
                   ? styles.activeType
@@ -74,7 +74,7 @@ const PublicRecipeList = () => {
             <div>
               <div>{t('No recipes found')}</div>
               <button
-                className="text-main td-underline mt-3"
+                className="text-main underline mt-3"
                 onClick={() => {
                   dispatch(resetSearchParams());
                   // If there is a type, immediately update the type in the search params.
@@ -107,7 +107,9 @@ const PublicRecipeList = () => {
         </div>
 
         {!isLoading & (totalPages > 1) ? (
-          <div className={`df aic jcc mt-5 gap-3 ${styles.pagination}`}>
+          <div
+            className={`flex items-center justify-center mt-6 gap-3 ${styles.pagination}`}
+          >
             {currentPage > 1 && (
               <button
                 type="button"
@@ -115,9 +117,9 @@ const PublicRecipeList = () => {
                   setPage(currentPage - 1);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`px-3 py-4 df aic gap-5 rounded-s bg-main-light text-main ${styles.prev}`}
+                className={`px-3 py-4 flex items-center gap-6 rounded-10 bg-main-bg text-main ${styles.prev}`}
               >
-                <FaChevronLeft className="text-main fw-bold" />
+                <FaChevronLeft className="text-main font-bold" />
               </button>
             )}
 
@@ -132,7 +134,7 @@ const PublicRecipeList = () => {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                   setPage(i + 1);
                 }}
-                className={`px-4 py-3  rounded-s ${i + 1 === page ? 'bg-main text-white' : 'bg-main-light text-main'}`}
+                className={`px-4 py-3  rounded-10 ${i + 1 === page ? 'bg-main text-white' : 'bg-main-bg text-main'}`}
               >
                 {i + 1}
               </button>
@@ -145,7 +147,7 @@ const PublicRecipeList = () => {
                   setPage(currentPage + 1);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`px-3 py-4 df aic gap-5 rounded-s bg-main-light text-main`}
+                className={`px-3 py-4 flex items-center gap-6 rounded-10 bg-main-bg text-main`}
               >
                 <FaChevronRight className="text-main" />
               </button>
@@ -153,7 +155,7 @@ const PublicRecipeList = () => {
           </div>
         ) : null}
 
-        <div className="df arc jcc mt-5 desktop-hidden">
+        <div className="flex justify-center mt-6 m:hidden!">
           {totalRecipes && totalRecipes > 1 ? (
             <>
               {totalRecipes} {t('recipes')}

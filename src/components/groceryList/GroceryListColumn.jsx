@@ -7,7 +7,7 @@ import styles from './groceryList.module.scss';
 
 const GroceryListColumn = ({ groceries }) => {
   return (
-    <div className={`${styles.groceryGrid} dg`}>
+    <div className={`${styles.groceryGrid} grid`}>
       <SortableContext items={groceries} strategy={verticalListSortingStrategy}>
         {groceries.map((item, index) => (
           <GroceryListItem item={item.title} id={item.id} key={item.id} />

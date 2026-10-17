@@ -22,7 +22,7 @@ const LanguageSelect = () => {
   };
 
   return (
-    <div className={`lang df aic gap-2 ${styles.selector}`}>
+    <div className={`lang flex items-center gap-2 ${styles.selector}`}>
       {/* <span>{t("Language")}:</span> */}
       {Object.keys(lngs).map((lng) => (
         <button
@@ -32,14 +32,14 @@ const LanguageSelect = () => {
             i18n.changeLanguage(lng);
           }}
           className={`
-            df aic gap-3 pt-2 
-            ${i18n.resolvedLanguage === lng ? 'hidden' : ''}
+            flex items-center gap-3 pt-2 
+            ${i18n.resolvedLanguage === lng ? 'hidden!' : ''}
           `}
         >
           <img
             src={flag(lng)}
             alt={lngs[lng].nativeName}
-            className="rounded-full"
+            className="rounded-[50%]"
           />
           <span>{lngs[lng].nativeName}</span>
         </button>

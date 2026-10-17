@@ -21,7 +21,7 @@ const PersonSelector = ({ personsState, setPersonsState, recipeId }) => {
   };
 
   return (
-    <div className="df aic gap-5">
+    <div className="flex items-center gap-6">
       <button
         type="button"
         onClick={() => {
@@ -32,9 +32,9 @@ const PersonSelector = ({ personsState, setPersonsState, recipeId }) => {
       >
         <FaCircleMinus style={{ color: '#F1A661', fontSize: '22px' }} />
       </button>
-      <div className="df fdc aic">
-        <span className="fs-14">{t('Persons')}</span>
-        <span className="text-main fw-semibold">{personsState}</span>
+      <div className="flex flex-col items-center">
+        <span className="text-14">{t('Persons')}</span>
+        <span className="text-main font-semibold">{personsState}</span>
       </div>
       <button
         type="button"

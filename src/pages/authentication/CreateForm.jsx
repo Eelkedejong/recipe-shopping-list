@@ -13,11 +13,11 @@ const LoginForm = ({ refetch }) => {
 
   return (
     <>
-      <h2 className="my-5 ta-center">
+      <h2 className="my-6 text-center">
         {t('Create your account and start collecting recipes right away!')}
       </h2>
       <form
-        className="mb-5 df fdc gap-4"
+        className="mb-6 flex flex-col gap-4"
         onSubmit={(e) => {
           e.preventDefault();
           refetch();

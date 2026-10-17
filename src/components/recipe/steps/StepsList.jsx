@@ -14,7 +14,7 @@ const StepsList = ({ steps }) => {
         const isLastStep = index === stepsRows.length - 1;
         return (
           <div
-            className={`dg aic gap-3 mb-4 ${styles.stepsGrid} `}
+            className={`grid items-center gap-3 mb-4 ${styles.stepsGrid} `}
             key={index} // TODO: Change this to a unique key.
           >
             <div>{index + 1}</div>
@@ -22,7 +22,7 @@ const StepsList = ({ steps }) => {
               id={`step-${index + 1}`}
               label={t("Enter step details")}
               value={step ? step : null}
-              className="w-100"
+              className="w-full"
               key={index} // TODO: Change this to a unique key.
             />
             {isLastStep && (
@@ -41,10 +41,10 @@ const StepsList = ({ steps }) => {
           </div>
         );
       })}
-      <div className="df jcfe">
+      <div className="flex justify-end">
         <button
           type="button"
-          className="df aic jcfe gap-3 py-2 fs-16"
+          className="flex items-center justify-end gap-3 py-2 text-16"
           onClick={(e) => {
             e.preventDefault;
             setStepsRows([...stepsRows, ""]);

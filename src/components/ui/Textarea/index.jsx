@@ -12,10 +12,10 @@ const Textarea = ({ id, name, label, value, onChange, type, required }) => {
   }, [value]);
 
   return (
-    <label htmlFor={name} className="pos-relative">
+    <label htmlFor={name} className="relative">
       <span
         className={`
-          fw-light text-dark-grey 
+          font-light text-dark-grey 
           ${styles.label} 
           ${focus ? styles.focus : ''}
         `}
@@ -34,7 +34,7 @@ const Textarea = ({ id, name, label, value, onChange, type, required }) => {
           if (!e.target.value) setFocus(false);
         }}
         className={`
-          rounded-s df aic jcc pl-3 pt-5 
+          rounded-10 flex items-center justify-center pl-3 pt-6 
           ${styles.textarea}
         `}
         required={required}

@@ -77,13 +77,13 @@ const ShoppingList = () => {
 
   return (
     <>
-      <div className="bg-white fs-14 rounded-s mobile-exclude-top px-5 py-3">
+      <div className="bg-white text-14 rounded-10 max-m:rounded-[0_0_20px_20px] px-6 py-3">
         {t(
           'Update recipe ingredients and click save to update items on the grocery list.'
         )}
       </div>
       <form
-        className={`gap-5 dg gap-30 ${styles.shoppingListGrid}`}
+        className={`gap-6 grid ${styles.shoppingListGrid}`}
         onSubmit={(e) => {
           e.preventDefault();
           setMessage('');
@@ -101,7 +101,7 @@ const ShoppingList = () => {
               shoppingListRecipes={list.recipes}
             />
           ) : !recipes.isLoading || !shopplingList.isLoading ? (
-            <div className="bg-white rounded-m p-5">
+            <div className="bg-white rounded-20 p-6">
               <h4 className="pb-2">{t('No recipes in your shopping list')}</h4>
               <span>
                 <Link className="text-main" to="/recipes">
@@ -110,7 +110,7 @@ const ShoppingList = () => {
               </span>
             </div>
           ) : (
-            <div className="h-100 w-100 pt-5 df aic jcc">
+            <div className="h-full w-full pt-6 flex items-center justify-center">
               <div className="loader"></div>
             </div>
           )}
@@ -125,12 +125,12 @@ const ShoppingList = () => {
             <p className="message success mobile mb-3">{message}</p>
           ) : null}
 
-          <div className={`w-100 ${styles.submitButtonWrapper}`}>
+          <div className={`w-full ${styles.submitButtonWrapper}`}>
             <Button
               text={t('Save shopping list')}
               loading={editItems.isPending || editRecipes.isPending}
               type="submit"
-              className={`w-100 ${styles.submitButton}`}
+              className={`w-full ${styles.submitButton}`}
             />
           </div>
         </div>

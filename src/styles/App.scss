@@ -34,7 +34,7 @@ section {
     padding: 0 42px;
   }
 
-  @include screen-xxl(max) {
+  @include screen-xl(max) {
     &.full-page {
       grid-column: 2/4;
     }

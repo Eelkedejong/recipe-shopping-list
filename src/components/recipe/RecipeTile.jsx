@@ -36,25 +36,25 @@ const RecipeTile = ({
   return (
     <Link
       to={`${isPublic ? `/public/recipe/${id}` : `/recipe/${id}`}`}
-      className={`df fdc rounded-m ${styles.recipeTile}`}
+      className={`flex flex-col rounded-20 ${styles.recipeTile}`}
     >
       {image ? (
         <div
-          className={`df jcc bg-main rounded-top-m f1 ${styles.tileImage}`}
+          className={`flex justify-center bg-main rounded-t-20 flex-1 ${styles.tileImage}`}
           style={{ backgroundImage: `url(${imageUrl})` }}
         ></div>
       ) : (
         <div
-          className={`df jcc bg-main rounded-top-m f1 ${styles.placeholderImage}`}
+          className={`flex justify-center bg-main rounded-t-20 flex-1 ${styles.placeholderImage}`}
         >
           <img src={logo} alt="Chef" />
         </div>
       )}
 
       <div className="p-3 py-2">
-        <h2 className="fs-18 fw-bold">{name}</h2>
+        <h2 className="text-18 font-bold">{name}</h2>
 
-        <div className="df gap-1 text-grey fw-light fs-14">
+        <div className="flex gap-1 text-grey font-light text-14">
           {typeOfDish
             ? typeOfDish.map((type, index) => {
                 return (
@@ -67,16 +67,16 @@ const RecipeTile = ({
             : null}
         </div>
 
-        <div className={`df gap-4 mt-5 mb-2 mr-5 fww`}>
+        <div className={`flex gap-4 mt-6 mb-2 mr-6 flex-wrap`}>
           {time ? (
-            <div className="df aic gap-2 fs-14">
+            <div className="flex items-center gap-2 text-14">
               <FaClockRotateLeft fontSize="14px" /> {time} {t('min')}
             </div>
           ) : null}
 
           {cuisine && cuisine.length > 0 ? (
             <div
-              className={`df aic gap-1 fs-12 ${styles.cuisineLabel} bg-white rounded-s p-1 px-2`}
+              className={`flex items-center gap-1 text-12 ${styles.cuisineLabel} bg-white rounded-10 p-1 px-2`}
             >
               {/* <FaUtensils fontSize="14px" /> */}
               {cuisine[0]}
@@ -84,7 +84,7 @@ const RecipeTile = ({
           ) : null}
 
           {typeOfMeal && typeOfMeal.length > 0 ? (
-            <div className="df aic gap-1 fs-14">
+            <div className="flex items-center gap-1 text-14">
               <FaUtensils fontSize="14px" />
               {typeOfMeal
                 ? typeOfMeal.map((type, index) => {

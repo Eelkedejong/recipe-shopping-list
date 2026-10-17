@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 // eslint-disable-next-line import/no-unresolved
 import { imagetools } from 'vite-imagetools';
 import sass from 'sass';
 
 export default defineConfig({
-  plugins: [react(), imagetools()],
+  plugins: [react(), tailwindcss(), imagetools()],
   css: {
     preprocessorOptions: {
       scss: {

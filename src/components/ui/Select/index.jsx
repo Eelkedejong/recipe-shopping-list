@@ -20,10 +20,10 @@ const Select = ({
   const [selectValue, setSelectValue] = useState(value);
 
   return (
-    <label htmlFor={name} className="pos-relative df faic">
+    <label htmlFor={name} className="relative flex">
       <span
         className={`
-        fw-light text-dark-grey
+        font-light text-dark-grey
         ${styles.label} 
       `}
       >
@@ -42,7 +42,7 @@ const Select = ({
                 setSelectValue(e.target.value);
               }
         }
-        className={`rounded-s df aic jcc pl-3 pt-3 ${styles.select} `}
+        className={`rounded-10 flex items-center justify-center pl-3 pt-3 ${styles.select} `}
         required={required}
       >
         {placeholder ? (

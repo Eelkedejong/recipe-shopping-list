@@ -28,13 +28,13 @@ const RecipeDetail = ({ recipe }) => {
   return (
     <>
       <div>
-        <div className="df aic jcsb">
-          <h1 className="fs-32 fw-bold">{recipe.name}</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-32 font-bold">{recipe.name}</h1>
           <Link to={`/recipe/edit/${recipe.id}`}>
             <FaPen />
           </Link>
         </div>
-        <div className="df gap-1 text-grey fw-light fs-16">
+        <div className="flex gap-1 text-grey font-light text-16">
           {recipe.typeOfDish
             ? recipe.typeOfDish.map((type, index) => {
                 return (
@@ -48,13 +48,13 @@ const RecipeDetail = ({ recipe }) => {
         </div>
         <div className="my-4">{recipe.description}</div>
 
-        <div className="df gap-3 fww">
+        <div className="flex gap-3 flex-wrap">
           {recipe.typeOfMeal
             ? recipe.typeOfMeal.map((type, index) => {
                 return (
                   <div
                     className={`
-                  py-2 px-4 text-main bg-main-light rounded-s fs-12 fw-semibold 
+                  py-2 px-4 text-main bg-main-bg rounded-10 text-12 font-semibold 
                 `}
                     key={type}
                   >
@@ -65,16 +65,16 @@ const RecipeDetail = ({ recipe }) => {
             : null}
         </div>
 
-        <div className="df gap-5 fww mt-4">
+        <div className="flex gap-6 flex-wrap mt-4">
           {recipe.isVegetarian ? (
-            <div className="df aic gap-2 fs-14">
+            <div className="flex items-center gap-2 text-14">
               <FaLeaf style={{ color: '#5c8d89' }} />
               <span style={{ color: '#5c8d89' }}>{t('Vegetarian')}</span>
             </div>
           ) : null}
 
           {recipe.isChildFriendly ? (
-            <div className="df gap-2 fs-14">
+            <div className="flex gap-2 text-14">
               <FaChildReaching />
               {t('Child friendly')}
             </div>

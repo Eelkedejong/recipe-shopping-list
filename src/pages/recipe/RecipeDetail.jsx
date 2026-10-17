@@ -50,10 +50,10 @@ const RecipeDetail = () => {
   return (
     <>
       {results.isSuccess ? (
-        <div className={`dg gap-5 pb-5 ${styles.detailPage}`}>
+        <div className={`grid gap-6 pb-6 ${styles.detailPage}`}>
           <div>
             <div
-              className={`bg-white rounded-m p-5 ${styles.detailsInfoWrapper}`}
+              className={`bg-white rounded-20 p-6 ${styles.detailsInfoWrapper}`}
             >
               <Info recipe={recipe} />
             </div>
@@ -62,7 +62,7 @@ const RecipeDetail = () => {
           </div>
 
           <div className={styles.detailsIngredientsWrapper}>
-            <div className={`bg-white rounded-m p-5`}>
+            <div className={`bg-white rounded-20 p-6`}>
               <Ingredients
                 ingredients={recipe.ingredients}
                 persons={recipe.persons}
@@ -71,14 +71,14 @@ const RecipeDetail = () => {
               {message ? (
                 <Link
                   to="/shopping-list"
-                  className="message success mobile my-4 td-underline"
+                  className="message success mobile my-4 underline"
                 >
                   {message}
                 </Link>
               ) : null}
 
               <button
-                className={`mt-4 df aic gap-3 ${styles.addToShoppingList}`}
+                className={`mt-4 flex items-center gap-3 ${styles.addToShoppingList}`}
                 onClick={(e) => {
                   e.preventDefault();
                   const recipes = {
@@ -97,7 +97,7 @@ const RecipeDetail = () => {
               </button>
 
               <button
-                className={`mt-4 df aic gap-3 desktop-hidden`}
+                className={`mt-4 flex items-center gap-3 m:hidden!`}
                 onClick={(e) => {
                   e.preventDefault();
                   const recipes = {
@@ -126,12 +126,12 @@ const RecipeDetail = () => {
       ) : null}
 
       <button
-        className={`df aic rounded-full bg-white p-2 desktop-hidden ${styles.backButton}`}
+        className={`flex items-center rounded-[50%] bg-white p-2 m:hidden! ${styles.backButton}`}
         onClick={() => {
           navigate(-1);
         }}
       >
-        <FaChevronLeft className="fs-20" />
+        <FaChevronLeft className="text-20" />
       </button>
     </>
   );

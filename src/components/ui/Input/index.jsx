@@ -38,10 +38,10 @@ const Input = ({
   return (
     <>
       {label ? (
-        <label htmlFor={name} className={`pos-relative ${labelClasses}`}>
+        <label htmlFor={name} className={`relative ${labelClasses}`}>
           <span
             className={`
-              fw-light text-dark-grey 
+              font-light text-dark-grey 
               ${styles.label} 
               ${focus ? styles.focus : ''}
             `}
@@ -61,7 +61,7 @@ const Input = ({
             onBlur={handleBlur}
             onMouseDown={onMouseDown}
             className={`
-              rounded-s df aic jcc pl-3 pt-3 text-black 
+              rounded-10 flex items-center justify-center pl-3 pt-3 text-black 
               ${styles.input} 
               ${classes ? classes : null}
             `}
@@ -79,7 +79,7 @@ const Input = ({
           onBlur={onBlur}
           onMouseDown={onMouseDown}
           className={`
-            rounded-s df aic jcc pl-3 
+            rounded-10 flex items-center justify-center pl-3 
             ${styles.input} 
             ${styles.noLabel} 
             ${classes ? classes : null}

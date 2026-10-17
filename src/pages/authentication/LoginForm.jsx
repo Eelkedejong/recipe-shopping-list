@@ -14,11 +14,11 @@ const LoginForm = ({ refetch }) => {
 
   return (
     <>
-      <h2 className="my-5 ta-center">
+      <h2 className="my-6 text-center">
         {t('Log in to your personal cookbook!')}
       </h2>
       <form
-        className="mb-5 df fdc gap-4"
+        className="mb-6 flex flex-col gap-4"
         onSubmit={(e) => {
           e.preventDefault();
           refetch();
@@ -41,12 +41,12 @@ const LoginForm = ({ refetch }) => {
           autocomplete="on"
         />
 
-        <div className="df jcc fs-14">
+        <div className="flex justify-center text-14">
           <Link to="/forgot-password">{t('Forgot password?')}</Link>
         </div>
 
         <Button
-          className={'fs-14'}
+          className={'text-14'}
           onClick={() => {
             setLoginData({
               loginname: loginname,

@@ -6,19 +6,19 @@ const Steps = ({ steps }) => {
 
   return (
     <>
-      <div className={` ${styles.stepsDetailsWrapper} bg-white p-5 rounded-m`}>
-        <h3 className="fs-20 fw-semibold pb-5">{t('Cooking steps')}</h3>
+      <div className={` ${styles.stepsDetailsWrapper} bg-white p-6 rounded-20`}>
+        <h3 className="text-20 font-semibold pb-6">{t('Cooking steps')}</h3>
         {steps
           ? steps.map((step, index) => {
               return (
                 <div
-                  className={`dg gap-4 p-4 rounded-s ${
+                  className={`grid gap-4 p-4 rounded-10 ${
                     styles.stepsDetailsGrid
-                  } ${index % 2 === 0 ? 'bg-main-lighter' : ''}`}
+                  } ${index % 2 === 0 ? 'bg-main-bg-light' : ''}`}
                   key={index}
                 >
                   <span
-                    className={`df aic jcc bg-main text-white fw-semibold rounded-full fs-14 ${styles.indicator}`}
+                    className={`flex items-center justify-center bg-main text-white font-semibold rounded-[50%] text-14 ${styles.indicator}`}
                   >
                     {index + 1}
                   </span>

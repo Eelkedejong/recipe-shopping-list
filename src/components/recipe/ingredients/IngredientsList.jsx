@@ -84,14 +84,14 @@ const IngredientsList = ({ ingredients }) => {
   };
 
   return (
-    <div className="dg gap-3">
-      <div className={`dg gap-4 fs-16 ${styles.ingredientGrid}`}>
+    <div className="grid gap-3">
+      <div className={`grid gap-4 text-16 ${styles.ingredientGrid}`}>
         <div> </div>
         <div>{t('Ingredient name')}</div>
         <div>{t('Amount')}</div>
         <div>{t('Unit (optional)')}</div>
       </div>
-      <div className="df fdc gap-3 fs-14">
+      <div className="flex flex-col gap-3 text-14">
         <DndContext
           collisionDetection={closestCorners}
           onDragEnd={handleDragEnd}
@@ -100,10 +100,10 @@ const IngredientsList = ({ ingredients }) => {
           <IngredientsWrapper ingredientSlice={ingredientSlice} />
         </DndContext>
       </div>
-      <div className="df jcfe">
+      <div className="flex justify-end">
         <button
           // type="button"
-          className="df aic jcfe gap-3 py-2 fs-16"
+          className="flex items-center justify-end gap-3 py-2 text-16"
           onClick={(e) => {
             e.preventDefault();
             // Add an empty ingredient row to the ingredientsSlice

@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Eelkedejong/recipe-shopping-list#readme",
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "^6.1.2",
     "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
@@ -36,6 +37,7 @@
     "globals": "^17.13.0",
     "prettier": "^3.9.10",
     "sass": "^1.105.2",
+    "tailwindcss": "^4.3.3",
     "vite-imagetools": "^12.0.1"
   },
   "dependencies": {

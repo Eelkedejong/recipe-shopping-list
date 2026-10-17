@@ -43,7 +43,7 @@ const Search = ({ openState, setOpenState, searchOnBanner = false }) => {
         ${searchOnBanner ? styles.searchOnBanner : ''}`}
     >
       <form
-        className="df fdc gap-4 pos-relative"
+        className="flex flex-col gap-4 relative"
         onSubmit={(e) => {
           e.preventDefault();
           // Set the search query in the store.
@@ -82,7 +82,7 @@ const Search = ({ openState, setOpenState, searchOnBanner = false }) => {
               setDisabled(true);
               dispatch(updateSearch(''));
             }}
-            className={`${styles.clear} df aic`}
+            className={`${styles.clear} flex items-center`}
           >
             <FaX />
           </button>

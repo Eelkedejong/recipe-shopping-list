@@ -19,7 +19,7 @@ const GroceryListItem = ({ item, id }) => {
       {...listeners}
       className={styles.groceryListItem}
     >
-      <div className="mr-3 p-3 df gap-4 label">
+      <div className="mr-3 p-3 flex gap-4 label">
         <input
           type="checkbox"
           className="checkbox cursor-pointer"

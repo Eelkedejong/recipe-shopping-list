@@ -21,11 +21,11 @@ const ShoppingListRecipe = ({
   });
 
   return (
-    <div className="bg-white p-5 rounded-m mb-5">
-      <div className="df aic jcsb pb-3">
-        <h3 className="fs-20 fw-bold">{name}</h3>
+    <div className="bg-white p-6 rounded-20 mb-6">
+      <div className="flex items-center justify-between pb-3">
+        <h3 className="text-20 font-bold">{name}</h3>
         <button
-          className="df jcc"
+          className="flex justify-center"
           onClick={(e) => {
             e.preventDefault();
             setRecipes((prevRecipes) =>
@@ -34,7 +34,7 @@ const ShoppingListRecipe = ({
             deleteMutation.mutate([userToken, id]);
           }}
         >
-          <FaXmark className="fs-20" />
+          <FaXmark className="text-20" />
         </button>
       </div>
 
@@ -44,7 +44,7 @@ const ShoppingListRecipe = ({
         recipeId={id}
       />
 
-      <div className="df fww mt-3">
+      <div className="flex flex-wrap mt-3">
         {ingredients
           ? ingredients.map((ingredient) => {
               const amount = ingredient.amount * (personsState / persons);
@@ -58,10 +58,10 @@ const ShoppingListRecipe = ({
                   : ingredient.unit + ' ' + ingredient.ingredient;
               return (
                 <div
-                  className="df w-50 gap-4 mb-4 pb-1"
+                  className="flex w-1/2 gap-4 mb-4 pb-1"
                   key={ingredient.ingredient}
                 >
-                  <label className="mr-3 df gap-4 label cursor-pointer">
+                  <label className="mr-3 flex gap-4 label cursor-pointer">
                     <input
                       type="checkbox"
                       className="checkbox"

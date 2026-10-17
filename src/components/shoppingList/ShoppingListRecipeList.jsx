@@ -11,7 +11,7 @@ const ShoppingListRecipeList = ({ recipeList, shoppingListRecipes }) => {
     <>
       <div className="">
         {recipes.length === 0 ? (
-          <div className="bg-white p-5 rounded-m mb-5">
+          <div className="bg-white p-6 rounded-20 mb-6">
             <div className="pb-3">{t('Your shopping list is empty')}</div>
             <Link className="text-main" to="/recipes">
               {t('Add recipes')}

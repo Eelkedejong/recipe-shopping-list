@@ -30,12 +30,12 @@ const Layout = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="main w-100 bg-medium-grey">
+    <main className="main w-full bg-medium-grey">
       <Navigation />
       <StickyNavigation />
       <Suspense
         fallback={
-          <div className="h-100 w-100 pt-5 df aic jcc">
+          <div className="h-full w-full pt-6 flex items-center justify-center">
             <div className="loader"></div>
           </div>
         }
@@ -45,7 +45,7 @@ const Layout = () => {
             path="/recipes"
             element={
               <>
-                <section className="w-100 rounded-top-l">
+                <section className="w-full rounded-t-30">
                   <Header title={t('Your recipes')} />
                   <RecipeList />
                 </section>
@@ -57,7 +57,7 @@ const Layout = () => {
             path="/recipes/all"
             element={
               <>
-                <section className="grid w-100 rounded-top-l">
+                <section className="grid w-full rounded-t-30">
                   <Header title={t('Discover new tastes')} withBanner={true} />
                   <TypeBanner />
                   <PublicRecipeList />
@@ -71,7 +71,7 @@ const Layout = () => {
             path="/recipes/all/:type"
             element={
               <>
-                <section className="grid w-100 rounded-top-l">
+                <section className="grid w-full rounded-t-30">
                   <Header useParamTitle={true} withBanner={true} />
                   <TypeBanner />
                   <PublicRecipeList />
@@ -85,7 +85,7 @@ const Layout = () => {
             path="/recipe/:id"
             element={
               <>
-                <section className="full-page w-100 rounded-top-l">
+                <section className="full-page w-full rounded-t-30">
                   <Header
                     returnUrl={'/recipes'}
                     returnText={t('All recipes')}
@@ -101,7 +101,7 @@ const Layout = () => {
             path="/public/recipe/:id"
             element={
               <>
-                <section className="full-page w-100 rounded-top-l">
+                <section className="full-page w-full rounded-t-30">
                   <Header
                     returnUrl={'/recipes/all'}
                     returnText={t('All recipes')}
@@ -161,7 +161,7 @@ const Layout = () => {
             path="/"
             element={
               <>
-                <section className="full-page w-100 rounded-top-l">
+                <section className="full-page w-full rounded-t-30">
                   <Header searchOnBanner={true} />
                   <Overview />
                 </section>

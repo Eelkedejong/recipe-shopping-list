@@ -51,10 +51,10 @@ const StickyNavigation = () => {
     locationPath === '/shopping-list';
 
   return (
-    <div ref={wrapperRef} className="desktop-hidden">
+    <div ref={wrapperRef} className="m:hidden!">
       <div
         className={`
-          bg-white dg aic gap-5 w-100 text-dark-grey ta-center px-5 
+          bg-white grid items-center gap-6 w-full text-dark-grey text-center px-6 
           ${styles.stickyNav}
           ${formPage ? styles.formPage : null}
           ${recipeOpen || shoppingOpen ? styles.open : null}
@@ -63,100 +63,100 @@ const StickyNavigation = () => {
         `}
       >
         <Link
-          className={`jse pr-5 ${locationPath === '/' ? styles.active : null}`}
+          className={`justify-self-end pr-6 ${locationPath === '/' ? styles.active : null}`}
           to={'/'}
         >
-          <div className="df fdc aic jcc gap-1">
-            <FaHouse className="fs-16" />
-            <span className="fs-13">{t('Home')}</span>
+          <div className="flex flex-col items-center justify-center gap-1">
+            <FaHouse className="text-16" />
+            <span className="text-13">{t('Home')}</span>
           </div>
         </Link>
 
         <button
           type="button"
-          className={`df fdc aic jcc h-100 gap-1 px-5 ${locationPath === '/recipes' ? styles.active : null} ${styles.recipe}`}
+          className={`flex flex-col items-center justify-center h-full gap-1 px-6 ${locationPath === '/recipes' ? styles.active : null} ${styles.recipe}`}
           onClick={() => {
             setRecipeOpen(!recipeOpen);
             setShoppingOpen(false);
           }}
         >
           {!recipeOpen ? (
-            <FaBook className="fs-16" />
+            <FaBook className="text-16" />
           ) : (
-            <FaXmark className="fs-16" />
+            <FaXmark className="text-16" />
           )}
-          <span className="fs-13">{t('Recipes')}</span>
+          <span className="text-13">{t('Recipes')}</span>
         </button>
 
         <button
           type="button"
-          className={`shopping df fdc jcc jss aic h-100 gap-1 ${locationPath === '/shopping-list' ? styles.active : null} ${styles.shopping}`}
+          className={`shopping flex flex-col justify-center justify-self-start items-center h-full gap-1 ${locationPath === '/shopping-list' ? styles.active : null} ${styles.shopping}`}
           onClick={() => {
             setShoppingOpen(!shoppingOpen);
             setRecipeOpen(false);
           }}
         >
           {!shoppingOpen ? (
-            <FaBasketShopping className="fs-16" />
+            <FaBasketShopping className="text-16" />
           ) : (
-            <FaXmark className="fs-16" />
+            <FaXmark className="text-16" />
           )}
-          <span className="fs-13 desktop-hidden-s">{t('Shopping')}</span>
-          <span className="fs-13 mobile-hidden-s">{t('Shopping list')}</span>
+          <span className="text-13 s:hidden!">{t('Shopping')}</span>
+          <span className="text-13 max-s:hidden!">{t('Shopping list')}</span>
         </button>
       </div>
 
       <div
         className={`
-          bg-main aic dg gap-5 w-100 text-white ta-center px-5 ws-nowrap
+          bg-main items-center grid gap-6 w-full text-white text-center px-6 whitespace-nowrap
           ${styles.stickySubNav} 
           ${styles.recipeSubNav}
           ${formPage ? styles.formPage : null}
           ${recipeOpen ? styles.open : null}
         `}
       >
-        <Link className="jse" to="/recipe/new">
-          <div className="df fdc aic gap-1">
-            <FaFileCirclePlus className="fs-18" />
-            <span className="fs-13">{t('New recipe')}</span>
+        <Link className="justify-self-end" to="/recipe/new">
+          <div className="flex flex-col items-center gap-1">
+            <FaFileCirclePlus className="text-18" />
+            <span className="text-13">{t('New recipe')}</span>
           </div>
         </Link>
 
         <Link className="p-3" to="/recipes">
-          <div className="df fdc aic gap-1">
-            <FaBook className="fs-18" />
-            <span className="fs-13">{t('My Recipes')}</span>
+          <div className="flex flex-col items-center gap-1">
+            <FaBook className="text-18" />
+            <span className="text-13">{t('My Recipes')}</span>
           </div>
         </Link>
 
-        <Link className="jss" to="/recipes/all">
-          <div className="df fdc aic gap-1">
-            <FaUtensils className="fs-18" />
-            <span className="fs-13">{t('Find Recipes')}</span>
+        <Link className="justify-self-start" to="/recipes/all">
+          <div className="flex flex-col items-center gap-1">
+            <FaUtensils className="text-18" />
+            <span className="text-13">{t('Find Recipes')}</span>
           </div>
         </Link>
       </div>
 
       <div
         className={`
-          bg-main aic dg gap-5 w-100 text-white ta-center px-5 ws-nowrap
+          bg-main items-center grid gap-6 w-full text-white text-center px-6 whitespace-nowrap
           ${styles.stickySubNav} 
           ${styles.shoppingSubNav}
           ${formPage ? styles.formPage : null}
           ${shoppingOpen ? styles.open : null}
         `}
       >
-        <Link className="jse pr-3" to="/list">
-          <div className="df fdc aic gap-1">
-            <FaBasketShopping className="fs-18" />
-            <span className="fs-13">{t('Shopping list')}</span>
+        <Link className="justify-self-end pr-3" to="/list">
+          <div className="flex flex-col items-center gap-1">
+            <FaBasketShopping className="text-18" />
+            <span className="text-13">{t('Shopping list')}</span>
           </div>
         </Link>
 
-        <Link className="jss pl-3" to="/shopping-list">
-          <div className="df fdc aic gap-1">
-            <IoReceipt className="fs-18" />
-            <span className="fs-13">{t('Edit Shopping List')}</span>
+        <Link className="justify-self-start pl-3" to="/shopping-list">
+          <div className="flex flex-col items-center gap-1">
+            <IoReceipt className="text-18" />
+            <span className="text-13">{t('Edit Shopping List')}</span>
           </div>
         </Link>
       </div>

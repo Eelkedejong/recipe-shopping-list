@@ -1,0 +1,112 @@
+/*
+ * Tailwind entry point
+ * _____________________________________________
+ *
+ * Replaces the former custom utility system (src/styles/utility/*.scss).
+ *
+ * Preflight is intentionally left out: the project ships its own reset
+ * (src/styles/reset.scss), so only Tailwind's theme and utilities are loaded.
+ *
+ * The utilities are imported unlayered on purpose. They have to sit in the
+ * same cascade as the rest of the stylesheets to keep the old ordering:
+ * reset -> defaults -> utilities -> page styles -> component modules.
+ * In a layer they would lose to every unlayered rule, reset.scss included.
+ */
+@import 'tailwindcss/theme.css';
+@import 'tailwindcss/utilities.css';
+
+@source '../**/*.{js,jsx}';
+
+@theme {
+  /*
+   * Colors -- mirrors src/styles/variables.scss
+   * _____________________________________________
+   */
+
+  /* Gray scale */
+  --color-black: #333;
+  --color-black-full: #111;
+  --color-grey: #999;
+  --color-dark-grey: #666;
+  --color-medium-grey: #f1f0f0;
+  --color-light-grey: #f5f5f5;
+  --color-lightest-grey: #f1f5fe;
+  --color-white: #fff;
+
+  /* Theme colors */
+  --color-main: #f1a661;
+  --color-main-dark: #e18733;
+  --color-main-light: #ffd8a9;
+  --color-main-bg: #ffebd4;
+  --color-main-bg-light: #fdeedc;
+
+  /* Secondary theme colors */
+  --color-secondary: #5c8d89;
+
+  /*
+   * Font
+   * _____________________________________________
+   */
+  --font-logo: 'Titan One';
+  --font-main: 'Poppins';
+
+  /* Font sizes, keyed by their pixel value. Deliberately without a
+   * --text-*--line-height companion, so the utilities set font-size only
+   * and the line-height keeps being inherited. */
+  --text-12: 0.75rem;
+  --text-13: 0.8125rem;
+  --text-14: 0.875rem;
+  --text-16: 1rem;
+  --text-18: 1.125rem;
+  --text-20: 1.25rem;
+  --text-24: 1.5rem;
+  --text-28: 1.75rem;
+  --text-32: 2rem;
+  --text-36: 2.25rem;
+
+  /*
+   * Borders / Shadows
+   * _____________________________________________
+   */
+  --radius-10: 10px;
+  --radius-20: 20px;
+  --radius-30: 30px;
+  --radius-35: 35px;
+
+  --shadow-top: 0px -4px 8px 0px rgba(108, 108, 108, 0.25);
+
+  /*
+   * Transitions
+   * _____________________________________________
+   */
+  --default-transition: all 0.3s;
+
+  /*
+   * Breakpoints -- mirrors src/styles/variables.scss
+   * _____________________________________________
+   */
+  --breakpoint-*: initial;
+  --breakpoint-xxs: 360px; /* Mobile extra small */
+  --breakpoint-xs: 480px; /* Mobile small */
+  --breakpoint-s: 768px; /* Mobile */
+  --breakpoint-m: 1200px; /* Tablet */
+  --breakpoint-l: 1400px; /* Desktop */
+  --breakpoint-xl: 1600px; /* Desktop XL */
+  --breakpoint-xxl: 2000px; /* Desktop XXL */
+}
+
+/*
+ * Max-width variants
+ * _____________________________________________
+ *
+ * Counterparts to the screen-*(max) Sass mixins. They use an inclusive
+ * `max-width`, matching the mixins, rather than Tailwind's exclusive
+ * default max-* variants.
+ */
+@custom-variant max-xxs (@media (max-width: 360px));
+@custom-variant max-xs (@media (max-width: 480px));
+@custom-variant max-s (@media (max-width: 768px));
+@custom-variant max-m (@media (max-width: 1200px));
+@custom-variant max-l (@media (max-width: 1400px));
+@custom-variant max-xl (@media (max-width: 1600px));
+@custom-variant max-xxl (@media (max-width: 2000px));

@@ -40,17 +40,17 @@ const PasswordReset = () => {
     <>
       {isSuccess ? (
         <>
-          <h2 className="message success my-5 ta-center">
+          <h2 className="message success my-6 text-center">
             {t('Password is successfully reset.')}
           </h2>
           <Button onClick={() => navigate('/')} text={t('Sign in')} />
         </>
       ) : (
         <>
-          <h2 className="my-5 ta-center">{t('Reset your password')}</h2>
+          <h2 className="my-6 text-center">{t('Reset your password')}</h2>
           {errorMessage ? <ErrorMessage errorMessage={errorMessage} /> : null}
           <form
-            className="mb-5 df fdc gap-4"
+            className="mb-6 flex flex-col gap-4"
             onSubmit={(e) => {
               e.preventDefault();
               if (password === passwordConfirmation) {

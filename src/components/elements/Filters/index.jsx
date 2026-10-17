@@ -167,9 +167,9 @@ const Filters = () => {
 
     return (
       <>
-        <div className="py-4 px-5 df fdc gap-2">
-          <div className="df jcsb aic mb-2">
-            <h3 className="fw-semibold fs-26">{t(title)}</h3>
+        <div className="py-4 px-6 flex flex-col gap-2">
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="font-semibold">{t(title)}</h3>
             <button
               onClick={() => toggleCollapse(sectionKey)}
               className="bg-transparent border-0"
@@ -181,7 +181,7 @@ const Filters = () => {
           {!isCollapsed && (
             <>
               {/* Search input field */}
-              <div className="mb-3 pos-relative">
+              <div className="mb-3 relative">
                 <Input
                   type="text"
                   placeholder={`${t('Search')} ${t(title).toLowerCase()}`}
@@ -192,7 +192,7 @@ const Filters = () => {
                   classes={`${styles.filterInput} ${styles.search}`}
                 />
                 <FaMagnifyingGlass
-                  className="pos-absolute"
+                  className="absolute"
                   style={{
                     right: '12px',
                     top: '50%',
@@ -201,11 +201,14 @@ const Filters = () => {
                 />
               </div>
 
-              <ul className="df fdc gap-3">
+              <ul className="flex flex-col gap-3">
                 {displayOptions.map((option) => (
-                  <li key={option} className="fw-light fs-14 text-dark-grey">
+                  <li
+                    key={option}
+                    className="font-light text-14 text-dark-grey"
+                  >
                     <label
-                      className={`mr-2 df gap-3 label ${styles.filterLabel}`}
+                      className={`mr-2 flex gap-3 label ${styles.filterLabel}`}
                     >
                       <input
                         type="checkbox"
@@ -226,7 +229,7 @@ const Filters = () => {
                   <li className="mt-2">
                     <button
                       onClick={() => toggleSection(sectionKey)}
-                      className="text-main fs-14 fw-medium df aic"
+                      className="text-main text-14 flex items-center"
                     >
                       {displayAll ? (
                         <>
@@ -255,9 +258,9 @@ const Filters = () => {
 
     return (
       <>
-        <div className="py-4 px-5 df fdc gap-2">
-          <div className="df jcsb aic mb-2">
-            <h3 className="fw-semibold fs-26">{t(title)}</h3>
+        <div className="py-4 px-6 flex flex-col gap-2">
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="font-semibold">{t(title)}</h3>
             <button
               onClick={() => toggleCollapse(sectionKey)}
               className="bg-transparent border-0"
@@ -267,9 +270,9 @@ const Filters = () => {
           </div>
 
           {!isCollapsed && (
-            <ul className="df fdc gap-3">
-              <li className="fw-light fs-14 text-dark-grey">
-                <label className="mr-2 df gap-3 label">
+            <ul className="flex flex-col gap-3">
+              <li className="font-light text-14 text-dark-grey">
+                <label className="mr-2 flex gap-3 label">
                   <input
                     type="checkbox"
                     name={title.toLowerCase().replace(/\s+/g, '-')}
@@ -297,9 +300,9 @@ const Filters = () => {
 
     return (
       <>
-        <div className="py-4 px-5 df fdc gap-2">
-          <div className="df jcsb aic mb-2">
-            <h3 className="fw-semibold fs-26">{t('Cooking time')}</h3>
+        <div className="py-4 px-6 flex flex-col gap-2">
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="font-semibold">{t('Cooking time')}</h3>
             <button
               onClick={() => toggleCollapse('time')}
               className="bg-transparent border-0"
@@ -309,13 +312,13 @@ const Filters = () => {
           </div>
 
           {!isCollapsed && (
-            <ul className="df fdc gap-3">
+            <ul className="flex flex-col gap-3">
               {timeOptions.map((timeOption, index) => (
                 <li
                   key={timeOption.label}
-                  className="fw-light fs-14 text-dark-grey"
+                  className="font-light text-14 text-dark-grey"
                 >
-                  <label className="mr-2 df gap-3 label">
+                  <label className="mr-2 flex gap-3 label">
                     <input
                       type="radio"
                       name="cooking-time"
@@ -342,20 +345,20 @@ const Filters = () => {
     <aside>
       <button
         onClick={() => setOpen(!open)}
-        className={`py-4 px-5 mt-2 text-main fs-14 fw-regular rounded-s df aic jcc ${styles.filterToggle}`}
+        className={`py-4 px-6 mt-2 text-main text-14 font-medium rounded-10 flex items-center justify-center ${styles.filterToggle}`}
       >
         <FaSliders className="mr-3" /> {t('Filter')}
       </button>
 
       <div
         className={`
-          bg-white rounded-m mr-5 d-pb-3 
+          bg-white rounded-20 mr-6 s:pb-3 
           ${styles.content} 
           ${open ? styles.open : null}
         `}
       >
-        <div className="px-5 py-4 bg-main-light rounded-top-m df jcsb">
-          <h2 className="fw-bold fs-20">{t('Filter')}</h2>
+        <div className="px-6 py-4 bg-main-bg rounded-t-20 flex justify-between">
+          <h2 className="font-bold text-20">{t('Filter')}</h2>
           <button onClick={() => setOpen(!open)}>
             <FaX />
           </button>
@@ -401,7 +404,7 @@ const Filters = () => {
         {/* Tags Filter */}
         {renderFilterOptions(tagOptions, tags, updateTags, 'tags', 'Labels')}
 
-        <div className="m-4 mt-5 desktop-hidden">
+        <div className="m-4 mt-6 m:hidden!">
           <Button text={t('View recipes')} onClick={() => setOpen(!open)} />
         </div>
       </div>

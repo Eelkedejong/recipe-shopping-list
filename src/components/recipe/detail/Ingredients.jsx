@@ -9,17 +9,19 @@ const Ingredients = ({ ingredients, persons }) => {
 
   return (
     <>
-      <h3 className="fs-20 fw-semibold pb-4 mb-2">{t('Ingredients')}</h3>
-      <div className={`w-100 df jcc py-2 mb-5 ${styles.persons} `}>
+      <h3 className="text-20 font-semibold pb-4 mb-2">{t('Ingredients')}</h3>
+      <div
+        className={`w-full flex justify-center py-2 mb-6 ${styles.persons} `}
+      >
         <PersonSelector
           personsState={personsState}
           setPersonsState={setPersonsState}
         />
       </div>
 
-      <div className="df pt-3">
+      <div className="flex pt-3">
         <div
-          className={`bg-main-lighter rounded-m p-5 df fdc ${styles.ingredientsBlock}`}
+          className={`bg-main-bg-light rounded-20 p-6 flex flex-col ${styles.ingredientsBlock}`}
         >
           {ingredients
             ? ingredients.map((ingredient, index) => {
@@ -27,10 +29,10 @@ const Ingredients = ({ ingredients, persons }) => {
 
                 return (
                   <div
-                    className={`df gap-4 mb-4 pb-3 ${styles.ingredient}`}
+                    className={`flex gap-4 mb-4 pb-3 ${styles.ingredient}`}
                     key={ingredient.ingredient}
                   >
-                    <label className="mr-3 df gap-4 label">
+                    <label className="mr-3 flex gap-4 label">
                       <input
                         type="checkbox"
                         className="checkbox"
