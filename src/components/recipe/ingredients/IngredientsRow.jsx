@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { updateIngredientList } from '../../../store/ingredientSlice';
 import { useIngredientCatalog } from '@/hooks/useIngredientCatalog';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
+import AddIngredientDialog from './AddIngredientDialog';
 import Input from '../../ui/Input';
 import Combobox from '../../ui/Combobox';
 import { FaMinusCircle } from 'react-icons/fa';
@@ -26,7 +28,9 @@ const IngredientsRow = ({ ingredient, index, id }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { search, byId } = useIngredientCatalog();
+  const { isAdmin } = useCurrentUser();
   const [rowData, setRowData] = useState(ingredient);
+  const [addOpen, setAddOpen] = useState(false);
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id, animateLayoutChanges: () => false });
   const style = {
@@ -38,6 +42,14 @@ const IngredientsRow = ({ ingredient, index, id }) => {
     () => search(rowData.name ?? ''),
     [search, rowData.name]
   );
+
+  // Offering to add something the catalog already has would only create
+  // duplicates, so the action hides on an exact match.
+  const typed = (rowData.name ?? '').trim();
+  const exactMatch = suggestions.some(
+    (item) => item.nameNl.toLowerCase() === typed.toLowerCase()
+  );
+  const canAdd = isAdmin && typed.length > 0 && !exactMatch;
 
   /**
    * Writes a row back to the store. Takes the next row explicitly rather than
@@ -147,9 +159,31 @@ const IngredientsRow = ({ ingredient, index, id }) => {
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
         onMouseDown={(e) => e.stopPropagation()}
-        emptyMessage={t('No ingredient found')}
         classes={styles.ingredientInput}
+        action={
+          canAdd ? (
+            <button
+              type="button"
+              className="text-14 text-secondary w-full px-3 py-2 text-left"
+              // The combobox would otherwise steal the click as a blur.
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => setAddOpen(true)}
+            >
+              + {t('Add ingredient to the list')}
+            </button>
+          ) : null
+        }
       />
+
+      {addOpen ? (
+        <AddIngredientDialog
+          open={addOpen}
+          onOpenChange={setAddOpen}
+          initialName={typed}
+          // Treated exactly like picking a suggestion, so the flow continues.
+          onCreated={handleSelect}
+        />
+      ) : null}
 
       <Input
         id={`amount_${index}`}

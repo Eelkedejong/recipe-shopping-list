@@ -16,6 +16,9 @@ import inputStyles from '../Input/input.module.scss';
  * is anything worth suggesting - an empty query should return nothing rather
  * than an arbitrary slice of the catalog.
  *
+ * `action` renders below the list - an escape hatch for when nothing matches,
+ * rather than a dead-end "not found" message.
+ *
  * `onInputValueChange` receives Base UI's change reason as a second argument,
  * because the component also reports resets ("input-clear") through the same
  * callback and those must not be mistaken for the user editing the text.
@@ -33,7 +36,7 @@ const Combobox = ({
   placeholder,
   required,
   disabled,
-  emptyMessage,
+  action,
   classes,
   ...rest
 }) => {
@@ -77,20 +80,13 @@ const Combobox = ({
       />
 
       <BaseCombobox.Portal>
-        <BaseCombobox.Positioner sideOffset={4} className="z-50">
+        <BaseCombobox.Positioner sideOffset={4} className="z-[200]">
           <BaseCombobox.Popup
             className={[
               'rounded-10 max-h-64 w-(--anchor-width) overflow-y-auto',
               'bg-white py-1 shadow-lg',
             ].join(' ')}
           >
-            {/* Only meaningful once something has been typed. */}
-            {emptyMessage && query ? (
-              <BaseCombobox.Empty className="text-14 text-dark-grey px-3 py-2">
-                {emptyMessage}
-              </BaseCombobox.Empty>
-            ) : null}
-
             <BaseCombobox.List>
               {(item) => (
                 <BaseCombobox.Item
@@ -105,6 +101,11 @@ const Combobox = ({
                 </BaseCombobox.Item>
               )}
             </BaseCombobox.List>
+
+            {/* Rendered outside the List so it is never a selectable item. */}
+            {action && query ? (
+              <div className="border-light-grey border-t">{action}</div>
+            ) : null}
           </BaseCombobox.Popup>
         </BaseCombobox.Positioner>
       </BaseCombobox.Portal>

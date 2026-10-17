@@ -50,7 +50,9 @@
 }
 
 .positioner {
-  z-index: 10;
+  // Above dialogs and drawers (100/101): a select opened from inside one
+  // must not render underneath it.
+  z-index: 200;
 }
 
 .popup {

@@ -19,14 +19,21 @@ export const useIngredientCatalog = () => {
   });
 
   const ingredients = data?.data?.ingredients;
+  const categories = data?.data?.categories;
 
   return useMemo(() => {
     const searchable = buildSearchable(ingredients ?? []);
     const byId = new Map(searchable.map((item) => [item.id, item]));
     const search = (query, limit) => rankIngredients(searchable, query, limit);
 
-    return { ingredients: searchable, byId, search, isPending };
-  }, [ingredients, isPending]);
+    return {
+      ingredients: searchable,
+      categories: categories ?? [],
+      byId,
+      search,
+      isPending,
+    };
+  }, [ingredients, categories, isPending]);
 };
 
 export default useIngredientCatalog;
