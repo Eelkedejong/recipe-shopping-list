@@ -1,0 +1,39 @@
+@use '@styles/mixins/breakpoints' as *;
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+  // Closed points down, open points up.
+  transform: rotate(180deg);
+
+  .trigger[data-panel-open] & {
+    transform: rotate(0deg);
+  }
+}
+
+.panel {
+  overflow: hidden;
+  height: var(--collapsible-panel-height);
+  transition: height 0.2s ease;
+
+  &[data-starting-style],
+  &[data-ending-style] {
+    height: 0;
+  }
+}
+
+.panelInner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

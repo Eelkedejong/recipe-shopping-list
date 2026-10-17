@@ -18,6 +18,7 @@ import {
 } from 'react-icons/fa6';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
+import Collapsible from '@/components/ui/Collapsible';
 import Drawer from '@/components/ui/Drawer';
 import { useIsMobile } from '@/hooks/useMediaQuery';
 import styles from './filters.module.scss';
@@ -167,89 +168,76 @@ const Filters = () => {
     const displayOptions = searchFilteredOptions.slice(0, displayCount);
     const hasMore = searchFilteredOptions.length > 6;
 
-    const isCollapsed = collapsedSections[sectionKey];
-
     return (
       <>
-        <div className="py-4 px-6 flex flex-col gap-2">
-          <div className="flex justify-between items-center mb-2">
-            <h3 className="font-semibold">{t(title)}</h3>
-            <button
-              onClick={() => toggleCollapse(sectionKey)}
-              className="bg-transparent border-0"
-            >
-              {isCollapsed ? <FaChevronDown /> : <FaChevronUp />}
-            </button>
-          </div>
+        <Collapsible
+          title={t(title)}
+          open={!collapsedSections[sectionKey]}
+          onOpenChange={() => toggleCollapse(sectionKey)}
+        >
+          <>
+            {/* Search input field */}
+            <div className="mb-3 relative">
+              <Input
+                type="text"
+                placeholder={`${t('Search')} ${t(title).toLowerCase()}`}
+                value={searchInputs[sectionKey]}
+                onChange={(e) =>
+                  handleSearchInputChange(sectionKey, e.target.value)
+                }
+                classes={`${styles.filterInput} ${styles.search}`}
+              />
+              <FaMagnifyingGlass
+                className="absolute"
+                style={{
+                  right: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                }}
+              />
+            </div>
 
-          {!isCollapsed && (
-            <>
-              {/* Search input field */}
-              <div className="mb-3 relative">
-                <Input
-                  type="text"
-                  placeholder={`${t('Search')} ${t(title).toLowerCase()}`}
-                  value={searchInputs[sectionKey]}
-                  onChange={(e) =>
-                    handleSearchInputChange(sectionKey, e.target.value)
-                  }
-                  classes={`${styles.filterInput} ${styles.search}`}
-                />
-                <FaMagnifyingGlass
-                  className="absolute"
-                  style={{
-                    right: '12px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                  }}
-                />
-              </div>
-
-              <ul className="flex flex-col gap-3">
-                {displayOptions.map((option) => (
-                  <li
-                    key={option}
-                    className="font-light text-14 text-dark-grey"
+            <ul className="flex flex-col gap-3">
+              {displayOptions.map((option) => (
+                <li key={option} className="font-light text-14 text-dark-grey">
+                  <label
+                    className={`mr-2 flex gap-3 label ${styles.filterLabel}`}
                   >
-                    <label
-                      className={`mr-2 flex gap-3 label ${styles.filterLabel}`}
-                    >
-                      <Checkbox
-                        name={option}
-                        id={option}
-                        checked={selectedOptions.includes(option)}
-                        onCheckedChange={() => {
-                          dispatch(updateAction(option));
-                        }}
-                        variant="filled"
-                      />
-                      {option}
-                    </label>
-                  </li>
-                ))}
+                    <Checkbox
+                      name={option}
+                      id={option}
+                      checked={selectedOptions.includes(option)}
+                      onCheckedChange={() => {
+                        dispatch(updateAction(option));
+                      }}
+                      variant="filled"
+                    />
+                    {option}
+                  </label>
+                </li>
+              ))}
 
-                {hasMore && (
-                  <li className="mt-2">
-                    <button
-                      onClick={() => toggleSection(sectionKey)}
-                      className="text-main text-14 flex items-center"
-                    >
-                      {displayAll ? (
-                        <>
-                          {t('Show less')} <FaChevronUp className="ml-2" />
-                        </>
-                      ) : (
-                        <>
-                          {t('Show more')} <FaChevronDown className="ml-2" />
-                        </>
-                      )}
-                    </button>
-                  </li>
-                )}
-              </ul>
-            </>
-          )}
-        </div>
+              {hasMore && (
+                <li className="mt-2">
+                  <button
+                    onClick={() => toggleSection(sectionKey)}
+                    className="text-main text-14 flex items-center"
+                  >
+                    {displayAll ? (
+                      <>
+                        {t('Show less')} <FaChevronUp className="ml-2" />
+                      </>
+                    ) : (
+                      <>
+                        {t('Show more')} <FaChevronDown className="ml-2" />
+                      </>
+                    )}
+                  </button>
+                </li>
+              )}
+            </ul>
+          </>
+        </Collapsible>
         <hr className="mx-3" />
       </>
     );
@@ -257,40 +245,30 @@ const Filters = () => {
 
   // Function to render boolean filter option (vegetarian, child-friendly)
   const renderBooleanFilter = (title, isSelected, updateAction, sectionKey) => {
-    const isCollapsed = collapsedSections[sectionKey];
-
     return (
       <>
-        <div className="py-4 px-6 flex flex-col gap-2">
-          <div className="flex justify-between items-center mb-2">
-            <h3 className="font-semibold">{t(title)}</h3>
-            <button
-              onClick={() => toggleCollapse(sectionKey)}
-              className="bg-transparent border-0"
-            >
-              {isCollapsed ? <FaChevronDown /> : <FaChevronUp />}
-            </button>
-          </div>
-
-          {!isCollapsed && (
-            <ul className="flex flex-col gap-3">
-              <li className="font-light text-14 text-dark-grey">
-                <label className="mr-2 flex gap-3 label">
-                  <Checkbox
-                    name={title.toLowerCase().replace(/\s+/g, '-')}
-                    id={title.toLowerCase().replace(/\s+/g, '-')}
-                    checked={isSelected === true}
-                    onCheckedChange={() =>
-                      dispatch(updateAction(isSelected === true ? false : true))
-                    }
-                    variant="filled"
-                  />
-                  {t(`${title}`)}
-                </label>
-              </li>
-            </ul>
-          )}
-        </div>
+        <Collapsible
+          title={t(title)}
+          open={!collapsedSections[sectionKey]}
+          onOpenChange={() => toggleCollapse(sectionKey)}
+        >
+          <ul className="flex flex-col gap-3">
+            <li className="font-light text-14 text-dark-grey">
+              <label className="mr-2 flex gap-3 label">
+                <Checkbox
+                  name={title.toLowerCase().replace(/\s+/g, '-')}
+                  id={title.toLowerCase().replace(/\s+/g, '-')}
+                  checked={isSelected === true}
+                  onCheckedChange={() =>
+                    dispatch(updateAction(isSelected === true ? false : true))
+                  }
+                  variant="filled"
+                />
+                {t(`${title}`)}
+              </label>
+            </li>
+          </ul>
+        </Collapsible>
         <hr className="mx-3" />
       </>
     );
@@ -298,42 +276,32 @@ const Filters = () => {
 
   // Function to render time filter
   const renderTimeFilter = () => {
-    const isCollapsed = collapsedSections.time;
-
     return (
       <>
-        <div className="py-4 px-6 flex flex-col gap-2">
-          <div className="flex justify-between items-center mb-2">
-            <h3 className="font-semibold">{t('Cooking time')}</h3>
-            <button
-              onClick={() => toggleCollapse('time')}
-              className="bg-transparent border-0"
-            >
-              {isCollapsed ? <FaChevronDown /> : <FaChevronUp />}
-            </button>
-          </div>
-
-          {!isCollapsed && (
-            <RadioGroup
-              render={<ul className="flex flex-col gap-3" />}
-              name="cooking-time"
-              value={time}
-              onValueChange={(value) => dispatch(updateTime(value))}
-            >
-              {timeOptions.map((timeOption, index) => (
-                <li
-                  key={timeOption.label}
-                  className="font-light text-14 text-dark-grey"
-                >
-                  <label className="mr-2 flex gap-3 label">
-                    <Radio id={timeOption.label} value={timeOption.value} />
-                    {timeOption.label} {index > 0 ? t('min') : null}
-                  </label>
-                </li>
-              ))}
-            </RadioGroup>
-          )}
-        </div>
+        <Collapsible
+          title={t('Cooking time')}
+          open={!collapsedSections.time}
+          onOpenChange={() => toggleCollapse('time')}
+        >
+          <RadioGroup
+            render={<ul className="flex flex-col gap-3" />}
+            name="cooking-time"
+            value={time}
+            onValueChange={(value) => dispatch(updateTime(value))}
+          >
+            {timeOptions.map((timeOption, index) => (
+              <li
+                key={timeOption.label}
+                className="font-light text-14 text-dark-grey"
+              >
+                <label className="mr-2 flex gap-3 label">
+                  <Radio id={timeOption.label} value={timeOption.value} />
+                  {timeOption.label} {index > 0 ? t('min') : null}
+                </label>
+              </li>
+            ))}
+          </RadioGroup>
+        </Collapsible>
         <hr className="mx-3" />
       </>
     );

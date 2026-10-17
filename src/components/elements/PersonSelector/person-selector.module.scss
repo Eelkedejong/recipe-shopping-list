@@ -1,0 +1,30 @@
+@use '@styles/mixins/breakpoints' as *;
+
+.step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-main;
+  font-size: 22px;
+  cursor: pointer;
+
+  &[data-disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.input {
+  width: 3ch;
+  color: $color-main;
+  font-weight: 600;
+  text-align: center;
+  background: none;
+  border: 0;
+
+  &:focus-visible {
+    outline: 2px solid $color-secondary;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
