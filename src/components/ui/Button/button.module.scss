@@ -27,6 +27,21 @@
     opacity: 0.6;
   }
 
+  // Dialog footers hold two buttons side by side, where the 250px minimum
+  // above overflows the popup.
+  &.compact {
+    height: 44px;
+    padding: 0 1.5rem;
+
+    @include screen-m(min) {
+      min-width: 0;
+    }
+
+    @include screen-m(max) {
+      width: auto;
+    }
+  }
+
   &.ghost {
     background-color: transparent;
     border: 2px solid $color-main;

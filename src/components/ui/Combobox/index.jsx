@@ -36,6 +36,7 @@ const Combobox = ({
   placeholder,
   required,
   disabled,
+  onKeyDown,
   action,
   classes,
   ...rest
@@ -65,6 +66,12 @@ const Combobox = ({
     >
       <BaseCombobox.Input
         {...rest}
+        // Same guard as Input: inside a dnd-kit sortable, the keyboard sensor
+        // claims Space to start a drag, so without this no space can be typed.
+        onKeyDown={(event) => {
+          onKeyDown?.(event);
+          event.stopPropagation();
+        }}
         id={id}
         name={name ?? id}
         placeholder={placeholder}

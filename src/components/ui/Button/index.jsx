@@ -6,11 +6,13 @@ import styles from './button.module.scss';
  *
  * `type` is the native button type ('button' | 'submit' | 'reset') and
  * defaults to 'button' so a button never submits a surrounding form by
- * accident. Use `variant` for styling.
+ * accident. Use `variant` for styling, and `compact` where the default
+ * 250px minimum width does not fit - a dialog footer, for instance.
  */
 const Button = ({
   type = 'button',
   variant,
+  compact = false,
   text,
   children,
   onClick,
@@ -25,6 +27,7 @@ const Button = ({
     'bg-main rounded-10 flex items-center justify-center text-white text-18',
     styles.btn,
     variant ? styles[variant] : null,
+    compact ? styles.compact : null,
     className,
   ]
     .filter(Boolean)

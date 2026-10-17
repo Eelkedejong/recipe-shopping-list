@@ -108,10 +108,10 @@ const AddIngredientDialog = ({ open, onOpenChange, initialName, onCreated }) => 
       closeLabel={t('Close')}
       footer={
         <>
-          <Button variant="secondary" onClick={() => onOpenChange(false)}>
+          <Button variant="ghost" compact onClick={() => onOpenChange(false)}>
             {t('Cancel')}
           </Button>
-          <Button onClick={handleSave} disabled={mutation.isPending}>
+          <Button compact onClick={handleSave} disabled={mutation.isPending}>
             {mutation.isPending ? t('Saving') : t('Save')}
           </Button>
         </>
