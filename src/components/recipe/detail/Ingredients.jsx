@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PersonSelector from '../../elements/PersonSelector';
 import { useIngredientCatalog } from '@/hooks/useIngredientCatalog';
@@ -18,8 +17,21 @@ const displayName = (ingredient, catalogEntry, amount) => {
   return catalogEntry.nameNl;
 };
 
-const Ingredients = ({ ingredients, persons }) => {
-  const [personsState, setPersonsState] = useState(persons);
+/**
+ * A recipe's ingredients, with the servings selector above them.
+ *
+ * The checkboxes decide what goes onto the shopping list when the recipe is
+ * added - they used to be decorative. Both the servings and the unticked rows
+ * are owned by the page, since that is what sends them.
+ */
+const Ingredients = ({
+  ingredients,
+  persons,
+  personsState,
+  setPersonsState,
+  excludedRows = [],
+  onToggleRow,
+}) => {
   const { t } = useTranslation();
   const { byId } = useIngredientCatalog();
 
@@ -43,16 +55,20 @@ const Ingredients = ({ ingredients, persons }) => {
                 const catalogEntry = ingredient.ingredientId
                   ? byId.get(ingredient.ingredientId)
                   : undefined;
+                const rowId = ingredient.id ?? index + 1;
 
                 return (
                   <div
                     className={`flex gap-4 mb-4 pb-3 ${styles.ingredient}`}
                     // Keyed by position: two rows can legitimately name the
                     // same ingredient, which made a name-based key collide.
-                    key={ingredient.id ?? index}
+                    key={rowId}
                   >
-                    <label className="mr-3 flex gap-4 label">
-                      <Checkbox defaultChecked={true} />
+                    <label className="mr-3 flex gap-4 label cursor-pointer">
+                      <Checkbox
+                        checked={!excludedRows.includes(rowId)}
+                        onCheckedChange={() => onToggleRow?.(rowId)}
+                      />
                       <span>
                         {/* Show max 2 decimals */}
                         {amount > 0 && parseFloat(amount.toFixed(2))}{' '}

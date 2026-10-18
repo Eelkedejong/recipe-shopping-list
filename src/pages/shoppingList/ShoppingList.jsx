@@ -1,83 +1,34 @@
-import { useState } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useSelector } from 'react-redux';
-import getShoppingList from './api/getShoppingList';
-import getShoppingListRecipes from './api/getShoppingListRecipes';
-import {
-  updateShoppingListItems,
-  updateShoppingListRecipes,
-} from './api/updateShoppingList';
-import ShoppingListRecipeList from '@/components/shoppingList/ShoppingListRecipeList';
-import ShoppingListItems from '@/components/shoppingList/ShoppingListItems';
-import { submbitShoppingList } from './utils/sumbitShopingList';
+import { useShoppingListDraft } from '@/hooks/useShoppingListDraft';
+import ShoppingListRecipe from '@/components/shoppingList/ShoppingListRecipe';
+import ShoppingListExtras from '@/components/shoppingList/ShoppingListExtras';
 import Button from '@/components/ui/Button';
 import styles from './shoppinglist.module.scss';
 
+/**
+ * Where the shopping list is refined before going to the shop.
+ *
+ * Every recipe that was added is listed with its ingredients, ticked as they
+ * were when it was added. Untick what is not needed, change the servings, drop
+ * a recipe, and add the things no recipe covers. Nothing is saved until the
+ * button at the bottom is pressed.
+ */
 const ShoppingList = () => {
-  const [message, setMessage] = useState('');
-  const user = useSelector((state) => state.user.value);
-  const shoppingListRecipes = useSelector(
-    (state) => state.shoppingListRecipes.value
-  );
-  const queryClient = useQueryClient();
   const { t } = useTranslation();
-
-  // Save the shopping list items.
-  const editItems = useMutation({
-    mutationFn: updateShoppingListItems,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
-      queryClient.invalidateQueries({ queryKey: ['groceries'] });
-      setMessage(t('Shopping list saved successfully'));
-    },
-  });
-
-  // Save the shopping list recipes.
-  const editRecipes = useMutation({
-    mutationFn: updateShoppingListRecipes,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
-    },
-  });
-
-  let ids = []; // Track the ids of the recipes in the shopping list.
-
-  // Get the shopping list.
-  const shopplingList = useQuery({
-    queryKey: ['shoppingList', user.token],
-    queryFn: getShoppingList,
-    ...{
-      // The query will not execute until the userToken exists.
-      enabled: !!user.token,
-    },
-  });
-
-  const list = shopplingList?.data?.data ?? [];
-
-  if (!shopplingList.isLoading) {
-    if (list.recipes) {
-      // Entries with no id exist in older lists; including them produced an
-      // empty segment in the query, which the API turned into NaN and 500'd on.
-      ids = list.recipes
-        .map((item) => item.id)
-        .filter((id) => typeof id === 'number')
-        .join(',');
-    }
-  }
-
-  // @TODO: Add public recipes as well
-  const recipes = useQuery({
-    queryKey: ['shoppingList recipes', user.token, ids],
-    queryFn: getShoppingListRecipes,
-    ...{
-      // The query will not execute until the userToken exists and there are ids.
-      enabled: !!user.token && ids.length > 0,
-    },
-  });
-
-  const recipeList = recipes?.data?.data ?? [];
+  const {
+    recipes,
+    extras,
+    isLoading,
+    isSaving,
+    isDirty,
+    setPersons,
+    toggleRow,
+    removeRecipe,
+    addExtra,
+    removeExtra,
+    save,
+  } = useShoppingListDraft();
 
   return (
     <>
@@ -86,25 +37,20 @@ const ShoppingList = () => {
           'Update recipe ingredients and click save to update items on the grocery list.'
         )}
       </div>
+
       <form
         className={`gap-6 grid ${styles.shoppingListGrid}`}
-        onSubmit={(e) => {
-          e.preventDefault();
-          setMessage('');
-          const items = submbitShoppingList(e);
-          // Save the shopping list items.
-          editItems.mutate([items, user.token]);
-          // Save the shopping list recipes.
-          editRecipes.mutate([shoppingListRecipes, user.token]);
+        onSubmit={(event) => {
+          event.preventDefault();
+          save();
         }}
       >
-        <div className="">
-          {!recipes.isLoading && recipes.isSuccess ? (
-            <ShoppingListRecipeList
-              recipeList={recipeList}
-              shoppingListRecipes={list.recipes}
-            />
-          ) : !recipes.isLoading || !shopplingList.isLoading ? (
+        <div>
+          {isLoading ? (
+            <div className="h-full w-full pt-6 flex items-center justify-center">
+              <div className="loader"></div>
+            </div>
+          ) : recipes.length === 0 ? (
             <div className="bg-white rounded-20 p-6">
               <h4 className="pb-2">{t('No recipes in your shopping list')}</h4>
               <span>
@@ -114,28 +60,38 @@ const ShoppingList = () => {
               </span>
             </div>
           ) : (
-            <div className="h-full w-full pt-6 flex items-center justify-center">
-              <div className="loader"></div>
-            </div>
+            recipes.map(({ recipe, entry }) => (
+              <ShoppingListRecipe
+                key={recipe.id}
+                recipe={recipe}
+                entry={entry}
+                onSetPersons={setPersons}
+                onToggleRow={toggleRow}
+                onRemove={removeRecipe}
+              />
+            ))
           )}
         </div>
 
         <div>
-          {!shopplingList.isLoading ? (
-            <ShoppingListItems items={list.extraItems} />
-          ) : null}
-
-          {message ? (
-            <p className="message success mobile mb-3">{message}</p>
-          ) : null}
+          <ShoppingListExtras
+            extras={extras}
+            onAdd={addExtra}
+            onRemove={removeExtra}
+          />
 
           <div className={`w-full ${styles.submitButtonWrapper}`}>
             <Button
               text={t('Save shopping list')}
-              loading={editItems.isPending || editRecipes.isPending}
+              loading={isSaving}
               type="submit"
               className={`w-full ${styles.submitButton}`}
             />
+            {isDirty ? (
+              <p className="text-14 text-dark-grey mt-2 text-center">
+                {t('You have unsaved changes')}
+              </p>
+            ) : null}
           </div>
         </div>
       </form>

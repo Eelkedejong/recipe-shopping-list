@@ -184,5 +184,12 @@
   "I already have this": "Heb ik al in huis",
   "{{count}} items hidden": "{{count}} items verborgen",
   "Show them again": "Toon ze weer",
-  "Add": "Toevoegen"
+  "Add": "Toevoegen",
+  "Show {{count}} ticked items": "Toon {{count}} afgevinkte items",
+  "Hide ticked items": "Verberg afgevinkte items",
+  "Everything is ticked off.": "Alles is afgevinkt.",
+  "Remove recipe from shopping list": "Verwijder recept van de boodschappenlijst",
+  "You have unsaved changes": "Je hebt niet-opgeslagen wijzigingen",
+  "Remove": "Verwijderen",
+  "Other": "Overig"
 }

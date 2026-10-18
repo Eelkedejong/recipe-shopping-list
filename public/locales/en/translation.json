@@ -66,5 +66,12 @@
   "I already have this": "I already have this",
   "{{count}} items hidden": "{{count}} items hidden",
   "Show them again": "Show them again",
-  "Add": "Add"
+  "Add": "Add",
+  "Show {{count}} ticked items": "Show {{count}} ticked items",
+  "Hide ticked items": "Hide ticked items",
+  "Everything is ticked off.": "Everything is ticked off.",
+  "Remove recipe from shopping list": "Remove recipe from shopping list",
+  "You have unsaved changes": "You have unsaved changes",
+  "Remove": "Remove",
+  "Other": "Other"
 }

@@ -20,12 +20,20 @@ const RecipeDetail = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
+  // Servings and unticked rows are held here rather than in Ingredients,
+  // because the "add to shopping list" button is what sends them.
+  const [personsState, setPersonsState] = useState(null);
+  const [excludedRows, setExcludedRows] = useState([]);
 
   const editMutation = useMutation({
     mutationFn: updateShoppingListRecipes,
     onSuccess: () => {
       setMessage(t('Recipe added to shopping list'));
+      // Both the refinement page and the in-store view read this list, so
+      // both have to be refetched - not just the one that happens to be open.
       queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
+      queryClient.invalidateQueries({ queryKey: ['shoppingListView'] });
+      queryClient.invalidateQueries({ queryKey: ['shoppingList recipes'] });
     },
   });
 
@@ -66,6 +74,16 @@ const RecipeDetail = () => {
               <Ingredients
                 ingredients={recipe.ingredients}
                 persons={recipe.persons}
+                personsState={personsState ?? recipe.persons}
+                setPersonsState={setPersonsState}
+                excludedRows={excludedRows}
+                onToggleRow={(rowId) =>
+                  setExcludedRows((current) =>
+                    current.includes(rowId)
+                      ? current.filter((id) => id !== rowId)
+                      : [...current, rowId]
+                  )
+                }
               />
 
               {message ? (
@@ -85,7 +103,10 @@ const RecipeDetail = () => {
                     recipes: [
                       {
                         id: recipe.id,
-                        persons: recipe.persons,
+                        // The selector's value, not the recipe's own, so
+                        // changing servings here actually affects the list.
+                        persons: personsState ?? recipe.persons,
+                        excludedRows,
                       },
                     ],
                   };
@@ -104,7 +125,10 @@ const RecipeDetail = () => {
                     recipes: [
                       {
                         id: recipe.id,
-                        persons: recipe.persons,
+                        // The selector's value, not the recipe's own, so
+                        // changing servings here actually affects the list.
+                        persons: personsState ?? recipe.persons,
+                        excludedRows,
                       },
                     ],
                   };

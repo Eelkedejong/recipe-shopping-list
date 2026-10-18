@@ -3,14 +3,15 @@ import { useSelector } from 'react-redux';
 import getShoppingListView from '@/pages/shoppingList/api/getShoppingListView';
 import updateShoppingListState from '@/pages/shoppingList/api/updateShoppingListState';
 
-const EMPTY_STATE = { overrides: {}, extras: [] };
+const EMPTY_STATE = { ticked: {}, extras: [] };
 
 /**
- * The grocery list, plus the four edits you can make while shopping.
+ * The grocery list as used in the shop.
  *
- * Every edit sends the whole state back and lets the server return the
- * rebuilt view, which React Query then holds. There is no effect copying
- * server data into local state - the query cache is the state.
+ * Ticking something off is saved straight away - this is used one-handed in a
+ * supermarket, and a save button would be one tap too many. Refinement
+ * happened on the shopping list page; here it is only ticking and the
+ * occasional thing remembered in an aisle.
  */
 export const useShoppingListView = () => {
   const token = useSelector((state) => state.user.value?.token);
@@ -27,68 +28,36 @@ export const useShoppingListView = () => {
 
   const mutation = useMutation({
     mutationFn: updateShoppingListState,
-    // The response is the rebuilt view, so it is written straight into the
-    // cache rather than triggering another round trip.
-    onSuccess: (body) => {
-      queryClient.setQueryData(['shoppingListView', token], body);
-      queryClient.invalidateQueries({ queryKey: ['shoppingList'] });
-    },
+    // The response is the rebuilt view, so it goes straight into the cache
+    // rather than triggering another round trip.
+    onSuccess: (body) => queryClient.setQueryData(['shoppingListView', token], body),
   });
 
   const save = (next) => mutation.mutate({ token, state: next });
 
-  const setOverride = (key, patch) =>
-    save({
-      ...state,
-      overrides: {
-        ...state.overrides,
-        [key]: { ...(state.overrides[key] ?? {}), ...patch },
-      },
-    });
-
   return {
     groups: view?.groups ?? [],
-    removedCount: view?.removedCount ?? 0,
-    unlinkedCount: view?.unlinkedCount ?? 0,
+    tickedCount: view?.tickedCount ?? 0,
     isLoading: query.isLoading,
     isSaving: mutation.isPending,
 
-    /** Tick a line off, or untick it. */
-    toggleChecked: (item) =>
+    /** Tick a line off, or put it back. */
+    toggleTicked: (item) =>
       item.manual
         ? save({
             ...state,
             extras: state.extras.map((extra) =>
               `extra:${extra.id}` === item.key
-                ? { ...extra, checked: !item.checked }
+                ? { ...extra, ticked: !item.ticked }
                 : extra
             ),
           })
-        : setOverride(item.key, { checked: !item.checked }),
-
-    /** Hide a line you already have at home. Survives the list rebuilding. */
-    remove: (item) =>
-      item.manual
-        ? save({
+        : save({
             ...state,
-            extras: state.extras.filter(
-              (extra) => `extra:${extra.id}` !== item.key
-            ),
-          })
-        : setOverride(item.key, { removed: true }),
+            ticked: { ...state.ticked, [item.key]: !item.ticked },
+          }),
 
-    /** Bring back everything that was hidden. */
-    restoreRemoved: () =>
-      save({
-        ...state,
-        overrides: Object.fromEntries(
-          Object.entries(state.overrides)
-            .map(([key, value]) => [key, { ...value, removed: false }])
-            .filter(([, value]) => value.checked)
-        ),
-      }),
-
-    /** Add something no recipe covers, into the aisle it belongs in. */
+    /** Something remembered in the shop. */
     addExtra: (name, categorySlug) =>
       save({
         ...state,

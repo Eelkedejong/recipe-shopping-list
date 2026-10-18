@@ -1,8 +1,7 @@
 import logError from '@/utils/errorLogger';
 
 /**
- * Saves shopping-time edits: what is ticked off, what was removed because it
- * is already at home, and items added by hand.
+ * Saves what is ticked off in the shop, and anything added there.
  *
  * The whole state is sent, not a patch, so the server never has to merge
  * concurrent edits from one person on one list.
