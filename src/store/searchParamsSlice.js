@@ -6,6 +6,7 @@ const initialState = {
   typeOfDish: [],
   cuisine: [],
   tags: [],
+  ingredients: [],
   time: null,
   isChildFriendly: undefined,
   isVegetarian: undefined,
@@ -84,6 +85,22 @@ export const searchParamsSlice = createSlice({
         state.value.tags = action.payload;
       }
     },
+    updateIngredients: (state, action) => {
+      // If it's a single value, toggle its presence in the array
+      if (typeof action.payload === 'string') {
+        if (!state.value.ingredients.includes(action.payload)) {
+          state.value.ingredients.push(action.payload);
+        } else {
+          state.value.ingredients = state.value.ingredients.filter(
+            (tag) => tag !== action.payload
+          );
+        }
+      }
+      // If it's an array, replace the current array
+      else if (Array.isArray(action.payload)) {
+        state.value.ingredients = action.payload;
+      }
+    },
     updateTime: (state, action) => {
       state.value.time = action.payload;
     },
@@ -113,6 +130,7 @@ export const {
   updateTypeOfDish,
   updateCuisine,
   updateTags,
+  updateIngredients,
   updateTime,
   updateIsChildFriendly,
   updateIsVegetarian,

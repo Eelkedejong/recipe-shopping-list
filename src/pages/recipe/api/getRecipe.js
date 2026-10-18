@@ -15,6 +15,7 @@ const getRecipe = async ({ queryKey }) => {
       typeOfDish,
       cuisine,
       tags,
+      ingredients,
       time,
       isChildFriendly,
       isVegetarian,
@@ -36,6 +37,11 @@ const getRecipe = async ({ queryKey }) => {
 
     if (cuisine && cuisine.length > 0) {
       queryParams.push(`cuisine=${cuisine.join(',')}`);
+    }
+
+    if (ingredients && ingredients.length > 0) {
+      // Slugs, matched through the derived RecipeIngredient index.
+      queryParams.push(`ingredients=${ingredients.join(',')}`);
     }
 
     if (tags && tags.length > 0) {

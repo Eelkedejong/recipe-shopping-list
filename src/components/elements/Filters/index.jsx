@@ -5,6 +5,7 @@ import {
   updateTypeOfDish,
   updateCuisine,
   updateTags,
+  updateIngredients,
   updateTime,
   updateIsVegetarian,
   updateIsChildFriendly,
@@ -31,8 +32,15 @@ import Radio, { RadioGroup } from '@/components/ui/Radio';
 const Filters = () => {
   const user = useSelector((state) => state.user.value);
   const searchParams = useSelector((state) => state.searchParams.value);
-  const { tags, time, typeOfDish, cuisine, isVegetarian, isChildFriendly } =
-    searchParams;
+  const {
+    tags,
+    time,
+    typeOfDish,
+    cuisine,
+    ingredients,
+    isVegetarian,
+    isChildFriendly,
+  } = searchParams;
 
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile();
@@ -42,6 +50,7 @@ const Filters = () => {
     typeOfDish: false,
     cuisine: false,
     tags: false,
+    ingredients: false,
   });
 
   // State for collapsed filter sections (time and tags are collapsed by default)
@@ -52,6 +61,7 @@ const Filters = () => {
     childFriendly: false,
     time: true,
     tags: true,
+    ingredients: true,
   });
 
   // State for filter search inputs
@@ -59,12 +69,19 @@ const Filters = () => {
     typeOfDish: '',
     cuisine: '',
     tags: '',
+    ingredients: '',
   });
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   // Fetch tags
+  const ingredientsQuery = useQuery({
+    queryKey: ['recipe-ingredients', user.token, 'ingredients'],
+    queryFn: getRecipeFilter,
+    enabled: !!user.token,
+  });
+
   const tagsQuery = useQuery({
     queryKey: ['tags', user.token, 'tags'],
     queryFn: getRecipeFilter,
@@ -87,6 +104,11 @@ const Filters = () => {
 
   // Extract data from queries
   const tagOptions = tagsQuery?.data?.data ?? [];
+  // Only ingredients that actually appear in recipes, so the facet never
+  // offers a choice that returns nothing.
+  const ingredientOptions = (ingredientsQuery?.data?.data ?? []).map(
+    (ingredient) => ({ value: ingredient.slug, label: ingredient.nameNl })
+  );
   const dishTypeOptions = dishTypesQuery?.data?.data ?? [];
   const cuisineOptions = cuisinesQuery?.data?.data ?? [];
 
@@ -148,18 +170,23 @@ const Filters = () => {
   ) => {
     if (!options.length) return null;
 
-    // Filter out empty strings
-    const filteredOptions = options.filter((option) => option !== '');
+    // Options are plain strings for most facets. Ingredients pass
+    // { value, label } instead: the filter runs on a slug but reads as a name.
+    const filteredOptions = options
+      .map((option) =>
+        typeof option === 'string' ? { value: option, label: option } : option
+      )
+      .filter((option) => option.value !== '');
 
     // Sort options alphabetically
     const sortedOptions = [...filteredOptions].sort((a, b) =>
-      a.localeCompare(b, undefined, { sensitivity: 'base' })
+      a.label.localeCompare(b.label, undefined, { sensitivity: 'base' })
     );
 
     // Filter options based on search input
     const searchTerm = searchInputs[sectionKey]?.toLowerCase() || '';
     const searchFilteredOptions = sortedOptions.filter((option) =>
-      option.toLowerCase().includes(searchTerm)
+      option.label.toLowerCase().includes(searchTerm)
     );
 
     // Determine how many options to display
@@ -199,20 +226,23 @@ const Filters = () => {
 
             <ul className="flex flex-col gap-3">
               {displayOptions.map((option) => (
-                <li key={option} className="font-light text-14 text-dark-grey">
+                <li
+                  key={option.value}
+                  className="font-light text-14 text-dark-grey"
+                >
                   <label
                     className={`mr-2 flex gap-3 label ${styles.filterLabel}`}
                   >
                     <Checkbox
-                      name={option}
-                      id={option}
-                      checked={selectedOptions.includes(option)}
+                      name={option.value}
+                      id={option.value}
+                      checked={selectedOptions.includes(option.value)}
                       onCheckedChange={() => {
-                        dispatch(updateAction(option));
+                        dispatch(updateAction(option.value));
                       }}
                       variant="filled"
                     />
-                    {option}
+                    {option.label}
                   </label>
                 </li>
               ))}
@@ -349,6 +379,15 @@ const Filters = () => {
 
       {/* Tags Filter */}
       {renderFilterOptions(tagOptions, tags, updateTags, 'tags', 'Labels')}
+
+      {/* Ingredients Filter */}
+      {renderFilterOptions(
+        ingredientOptions,
+        ingredients,
+        updateIngredients,
+        'ingredients',
+        'Ingredients'
+      )}
     </>
   );
 
