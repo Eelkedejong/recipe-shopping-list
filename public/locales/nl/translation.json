@@ -191,5 +191,6 @@
   "Remove recipe from shopping list": "Verwijder recept van de boodschappenlijst",
   "You have unsaved changes": "Je hebt niet-opgeslagen wijzigingen",
   "Remove": "Verwijderen",
-  "Other": "Overig"
+  "Other": "Overig",
+  "Move {{name}} to another aisle": "Verplaats {{name}} naar een ander schap"
 }

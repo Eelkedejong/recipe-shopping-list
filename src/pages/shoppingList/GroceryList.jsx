@@ -1,9 +1,22 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
+import {
+  DndContext,
+  KeyboardSensor,
+  MouseSensor,
+  TouchSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import { useShoppingListView } from '@/hooks/useShoppingListView';
 import GroceryListGroup from '@/components/groceryList/GroceryListGroup';
 import AddGroceryItem from '@/components/groceryList/AddGroceryItem';
+
+// Aisles are stacked, so a horizontal drag means nothing - pinning x keeps the
+// row inside the card instead of sliding it out over the navigation.
+const verticalOnly = ({ transform }) => ({ ...transform, x: 0 });
 
 /**
  * The grocery list, in the order you walk the shop.
@@ -15,9 +28,31 @@ import AddGroceryItem from '@/components/groceryList/AddGroceryItem';
  */
 const GroceryList = () => {
   const { t } = useTranslation();
-  const { groups, tickedCount, isLoading, toggleTicked, addExtra } =
+  const { groups, tickedCount, isLoading, toggleTicked, addExtra, moveExtra } =
     useShoppingListView();
   const [showTicked, setShowTicked] = useState(false);
+
+  // This list is used one-handed in a shop, so scrolling and ticking must keep
+  // working: a touch drag only starts after a short hold, and a mouse drag
+  // after a little travel.
+  const sensors = useSensors(
+    useSensor(MouseSensor, { activationConstraint: { distance: 10 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 5 } }),
+    useSensor(KeyboardSensor)
+  );
+
+  /** Dropping a hand-added item on an aisle moves it there. */
+  const handleDragEnd = ({ active, over }) => {
+    if (!over || !String(active.id).startsWith('extra:')) return;
+
+    const extraId = String(active.id).slice('extra:'.length);
+    const current = groups.find((group) =>
+      group.items.some((item) => item.key === active.id)
+    );
+    if (current?.categorySlug === over.id) return;
+
+    moveExtra(extraId, over.id);
+  };
 
   const visibleGroups = groups
     .map((group) => ({
@@ -53,13 +88,20 @@ const GroceryList = () => {
             </Link>
           </div>
 
-          {visibleGroups.map((group) => (
-            <GroceryListGroup
-              key={group.categorySlug}
-              group={group}
-              onToggle={toggleTicked}
-            />
-          ))}
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            modifiers={[verticalOnly]}
+            onDragEnd={handleDragEnd}
+          >
+            {visibleGroups.map((group) => (
+              <GroceryListGroup
+                key={group.categorySlug}
+                group={group}
+                onToggle={toggleTicked}
+              />
+            ))}
+          </DndContext>
 
           {total === 0 ? (
             <>

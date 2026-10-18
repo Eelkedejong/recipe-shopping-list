@@ -63,6 +63,21 @@ export const useShoppingListView = () => {
         ...state,
         extras: [...state.extras, { name, categorySlug: categorySlug || null }],
       }),
+
+    /**
+     * Puts a hand-added item in a different aisle.
+     *
+     * Only the hand-added ones can move: a line that came from a recipe sits
+     * in the aisle its catalog entry names, and moving that would be a change
+     * to the catalog for every user rather than to this list.
+     */
+    moveExtra: (extraId, categorySlug) =>
+      save({
+        ...state,
+        extras: state.extras.map((extra) =>
+          extra.id === extraId ? { ...extra, categorySlug } : extra
+        ),
+      }),
   };
 };
 

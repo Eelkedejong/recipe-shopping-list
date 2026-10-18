@@ -73,5 +73,6 @@
   "Remove recipe from shopping list": "Remove recipe from shopping list",
   "You have unsaved changes": "You have unsaved changes",
   "Remove": "Remove",
-  "Other": "Other"
+  "Other": "Other",
+  "Move {{name}} to another aisle": "Move {{name}} to another aisle"
 }
