@@ -58,8 +58,12 @@ const ShoppingList = () => {
 
   if (!shopplingList.isLoading) {
     if (list.recipes) {
-      // Get a string of all the ids of the recipes in the shoppinglist. Join them with a comma.
-      ids = list.recipes.map((item) => item.id).join(',');
+      // Entries with no id exist in older lists; including them produced an
+      // empty segment in the query, which the API turned into NaN and 500'd on.
+      ids = list.recipes
+        .map((item) => item.id)
+        .filter((id) => typeof id === 'number')
+        .join(',');
     }
   }
 

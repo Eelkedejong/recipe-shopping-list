@@ -47,20 +47,25 @@ const ShoppingListRecipe = ({
 
       <div className="flex flex-wrap mt-3">
         {ingredients
-          ? ingredients.map((ingredient) => {
+          ? ingredients.map((ingredient, index) => {
               const amount = ingredient.amount * (personsState / persons);
-              const ingredientText =
-                amount > 0
-                  ? parseFloat(amount.toFixed(2)) + // Show max 2 decimals
-                    ' ' +
-                    ingredient.unit +
-                    ' ' +
-                    ingredient.ingredient
-                  : ingredient.unit + ' ' + ingredient.ingredient;
+              // Recipes saved before the catalog existed store the text as
+              // `ingredient`; everything since stores it as `name`.
+              const ingredientName =
+                ingredient.name ?? ingredient.ingredient ?? '';
+              const ingredientText = [
+                amount > 0 ? parseFloat(amount.toFixed(2)) : null, // max 2 decimals
+                ingredient.unit,
+                ingredientName,
+              ]
+                .filter(Boolean)
+                .join(' ');
               return (
                 <div
                   className="flex w-1/2 gap-4 mb-4 pb-1"
-                  key={ingredient.ingredient}
+                  // Keyed by position: a recipe may legitimately list the same
+                  // ingredient twice, which a name-based key collided on.
+                  key={ingredient.id ?? index}
                 >
                   <label className="mr-3 flex gap-4 label cursor-pointer">
                     <Checkbox

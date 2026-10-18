@@ -14,6 +14,9 @@ import styles from './person-selector.module.scss';
  *
  * Deliberately has no `name`: this renders inside the shopping list <form>,
  * whose submit handler collects every form value into the items array.
+ *
+ * `recipeId` is optional. Without one the selector is display-only and never
+ * touches the shopping list.
  */
 const PersonSelector = ({ personsState, setPersonsState, recipeId }) => {
   const dispatch = useDispatch();
@@ -22,6 +25,12 @@ const PersonSelector = ({ personsState, setPersonsState, recipeId }) => {
 
   const handlePersonsChange = (newPersonsState) => {
     setPersonsState(newPersonsState);
+
+    // On a recipe detail page there is no recipeId: the selector only scales
+    // what is displayed. Dispatching anyway wrote { persons } with no id into
+    // the shopping list, which then broke the page that reads it back.
+    if (recipeId === undefined || recipeId === null) return;
+
     dispatch(updateRecipes({ id: recipeId, persons: newPersonsState }));
   };
 

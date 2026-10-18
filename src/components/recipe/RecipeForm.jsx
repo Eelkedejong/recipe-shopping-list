@@ -15,8 +15,6 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
   const navigate = useNavigate();
   const store = useStore();
 
-  console.log('recipe', recipe);
-
   const handleSubmitRecipe = (e) => {
     // Convert the form data into an object with key-value pairs.
     const formData = new FormData(e.target);
@@ -42,8 +40,14 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
       return obj;
     }, {});
 
-    // Get the ingredients from the store.
-    const ingredients = store.getState().ingredientList.value;
+    // Get the ingredients from the store, dropping any blank trailing row:
+    // picking an ingredient appends an empty one ready for the next, and that
+    // should not be saved.
+    const ingredients = store
+      .getState()
+      .ingredientList.value.filter(
+        (row) => (row.name ?? row.ingredient ?? '').trim() !== ''
+      );
 
     // Add ingredients to responseData
     responseData.ingredients = ingredients;

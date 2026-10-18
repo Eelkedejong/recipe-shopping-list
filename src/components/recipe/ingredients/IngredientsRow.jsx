@@ -151,7 +151,10 @@ const IngredientsRow = ({ ingredient, index, id }) => {
 
       <Combobox
         id={`ingredient_${index}`}
-        required={true}
+        // The first row must be filled in, so a recipe cannot be saved with no
+        // ingredients at all. Later rows may be blank: picking an ingredient
+        // appends an empty one, and requiring that would block every save.
+        required={index === 0}
         items={suggestions}
         inputValue={rowData.name ?? ''}
         onInputValueChange={handleInputValueChange}
