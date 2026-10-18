@@ -16,6 +16,7 @@ import {
   closestCorners,
 } from '@dnd-kit/core';
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import { withStableRowIds, nextRowId } from '@/utils/ingredientRows';
 import styles from '../recipe.module.scss';
 
 const IngredientsList = ({ ingredients }) => {
@@ -32,15 +33,19 @@ const IngredientsList = ({ ingredients }) => {
   // Save the ingredients in the ingredientSlice and add an id to each ingredient.
   useEffect(() => {
     if (ingredients && ingredients.length > 0) {
-      const ingredientsWithId = ingredients.map((ingredient, index) => ({
-        prep: '',
-        ingredientId: null,
-        ...ingredient,
-        // Recipes saved before the catalog existed store the text as
-        // `ingredient` rather than `name`.
-        name: ingredient.name ?? ingredient.ingredient ?? '',
-        id: index + 1,
-      }));
+      // Ids are taken as stored rather than renumbered: a shopping list
+      // remembers unticked rows by id, so renumbering them here would move
+      // somebody's exclusion onto a different ingredient after a reorder.
+      const ingredientsWithId = withStableRowIds(
+        ingredients.map((ingredient) => ({
+          prep: '',
+          ingredientId: null,
+          ...ingredient,
+          // Recipes saved before the catalog existed store the text as
+          // `ingredient` rather than `name`.
+          name: ingredient.name ?? ingredient.ingredient ?? '',
+        }))
+      );
 
       dispatch(updateIngredientList(ingredientsWithId));
     }
@@ -48,7 +53,9 @@ const IngredientsList = ({ ingredients }) => {
 
   // Create an empty ingredient row for when the user clicks the "Add ingredient" button.
   const emptyIngredientRow = {
-    id: ingredientSlice.length + 1,
+    // Counted from the highest id, not the length: deleting a row leaves a
+    // gap, and the length would hand out an id another row already has.
+    id: nextRowId(ingredientSlice),
     ingredientId: null,
     name: '',
     amount: '',

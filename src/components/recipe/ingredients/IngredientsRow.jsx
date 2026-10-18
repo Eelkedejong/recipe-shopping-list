@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { updateIngredientList } from '../../../store/ingredientSlice';
 import { useIngredientCatalog } from '@/hooks/useIngredientCatalog';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { nextRowId } from '@/utils/ingredientRows';
 import AddIngredientDialog from './AddIngredientDialog';
 import Input from '../../ui/Input';
 import Combobox from '../../ui/Combobox';
@@ -31,6 +32,19 @@ const IngredientsRow = ({ ingredient, index, id }) => {
   const { isAdmin } = useCurrentUser();
   const [rowData, setRowData] = useState(ingredient);
   const [addOpen, setAddOpen] = useState(false);
+
+  // The row this component was mounted with can be replaced underneath it: an
+  // edit page mounts its rows from the placeholder in the store and fills them
+  // in once the recipe arrives, and the placeholder shares an id with the
+  // recipe's first row - so React reuses this instance and the state above
+  // would keep the placeholder's empty name forever. Resyncing during render
+  // rather than in an effect is React's own answer to this; typing is
+  // unaffected because only a store write replaces the object.
+  const [syncedFrom, setSyncedFrom] = useState(ingredient);
+  if (ingredient !== syncedFrom) {
+    setSyncedFrom(ingredient);
+    setRowData(ingredient);
+  }
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id, animateLayoutChanges: () => false });
   const style = {
@@ -64,7 +78,7 @@ const IngredientsRow = ({ ingredient, index, id }) => {
     // Only ever grow the list from the end, and never while an empty row is
     // already waiting - so this is safe to call more than once per keystroke.
     if (appendRow && !isBlank(last)) {
-      rows.push(emptyRow(Math.max(0, ...rows.map((r) => r.id ?? 0)) + 1));
+      rows.push(emptyRow(nextRowId(rows)));
     }
 
     dispatch(updateIngredientList(rows));
