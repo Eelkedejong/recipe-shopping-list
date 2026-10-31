@@ -64,7 +64,7 @@ const Overview = () => {
             })
           ) : (
             <div>
-              {t('You don\t have any recipes yet! Start adding new recipes')}
+              {t("You don't have any recipes yet! Start adding new recipes")}
               <Link to="/recipe/new">{t('here')}</Link>
             </div>
           )}

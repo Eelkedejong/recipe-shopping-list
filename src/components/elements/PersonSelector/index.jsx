@@ -44,7 +44,6 @@ const PersonSelector = ({ personsState, setPersonsState, recipeId }) => {
         }
       }}
       min={1}
-      aria-labelledby={labelId}
     >
       <NumberField.Group className="flex items-center gap-6">
         <NumberField.Decrement
@@ -58,7 +57,13 @@ const PersonSelector = ({ personsState, setPersonsState, recipeId }) => {
           <span id={labelId} className="text-14">
             {t('Persons')}
           </span>
-          <NumberField.Input className={styles.input} />
+          {/* The label lives on the input, not on NumberField.Root: Root
+              renders a <div>, so labelling it named the group and left the
+              input with no accessible name at all. */}
+          <NumberField.Input
+            className={styles.input}
+            aria-labelledby={labelId}
+          />
         </div>
 
         <NumberField.Increment

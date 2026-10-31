@@ -192,5 +192,20 @@
   "You have unsaved changes": "Je hebt niet-opgeslagen wijzigingen",
   "Remove": "Verwijderen",
   "Other": "Overig",
-  "Move {{name}} to another aisle": "Verplaats {{name}} naar een ander schap"
+  "Move {{name}} to another aisle": "Verplaats {{name}} naar een ander schap",
+  "Add recipe": "Recept toevoegen",
+  "Change picture": "Afbeelding wijzigen",
+  "Close filters": "Filters sluiten",
+  "Close menu": "Menu sluiten",
+  "E-mail": "E-mail",
+  "Fewer persons": "Minder personen",
+  "Label": "Label",
+  "Menu": "Menu",
+  "More persons": "Meer personen",
+  "Password reset link is send to your email": "De link om je wachtwoord opnieuw in te stellen is naar je e-mailadres verstuurd",
+  "Reset filters": "Filters wissen",
+  "Search": "Zoeken",
+  "View all your recipes": "Bekijk al je recepten",
+  "here": "hier",
+  "min": "min"
 }

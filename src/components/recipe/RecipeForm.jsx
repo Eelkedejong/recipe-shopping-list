@@ -238,7 +238,7 @@ const RecipeForm = ({ recipe, loading, handleSubmit }) => {
       <div className="bg-white rounded-20 p-6 mx-3">
         <h3 className="text-20 mb-2 font-semibold">{t('Ingredients')}</h3>
         <p className="mb-4 text-14">
-          {t('Drag the numbers to re-arrange the ingredient order')}
+          {t('Drag the numbers to re-arrange the ingredient order.')}
         </p>
         <IngredientsList ingredients={recipe ? recipe.ingredients : null} />
       </div>
