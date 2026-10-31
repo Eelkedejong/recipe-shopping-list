@@ -32,7 +32,7 @@ const ShoppingList = () => {
 
   return (
     <>
-      <div className="bg-white text-14 rounded-10 max-m:rounded-[0_0_20px_20px] px-6 py-3">
+      <div className="bg-white text-sm rounded-sm max-m:rounded-t-none max-m:rounded-b-md px-6 py-3">
         {t(
           'Update recipe ingredients and click save to update items on the grocery list.'
         )}
@@ -51,7 +51,7 @@ const ShoppingList = () => {
               <div className="loader"></div>
             </div>
           ) : recipes.length === 0 ? (
-            <div className="bg-white rounded-20 p-6">
+            <div className="bg-white rounded-md p-6">
               <h4 className="pb-2">{t('No recipes in your shopping list')}</h4>
               <span>
                 <Link className="text-main" to="/recipes">
@@ -88,7 +88,7 @@ const ShoppingList = () => {
               className={`w-full ${styles.submitButton}`}
             />
             {isDirty ? (
-              <p className="text-14 text-dark-grey mt-2 text-center">
+              <p className="text-sm text-dark-grey mt-2 text-center">
                 {t('You have unsaved changes')}
               </p>
             ) : null}

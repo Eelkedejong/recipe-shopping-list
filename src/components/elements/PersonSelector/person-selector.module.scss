@@ -1,10 +1,8 @@
-@use '@styles/mixins/breakpoints' as *;
-
 .step {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $color-main;
+  color: var(--color-main);
   font-size: 22px;
   cursor: pointer;
 
@@ -16,14 +14,14 @@
 
 .input {
   width: 3ch;
-  color: $color-main;
+  color: var(--color-main);
   font-weight: 600;
   text-align: center;
   background: none;
   border: 0;
 
   &:focus-visible {
-    outline: 2px solid $color-secondary;
+    outline: 2px solid var(--color-focus);
     outline-offset: 2px;
     border-radius: 4px;
   }

@@ -54,7 +54,7 @@ const Input = ({
         {...controlProps}
         onKeyDown={(event) => event.stopPropagation()}
         className={[
-          'rounded-10 flex items-center justify-center pl-3',
+          'rounded-sm flex items-center justify-center pl-3',
           styles.input,
           styles.noLabel,
           classes,
@@ -78,7 +78,7 @@ const Input = ({
         {...rest}
         {...controlProps}
         className={[
-          'rounded-10 flex items-center justify-center pl-3 pt-3 text-black',
+          'rounded-sm flex items-center justify-center pl-3 pt-3 text-black',
           styles.input,
           classes,
         ]

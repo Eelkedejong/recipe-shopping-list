@@ -8,7 +8,7 @@
     position: absolute;
     width: 100%;
     padding: 12px;
-    background-color: $color-white;
+    background-color: var(--color-white);
   }
 
   @include screen-m(min) {
@@ -32,12 +32,12 @@
   }
 
   .input {
-    background-color: $color-white;
+    background-color: var(--color-white);
     border: none !important;
     min-width: 400px;
 
     @include screen-m(max) {
-      background-color: $color-light-grey;
+      background-color: var(--color-light-grey);
     }
   }
 
@@ -48,7 +48,7 @@
     padding: 0 20px;
     right: 0;
     height: 52px;
-    border-radius: 0 20px 20px 0;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
 
     &:disabled {
       cursor: default;
@@ -56,11 +56,11 @@
     }
 
     &:not(:disabled) {
-      background-color: $color-black;
-      color: $color-white;
+      background-color: var(--color-black);
+      color: var(--color-white);
 
       &:hover {
-        background-color: #000;
+        background-color: var(--color-black-full);
       }
     }
   }

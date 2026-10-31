@@ -91,7 +91,7 @@ const RecipeList = () => {
       </div>
       <div className="flex flex-col items-center p-4 mt-6 m:hidden!">
         <Link to="/recipe/new">
-          <button className="p-4 flex items-center justify-center bg-main text-white rounded-10 mb-3">
+          <button className="p-4 flex items-center justify-center bg-main text-white rounded-sm mb-3">
             <FaPlus />
           </button>
         </Link>
@@ -111,7 +111,7 @@ const RecipeList = () => {
                 setPage(currentPage - 1);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`px-3 py-4 flex items-center gap-6 rounded-10 bg-main-bg text-main ${styles.prev}`}
+              className={`px-3 py-4 flex items-center gap-6 rounded-sm bg-main-bg text-main ${styles.prev}`}
             >
               <FaChevronLeft className="text-main font-bold" />
             </button>
@@ -128,7 +128,7 @@ const RecipeList = () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 setPage(i + 1);
               }}
-              className={`px-4 py-3  rounded-10 ${i + 1 === page ? 'bg-main text-white' : 'bg-main-bg text-main'}`}
+              className={`px-4 py-3  rounded-sm ${i + 1 === page ? 'bg-main text-white' : 'bg-main-bg text-main'}`}
             >
               {i + 1}
             </button>
@@ -141,7 +141,7 @@ const RecipeList = () => {
                 setPage(currentPage + 1);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`px-3 py-4 flex items-center gap-6 rounded-10 bg-main-bg text-main`}
+              className={`px-3 py-4 flex items-center gap-6 rounded-sm bg-main-bg text-main`}
             >
               <FaChevronRight className="text-main" />
             </button>

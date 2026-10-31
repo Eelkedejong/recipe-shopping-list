@@ -39,23 +39,23 @@ const Header = ({
       <div className="flex justify-between w-full">
         {returnUrl && returnText ? (
           <Link to={returnUrl} className="flex items-center gap-3">
-            <div className="bg-white rounded-[50%] p-2 flex items-center">
+            <div className="bg-white rounded-full p-2 flex items-center">
               <FaChevronLeft />
             </div>
-            <span className="text-16 font-light text-grey">{returnText}</span>
+            <span className="text-base font-light text-grey">{returnText}</span>
           </Link>
         ) : title ? (
-          <h2 className="text-32 font-bold pt-6">{title}</h2>
+          <h2 className="text-4xl font-bold pt-6">{title}</h2>
         ) : useParamTitle ? (
-          <h2 className="text-32 font-bold pt-6">
+          <h2 className="text-4xl font-bold pt-6">
             {t(`${type.charAt(0).toUpperCase() + type.slice(1)}`)}
           </h2>
         ) : (
           <div className={styles.greeting}>
-            <div className="text-16 font-light text-grey">
+            <div className="text-base font-light text-grey">
               {t('Welcome')}, {userName}
             </div>
-            <h2 className="text-28 font-bold">
+            <h2 className="text-3xl font-bold">
               {t("What's on the menu today?")}
             </h2>
           </div>

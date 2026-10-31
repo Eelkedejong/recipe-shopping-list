@@ -24,7 +24,7 @@ const Button = ({
   const label = children ?? text;
 
   const classes = [
-    'bg-main rounded-10 flex items-center justify-center text-white text-18',
+    'bg-main rounded-sm flex items-center justify-center text-white text-lg',
     styles.btn,
     variant ? styles[variant] : null,
     compact ? styles.compact : null,

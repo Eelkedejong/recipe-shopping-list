@@ -9,7 +9,7 @@ import Checkbox from '../Checkbox';
 export const CheckboxGroup = ({ name, options, selected = [] }) => {
   return (
     <div className="checkbox-group">
-      <div className="grid grid-cols-[repeat(2,1fr)] gap-2">
+      <div className="grid grid-cols-2 gap-2">
         {options.map((option) => (
           <Checkbox
             key={option.id}

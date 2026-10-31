@@ -105,7 +105,7 @@ const Authentication = () => {
           </h1>
           <div className="mb-6 flex items-center justify-center h-full">
             <main
-              className={`bg-white rounded-35 m-auto p-6 ${styles.authentication}`}
+              className={`bg-white rounded-lg m-auto p-6 ${styles.authentication}`}
             >
               <div className="mb-4 flex justify-center">
                 <img src={logo} alt="Chef" />

@@ -20,13 +20,13 @@
     left: 0;
     z-index: 30;
     padding: 13px 15px;
-    background-color: $color-white;
-    border-bottom: $default-border;
-    box-shadow: $shadow-top;
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-line);
+    box-shadow: var(--shadow-top);
 
     button {
       height: 42px;
-      font-size: 16px;
+      font-size: var(--text-base);
     }
   }
 
@@ -35,7 +35,7 @@
 
     button {
       height: 38px;
-      font-size: 14px;
+      font-size: var(--text-sm);
     }
   }
 }

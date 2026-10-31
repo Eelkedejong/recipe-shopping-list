@@ -33,7 +33,7 @@ const AddGroceryItem = ({ onAdd, disabled }) => {
   return (
     <form
       onSubmit={submit}
-      className="border-light-grey flex flex-wrap items-end gap-3 border-t pt-4"
+      className="border-line-subtle flex flex-wrap items-end gap-3 border-t pt-4"
     >
       <div className="min-w-40 flex-1">
         <Input

@@ -23,9 +23,9 @@ const ShoppingListRecipe = ({
   const persons = entry.persons ?? recipe.persons;
 
   return (
-    <div className="bg-white p-6 rounded-20 mb-6">
+    <div className="bg-white p-6 rounded-md mb-6">
       <div className="flex items-start justify-between gap-4">
-        <h3 className="text-20 font-semibold">{recipe.name}</h3>
+        <h3 className="text-xl font-semibold">{recipe.name}</h3>
         <button
           type="button"
           onClick={() => onRemove(recipe.id)}

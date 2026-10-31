@@ -77,7 +77,7 @@ const Combobox = ({
         placeholder={placeholder}
         required={required}
         className={[
-          'rounded-10 flex w-full min-w-0 items-center pl-3',
+          'rounded-sm flex w-full min-w-0 items-center pl-3',
           inputStyles.input,
           inputStyles.noLabel,
           classes,
@@ -87,11 +87,11 @@ const Combobox = ({
       />
 
       <BaseCombobox.Portal>
-        <BaseCombobox.Positioner sideOffset={4} className="z-[200]">
+        <BaseCombobox.Positioner sideOffset={4} className="z-(--z-popover)">
           <BaseCombobox.Popup
             className={[
-              'rounded-10 max-h-64 w-(--anchor-width) overflow-y-auto',
-              'bg-white py-1 shadow-lg',
+              'rounded-sm max-h-64 w-(--anchor-width) overflow-y-auto',
+              'bg-white py-1 shadow-popover',
             ].join(' ')}
           >
             <BaseCombobox.List>
@@ -100,8 +100,8 @@ const Combobox = ({
                   key={itemToKey(item)}
                   value={item}
                   className={[
-                    'text-14 cursor-pointer px-3 py-2 text-black',
-                    'data-highlighted:bg-main-bg-light',
+                    'text-sm cursor-pointer px-3 py-2 text-black',
+                    'data-highlighted:bg-main-bg',
                   ].join(' ')}
                 >
                   {renderItem ? renderItem(item) : itemToLabel(item)}
@@ -111,7 +111,7 @@ const Combobox = ({
 
             {/* Rendered outside the List so it is never a selectable item. */}
             {action && query ? (
-              <div className="border-light-grey border-t">{action}</div>
+              <div className="border-line-subtle border-t">{action}</div>
             ) : null}
           </BaseCombobox.Popup>
         </BaseCombobox.Positioner>

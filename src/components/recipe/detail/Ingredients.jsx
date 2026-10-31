@@ -37,7 +37,7 @@ const Ingredients = ({
 
   return (
     <>
-      <h3 className="text-20 font-semibold pb-4 mb-2">{t('Ingredients')}</h3>
+      <h3 className="text-xl font-semibold pb-4 mb-2">{t('Ingredients')}</h3>
       <div className={`w-full flex justify-center py-2 mb-6 ${styles.persons} `}>
         <PersonSelector
           personsState={personsState}
@@ -47,7 +47,7 @@ const Ingredients = ({
 
       <div className="flex pt-3">
         <div
-          className={`bg-main-bg-light rounded-20 p-6 flex flex-col ${styles.ingredientsBlock}`}
+          className={`bg-main-bg rounded-md p-6 flex flex-col ${styles.ingredientsBlock}`}
         >
           {ingredients
             ? ingredients.map((ingredient, index) => {

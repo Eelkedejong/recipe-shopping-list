@@ -44,7 +44,7 @@ const StepsList = ({ steps }) => {
       <div className="flex justify-end">
         <button
           type="button"
-          className="flex items-center justify-end gap-3 py-2 text-16"
+          className="flex items-center justify-end gap-3 py-2 text-base"
           onClick={(e) => {
             e.preventDefault;
             setStepsRows([...stepsRows, ""]);

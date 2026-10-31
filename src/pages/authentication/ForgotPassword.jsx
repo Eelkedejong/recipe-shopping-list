@@ -44,8 +44,8 @@ const ForgotPassword = () => {
         </>
       ) : (
         <>
-          <h2 className="my-6 text-center text-18">{t('Forgot password?')}</h2>
-          <div className="mb-6 text-14 text-center">
+          <h2 className="my-6 text-center text-lg">{t('Forgot password?')}</h2>
+          <div className="mb-6 text-sm text-center">
             {t(
               "Enter your email address below and we'll send you a link to reset your password."
             )}

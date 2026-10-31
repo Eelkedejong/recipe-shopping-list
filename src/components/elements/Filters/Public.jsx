@@ -70,7 +70,7 @@ const Filters = () => {
             </li>
             {filterOptions.map((tag) =>
               tag === '' ? null : (
-                <li key={tag} className="font-light text-14 text-dark-grey">
+                <li key={tag} className="font-light text-sm text-dark-grey">
                   <label className="mr-2 flex gap-3 label">
                     <Checkbox
                       name={tag}
@@ -102,7 +102,7 @@ const Filters = () => {
         </li>
         {timeOptions.map((time, index) => {
           return (
-            <li key={time.label} className="font-light text-14 text-dark-grey">
+            <li key={time.label} className="font-light text-sm text-dark-grey">
               <label className="mr-2 flex gap-3 label">
                 <Radio id={time.label} value={time.value} />
                 {time.label} {index > 0 ? t('min') : null}
@@ -120,7 +120,7 @@ const Filters = () => {
         <button
           onClick={() => setOpen(true)}
           aria-expanded={open}
-          className={`p-3 mt-2 text-main text-14 font-medium rounded-10 flex items-center justify-center ${styles.filterToggle} ${styles.publicFilter}`}
+          className={`p-3 mt-2 text-main text-sm font-medium rounded-sm flex items-center justify-center ${styles.filterToggle} ${styles.publicFilter}`}
         >
           <FaSliders className="mr-3" /> {t('Filter')}
         </button>
@@ -146,9 +146,9 @@ const Filters = () => {
 
   return (
     <aside>
-      <div className={`bg-white rounded-20 mr-6 s:pb-3 ${styles.content}`}>
-        <div className="px-6 py-4 bg-main-bg rounded-t-20">
-          <h2 className="font-bold text-20">{t('Filter')}</h2>
+      <div className={`bg-white rounded-md mr-6 s:pb-3 ${styles.content}`}>
+        <div className="px-6 py-4 bg-main-bg rounded-t-md">
+          <h2 className="font-bold text-xl">{t('Filter')}</h2>
         </div>
 
         {filterContent}

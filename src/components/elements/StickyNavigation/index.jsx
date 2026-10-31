@@ -67,8 +67,8 @@ const StickyNavigation = () => {
           to={'/'}
         >
           <div className="flex flex-col items-center justify-center gap-1">
-            <FaHouse className="text-16" />
-            <span className="text-13">{t('Home')}</span>
+            <FaHouse className="text-base" />
+            <span className="text-xs">{t('Home')}</span>
           </div>
         </Link>
 
@@ -81,11 +81,11 @@ const StickyNavigation = () => {
           }}
         >
           {!recipeOpen ? (
-            <FaBook className="text-16" />
+            <FaBook className="text-base" />
           ) : (
-            <FaXmark className="text-16" />
+            <FaXmark className="text-base" />
           )}
-          <span className="text-13">{t('Recipes')}</span>
+          <span className="text-xs">{t('Recipes')}</span>
         </button>
 
         <button
@@ -97,12 +97,12 @@ const StickyNavigation = () => {
           }}
         >
           {!shoppingOpen ? (
-            <FaBasketShopping className="text-16" />
+            <FaBasketShopping className="text-base" />
           ) : (
-            <FaXmark className="text-16" />
+            <FaXmark className="text-base" />
           )}
-          <span className="text-13 s:hidden!">{t('Shopping')}</span>
-          <span className="text-13 max-s:hidden!">{t('Shopping list')}</span>
+          <span className="text-xs s:hidden!">{t('Shopping')}</span>
+          <span className="text-xs max-s:hidden!">{t('Shopping list')}</span>
         </button>
       </div>
 
@@ -117,22 +117,22 @@ const StickyNavigation = () => {
       >
         <Link className="justify-self-end" to="/recipe/new">
           <div className="flex flex-col items-center gap-1">
-            <FaFileCirclePlus className="text-18" />
-            <span className="text-13">{t('New recipe')}</span>
+            <FaFileCirclePlus className="text-lg" />
+            <span className="text-xs">{t('New recipe')}</span>
           </div>
         </Link>
 
         <Link className="p-3" to="/recipes">
           <div className="flex flex-col items-center gap-1">
-            <FaBook className="text-18" />
-            <span className="text-13">{t('My Recipes')}</span>
+            <FaBook className="text-lg" />
+            <span className="text-xs">{t('My Recipes')}</span>
           </div>
         </Link>
 
         <Link className="justify-self-start" to="/recipes/all">
           <div className="flex flex-col items-center gap-1">
-            <FaUtensils className="text-18" />
-            <span className="text-13">{t('Find Recipes')}</span>
+            <FaUtensils className="text-lg" />
+            <span className="text-xs">{t('Find Recipes')}</span>
           </div>
         </Link>
       </div>
@@ -148,15 +148,15 @@ const StickyNavigation = () => {
       >
         <Link className="justify-self-end pr-3" to="/list">
           <div className="flex flex-col items-center gap-1">
-            <FaBasketShopping className="text-18" />
-            <span className="text-13">{t('Shopping list')}</span>
+            <FaBasketShopping className="text-lg" />
+            <span className="text-xs">{t('Shopping list')}</span>
           </div>
         </Link>
 
         <Link className="justify-self-start pl-3" to="/shopping-list">
           <div className="flex flex-col items-center gap-1">
-            <IoReceipt className="text-18" />
-            <span className="text-13">{t('Edit Shopping List')}</span>
+            <IoReceipt className="text-lg" />
+            <span className="text-xs">{t('Edit Shopping List')}</span>
           </div>
         </Link>
       </div>

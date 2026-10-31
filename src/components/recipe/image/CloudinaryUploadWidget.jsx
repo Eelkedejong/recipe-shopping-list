@@ -69,7 +69,7 @@ function CloudinaryUploadWidget({ uwConfig, image }) {
     <CloudinaryScriptContext.Provider value={{ loaded }}>
       <button
         id="upload_widget"
-        className={`bg-light-grey rounded-10 flex flex-col items-center justify-center text-16 w-full relative ${
+        className={`bg-light-grey rounded-sm flex flex-col items-center justify-center text-base w-full relative ${
           styles.uploadButton
         } ${imageId ? styles.uploaded : ''} `}
         onClick={initializeCloudinaryWidget}

@@ -1,5 +1,3 @@
-@use '@styles/mixins/breakpoints' as *;
-
 .stickyNav {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   position: fixed;
@@ -9,28 +7,28 @@
 
   &:not(.formPage) {
     &:not(.open) {
-      box-shadow: $shadow-top;
+      box-shadow: var(--shadow-top);
     }
   }
 
   &.openRecipe {
     .recipe {
-      background-color: $color-main;
-      border-radius: 0 0 10px 10px;
-      color: $color-white;
+      background-color: var(--color-main);
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      color: var(--color-white);
     }
   }
 
   &.openShopping {
     .shopping {
-      background-color: $color-main;
-      border-radius: 0 0 10px 10px;
-      color: $color-white;
+      background-color: var(--color-main);
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      color: var(--color-white);
     }
   }
 
   .active {
-    color: $color-main;
+    color: var(--color-main);
   }
 }
 
@@ -40,7 +38,7 @@
   height: 65px;
   bottom: 65px;
   z-index: 40;
-  transition: $default-transition;
+  transition: var(--transition-base);
 
   &.recipeSubNav {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -56,7 +54,7 @@
 
   &.open {
     &:not(.formPage) {
-      box-shadow: $shadow-top;
+      box-shadow: var(--shadow-top);
     }
   }
 }

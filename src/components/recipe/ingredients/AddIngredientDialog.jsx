@@ -159,7 +159,7 @@ const AddIngredientDialog = ({ open, onOpenChange, initialName, onCreated }) => 
       <Collapsible title={t('More options')} className="px-0">
         <div className="flex flex-col gap-4">
           <div>
-            <span className="text-14 text-dark-grey mb-2 block">
+            <span className="text-sm text-dark-grey mb-2 block">
               {t('Vegetarian')}
             </span>
             <RadioGroup
@@ -179,7 +179,7 @@ const AddIngredientDialog = ({ open, onOpenChange, initialName, onCreated }) => 
           </div>
 
           <div>
-            <span className="text-14 text-dark-grey mb-2 block">
+            <span className="text-sm text-dark-grey mb-2 block">
               {t('Vegan')}
             </span>
             <RadioGroup
@@ -199,7 +199,7 @@ const AddIngredientDialog = ({ open, onOpenChange, initialName, onCreated }) => 
           </div>
 
           <div>
-            <span className="text-14 text-dark-grey mb-2 block">
+            <span className="text-sm text-dark-grey mb-2 block">
               {t('In season')}
             </span>
             <div className="flex flex-wrap gap-2">
@@ -212,10 +212,10 @@ const AddIngredientDialog = ({ open, onOpenChange, initialName, onCreated }) => 
                     aria-pressed={active}
                     onClick={() => toggleMonth(month)}
                     className={[
-                      'rounded-10 text-14 border px-2 py-1',
+                      'rounded-sm text-sm border px-2 py-1',
                       active
                         ? 'border-secondary bg-secondary text-white'
-                        : 'border-light-grey text-dark-grey',
+                        : 'border-line-subtle text-dark-grey',
                     ].join(' ')}
                   >
                     {t(`month_short_${month}`)}
@@ -227,7 +227,7 @@ const AddIngredientDialog = ({ open, onOpenChange, initialName, onCreated }) => 
         </div>
       </Collapsible>
 
-      {error ? <p className="text-14 text-red">{error}</p> : null}
+      {error ? <p className="text-sm text-red">{error}</p> : null}
     </Dialog>
   );
 };

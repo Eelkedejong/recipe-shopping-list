@@ -42,7 +42,7 @@ const PublicRecipeList = () => {
 
   return (
     <>
-      <div className="bg-white p-6 rounded-20">
+      <div className="bg-white p-6 rounded-md">
         <div className="flex gap-3 mb-6 flex-wrap">
           {dishTypes.map((recipeType) => (
             <button
@@ -55,7 +55,7 @@ const PublicRecipeList = () => {
                   navigate(`${t(recipeType.label)}`);
                 }
               }}
-              className={`py-2 px-4 text-main bg-main-bg rounded-10 text-12 font-semibold 
+              className={`py-2 px-4 text-main bg-main-bg rounded-sm text-xs font-semibold 
               ${
                 (type === '' && type === 'All') || type === t(recipeType.label)
                   ? styles.activeType
@@ -117,7 +117,7 @@ const PublicRecipeList = () => {
                   setPage(currentPage - 1);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`px-3 py-4 flex items-center gap-6 rounded-10 bg-main-bg text-main ${styles.prev}`}
+                className={`px-3 py-4 flex items-center gap-6 rounded-sm bg-main-bg text-main ${styles.prev}`}
               >
                 <FaChevronLeft className="text-main font-bold" />
               </button>
@@ -134,7 +134,7 @@ const PublicRecipeList = () => {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                   setPage(i + 1);
                 }}
-                className={`px-4 py-3  rounded-10 ${i + 1 === page ? 'bg-main text-white' : 'bg-main-bg text-main'}`}
+                className={`px-4 py-3  rounded-sm ${i + 1 === page ? 'bg-main text-white' : 'bg-main-bg text-main'}`}
               >
                 {i + 1}
               </button>
@@ -147,7 +147,7 @@ const PublicRecipeList = () => {
                   setPage(currentPage + 1);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`px-3 py-4 flex items-center gap-6 rounded-10 bg-main-bg text-main`}
+                className={`px-3 py-4 flex items-center gap-6 rounded-sm bg-main-bg text-main`}
               >
                 <FaChevronRight className="text-main" />
               </button>

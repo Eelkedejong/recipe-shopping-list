@@ -9,12 +9,6 @@
     align-items: start;
     grid-template-columns: repeat(2, 1fr);
 
-    > div {
-      &:nth-child(4) {
-        // margin-top: -140px; // @todo: find a better solution for this.
-      }
-    }
-
     > .submitButtonWrapper {
       grid-column: 1;
     }
@@ -41,22 +35,20 @@
 
 .submitButtonWrapper {
   gap: 20px;
-  flex-direction: column;
-
   border-radius: 0;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 30;
   padding: 13px 15px;
-  background-color: $color-white;
-  border-bottom: $default-border;
-  box-shadow: $shadow-top;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-line);
+  box-shadow: var(--shadow-top);
   flex-direction: row-reverse;
 
   button {
     height: 42px;
-    font-size: 16px;
+    font-size: var(--text-base);
     flex: 1;
 
     &:first-of-type {
@@ -69,7 +61,7 @@
 
     button {
       height: 38px;
-      font-size: 14px;
+      font-size: var(--text-sm);
     }
   }
 }
@@ -87,8 +79,6 @@
 
 .ingredientGrid {
   grid-template-columns: 15px 2fr 1fr 1fr 15px;
-  // touch-action: none;
-  // cursor: grab;
 }
 
 .ingredientIndex {
@@ -132,8 +122,8 @@
 // ________________________________
 section {
   .recipeTile {
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-    transition: $default-transition ease;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-base);
     position: relative;
 
     .tileImage {
@@ -149,9 +139,8 @@ section {
 
     @include screen-m(min) {
       &:hover {
-        box-shadow: 0px 4px 16px rgba(77, 73, 73, 0.25);
+        box-shadow: var(--shadow-card-hover);
         transform: translateY(-2px);
-        transition: $default-transition ease;
       }
 
       .tileImage,
@@ -168,19 +157,6 @@ section {
       .placeholderImage {
         min-height: 160px;
       }
-      // flex-direction: row;
-      // display: grid;
-      // grid-template-columns: 3fr 4fr;
-
-      // .tileImage,
-      // .placeholderImage {
-      //   min-height: 120px;
-      //   border-radius: 20px 0 0 20px;
-      // }
-
-      // h2 {
-      //   line-height: 24px;
-      // }
     }
   }
 }
@@ -194,13 +170,9 @@ section {
 //
 // Recipe details
 // ________________________________
-.detailBlock {
-  // max-width: 120px;
-}
-
 .persons {
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
 }
 
 .ingredientsBlock {
@@ -214,7 +186,7 @@ section {
 }
 
 .ingredient {
-  border-bottom: 1px dashed $color-main;
+  border-bottom: 1px dashed var(--color-main);
 }
 
 .indicator {
@@ -230,11 +202,6 @@ section {
   @include screen-m(max) {
     padding: 24px;
   }
-
-  // @include screen-m(min) {
-  //   grid-column: 2;
-  //   grid-row: 2;
-  // }
 }
 
 .placeholderDetailsImage {
@@ -250,7 +217,7 @@ section {
 
   @include screen-m(min) {
     height: 100%;
-    border-radius: 20px;
+    border-radius: var(--radius-md);
     grid-column: 2;
     grid-row: 1;
 
@@ -273,10 +240,8 @@ section {
   }
 
   @include screen-m(min) {
-    // min-height: 400px;
-    // max-height: 500px;
     height: 100%;
-    border-radius: 20px;
+    border-radius: var(--radius-md);
     grid-column: 2;
     grid-row: 1;
   }
@@ -286,8 +251,8 @@ section {
 // Type list filter
 // ________________________________
 .activeType {
-  background-color: $color-main !important;
-  color: $color-white !important;
+  background-color: var(--color-main) !important;
+  color: var(--color-white) !important;
 }
 
 //
@@ -301,13 +266,12 @@ section {
 
   @include screen-m(min) {
     margin-bottom: 24px;
-    border-radius: 20px;
+    border-radius: var(--radius-md);
   }
 }
 
 .bannerWrapper {
   @include screen-m(max) {
-    // padding-top: 32px;
-    background-color: $color-white;
+    background-color: var(--color-white);
   }
 }
