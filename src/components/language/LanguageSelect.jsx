@@ -39,7 +39,7 @@ const LanguageSelect = () => {
           <img
             src={flag(lng)}
             alt={lngs[lng].nativeName}
-            className="rounded-[50%]"
+            className="rounded-full"
           />
           <span>{lngs[lng].nativeName}</span>
         </button>

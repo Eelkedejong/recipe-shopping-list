@@ -1,5 +1,3 @@
-@use '@styles/mixins/breakpoints' as *;
-
 .field {
   position: relative;
   display: block;
@@ -7,13 +5,13 @@
 
 .textarea {
   min-height: 76px;
-  background-color: $color-light-grey;
+  background-color: var(--color-light-grey);
   width: 100%;
   resize: vertical;
-  border-bottom: 2px solid $color-dark-grey;
+  border-bottom: 2px solid var(--color-line-strong);
 
   &:focus {
-    border-color: $color-secondary;
+    border-color: var(--color-focus);
   }
 }
 
@@ -22,12 +20,12 @@
   top: 25px;
   transform: translateY(-50%);
   left: 0.75rem;
-  transition: $default-transition;
+  transition: var(--transition-base);
 }
 
 // Base UI sets these on Field.Root as the control fills and gains focus.
 .field[data-filled] .label,
 .field[data-focused] .label {
-  font-size: 10px;
+  font-size: var(--text-2xs);
   top: 15px;
 }

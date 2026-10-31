@@ -181,7 +181,7 @@ const IngredientsRow = ({ ingredient, index, id }) => {
           canAdd ? (
             <button
               type="button"
-              className="text-14 text-secondary w-full px-3 py-2 text-left"
+              className="text-sm text-secondary w-full px-3 py-2 text-left"
               // The combobox would otherwise steal the click as a blur.
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => setAddOpen(true)}

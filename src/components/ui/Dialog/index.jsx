@@ -22,11 +22,11 @@ const Dialog = ({
 }) => (
   <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
     <BaseDialog.Portal>
-      <BaseDialog.Backdrop className="fixed inset-0 z-[100] bg-black/40" />
+      <BaseDialog.Backdrop className="fixed inset-0 z-(--z-modal) bg-backdrop" />
       <BaseDialog.Popup
         className={[
-          'rounded-20 fixed top-1/2 left-1/2 z-[101] flex max-h-[85vh] w-[min(32rem,calc(100vw-2rem))]',
-          '-translate-x-1/2 -translate-y-1/2 flex-col bg-white shadow-xl',
+          'rounded-md fixed top-1/2 left-1/2 z-[calc(var(--z-modal)+1)] flex max-h-[85vh] w-[min(32rem,calc(100vw-2rem))]',
+          '-translate-x-1/2 -translate-y-1/2 flex-col bg-white shadow-popover',
           className,
         ]
           .filter(Boolean)
@@ -34,11 +34,11 @@ const Dialog = ({
       >
         <div className="flex items-start justify-between gap-4 px-6 pt-6 pb-2">
           <div>
-            <BaseDialog.Title className="text-20 font-semibold">
+            <BaseDialog.Title className="text-xl font-semibold">
               {title}
             </BaseDialog.Title>
             {description ? (
-              <BaseDialog.Description className="text-14 text-dark-grey mt-1">
+              <BaseDialog.Description className="text-sm text-dark-grey mt-1">
                 {description}
               </BaseDialog.Description>
             ) : null}
@@ -59,7 +59,7 @@ const Dialog = ({
         </div>
 
         {footer ? (
-          <div className="border-light-grey flex shrink-0 justify-end gap-3 border-t bg-white px-6 pt-4 pb-6">
+          <div className="border-line-subtle flex shrink-0 justify-end gap-3 border-t bg-white px-6 pt-4 pb-6">
             {footer}
           </div>
         ) : null}

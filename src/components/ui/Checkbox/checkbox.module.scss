@@ -1,5 +1,3 @@
-@use '@styles/mixins/breakpoints' as *;
-
 $checkbox-size: 20px;
 
 .wrapper {
@@ -20,26 +18,26 @@ $checkbox-size: 20px;
   height: $checkbox-size;
   padding: 0;
   background-color: transparent;
-  border: 1px solid #666;
+  border: 1px solid var(--color-line-strong);
   border-radius: calc($checkbox-size / 4);
   cursor: pointer;
   transition:
-    0.2s border-color ease,
-    0.2s background-color ease;
+    var(--duration-fast) border-color ease,
+    var(--duration-fast) background-color ease;
 
   &[data-checked] {
-    border-color: $color-main;
+    border-color: var(--color-main);
   }
 
   &[data-disabled] {
-    border-color: #ccc;
-    background-color: #ccc;
+    border-color: var(--color-disabled);
+    background-color: var(--color-disabled);
     cursor: not-allowed;
   }
 
   // Solid fill when ticked; the plain variant only shows the checkmark.
   &.filled[data-checked]:not([data-disabled]) {
-    background-color: $color-main;
+    background-color: var(--color-main);
   }
 }
 
@@ -48,15 +46,15 @@ $checkbox-size: 20px;
   width: 5px;
   height: 10px;
   margin-top: -2px;
-  border: solid $color-main;
+  border: solid var(--color-main);
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
   transition:
-    0.2s opacity ease,
-    0.2s scale ease;
+    var(--duration-fast) opacity ease,
+    var(--duration-fast) scale ease;
 
   .filled & {
-    border-color: $color-white;
+    border-color: var(--color-white);
   }
 
   // Base UI marks the indicator while it enters and leaves, which replaces the

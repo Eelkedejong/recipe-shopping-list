@@ -36,25 +36,25 @@ const RecipeTile = ({
   return (
     <Link
       to={`${isPublic ? `/public/recipe/${id}` : `/recipe/${id}`}`}
-      className={`flex flex-col rounded-20 ${styles.recipeTile}`}
+      className={`flex flex-col rounded-md ${styles.recipeTile}`}
     >
       {image ? (
         <div
-          className={`flex justify-center bg-main rounded-t-20 flex-1 ${styles.tileImage}`}
+          className={`flex justify-center bg-main rounded-t-md flex-1 ${styles.tileImage}`}
           style={{ backgroundImage: `url(${imageUrl})` }}
         ></div>
       ) : (
         <div
-          className={`flex justify-center bg-main rounded-t-20 flex-1 ${styles.placeholderImage}`}
+          className={`flex justify-center bg-main rounded-t-md flex-1 ${styles.placeholderImage}`}
         >
           <img src={logo} alt="Chef" />
         </div>
       )}
 
       <div className="p-3 py-2">
-        <h2 className="text-18 font-bold">{name}</h2>
+        <h2 className="text-lg font-bold">{name}</h2>
 
-        <div className="flex gap-1 text-grey font-light text-14">
+        <div className="flex gap-1 text-grey font-light text-sm">
           {typeOfDish
             ? typeOfDish.map((type, index) => {
                 return (
@@ -69,14 +69,14 @@ const RecipeTile = ({
 
         <div className={`flex gap-4 mt-6 mb-2 mr-6 flex-wrap`}>
           {time ? (
-            <div className="flex items-center gap-2 text-14">
+            <div className="flex items-center gap-2 text-sm">
               <FaClockRotateLeft fontSize="14px" /> {time} {t('min')}
             </div>
           ) : null}
 
           {cuisine && cuisine.length > 0 ? (
             <div
-              className={`flex items-center gap-1 text-12 ${styles.cuisineLabel} bg-white rounded-10 p-1 px-2`}
+              className={`flex items-center gap-1 text-xs ${styles.cuisineLabel} bg-white rounded-sm p-1 px-2`}
             >
               {/* <FaUtensils fontSize="14px" /> */}
               {cuisine[0]}
@@ -84,7 +84,7 @@ const RecipeTile = ({
           ) : null}
 
           {typeOfMeal && typeOfMeal.length > 0 ? (
-            <div className="flex items-center gap-1 text-14">
+            <div className="flex items-center gap-1 text-sm">
               <FaUtensils fontSize="14px" />
               {typeOfMeal
                 ? typeOfMeal.map((type, index) => {

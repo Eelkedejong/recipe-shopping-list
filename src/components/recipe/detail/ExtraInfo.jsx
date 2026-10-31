@@ -11,31 +11,31 @@ const RecipeDetail = ({ recipe }) => {
       <div className="flex  gap-6 pt-6">
         {recipe.time ? (
           <div
-            className={`flex flex-col items-center justify-center p-4 px-6 bg-white rounded-10 ${styles.detailBlock}`}
+            className={`flex flex-col items-center justify-center p-4 px-6 bg-white rounded-sm ${styles.detailBlock}`}
           >
-            <div className="flex items-center gap-2 text-main text-14">
+            <div className="flex items-center gap-2 text-main text-sm">
               <FaClockRotateLeft /> {recipe.time} {t('min')}
             </div>
-            <span className="text-12">{t('Cooking time')}</span>
+            <span className="text-xs">{t('Cooking time')}</span>
           </div>
         ) : null}
 
         {recipe.cuisine && recipe.cuisine.length != 0 ? (
           <div
-            className={`flex flex-col items-center justify-center p-4 px-6 bg-white rounded-10 ${styles.detailBlock}`}
+            className={`flex flex-col items-center justify-center p-4 px-6 bg-white rounded-sm ${styles.detailBlock}`}
           >
-            <div className="flex items-center gap-2 text-main text-14">
+            <div className="flex items-center gap-2 text-main text-sm">
               <FaUtensils /> {recipe.cuisine[0]}
             </div>
-            <span className="text-12">{t('Cuisine')}</span>
+            <span className="text-xs">{t('Cuisine')}</span>
           </div>
         ) : null}
 
         {recipe.tags && recipe.tags.length > 0 ? (
           <div
-            className={`flex flex-col items-center justify-center p-4 px-6 bg-white rounded-10 ${styles.detailBlock}`}
+            className={`flex flex-col items-center justify-center p-4 px-6 bg-white rounded-sm ${styles.detailBlock}`}
           >
-            <div className="flex items-center gap-1 text-main text-14">
+            <div className="flex items-center gap-1 text-main text-sm">
               {recipe.tags
                 ? recipe.tags.map((tag, index) => {
                     return (
@@ -47,7 +47,7 @@ const RecipeDetail = ({ recipe }) => {
                   })
                 : null}
             </div>
-            <span className="text-12">{t('Characteristics')}</span>
+            <span className="text-xs">{t('Characteristics')}</span>
           </div>
         ) : null}
       </div>

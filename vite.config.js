@@ -10,10 +10,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), imagetools()],
   css: {
     preprocessorOptions: {
-      scss: {
-        implementation: sass,
-        additionalData: `@use "@styles/variables.scss" as *;`,
-      },
+      scss: { implementation: sass },
     },
   },
   optimizeDeps: { exclude: ['dnd-kit'] },

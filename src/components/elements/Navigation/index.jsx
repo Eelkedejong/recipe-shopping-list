@@ -55,7 +55,7 @@ const Navigation = () => {
     >
       <Link className="link" to={to}>
         <div className="flex items-center gap-4 py-3">
-          <Icon className="text-18" /> {label}
+          <Icon className="text-lg" /> {label}
         </div>
       </Link>
     </li>
@@ -127,13 +127,13 @@ const Navigation = () => {
           closeLabel={t('Close menu')}
           className={styles.drawer}
         >
-          <nav className={`font-light text-18 px-6 pb-6 ${styles.navigation}`}>
+          <nav className={`font-light text-lg px-6 pb-6 ${styles.navigation}`}>
             {menu}
           </nav>
         </Drawer>
       ) : (
         <nav
-          className={`flex px-6 py-3 font-light text-18 ${styles.navigation}`}
+          className={`flex px-6 py-3 font-light text-lg ${styles.navigation}`}
         >
           {menu}
         </nav>

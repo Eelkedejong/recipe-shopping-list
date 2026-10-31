@@ -53,7 +53,7 @@ const TypesList = () => {
                   }
                 }}
                 className={`
-                  py-2 px-4 text-main bg-main-bg rounded-10 text-13 font-semibold 
+                  py-2 px-4 text-main bg-main-bg rounded-sm text-xs font-semibold 
                   ${
                     (SelectedType.length === 0 && type === `${t('All')}`) ||
                     SelectedType.includes(type)

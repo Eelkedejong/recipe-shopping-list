@@ -1,148 +1,141 @@
-# Design system — current state
-
-An audit of what the code actually does, taken 2026-10-31. **This is not yet
-a finished design system**: the tokens exist, the rules layer does not. Where
-a rule needs a decision it is marked **[open]** — ask rather than inventing
-one.
+# Design system
 
 Read this before styling work or any visual change.
 
-## Where the tokens live
+## One source of truth
 
-Two files, **hand-mirrored with no shared source**:
+**Every design value lives in `src/styles/tailwind.css`**, in the
+`@theme static` block. Tailwind turns each token into a utility *and* emits
+it as a CSS custom property on `:root`, so the same token is used two ways:
 
-- `src/styles/variables.scss` — Sass variables, used by `.module.scss` files
-- `src/styles/tailwind.css` — the `@theme` block, used by utility classes
+| Where | How | Example |
+|---|---|---|
+| JSX | Tailwind utility | `bg-main text-sm rounded-md shadow-card` |
+| `.module.scss` | `var()` | `background: var(--color-main);` |
 
-They agree today. Nothing enforces that. **Change both together, or they
-drift.** This is the single most likely way to introduce an inconsistency
-here.
+Change a value in `tailwind.css` and every use follows. To restyle the app,
+that file is the place to start.
 
-Tailwind's Preflight is deliberately off; the project ships `reset.scss`
-instead. Utilities are imported *unlayered* on purpose so the cascade order
-stays `reset -> defaults -> utilities -> page styles -> component modules`.
-Don't "fix" that by putting them in a layer — they would lose to every
-unlayered rule, the reset included.
+**The only exception is breakpoints.** Media queries can't read custom
+properties, so `src/styles/variables.scss` keeps a Sass copy (`$screen-*`)
+for the `screen-*()` mixins. Change the two together. Nothing else belongs in
+`variables.scss` — don't add Sass colour or size variables back.
 
-## What is actually load-bearing
+Tailwind's default colour, font-size, radius and shadow scales are switched
+off (`--color-*: initial` etc.). A class like `bg-red-500` or `shadow-xl`
+simply does nothing. That is
+deliberate: if a value is missing, **add a token** rather than reaching for
+an arbitrary value or a hex code.
 
-Usage counts across `src/`, which tell a different story from the token file:
+## Tokens
 
-| Token | Sass uses | JSX uses | Verdict |
-|---|---|---|---|
-| `color-main` `#f1a661` | 37 | 56 (`bg-`/`text-`) | **The** brand colour |
-| `color-main-bg` `#ffebd4` | 5 | 16 | Primary tinted surface |
-| `color-dark-grey` `#666` | 5 | 24 | Default body text |
-| `rounded-10` / `rounded-20` | — | 54 | The only two radii in real use |
-| `default-transition` `all .3s` | 12 | — | Standard interaction timing |
-| `color-main-dark` `#e18733` | 3 | — | Hover/active on primary |
-| `color-black` `#333` | 4 | 6 | Headings |
+### Colour
 
-So the real system is: **an amber primary, a grey text ramp, two radii, one
-transition.** Much smaller than `variables.scss` suggests.
+| Token | Use |
+|---|---|
+| `main` | The brand colour: buttons, links, active states, accents |
+| `main-dark` | Hover/active on primary |
+| `main-bg` | Tinted surface: chips, highlighted rows, ingredient panel |
+| `secondary` | Teal accent: vegetarian tag, selected chip, focus |
+| `white`, `light-grey`, `medium-grey` | Surfaces: cards, controls, page |
+| `grey`, `dark-grey`, `black` | Text: muted, body, headings |
+| `black-full` | Hover on dark buttons |
+| `line` | Default border and divider |
+| `line-subtle` | Dividers inside panels, dialogs and menus |
+| `line-strong` | Form control borders (inputs, checkboxes, radios) |
+| `focus` | Focus border/outline on controls (aliases `secondary`) |
+| `disabled` | Disabled control fill and border |
+| `backdrop` | Behind dialogs, drawers and the mobile search overlay |
+| `success`, `success-bg`, `error`, `error-bg` | `.message` alerts |
 
-### Effectively dead tokens
+`line-strong` and `focus` are aliases of other tokens. Repoint the alias
+to restyle every control at once, without touching the base colour.
 
-Present in the token files, barely or never used. Don't build on these
-without deciding they're real first:
+### Type
 
-- `--color-secondary` `#5c8d89` (teal) — 5 Sass, 2 JSX. The declared
-  "secondary theme colour" is decorative at this point, not part of the system.
-- `--color-lightest-grey` `#f1f5fe` — 1 use. It is **blue-tinted**, out of
-  family with the warm amber palette, which is likely why nothing uses it.
-- `rounded-30` — 0 uses. `rounded-35` — 1.
-- `shadow-top` — 0 uses in JSX (5 in Sass). The only shadow in the system.
-- `color-medium-grey`, `color-light-grey`, `color-grey` — 1 JSX use each.
+Two families: `font-logo` (Titan One) and `font-main` (Poppins, set on
+`body`). Both have system fallbacks.
 
-## The gaps
+| Token | Size | Use |
+|---|---|---|
+| `text-2xs` | 10px | Floating labels on inputs/selects |
+| `text-xs` | 12px | Chips, captions, sticky-nav labels |
+| `text-sm` | 14px | Secondary text, list items, filters |
+| `text-base` | 16px | Body |
+| `text-lg` | 18px | Buttons, emphasis |
+| `text-xl` | 20px | Section, dialog and drawer titles |
+| `text-2xl` | 24px | Page titles on mobile |
+| `text-3xl` | 28px | Page titles |
+| `text-4xl` | 32px | Recipe titles |
 
-These are real inconsistencies, not nitpicks. They were found by audit, and
-none of them is visible from the token file alone.
+The sizes have **no line-height companion** on purpose: the utilities set
+`font-size` only and line-height keeps being inherited. Don't add
+`--text-*--line-height`; it would change every existing use.
 
-### 1. There is no border colour token, and borders are everywhere
+### Radius
 
-Hardcoded across the codebase: `#ddd`, `#dddddd`, `#eee`, `#ccc`, `#666`.
+`rounded-sm` (10px) for buttons, inputs, chips and small cards;
+`rounded-md` (20px) for cards, panels and images; `rounded-lg` (30px) for
+page sections and large sheets. Use `rounded-full` for circles and pills.
 
-```
-src/styles/App.scss:68                      border: 1px solid #dddddd
-src/components/ui/Drawer/drawer.module.scss:68,109    #ddd, #eee
-src/components/ui/Checkbox/checkbox.module.scss:23,35 #666, #ccc
-src/components/ui/Radio/radio.module.scss:23,33       #666, #ccc
-src/components/recipe/recipe.module.scss:202,203      #ddd
-src/components/recipe/image/image.module.scss:5       #666 (dashed)
-```
+### Shadow
 
-`$default-border: 1px solid #ddd` exists but is used only 3 times, and
-hardcodes its own colour rather than referencing a token.
+`shadow-card`, `shadow-card-hover` (recipe tiles), `shadow-popover` (menus,
+dialogs, dragged items), `shadow-top` (bars fixed to the bottom of the
+screen and the bottom sheet).
 
-**[open]** Needs a border token set — probably a default border, a subtle
-divider, and a control border — before these can be unified.
+### Motion
 
-### 2. Semantic state colours exist entirely outside the system
+`--duration-fast` (0.2s) for small controls, `--duration-base` (0.3s) for
+everything else, and `--transition-base` (`all` at base duration) as the
+default `transition`. The drawer keeps its own spring curve.
 
-`src/styles/App.scss` defines success and error states with six untokenised
-hex values:
+### Stacking
 
-```scss
-// success
-color: #2b7515;  background: #ecffd6;  border-left: 3px solid #617c42;
-// error
-color: #ba3939;  background: #ffe0e0;  border-left: 3px solid #a33a3a;
-```
+Only the overlay layers are tokens, because they depend on each other:
+`--z-modal` (dialog/drawer backdrop, popup at `+ 1`) and `--z-popover`
+(select/combobox menus, above modals). In JSX: `z-(--z-modal)`. Page-level
+z-indexes (sticky nav, header) stay local to their stylesheet.
 
-These do real work in alerts and are the only green and red in the app.
-**[open]** They should be tokens. Nothing else can use them until they are.
+### Spacing
 
-### 3. No spacing scale of its own
+Tailwind's default spacing scale (`p-4`, `gap-6`, …), on purpose. There is
+no project spacing scale.
 
-The project inherits Tailwind's default spacing. That is a reasonable choice
-— but it is undocumented, so it reads as an omission rather than a decision.
-**[open]** Confirm it is deliberate.
-
-### 4. Single light theme, undocumented
-
-There is no dark mode and no `prefers-color-scheme` handling anywhere. That
-appears to be a deliberate choice for a warm, light, food-focused look.
-**[open]** Confirm, so it doesn't get half-implemented by accident later.
-
-### 5. `#f5f5f5` is duplicated
-
-`App.scss:4` hardcodes it where `$color-light-grey` already holds the same
-value.
-
-## Type
-
-Two families: `Titan One` for the logo, `Poppins` for everything else.
-
-Sizes are keyed by pixel value — `--text-12` through `--text-36` — and
-deliberately ship **without** a `--text-*--line-height` companion, so the
-utilities set `font-size` only and line-height keeps being inherited. Don't
-add line-height pairs to these; it would change every existing use.
-
-**[open]** Nothing records which size means what (page title, card title,
-body, caption). That mapping is the main thing a rules layer would add.
-
-## Breakpoints
-
-Seven, mirrored between the Sass mixins and Tailwind's `@custom-variant`:
+### Breakpoints
 
 ```
 xxs 360   xs 480   s 768   m 1200   l 1400   xl 1600   xxl 2000
 ```
 
-The `max-*` variants use an **inclusive** `max-width` to match the Sass
-mixins, rather than Tailwind's exclusive default. Keep using the project
-variants, not Tailwind's built-in `max-*`.
+Mobile-first `m:` and the project's own `max-m:` variants. The `max-*`
+variants are **inclusive** (`width <= 1200px`) to match the Sass mixins, and
+read the `--breakpoint-*` tokens. Use them, not Tailwind's built-in
+exclusive `max-*`.
 
 Per the root `PRODUCT.md`: the grocery list is used one-handed in a
 supermarket, the recipe form at a desk. Design each for where it is used.
 
-## Before a visual refactor
+### Theme
 
-The public recipe browser becoming the primary experience (see `PRODUCT.md`)
-is a visual change. Two things are worth settling first:
+One light theme. No dark mode and no `prefers-color-scheme` handling.
 
-1. Fill in the **[open]** items above — borders, state colours, the type
-   scale's roles — so the refactor has a system to build on.
-2. Decide whether the teal secondary and the blue-tinted grey are part of the
-   palette or should be dropped. Right now they are neither used nor removed.
+## Rules
+
+- **No hex codes, `rgba()`, or px font sizes/radii outside `tailwind.css`.**
+  Use a token; add one if it's missing.
+- **No inline `style={{}}`** except for runtime values, such as a
+  background-image URL.
+- Arbitrary Tailwind values (`w-[…]`) are fine for one-off layout sizes,
+  not for colours, type, radius or shadow.
+- Component styling belongs in `components/ui/`, page layout in the page's
+  `.module.scss`.
+
+## Cascade
+
+Tailwind's Preflight is off; the project ships `reset.scss` instead
+(`all: unset` on everything — see `CLAUDE.md`). Utilities are imported
+*unlayered* on purpose so the cascade order stays
+`reset -> defaults -> utilities -> page styles -> component modules`. Don't
+put them in a layer; they would lose to every unlayered rule, the reset
+included.

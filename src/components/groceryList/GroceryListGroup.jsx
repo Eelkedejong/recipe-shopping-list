@@ -31,10 +31,10 @@ const GroceryListItem = ({ item, onToggle }) => {
             }
           : undefined
       }
-      className={`border-light-grey flex items-center gap-3 border-b py-2 last:border-b-0 ${
+      className={`border-line-subtle flex items-center gap-3 border-b py-2 last:border-b-0 ${
         // Opaque while dragging, so the row it passes over does not show
         // through it - it should read as lifted off the list, not blended in.
-        isDragging ? 'rounded-10 border-b-transparent bg-white px-2 shadow-lg' : ''
+        isDragging ? 'rounded-sm border-b-transparent bg-white px-2 shadow-popover' : ''
       }`}
     >
       <label className="flex flex-1 cursor-pointer items-center gap-3">
@@ -74,11 +74,11 @@ const GroceryListGroup = ({ group, onToggle }) => {
   return (
     <section
       ref={setNodeRef}
-      className={`mb-6 rounded-10 transition-colors ${
-        isOver ? 'bg-main-bg-light outline-main -m-2 p-2 outline-2 outline-dashed' : ''
+      className={`mb-6 rounded-sm transition-colors ${
+        isOver ? 'bg-main-bg outline-main -m-2 p-2 outline-2 outline-dashed' : ''
       }`}
     >
-      <h3 className="text-dark-grey text-14 mb-2 font-semibold tracking-wide uppercase">
+      <h3 className="text-dark-grey text-sm mb-2 font-semibold tracking-wide uppercase">
         {group.categoryName}
       </h3>
 

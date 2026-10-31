@@ -13,7 +13,7 @@ const RecipeType = () => {
         path="/recipes/test"
         element={
           <>
-            <section className={`section w-full rounded-t-30`}>
+            <section className={`section w-full rounded-t-lg`}>
               <Header title={t('Discover new tastes')} />
               <PublicRecipeList />
             </section>

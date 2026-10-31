@@ -2,8 +2,8 @@
 
 React 19 + Vite + Tailwind v4, deployed to Vercel at `mijn-kookboek.nl`.
 See `../CLAUDE.md` for deploy and database rules shared with the API, and
-**`DESIGN.md` in this repo before any styling or visual work** — it records
-which tokens are real, which are dead, and where the system has gaps.
+**`DESIGN.md` in this repo before any styling or visual work** — all design
+tokens live in `src/styles/tailwind.css`, and it explains how to use them.
 
 ## Stack and what each piece owns
 

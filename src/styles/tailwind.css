@@ -1,8 +1,19 @@
 /*
- * Tailwind entry point
+ * Tailwind entry point, and the design tokens
  * _____________________________________________
  *
- * Replaces the former custom utility system (src/styles/utility/*.scss).
+ * This file is the single source of truth for every design value. The
+ * @theme block below is emitted as CSS custom properties on :root, so:
+ *
+ *   - JSX uses them as utilities:   bg-main, text-sm, rounded-md, shadow-card
+ *   - .module.scss reads them:      var(--color-main), var(--radius-md)
+ *
+ * Change a value here and both follow. The one exception is breakpoints:
+ * media queries cannot read custom properties, so Sass keeps its own copy in
+ * src/styles/variables.scss. Change those two together.
+ *
+ * `static` makes Tailwind emit every token, used by a utility or not -
+ * the Sass modules read them through var(), which Tailwind cannot see.
  *
  * Preflight is intentionally left out: the project ships its own reset
  * (src/styles/reset.scss), so only Tailwind's theme and utilities are loaded.
@@ -17,72 +28,110 @@
 
 @source '../**/*.{js,jsx}';
 
-@theme {
+@theme static {
   /*
-   * Colors -- mirrors src/styles/variables.scss
+   * Colors
    * _____________________________________________
+   *
+   * Tailwind's default palette is switched off, so only these exist.
+   * A class like bg-red-500 silently does nothing - add a token instead.
    */
+  --color-*: initial;
 
-  /* Gray scale */
-  --color-black: #333;
-  --color-black-full: #111;
-  --color-grey: #999;
-  --color-dark-grey: #666;
-  --color-medium-grey: #f1f0f0;
-  --color-light-grey: #f5f5f5;
-  --color-lightest-grey: #f1f5fe;
+  /* Brand */
+  --color-main: #f1a661; /* Primary: buttons, links, accents */
+  --color-main-dark: #e18733; /* Hover/active on primary */
+  --color-main-bg: #ffebd4; /* Tinted surface: chips, highlights, panels */
+  --color-secondary: #5c8d89; /* Teal accent: vegetarian, selected chip */
+
+  /* Neutrals */
   --color-white: #fff;
+  --color-light-grey: #f5f5f5; /* Control and page background */
+  --color-medium-grey: #f1f0f0; /* Main content background */
+  --color-grey: #999; /* Muted text */
+  --color-dark-grey: #666; /* Body text */
+  --color-black: #333; /* Headings, dark buttons */
+  --color-black-full: #111; /* Hover on dark buttons */
 
-  /* Theme colors */
-  --color-main: #f1a661;
-  --color-main-dark: #e18733;
-  --color-main-light: #ffd8a9;
-  --color-main-bg: #ffebd4;
-  --color-main-bg-light: #fdeedc;
+  /* Lines */
+  --color-line: #ddd; /* Default border and divider */
+  --color-line-subtle: #eee; /* Dividers inside panels, dialogs, menus */
+  --color-line-strong: var(--color-dark-grey); /* Form control borders */
 
-  /* Secondary theme colors */
-  --color-secondary: #5c8d89;
+  /* Interaction states */
+  --color-focus: var(--color-secondary); /* Focus ring/border on controls */
+  --color-disabled: #ccc;
+  --color-backdrop: rgb(0 0 0 / 50%); /* Behind dialogs, drawers, overlays */
+
+  /* Feedback */
+  --color-success: #2b7515;
+  --color-success-bg: #ecffd6;
+  --color-error: #ba3939;
+  --color-error-bg: #ffe0e0;
 
   /*
    * Font
    * _____________________________________________
    */
-  --font-logo: 'Titan One';
-  --font-main: 'Poppins';
+  --font-logo: 'Titan One', 'Poppins', system-ui, sans-serif;
+  --font-main: 'Poppins', system-ui, sans-serif;
 
-  /* Font sizes, keyed by their pixel value. Deliberately without a
-   * --text-*--line-height companion, so the utilities set font-size only
-   * and the line-height keeps being inherited. */
-  --text-12: 0.75rem;
-  --text-13: 0.8125rem;
-  --text-14: 0.875rem;
-  --text-16: 1rem;
-  --text-18: 1.125rem;
-  --text-20: 1.25rem;
-  --text-24: 1.5rem;
-  --text-28: 1.75rem;
-  --text-32: 2rem;
-  --text-36: 2.25rem;
+  /* Font sizes. Deliberately without a --text-*--line-height companion,
+   * so the utilities set font-size only and line-height keeps being
+   * inherited. */
+  --text-*: initial;
+  --text-2xs: 0.625rem; /* 10px - floating labels */
+  --text-xs: 0.75rem; /* 12px - chips, captions, nav labels */
+  --text-sm: 0.875rem; /* 14px - secondary text, list items */
+  --text-base: 1rem; /* 16px - body */
+  --text-lg: 1.125rem; /* 18px - buttons, emphasis */
+  --text-xl: 1.25rem; /* 20px - section and dialog titles */
+  --text-2xl: 1.5rem; /* 24px - page titles on mobile */
+  --text-3xl: 1.75rem; /* 28px - page titles */
+  --text-4xl: 2rem; /* 32px - recipe titles */
 
   /*
-   * Borders / Shadows
+   * Radius
+   * _____________________________________________
+   *
+   * rounded-full (circles, pills) and rounded-none are always available.
+   */
+  --radius-*: initial;
+  --radius-sm: 10px; /* Buttons, inputs, chips, small cards */
+  --radius-md: 20px; /* Cards, panels, images */
+  --radius-lg: 30px; /* Page sections, large sheets */
+
+  /*
+   * Shadows
    * _____________________________________________
    */
-  --radius-10: 10px;
-  --radius-20: 20px;
-  --radius-30: 30px;
-  --radius-35: 35px;
-
-  --shadow-top: 0px -4px 8px 0px rgba(108, 108, 108, 0.25);
+  --shadow-*: initial;
+  --shadow-card: 0 4px 16px rgb(0 0 0 / 10%);
+  --shadow-card-hover: 0 4px 16px rgb(77 73 73 / 25%);
+  --shadow-popover: 0 4px 16px rgb(0 0 0 / 15%); /* Menus, dialogs, dragged items */
+  --shadow-top: 0 -4px 8px rgb(108 108 108 / 25%); /* Bars fixed to the bottom */
 
   /*
-   * Transitions
+   * Motion
    * _____________________________________________
    */
-  --default-transition: all 0.3s;
+  --duration-fast: 0.2s; /* Small controls: checkbox, radio, chevrons */
+  --duration-base: 0.3s; /* Everything else */
+  --transition-base: all var(--duration-base) ease;
 
   /*
-   * Breakpoints -- mirrors src/styles/variables.scss
+   * Stacking
+   * _____________________________________________
+   *
+   * Only the overlay layers are tokens, because they depend on each other:
+   * a select opened inside a dialog must render above it.
+   * Use in JSX as z-(--z-modal).
+   */
+  --z-modal: 100; /* Dialog and drawer backdrops; the popup sits at +1 */
+  --z-popover: 200; /* Select and combobox menus */
+
+  /*
+   * Breakpoints -- mirrored in src/styles/variables.scss
    * _____________________________________________
    */
   --breakpoint-*: initial;
@@ -103,10 +152,10 @@
  * `max-width`, matching the mixins, rather than Tailwind's exclusive
  * default max-* variants.
  */
-@custom-variant max-xxs (@media (max-width: 360px));
-@custom-variant max-xs (@media (max-width: 480px));
-@custom-variant max-s (@media (max-width: 768px));
-@custom-variant max-m (@media (max-width: 1200px));
-@custom-variant max-l (@media (max-width: 1400px));
-@custom-variant max-xl (@media (max-width: 1600px));
-@custom-variant max-xxl (@media (max-width: 2000px));
+@custom-variant max-xxs (@media (width <= theme(--breakpoint-xxs)));
+@custom-variant max-xs (@media (width <= theme(--breakpoint-xs)));
+@custom-variant max-s (@media (width <= theme(--breakpoint-s)));
+@custom-variant max-m (@media (width <= theme(--breakpoint-m)));
+@custom-variant max-l (@media (width <= theme(--breakpoint-l)));
+@custom-variant max-xl (@media (width <= theme(--breakpoint-xl)));
+@custom-variant max-xxl (@media (width <= theme(--breakpoint-xxl)));

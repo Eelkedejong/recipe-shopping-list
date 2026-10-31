@@ -9,7 +9,7 @@
     position: absolute;
     right: 20px;
     top: 90px;
-    border: 1px solid $color-main;
+    border: 1px solid var(--color-main);
 
     &.publicFilter {
       top: 270px;
@@ -26,7 +26,7 @@
 input.filterInput.search {
   padding-right: 40px;
   height: 32px;
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 
 // Only rendered above the m breakpoint now; below it the filters live in a

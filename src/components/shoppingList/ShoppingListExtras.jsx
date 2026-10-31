@@ -30,17 +30,17 @@ const ShoppingListExtras = ({ extras, onAdd, onRemove }) => {
     categories.find((category) => category.slug === slug)?.nameNl ?? t('Other');
 
   return (
-    <div className="bg-white p-6 rounded-20 mb-6">
-      <h3 className="text-20 font-bold mb-6">
+    <div className="bg-white p-6 rounded-md mb-6">
+      <h3 className="text-xl font-bold mb-6">
         {t('Add items to shopping list')}
       </h3>
 
       {extras.length ? (
-        <ul className="text-14 mb-4 flex flex-col">
+        <ul className="text-sm mb-4 flex flex-col">
           {extras.map((extra, index) => (
             <li
               key={extra.id ?? `${extra.name}-${index}`}
-              className="border-light-grey flex items-center justify-between gap-3 border-b py-2 last:border-b-0"
+              className="border-line-subtle flex items-center justify-between gap-3 border-b py-2 last:border-b-0"
             >
               <span>
                 {extra.name}

@@ -64,10 +64,10 @@ const GroceryList = () => {
   const total = groups.reduce((count, group) => count + group.items.length, 0);
 
   return (
-    <div className="bg-white p-6 rounded-20 max-m:rounded-[0_0_20px_20px]">
+    <div className="bg-white p-6 rounded-md max-m:rounded-t-none max-m:rounded-b-md">
       {isLoading ? null : (
         <>
-          <div className="text-14 flex flex-wrap items-center justify-between gap-3 pb-4">
+          <div className="text-sm flex flex-wrap items-center justify-between gap-3 pb-4">
             {tickedCount > 0 ? (
               <button
                 type="button"

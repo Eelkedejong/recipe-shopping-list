@@ -44,7 +44,7 @@ const StepsList = ({ tags, placeholder, prefix }) => {
       <div className="flex w-full">
         <button
           type="button"
-          className="flex items-center justify-end gap-3 py-2 text-16"
+          className="flex items-center justify-end gap-3 py-2 text-base"
           onClick={(e) => {
             e.preventDefault;
             setLabels([...labels, '']);

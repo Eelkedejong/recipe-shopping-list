@@ -1,43 +1,16 @@
 //
-// Colors
+// Sass variables
 //________________________________________
-
-// Gray scale
-$color-black: #333;
-$color-black-full: #111;
-$color-grey: #999;
-$color-dark-grey: #666;
-$color-medium-grey: #f1f0f0;
-$color-light-grey: #f5f5f5;
-$color-lightest-grey: #f1f5fe;
-$color-white: #fff;
-
-// Theme colors
-$color-main: #f1a661;
-$color-main-dark: #e18733;
-$color-main-light: #ffd8a9;
-$color-main-bg: #ffebd4;
-$color-main-bg-light: #fdeedc;
-
-// Secondary theme colors
-$color-secondary: #5c8d89;
-
 //
-// Font
-//________________________________________
-$font-family-logo: 'Titan One';
-$font-family-main: 'Poppins';
-
+// Design tokens (colours, type, radius, shadows, motion) live in
+// src/styles/tailwind.css and are read here as custom properties:
 //
-// Borders / Shadows
+//   color: var(--color-main);
+//   border-radius: var(--radius-md);
 //
-$default-border: 1px solid #ddd;
-$shadow-top: 0px -4px 8px 0px rgba(108, 108, 108, 0.25);
-
-//
-// Transitions
-//________________________________________
-$default-transition: all 0.3s;
+// Only the breakpoints stay in Sass, because media queries cannot read
+// custom properties. They mirror the --breakpoint-* tokens in tailwind.css;
+// change both together.
 
 //
 // Breakpoints

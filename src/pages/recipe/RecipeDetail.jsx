@@ -61,7 +61,7 @@ const RecipeDetail = () => {
         <div className={`grid gap-6 pb-6 ${styles.detailPage}`}>
           <div>
             <div
-              className={`bg-white rounded-20 p-6 ${styles.detailsInfoWrapper}`}
+              className={`bg-white rounded-md p-6 ${styles.detailsInfoWrapper}`}
             >
               <Info recipe={recipe} />
             </div>
@@ -70,7 +70,7 @@ const RecipeDetail = () => {
           </div>
 
           <div className={styles.detailsIngredientsWrapper}>
-            <div className={`bg-white rounded-20 p-6`}>
+            <div className={`bg-white rounded-md p-6`}>
               <Ingredients
                 ingredients={recipe.ingredients}
                 persons={recipe.persons}
@@ -150,12 +150,12 @@ const RecipeDetail = () => {
       ) : null}
 
       <button
-        className={`flex items-center rounded-[50%] bg-white p-2 m:hidden! ${styles.backButton}`}
+        className={`flex items-center rounded-full bg-white p-2 m:hidden! ${styles.backButton}`}
         onClick={() => {
           navigate(-1);
         }}
       >
-        <FaChevronLeft className="text-20" />
+        <FaChevronLeft className="text-xl" />
       </button>
     </>
   );

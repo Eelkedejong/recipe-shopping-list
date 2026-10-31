@@ -37,7 +37,7 @@ const Textarea = ({
         onChange={onChange}
         required={required}
         className={[
-          'rounded-10 flex items-center justify-center pl-3 pt-6',
+          'rounded-sm flex items-center justify-center pl-3 pt-6',
           styles.textarea,
           classes,
         ]

@@ -5,7 +5,7 @@
     margin-top: -5px;
 
     @include screen-m(max) {
-      font-size: 24px;
+      font-size: var(--text-2xl);
     }
   }
 
@@ -15,8 +15,8 @@
 
   @include screen-m(max) {
     flex-direction: column;
-    background-color: $color-white;
-    border-radius: 20px 20px 0 0;
+    background-color: var(--color-white);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
     padding-top: 10px;
     padding-right: 24px;
 
@@ -25,13 +25,13 @@
     }
 
     .overlay {
-      border-radius: 20px 20px 0 0;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
       width: 100%;
       bottom: 0;
       top: 76px;
       position: fixed;
       opacity: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: var(--color-backdrop);
       pointer-events: none;
       z-index: 5;
     }
@@ -65,20 +65,18 @@
   right: 20px;
   width: 24px;
   height: 24px;
-}
 
-.searchIcon {
   &::before {
     content: '';
     display: inline-block;
     width: 3px;
     height: 50%;
-    background: #fff;
+    background: var(--color-white);
     position: absolute;
     left: 80%;
     top: 80%;
     transform: translate(-50%, -50%) rotate(-45deg);
-    transition: $default-transition;
+    transition: var(--transition-base);
   }
 
   &.close::before {
@@ -93,25 +91,25 @@
     position: absolute;
     width: 80%;
     height: 80%;
-    border: 3px solid #fff;
+    border: 3px solid var(--color-white);
     border-radius: 50%;
     top: 40%;
     left: 40%;
     transform: translate(-50%, -50%) rotate(0deg);
-    transition: all 0.3s;
+    transition: var(--transition-base);
   }
 
   &.close::after {
     border-width: 3px;
     border-radius: 0;
-    background: #fff;
+    background: var(--color-white);
     width: 0;
     height: 100%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) rotate(45deg) scaleX(0.5);
     transition:
-      all 0.3s,
-      background 0s 0.3s;
+      var(--transition-base),
+      background 0s var(--duration-base);
   }
 }

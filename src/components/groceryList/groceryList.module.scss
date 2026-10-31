@@ -2,7 +2,7 @@
 
 .groceryListItem {
   touch-action: none;
-  border-bottom: 1px dashed $color-main;
+  border-bottom: 1px dashed var(--color-main);
   cursor: grab;
 }
 

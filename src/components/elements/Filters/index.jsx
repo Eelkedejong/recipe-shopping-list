@@ -228,7 +228,7 @@ const Filters = () => {
               {displayOptions.map((option) => (
                 <li
                   key={option.value}
-                  className="font-light text-14 text-dark-grey"
+                  className="font-light text-sm text-dark-grey"
                 >
                   <label
                     className={`mr-2 flex gap-3 label ${styles.filterLabel}`}
@@ -251,7 +251,7 @@ const Filters = () => {
                 <li className="mt-2">
                   <button
                     onClick={() => toggleSection(sectionKey)}
-                    className="text-main text-14 flex items-center"
+                    className="text-main text-sm flex items-center"
                   >
                     {displayAll ? (
                       <>
@@ -283,7 +283,7 @@ const Filters = () => {
           onOpenChange={() => toggleCollapse(sectionKey)}
         >
           <ul className="flex flex-col gap-3">
-            <li className="font-light text-14 text-dark-grey">
+            <li className="font-light text-sm text-dark-grey">
               <label className="mr-2 flex gap-3 label">
                 <Checkbox
                   name={title.toLowerCase().replace(/\s+/g, '-')}
@@ -322,7 +322,7 @@ const Filters = () => {
             {timeOptions.map((timeOption, index) => (
               <li
                 key={timeOption.label}
-                className="font-light text-14 text-dark-grey"
+                className="font-light text-sm text-dark-grey"
               >
                 <label className="mr-2 flex gap-3 label">
                   <Radio id={timeOption.label} value={timeOption.value} />
@@ -397,7 +397,7 @@ const Filters = () => {
         <button
           onClick={() => setOpen(true)}
           aria-expanded={open}
-          className={`py-4 px-6 mt-2 text-main text-14 font-medium rounded-10 flex items-center justify-center ${styles.filterToggle}`}
+          className={`py-4 px-6 mt-2 text-main text-sm font-medium rounded-sm flex items-center justify-center ${styles.filterToggle}`}
         >
           <FaSliders className="mr-3" /> {t('Filter')}
         </button>
@@ -423,9 +423,9 @@ const Filters = () => {
 
   return (
     <aside>
-      <div className={`bg-white rounded-20 mr-6 s:pb-3 ${styles.content}`}>
-        <div className="px-6 py-4 bg-main-bg rounded-t-20">
-          <h2 className="font-bold text-20">{t('Filter')}</h2>
+      <div className={`bg-white rounded-md mr-6 s:pb-3 ${styles.content}`}>
+        <div className="px-6 py-4 bg-main-bg rounded-t-md">
+          <h2 className="font-bold text-xl">{t('Filter')}</h2>
         </div>
 
         {filterContent}

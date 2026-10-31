@@ -54,7 +54,7 @@ const PersonSelector = ({ personsState, setPersonsState, recipeId }) => {
         </NumberField.Decrement>
 
         <div className="flex flex-col items-center">
-          <span id={labelId} className="text-14">
+          <span id={labelId} className="text-sm">
             {t('Persons')}
           </span>
           {/* The label lives on the input, not on NumberField.Root: Root

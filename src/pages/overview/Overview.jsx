@@ -37,12 +37,12 @@ const Overview = () => {
   return (
     <>
       <div
-        className={`rounded-20 mb-6 ${styles.banner}`}
+        className={`rounded-md mb-6 ${styles.banner}`}
         style={{ backgroundImage: `url(${bannerImage})` }}
       ></div>
-      <div className="bg-white p-6 mb-6 rounded-20">
+      <div className="bg-white p-6 mb-6 rounded-md">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-20 font-semibold">{t('Your newest recipes')}</h3>
+          <h3 className="text-xl font-semibold">{t('Your newest recipes')}</h3>
           <Link to="/recipes" className="text-main flex items-center gap-2">
             {t('View all your recipes')} <FaChevronRight />
           </Link>
@@ -70,8 +70,8 @@ const Overview = () => {
           )}
         </div>
       </div>
-      <div className="bg-white p-6 mb-6 rounded-20">
-        <h3 className="text-20 font-semibold pb-4">
+      <div className="bg-white p-6 mb-6 rounded-md">
+        <h3 className="text-xl font-semibold pb-4">
           {t('What dish are you looking for?')}
         </h3>
         <div className="flex gap-3 flex-wrap pb-2">
@@ -80,7 +80,7 @@ const Overview = () => {
               onClick={() => {
                 navigate(`/recipes/all/${recipeType.label}`);
               }}
-              className="py-2 px-4 text-main bg-main-bg rounded-10 text-14 font-semibold"
+              className="py-2 px-4 text-main bg-main-bg rounded-sm text-sm font-semibold"
               key={recipeType.label}
             >
               {t(`${recipeType.value}`)}
@@ -89,9 +89,9 @@ const Overview = () => {
         </div>
       </div>
 
-      <div className="bg-white p-6 mb-6 rounded-20">
+      <div className="bg-white p-6 mb-6 rounded-md">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-20 font-semibold pb-4">
+          <h3 className="text-xl font-semibold pb-4">
             {t('Want to try something new?')}
           </h3>
           <Link to="/recipes/all" className="text-main flex items-center gap-2">

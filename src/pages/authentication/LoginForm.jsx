@@ -41,12 +41,12 @@ const LoginForm = ({ refetch }) => {
           autocomplete="on"
         />
 
-        <div className="flex justify-center text-14">
+        <div className="flex justify-center text-sm">
           <Link to="/forgot-password">{t('Forgot password?')}</Link>
         </div>
 
         <Button
-          className={'text-14'}
+          className={'text-sm'}
           onClick={() => {
             setLoginData({
               loginname: loginname,

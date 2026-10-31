@@ -45,7 +45,7 @@ const Layout = () => {
             path="/recipes"
             element={
               <>
-                <section className="w-full rounded-t-30">
+                <section className="w-full rounded-t-lg">
                   <Header title={t('Your recipes')} />
                   <RecipeList />
                 </section>
@@ -57,7 +57,7 @@ const Layout = () => {
             path="/recipes/all"
             element={
               <>
-                <section className="grid w-full rounded-t-30">
+                <section className="grid w-full rounded-t-lg">
                   <Header title={t('Discover new tastes')} withBanner={true} />
                   <TypeBanner />
                   <PublicRecipeList />
@@ -71,7 +71,7 @@ const Layout = () => {
             path="/recipes/all/:type"
             element={
               <>
-                <section className="grid w-full rounded-t-30">
+                <section className="grid w-full rounded-t-lg">
                   <Header useParamTitle={true} withBanner={true} />
                   <TypeBanner />
                   <PublicRecipeList />
@@ -85,7 +85,7 @@ const Layout = () => {
             path="/recipe/:id"
             element={
               <>
-                <section className="full-page w-full rounded-t-30">
+                <section className="full-page w-full rounded-t-lg">
                   <Header
                     returnUrl={'/recipes'}
                     returnText={t('All recipes')}
@@ -101,7 +101,7 @@ const Layout = () => {
             path="/public/recipe/:id"
             element={
               <>
-                <section className="full-page w-full rounded-t-30">
+                <section className="full-page w-full rounded-t-lg">
                   <Header
                     returnUrl={'/recipes/all'}
                     returnText={t('All recipes')}
@@ -161,7 +161,7 @@ const Layout = () => {
             path="/"
             element={
               <>
-                <section className="full-page w-full rounded-t-30">
+                <section className="full-page w-full rounded-t-lg">
                   <Header searchOnBanner={true} />
                   <Overview />
                 </section>

@@ -1,13 +1,11 @@
-@use '@styles/mixins/breakpoints' as *;
-
 .uploadButton {
   min-height: 150px;
-  border: 1px dashed #666;
+  border: 1px dashed var(--color-line-strong);
 
   &.uploaded {
     .uploadIcon {
       background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 20px;
+      border-radius: var(--radius-md);
       padding: 8px;
       opacity: 0;
     }
@@ -35,5 +33,5 @@
 
 .image {
   max-width: 100%;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
 }
